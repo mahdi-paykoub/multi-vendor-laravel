@@ -1,0 +1,111 @@
+.phone-number-inp {
+    border: 1px solid #cecece;
+    height: 47px;
+}
+
+.phone-number-inp:focus {
+    border-color: #1e9958 !important;
+}
+
+.confirm-btn {
+    background: #1ab1d4;
+    padding: 13px 60px;
+}
+
+.btn-for-seller-type {
+    background: #1ab1d4;
+    padding: 14px 19px;
+}
+
+.form-check-input:checked {
+    background-color: #5ea1ff;
+    border-color: #5ea1ff;
+}
+
+.right-progress-menu {
+    background-color: #fcfeff;
+    /* border-left: 1px solid #efefef;
+     height: 100vh;*/
+}
+
+.icon-p-shape {
+    background: #c0c2c5;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.i-active {
+    background: #4ccbe9 !important;
+}
+
+.subset-of-progress-menu {
+    padding: 13px;
+    border-right: 2px solid #dadada;
+    margin-right: 20px;
+    color: #828282;
+}
+
+.sub-active {
+    border-right: 2px solid #4ccbe9 !important;
+    color: #2e2e2e;
+    background: #d7f1f8;
+    font-weight: 600;
+}
+
+.mobile-p-shapes {
+    width: 28px;
+    height: 28px;
+}
+
+.seller-address-map {
+    height: 400px;
+}
+
+#addressModal input,
+#addressModal select {
+    height: 45px;
+}
+
+.search_address_inp {
+    top: 10px;
+    z-index: 100000;
+}
+
+.search_address_inp input {
+    height: 50px;
+    width: 77%;
+    border-radius: 7px;
+    border: none;
+    color: #424750;
+    /*   box-shadow: 0 -7px 7px #dfdfdf;*/
+}
+
+.search_address_inp::placeholder {
+    color: #bababa;
+    font-size: 14px;
+}
+
+.search_address_inp input:focus {
+    border-color: #1e9958 !important;
+}
+
+.ajx-res-src-val {
+    background: white;
+    padding: 20px;
+    width: 77%;
+    margin-top: -2px;
+    border-radius: 0 0 7px 7px;
+    max-height: 310px;
+    overflow-y: scroll;
+    display: none;
+}
+.seller-next-qu{
+    left: 20px;
+    position: absolute;
+    top: 50%;
+    z-index: 10000;
+}

@@ -1,0 +1,12 @@
+input:focus {
+    outline: none;
+}
+
+.select2-container .select2-selection--single {
+    padding-top: 2px;
+    height: 35px !important;
+}
+
+.select2 {
+    width: 100% !important;
+}

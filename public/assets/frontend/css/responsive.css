@@ -1,0 +1,483 @@
+/*TODO is delete max 575px?*/
+@media (max-width: 575px) {
+    .landing-carousel img {
+        height: 260px;
+    }
+
+    .landing-prev-btn,
+    .landing-next-btn {
+        width: 37px;
+        height: 37px;
+        bottom: 20px;
+    }
+
+    .landing-prev-btn {
+        right: 80px;
+    }
+
+    .landing-next-btn {
+        right: 35px;
+    }
+
+    .amazing-product-img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .amazing-product-img-text {
+        width: 180px;
+    }
+
+    .amazing-product-parent {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .amazing-products img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .amazing-products {
+        width: 70px;
+        height: 70px;
+    }
+
+    .introduction-img {
+        height: 180px;
+    }
+
+    .most-sell-swiper img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .counter-most-sell {
+        font-size: 20px;
+    }
+
+    .title-most-sell {
+        font-size: 11px;
+    }
+
+    h5 {
+        font-size: 17px;
+    }
+
+    .selected-products img {
+        width: 75%;
+    }
+
+    .search-input-width {
+        width: 100%;
+    }
+
+
+    .main-category-index img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .br-0-15-responsive {
+        border-radius: 0;
+    }
+
+    .single-product-image {
+        width: 55%;
+    }
+
+    .responsive-single-product {
+        border-top: 4px solid #f0f0f1;
+    }
+
+    .select-color-box {
+        width: 23px !important;
+        height: 23px !important;
+    }
+
+    .single-p-comment-menu {
+        top: 55px;
+    }
+
+    .modal-image-swiper img {
+        height: 250px;
+        width: 250px;
+    }
+
+    .article-main-img {
+        height: 280px;
+    }
+
+    .home-banner img {
+        height: 70px;
+    }
+
+    .new-blogs-main-left img {
+        height: 250px;
+    }
+
+    .border-responsive-width {
+        width: 70%;
+    }
+
+    .fs15res {
+        font-size: 13px;
+    }
+
+}
+
+@media (min-width: 576px) {
+    .landing-carousel img {
+        height: 300px;
+    }
+
+    .landing-prev-btn,
+    .landing-next-btn {
+        width: 37px;
+        height: 37px;
+        bottom: 20px;
+    }
+
+    .landing-prev-btn {
+        right: 80px;
+    }
+
+    .landing-next-btn {
+        right: 35px;
+    }
+
+    .amazing-product-img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .amazing-product-img-text {
+        width: 180px;
+    }
+
+    .amazing-product-parent {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .amazing-products img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .amazing-products {
+        width: 70px;
+        height: 70px;
+    }
+
+    .introduction-img {
+        height: 240px;
+    }
+
+    .most-sell-swiper img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .counter-most-sell {
+        font-size: 20px;
+    }
+
+    .title-most-sell {
+        font-size: 11px;
+    }
+
+    h5 {
+        font-size: 17px;
+    }
+
+    .selected-products img {
+        width: 50%;
+    }
+
+    .search-input-width {
+        width: 100%;
+    }
+
+    .main-category-index img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .br-0-15-responsive {
+        border-radius: 0;
+    }
+
+    .single-product-image {
+        width: 40%;
+    }
+
+    .responsive-single-product {
+        border-top: 5px solid #f0f0f1;
+    }
+
+    .select-color-box {
+        width: 23px !important;
+        height: 23px !important;
+    }
+
+    .single-p-comment-menu {
+        top: 55px;
+    }
+
+    .modal-image-swiper img {
+        height: 350px;
+        width: 350px;
+    }
+
+    .article-main-img {
+        height: 330px;
+    }
+
+    .home-banner img {
+        height: 70px;
+    }
+
+    .new-blogs-main-left img {
+        height: 280px;
+    }
+
+    .border-responsive-width {
+        width: 70%;
+    }
+
+    .fs15res {
+        font-size: 13px;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .landing-carousel img {
+        height: 300px;
+    }
+
+    .landing-prev-btn,
+    .landing-next-btn {
+        width: 40px;
+        height: 40px;
+        bottom: 40px;
+
+    }
+
+    .landing-prev-btn {
+        right: 150px;
+    }
+
+    .landing-next-btn {
+        right: 100px;
+    }
+
+    .amazing-product-img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .amazing-product-img-text {
+        width: 250px;
+    }
+
+    .amazing-product-parent {
+        padding-top: 22px;
+        padding-bottom: 22px;
+    }
+
+    .amazing-products img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .amazing-products {
+        width: 75px;
+        height: 75px;
+    }
+
+    .introduction-img {
+        height: 180px;
+    }
+
+    .border-md {
+        border: 1px solid #dee2e6 !important;
+    }
+
+    .most-sell-swiper img {
+        width: 84px;
+        height: 84px;
+    }
+
+    .counter-most-sell {
+        font-size: 26px;
+    }
+
+    .title-most-sell {
+        font-size: 13px;
+    }
+
+    h5 {
+        font-size: 20px;
+    }
+
+    .selected-products img {
+        width: 60%;
+    }
+
+    .main-category-index img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .br-0-15-responsive {
+        border-radius: 15px;
+    }
+
+    .bg-image-url-seller h1 {
+        font-size: 33px;
+    }
+
+    .bg-image-url-seller h1 + div {
+        font-size: 25px;
+    }
+
+    .box-why-be-seller h1 {
+        font-size: 27px;
+    }
+
+    .modal-image-swiper img {
+        height: 450px;
+        width: 450px;
+    }
+
+    .article-main-img {
+        height: 370px;
+    }
+
+    .home-banner img {
+        height: 100px;
+    }
+
+    .new-blogs-main-left img {
+        height: 350px;
+    }
+
+    .border-responsive-width {
+        width: 75%;
+    }
+
+    .fs15res {
+        font-size: 15px;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .landing-carousel img {
+        height: 350px;
+    }
+
+    .introduction-img {
+        height: 260px;
+    }
+
+    .selected-products img {
+        width: 100%;
+    }
+
+    .search-input-width {
+        width: 75%;
+    }
+
+    .main-search-inp-parent {
+        width: 600px;
+    }
+
+
+    .user-panel-wish-list > div:nth-child(odd) {
+        border-left: 1px solid rgba(234, 234, 234, 0.70);
+    }
+
+    .border-responsive {
+        border: 1px solid rgba(222, 226, 230, 0.91) !important;
+    }
+
+    .border-left-responsive {
+        border-left: 1px solid rgba(222, 226, 230, 0.91) !important;
+    }
+
+    .select-color-box {
+        width: 25px !important;
+        height: 25px !important;
+    }
+
+    .single-p-comment-menu {
+        top: 60px;
+    }
+
+    .modal-image-swiper img {
+        height: 500px;
+        width: 500px;
+    }
+
+    .article-main-img {
+        height: 420px;
+    }
+
+    .right-main-blog-img {
+        height: 418px;
+    }
+
+    .header-post-img-p-2 img {
+        height: 201px;
+    }
+
+    .new-blogs-main-left img {
+        height: 450px;
+    }
+
+    .border-responsive-width {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .landing-carousel img {
+        height: 400px;
+    }
+
+    .single-product-image {
+        width: 100%;
+    }
+
+    .responsive-single-product {
+        background: #f7f7f8;
+        border: 1px solid #e3e3e3;
+        border-radius: 15px;
+    }
+
+    .box-blog-content-shadow {
+        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+    }
+
+    .home-banner img {
+        height: 130px;
+    }
+
+    .new-blogs-main-left img {
+        height: 400px;
+    }
+
+    .border-responsive-width {
+        width: 70%;
+    }
+}
+
+
+@media (min-width: 1400px) {
+    .border-responsive-width {
+        width: 75%;
+    }
+}

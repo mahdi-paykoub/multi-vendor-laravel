@@ -1,0 +1,123 @@
+.blog-navbar {
+    background-color: #202020;
+}
+
+.active-menu-blog {
+    background: #00bcdd !important;
+}
+.active-menu-blog svg{
+    color: #d5d5d5 !important;
+}
+
+.h50px {
+    height: 50px;
+}
+
+.bolg-product-box {
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+}
+
+.single-blog-comment-inp {
+    line-height: 35px;
+    color: #6b7074;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    padding: 0 10px;
+}
+
+.single-blog-comment-inp::placeholder {
+    color: #a7a7a7;
+    font-size: 14px;
+}
+
+.comment-text-area::placeholder {
+    color: #a7a7a7;
+    font-size: 14px;
+}
+
+.comment-text-area {
+    resize: none;
+
+}
+
+.comment-text-area:focus {
+    outline: none;
+
+}
+
+
+
+.blog-footer-info-email-input {
+    width: 275px;
+    outline: 0;
+    padding: 5px 15px;
+    margin: 0 15px;
+    border: 1px solid #8b8f92;
+    background-color: #5a5f64;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 5px;
+    line-height: 22px;
+}
+
+.blog-footer-info-email-input::placeholder {
+    font-size: 12px;
+}
+
+.blog-category-header-img {
+    background: url(../image/banner/Final_Fantasy_XVI_header_desktop_v3_1.jpg) no-repeat center;
+    height: 70vh;
+}
+
+.over-cat-img {
+    background-color: #00000060;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    -webkit-background-size: cover;
+}
+
+.swiper-card-box-shadow {
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12)
+}
+
+.cat-blog-big-article-img {
+    height: 450px;
+}
+
+.op-3 {
+opacity: .3;
+}
+.home-blog-right-top{
+    background: #2899d5;
+}
+.home-blog-right-menu{
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)
+}
+.blog-side-bar-products .swiper-button-next:after,
+.blog-side-bar-products .swiper-button-prev:after{
+    font-size: 19px;
+    color: black;
+}
+
+
+
+.header-post-img-p > div{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.73), transparent);
+}
+
+.bx-sh{
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)
+}
+
+.active-new-blog-post{
+    border-right: 5px solid #fa617b;
+    background-color: #fafafa;
+}
+.article-comment-pagination{
+    padding: 3px 12px;
+}
+.active-article-comment-pagination{
+    border: 1px solid #63d0df;
+}
