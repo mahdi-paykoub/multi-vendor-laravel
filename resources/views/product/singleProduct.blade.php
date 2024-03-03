@@ -102,13 +102,11 @@
     <!--main menu-->
     @include('layouts.product_parts.main_menu')
 
-
-
     @php
         $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->first();
     @endphp
 
-        <!--content-->
+    <!--content-->
     <div class="container mt-4 px-lg-4 px-3">
         <!--bread crumb-->
         <div class="d-flex align-items-center justify-content-between">
@@ -614,7 +612,7 @@
         </div>
         <!--sellers-->
         <div class="row my-4 br-bottom-2px pb-5 d-none d-lg-block pt-1" id="product-sellers-section">
-            <div class="bb-red pb-3 w-fit fw600 icon-dark-color" >
+            <div class="bb-red pb-3 w-fit fw600 icon-dark-color">
                 فروشندگان این کالا
             </div>
 
