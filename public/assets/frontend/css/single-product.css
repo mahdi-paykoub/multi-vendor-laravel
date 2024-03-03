@@ -100,3 +100,14 @@
     font-size: 22px !important;
 
 }
+.selected-color-svg{
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.product-circle-color.active{
+    background: #19bfd3 !important;
+}
