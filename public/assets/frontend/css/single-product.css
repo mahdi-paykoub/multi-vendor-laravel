@@ -108,10 +108,15 @@
     bottom: 0;
     right: 0;
 }
-.product-circle-color.active{
-    background: #19bfd3 !important;
-}
+
 .other-seller-alert{
     background: rgba(245, 127, 23, .1);
     padding: 10px;
+    border: 1px solid #e7e7e7;
+}
+.color-selection-inp:checked + div{
+    background: #19bfd3 !important;
+}
+.color-selection-inp:checked + div svg{
+    display: inline-block; !important;
 }

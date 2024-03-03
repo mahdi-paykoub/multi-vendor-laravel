@@ -354,21 +354,22 @@
                                 $attr_val = \App\Models\AttrValue::find($color_id);
                             @endphp
 
-
+                            <input type="radio" class="color-selection-inp display-none" name="color-selection"
+                                   @if($loop->first) checked @endif>
                             <div
-                                class="border select-p-color mt-2 p-1 product-circle-color rounded-circle cursor-pointer ms-2
-                                @if($loop->first) active @endif"
-                                data-colorid="{{$color_id}}">{{--active--}}
+                                class="border select-p-color mt-2 p-1 product-circle-color rounded-circle cursor-pointer ms-2"
+                                data-colorid="{{$color_id}}">
                                 <div class="rounded-circle select-color-box position-relative "
                                      style="background: {{$attr_val->value}}; ">
-                                    @if($loop->first)
-                                        <svg stroke="currentColor" class="selected-color-svg" fill="currentColor"
-                                             stroke-width="0" viewBox="0 0 24 24"
-                                             height="22" width="22" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill="none" d="M0 0h24v24H0z"></path>
-                                            <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path>
-                                        </svg>
-                                    @endif
+
+                                    <svg stroke="currentColor" class="selected-color-svg display-none"
+                                         fill="currentColor"
+                                         stroke-width="0" viewBox="0 0 24 24"
+                                         height="22" width="22" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="none" d="M0 0h24v24H0z"></path>
+                                        <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path>
+                                    </svg>
+
                                 </div>
                             </div>
 
@@ -415,7 +416,9 @@
             </div>
             <div class="col-12 col-xl-3 responsive-single-product  mt-4 mt-lg-5">
                 <div class="mt-4">
-                    <span class="fw600"> فروشنده</span>
+                    <div class="d-flex justify-content-between">
+                        <div><span class="fw600"> فروشنده</span></div>
+                    </div>
                     <div class="mt-4">
                         <svg stroke="currentColor" class="icon-dark-color" fill="currentColor" stroke-width="0"
                              viewBox="0 0 24 24" height="24"
@@ -498,7 +501,7 @@
                         </svg>
                     </div>
                     <div class="py-3 border-bottom d-none d-xl-block">
-                        <a href="">
+                        <a href="#product-sellers-section">
                             <div
                                 class="other-seller-alert br7 fs13 d-flex w-100 align-items-center justify-content-between mb-3 d-none">
                                 <div class="d-flex align-items-center">
@@ -610,8 +613,8 @@
 
         </div>
         <!--sellers-->
-        <div class="row my-4 br-bottom-2px pb-5 d-none d-lg-block">
-            <div class="bb-red pb-3 w-fit fw600 icon-dark-color" id="#other-seller">
+        <div class="row my-4 br-bottom-2px pb-5 d-none d-lg-block pt-1" id="product-sellers-section">
+            <div class="bb-red pb-3 w-fit fw600 icon-dark-color" >
                 فروشندگان این کالا
             </div>
 
@@ -2024,6 +2027,7 @@
     <script src="{{asset('assets/frontend/js/single-product.js')}}"></script>
     <script>
         $('.select-p-color').click(function () {
+            $this = $(this)
             $productId = $('.product-id').attr('data-productid');
             $colorId = $(this).attr('data-colorid')
 
@@ -2044,7 +2048,7 @@
                 success: function (data) {
                     console.log(data)
 
-                    $('.price-box').text(data[0]['productInfo']['price'])
+                    $('.price-box').text(Number(data[0]['productInfo']['price']).toLocaleString())
                     $('.quantity-box').text(data[0]['productInfo']['quantity'])
                     $('.shop-name-box').text(data[0]['sellerInfo']['shop_name'])
 
@@ -2056,6 +2060,8 @@
                     }
 
                     $('.add-product-seller-p').append(add_product_seller(data))
+                    $this.prev().prop('checked', true);
+                    $this.removeClass('select-p-color');
                 }
             });
         })
@@ -2064,8 +2070,8 @@
 
 
             return `<div>
-                        ${data.map(function ({productInfo , sellerInfo}){
-                            return `<div class="row mt-5">
+                        ${data.map(function ({productInfo, sellerInfo}) {
+                return `<div class="row mt-5">
                         <div class="col-3">
                             <div class="d-flex align-items-center ">
                                 <svg stroke="currentColor" class="icon-dark-color" fill="currentColor" stroke-width="0"
