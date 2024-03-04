@@ -15,8 +15,6 @@ class CartController extends Controller
 
     public function add_to_cart(ProductInfo $productInfo)
     {
-
-
         if (!Cart::has($productInfo)) {
             Cart::put([
                 'quantity' => 1,

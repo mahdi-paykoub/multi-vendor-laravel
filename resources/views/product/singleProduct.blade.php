@@ -7,6 +7,7 @@
     @php
         /*   session()->forget('cart');*/
            /*  dd(session()->get('cart'));*/
+
     @endphp
 
         <!--top bar-->

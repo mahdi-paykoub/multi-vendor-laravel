@@ -26,12 +26,7 @@ class CartService
         if (!is_null($obj) && $obj instanceof Model) {
             $value = array_merge($value, [
                 'id' => Str::random(10),
-                'subject_id' => $obj->id,
-                'subject_type' => get_class($obj)
-            ]);
-        } else {
-            $value = array_merge($value, [
-                'id' => Str::random(10)
+                'productInfo' => $obj,
             ]);
         }
 
@@ -50,13 +45,9 @@ class CartService
     {
         if ($key instanceof Model) {
             return !is_null(
-                $this->cart->where('subject_id', $key->id)->where('subject_type', get_class($key))->first()
+                $this->cart->where('productInfo', $key)->first()
             );
         }
-
-        return !is_null(
-            $this->cart->firstWhere('id', $key)
-        );
     }
 
     /**
@@ -66,10 +57,10 @@ class CartService
     public function get($key)
     {
         $item = $key instanceof Model
-            ? $this->cart->where('subject_id', $key->id)->where('subject_type', get_class($key))->first()
-            : $this->cart->firstWhere('id', $key);
+            ? $this->cart->where('productInfo', $key)->first()
+            : false;
 
-        return $this->withRelationshipIfExist($item);
+        return $item;
     }
 
     /**
@@ -77,31 +68,7 @@ class CartService
      */
     public function all()
     {
-        $cart = $this->cart;
-        $cart = $cart->map(function($item) {
-            return $this->withRelationshipIfExist($item);
-        });
-
-        return $cart;
+        return $cart = $this->cart;
     }
 
-
-
-    protected function withRelationshipIfExist($item)
-    {
-        if(isset( $item['subject_id'] ) && isset($item['subject_type']) ) {
-            $class = $item['subject_type'];
-            $subject = (new $class())->find( $item['subject_id'] );
-
-            $item[strtolower(class_basename($class))] = $subject;
-
-            unset($item['subject_id']);
-            unset($item['subject_type']);
-
-            return $item;
-        }
-
-
-        return $item;
-    }
 }

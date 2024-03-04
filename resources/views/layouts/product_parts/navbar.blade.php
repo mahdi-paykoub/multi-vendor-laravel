@@ -656,7 +656,7 @@
                         </div>
                     </div>
                 @endauth
-                <a href="" class="border-end pe-4">
+                <a href="{{route('shop.cart.view')}}" class="border-end pe-4">
                     <svg stroke="currentColor" fill="#3f4064" stroke-width="0" viewBox="0 0 256 256" height="24"
                          width="24"
                          xmlns="http://www.w3.org/2000/svg">
