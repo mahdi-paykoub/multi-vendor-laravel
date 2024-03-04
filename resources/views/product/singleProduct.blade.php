@@ -4,7 +4,12 @@
 @endsection
 @section('content')
 
-    <!--top bar-->
+    @php
+        /*   session()->forget('cart');*/
+           /*  dd(session()->get('cart'));*/
+    @endphp
+
+        <!--top bar-->
     @include('layouts.product_parts.topbar')
     <!--nav bar-->
     <header class="sticky-top w-100 bg-white" id="navbar-sticky-shadow">
@@ -106,7 +111,7 @@
         $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->first();
     @endphp
 
-    <!--content-->
+        <!--content-->
     <div class="container mt-4 px-lg-4 px-3">
         <!--bread crumb-->
         <div class="d-flex align-items-center justify-content-between">
@@ -548,12 +553,14 @@
                                     fill="currentColor"></path>
                             </svg>
                         </div>
-                        <a href="">
-                            <button
-                                class="single-product-add-to-cart-btn w-100 text-white br7 border-0 mt-3 bg-digi-red fs14">
+                        <form action="{{route('add.to.cart' , $infos[0]->id)}}" method="post">
+                            @csrf
+                            <button type="submit"
+                                    class="single-product-add-to-cart-btn w-100 text-white br7 border-0 mt-3 bg-digi-red fs14">
                                 افزودن به سبد
                             </button>
-                        </a>
+                        </form>
+
 
                     </div>
                 </div>

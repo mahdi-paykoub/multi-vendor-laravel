@@ -19,6 +19,9 @@ Route::get('/product/{singleProduct}', [\App\Http\Controllers\SingleProductContr
 /*ajax*/
 Route::post('/get-product-info-by-color', [\App\Http\Controllers\SingleProductController::class, 'getProductInfoByColor']);
 
+/*shop cart*/
+Route::post('/add-to-cart{productInfo}', [\App\Http\Controllers\CartController::class, 'add_to_cart'])->name('add.to.cart');
+
 
 Route::get('/blog', [\App\Http\Controllers\SingleArticleController::class, 'showHomeBlog'])->name('blog');
 
