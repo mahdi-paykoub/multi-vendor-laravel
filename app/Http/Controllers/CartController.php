@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    public function shop_cart_view()
+    {
+        return view('cart.cart');
+    }
+
     public function add_to_cart(ProductInfo $productInfo)
     {
 
