@@ -21,6 +21,7 @@ Route::post('/get-product-info-by-color', [\App\Http\Controllers\SingleProductCo
 
 /*shop cart*/
 Route::post('/add-to-cart/{productInfo}', [\App\Http\Controllers\CartController::class, 'add_to_cart'])->name('add.to.cart');
+Route::post('/delete-from-cart/{productInfo}', [\App\Http\Controllers\CartController::class, 'delete_from_cart'])->name('delete.from.cart');
 Route::get('/checkout/cart', [\App\Http\Controllers\CartController::class, 'shop_cart_view'])->name('shop.cart.view');
 
 

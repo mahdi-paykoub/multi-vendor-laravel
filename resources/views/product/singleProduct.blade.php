@@ -556,12 +556,41 @@
                         </div>
 
 
+                        <div class="quantity-add-btn-p">
+                            @if(!\App\Facades\Cart::has($infos[0]))
+                                <button type="button" data-productinfoid="{{$infos[0]->id}}"
+                                        class="single-product-add-to-cart-btn w-100 text-white br7 border-0 mt-3 bg-digi-red fs14 add-to-cart-js">
+                                    افزودن به سبد
+                                </button>
+                            @else
+                                <div class="d-flex align-items-center quantity-parent">
+                                    <div class="border my-3 d-flex align-items-center br7 w-fit add-quantity-box">
+                                        <div class="cursor-pointer">
+                                            <svg stroke="currentColor" class="text-digi-red" fill="currentColor"
+                                                 stroke-width="0" viewBox="0 0 24 24" height="19" width="19"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="fv text-digi-red px-3">1</div>
+                                        <div class="cursor-pointer">
+                                            <svg stroke="currentColor" class="text-digi-red" fill="none"
+                                                 stroke-width="2"
+                                                 viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"
+                                                 height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="me-3">
+                                        <div>در سبد شما</div>
+                                        <div class="fs13 mt-2">مشاهده
+                                            <a href="{{route('shop.cart.view')}}" class="text-info"> سبد خرید</a></div>
+                                    </div>
 
-                        <button type="button" data-productinfoid="{{$infos[0]->id}}"
-                                class="single-product-add-to-cart-btn w-100 text-white br7 border-0 mt-3 bg-digi-red fs14 add-to-cart-js">
-                            افزودن به سبد
-                        </button>
-
+                                </div>
+                            @endif
+                        </div>
 
 
                     </div>
@@ -2095,7 +2124,16 @@
                     $('.price-box').text(Number(data[0]['productInfo']['price']).toLocaleString())
                     $('.quantity-box').text(data[0]['productInfo']['quantity'])
                     $('.shop-name-box').text(data[0]['sellerInfo']['shop_name'])
-                    $('.add-to-cart-js').attr('data-productinfoid',data[0]['productInfo']['id'])
+
+                    if (data[0]['isInCart']) {
+                        $('.quantity-add-btn-p').empty().append(addQuantityBox())
+                    } else {
+                        $('.quantity-add-btn-p').empty().append(addAddToCartBtn(data[0]['productInfo']['id']))
+                    }
+                    $('.add-to-cart-js').click(function () {
+                        $this = $(this)
+                        addToCart($this);
+                    })
 
                     $other_seller_alert = $('.other-seller-alert')
                     if (data.length > 1) {
@@ -2198,11 +2236,16 @@
             })}
                     </div>`
         }
-
-
         $('.add-to-cart-js').click(function () {
-
-            $productInfoID = $(this).attr('data-productinfoid')
+            $this = $(this)
+            addToCart($this);
+        })
+        $('#showCart').on('show.bs.modal', function (e) {
+            $('.title-product').text(e.relatedTarget.title)
+            $('.p-img-modal').attr('src', e.relatedTarget.img)
+        });
+        let addToCart = ($this) => {
+            $productInfoID = $this.attr('data-productinfoid')
 
             $.ajaxSetup({
                 headers: {
@@ -2215,26 +2258,58 @@
                 type: 'POST',
                 url: '/add-to-cart/' + $productInfoID,
                 success: function (data) {
-                    if (data.status){
+                    if (data.status) {
                         $title = data.title
                         $img = data.img.image
                         $('#showCart').modal('show', {title: $title, img: $img});
-                    }else {
-                        /*TODO show message*/
+                        $('.quantity-add-btn-p').empty().append(addQuantityBox())
+
+                    } else {
                         alert(data.msg)
                     }
-
-
 
 
                     console.log(data)
                 }
             });
-        })
+        }
+        let addQuantityBox = () => {
+            return `
+             <div class="d-flex align-items-center quantity-parent">
+                                    <div class="border my-3 d-flex align-items-center br7 w-fit add-quantity-box">
+                                        <div class="cursor-pointer">
+                                            <svg stroke="currentColor" class="text-digi-red" fill="currentColor"
+                                                 stroke-width="0" viewBox="0 0 24 24" height="19" width="19"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="fv text-digi-red px-3">1</div>
+                                        <div class="cursor-pointer">
+                                            <svg stroke="currentColor" class="text-digi-red" fill="none"
+                                                 stroke-width="2"
+                                                 viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"
+                                                 height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="me-3">
+                                        <div>در سبد شما</div>
+                                        <div class="fs13 mt-2">مشاهده
+                                            <a href="" class="text-info"> سبد خرید</a></div>
+                                    </div>
 
-        $('#showCart').on('show.bs.modal', function (e) {
-            $('.title-product').text(e.relatedTarget.title)
-            $('.p-img-modal').attr('src' , e.relatedTarget.img)
-        });
+                                </div>
+            `
+        }
+        let addAddToCartBtn = (productInfoId) => {
+            return `
+            <button type="button" data-productinfoid="${productInfoId}"
+                                        class="single-product-add-to-cart-btn w-100 text-white br7 border-0 mt-3 bg-digi-red fs14 add-to-cart-js">
+                                    افزودن به سبد
+            </button>
+            `
+        }
     </script>
 @endsection

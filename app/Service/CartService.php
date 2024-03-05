@@ -71,4 +71,17 @@ class CartService
         return $cart = $this->cart;
     }
 
+    public function delete($key)
+    {
+        if ($key instanceof Model) {
+            $this->cart = $this->cart->filter(function ($item) use ($key) {
+
+                return ($item['productInfo'] != $key);
+            });
+            session()->put('cart', $this->cart);
+            return true;
+        }
+        return false;
+    }
+
 }

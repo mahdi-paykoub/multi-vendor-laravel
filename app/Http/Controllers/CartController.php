@@ -28,4 +28,13 @@ class CartController extends Controller
         }
         return response(['status' => false, 'msg' => 'این کالا در سبد خرید شما موجود است.']);
     }
+
+    public function delete_from_cart(ProductInfo $productInfo)
+    {
+        if (Cart::has($productInfo)) {
+            if (Cart::delete($productInfo)) {
+                return back();
+            }
+        }
+    }
 }

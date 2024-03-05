@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Cart;
 use App\Models\Product;
 use App\Models\Seller;
 use Illuminate\Http\Request;
@@ -31,7 +32,10 @@ class SingleProductController extends Controller
 
         foreach ($productInfos as $productInfo) {
             $seller = Seller::find($productInfo->seller_id)->sellerInfo()->first();
-            $productArray = ['productInfo' => $productInfo, 'sellerInfo' => $seller];
+
+            $isInShopCart = Cart::has($productInfo);
+
+            $productArray = ['productInfo' => $productInfo, 'sellerInfo' => $seller, 'isInCart' => $isInShopCart];
 
 
             $returned_data[] = $productArray;
