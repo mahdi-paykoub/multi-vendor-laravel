@@ -5,8 +5,8 @@
 @section('content')
 
     @php
-        /*   session()->forget('cart');*/
-           /*  dd(session()->get('cart'));*/
+        /*           session()->forget('cart');*/
+        /*             dd(session()->get('cart'));*/
 
     @endphp
 
@@ -298,7 +298,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer shadow-sm w-100 d-flex justify-content-start">
-                                <button class="btn btn-danger bg-digi-red fs13 br7 btn-padding-2">فزودن به سبد خرید
+                                <button class="btn btn-danger bg-digi-red fs13 br7 btn-padding-2">افزودن به سبد خرید
                                 </button>
                             </div>
                         </div>
@@ -554,13 +554,14 @@
                                     fill="currentColor"></path>
                             </svg>
                         </div>
-                        <form action="{{route('add.to.cart' , $infos[0]->id)}}" method="post">
-                            @csrf
-                            <button type="submit"
-                                    class="single-product-add-to-cart-btn w-100 text-white br7 border-0 mt-3 bg-digi-red fs14">
-                                افزودن به سبد
-                            </button>
-                        </form>
+
+
+
+                        <button type="button" data-productinfoid="{{$infos[0]->id}}"
+                                class="single-product-add-to-cart-btn w-100 text-white br7 border-0 mt-3 bg-digi-red fs14 add-to-cart-js">
+                            افزودن به سبد
+                        </button>
+
 
 
                     </div>
@@ -2025,6 +2026,43 @@
         </div>
     </div>
 
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="showCart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3 border-0">
+                <div class="d-flex justify-content-between border-bottom pb-3">
+                    <div class="d-flex align-items-center">
+                        <svg stroke="currentColor" fill="#3aad00" stroke-width="0" viewBox="0 0 512 512"
+                             height="22" width="22" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path>
+                        </svg>
+
+                        <div style="color: #2e7b32;" class="fs15 me-2">این کالا به سبد خرید اضافه شد!</div>
+                    </div>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="mt-3 d-flex">
+                    <img
+                        src="http://localhost:8000/assets/frontend/image/product/2024/3/3/0c4faa28a9ab25b43b2246d34136a142da4d96be_1675534577.jpg"
+                        alt="" class="p-img-modal" width="80" height="80">
+                    <div class="fs13 mt-3 me-1 fw600 lh1-7 title-product">
+
+                    </div>
+                </div>
+
+                <div>
+                    <a href="{{route('shop.cart.view')}}" style="padding: 10px 0;"
+                       class="single-product-add-to-cart-btn w-100 text-white br7 border-0 d-block text-center mt-3 bg-digi-red fs14 ">برو
+                        به سبد خرید</a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
@@ -2057,6 +2095,7 @@
                     $('.price-box').text(Number(data[0]['productInfo']['price']).toLocaleString())
                     $('.quantity-box').text(data[0]['productInfo']['quantity'])
                     $('.shop-name-box').text(data[0]['sellerInfo']['shop_name'])
+                    $('.add-to-cart-js').attr('data-productinfoid',data[0]['productInfo']['id'])
 
                     $other_seller_alert = $('.other-seller-alert')
                     if (data.length > 1) {
@@ -2160,5 +2199,42 @@
                     </div>`
         }
 
+
+        $('.add-to-cart-js').click(function () {
+
+            $productInfoID = $(this).attr('data-productinfoid')
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            $.ajax({
+                type: 'POST',
+                url: '/add-to-cart/' + $productInfoID,
+                success: function (data) {
+                    if (data.status){
+                        $title = data.title
+                        $img = data.img.image
+                        $('#showCart').modal('show', {title: $title, img: $img});
+                    }else {
+                        /*TODO show message*/
+                        alert(data.msg)
+                    }
+
+
+
+
+                    console.log(data)
+                }
+            });
+        })
+
+        $('#showCart').on('show.bs.modal', function (e) {
+            $('.title-product').text(e.relatedTarget.title)
+            $('.p-img-modal').attr('src' , e.relatedTarget.img)
+        });
     </script>
 @endsection

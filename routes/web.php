@@ -20,7 +20,7 @@ Route::get('/product/{singleProduct}', [\App\Http\Controllers\SingleProductContr
 Route::post('/get-product-info-by-color', [\App\Http\Controllers\SingleProductController::class, 'getProductInfoByColor']);
 
 /*shop cart*/
-Route::post('/add-to-cart{productInfo}', [\App\Http\Controllers\CartController::class, 'add_to_cart'])->name('add.to.cart');
+Route::post('/add-to-cart/{productInfo}', [\App\Http\Controllers\CartController::class, 'add_to_cart'])->name('add.to.cart');
 Route::get('/checkout/cart', [\App\Http\Controllers\CartController::class, 'shop_cart_view'])->name('shop.cart.view');
 
 
