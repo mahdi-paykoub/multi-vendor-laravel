@@ -4,13 +4,16 @@
 @endsection
 @section('content')
 
+    <pre dir="ltr">
+
+
     @php
         /*           session()->forget('cart');*/
-        /*             dd(session()->get('cart'));*/
+
 
     @endphp
-
-        <!--top bar-->
+</pre>
+    <!--top bar-->
     @include('layouts.product_parts.topbar')
     <!--nav bar-->
     <header class="sticky-top w-100 bg-white" id="navbar-sticky-shadow">

@@ -3,8 +3,10 @@
 namespace App\Service;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use function Symfony\Component\Translation\t;
 
 class CartService
 {
@@ -29,10 +31,8 @@ class CartService
                 'productInfo' => $obj,
             ]);
         }
-
         $this->cart->put($value['id'], $value);
         session()->put('cart', $this->cart);
-
         return $this;
     }
 
@@ -63,6 +63,7 @@ class CartService
         return $item;
     }
 
+
     /**
      * @return \Closure|Collection|mixed|object
      */
@@ -75,7 +76,6 @@ class CartService
     {
         if ($key instanceof Model) {
             $this->cart = $this->cart->filter(function ($item) use ($key) {
-
                 return ($item['productInfo'] != $key);
             });
             session()->put('cart', $this->cart);
@@ -84,4 +84,24 @@ class CartService
         return false;
     }
 
+    /**
+     * @param $key
+     * @return bool
+     */
+
+
+    public function updateProductCount($key)
+    {
+        if ($key instanceof Model) {
+            $this->cart = $this->cart->map(function ($item) use ($key) {
+                if ($item['productInfo'] == $key) {
+                    $item['count']++;
+                }
+                return $item;
+            });
+            session()->put('cart', $this->cart);
+            return true;
+        }
+        return false;
+    }
 }

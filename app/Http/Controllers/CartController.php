@@ -20,7 +20,7 @@ class CartController extends Controller
             $product = Product::find($productInfo->product_id);
             $product_img = $product->galleries()->first();
             Cart::put([
-                'quantity' => 1,
+                'count' => 1,
             ],
                 $productInfo
             );
@@ -35,6 +35,13 @@ class CartController extends Controller
             if (Cart::delete($productInfo)) {
                 return back();
             }
+        }
+    }
+
+    public function increaseProductCount(ProductInfo $productInfo)
+    {
+        if (Cart::has($productInfo)) {
+            Cart::updateProductCount($productInfo);
         }
     }
 }
