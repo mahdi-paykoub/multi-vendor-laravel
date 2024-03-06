@@ -3,16 +3,13 @@
     <link rel="stylesheet" href="{{asset('assets/frontend/css/single-product.css')}}"/>
 @endsection
 @section('content')
-
-    <pre dir="ltr">
-
-
     @php
-        /*           session()->forget('cart');*/
+                 /* session()->forget('cart');*/
 
+/*    dd(session()->get('cart'));*/
 
     @endphp
-</pre>
+
     <!--top bar-->
     @include('layouts.product_parts.topbar')
     <!--nav bar-->

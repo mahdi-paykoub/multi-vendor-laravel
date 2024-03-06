@@ -133,31 +133,31 @@
                                                     width="114" height="114" alt="">
                                                 <div
                                                     class="mt-md-5 mt-4 mx-auto mb-4 w-fit border br7 py-2 px-3 d-flex align-items-center justify-content-between text-danger">
-                                                    <svg stroke="currentColor" data-productinfoid="{{$cart['productInfo']['id']}}" class="increase-product-count cursor-pointer" fill="currentColor" stroke-width="0"
+                                                    <svg stroke="currentColor"
+                                                         data-productinfoid="{{$cart['productInfo']['id']}}"
+                                                         class="increase-product-count cursor-pointer"
+                                                         fill="currentColor" stroke-width="0"
                                                          viewBox="0 0 24 24"
                                                          height="19"
                                                          width="19" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
                                                     </svg>
 
-                                                    <div class="fs14 fw600 px-3 fv">{{$cart['count']}}</div>
+                                                    <div class="fs14 fw600 px-3 fv"
+                                                         data-countproduct="{{$cart['count']}}">{{$cart['count']}}</div>
 
-                                                    <form class="delete_form" method="post"
-                                                          action="{{route('delete.from.cart' ,$cart['productInfo']['id'] )}}">
-                                                        @csrf
-                                                        <button type="submit" class="border-0 bg-transparent p-0">
-                                                            <svg stroke="currentColor"
-                                                                 class="text-digi-red decrease-product-count cursor-pointer"
-                                                                 fill="none" stroke-width="2" viewBox="0 0 24 24"
-                                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                                 height="1em"
-                                                                 width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                                            </svg>
-                                                        </button>
-
-                                                    </form>
-
+                                                    <svg
+                                                        data-productinfoid="{{$cart['productInfo']['id']}}"
+                                                        stroke="currentColor"
+                                                        class="text-digi-red decrease-product-count"
+                                                        fill="currentColor"
+                                                        stroke-width="0" viewBox="0 0 24 24"
+                                                        height="19"
+                                                        width="19" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill="none" d="M0 0h24v24H0V0z"></path>
+                                                        <path
+                                                            d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"></path>
+                                                    </svg>
 
                                                 </div>
                                             </div>
@@ -579,7 +579,8 @@
         });
 
 
-        $('.increase-product-count').click(function (){
+        $('.increase-product-count').click(function () {
+            $this = $(this)
             $productInfoID = $(this).attr('data-productinfoid')
 
             $.ajaxSetup({
@@ -594,8 +595,36 @@
                 url: '/increase-product-count/' + $productInfoID,
                 success: function (data) {
                     console.log(data)
+                    if (data) {
+                        $this.next().text(data)
+                    }
                 }
             });
         })
+        $('.decrease-product-count').click(function () {
+            $this = $(this)
+            $productInfoID = $(this).attr('data-productinfoid')
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            $.ajax({
+                type: 'POST',
+                url: '/delete-from-cart/' + $productInfoID,
+                success: function (data) {
+                    console.log(data)
+                    if (data) {
+                        $this.prev().text(data)
+                    }else {
+                        location.reload();
+                    }
+                }
+            });
+        })
+
     </script>
 @endsection

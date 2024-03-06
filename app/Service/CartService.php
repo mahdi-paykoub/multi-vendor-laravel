@@ -12,6 +12,7 @@ class CartService
 {
 
     protected $cart;
+    protected $countOF;
 
     public function __construct()
     {
@@ -75,13 +76,32 @@ class CartService
     public function delete($key)
     {
         if ($key instanceof Model) {
-            $this->cart = $this->cart->filter(function ($item) use ($key) {
-                return ($item['productInfo'] != $key);
+            $this->cart = $this->cart->map(function ($item) use ($key) {
+                if ($item['productInfo'] == $key) {
+                    if ($item['count'] == 1) {
+                        return false;
+                    } elseif ($item['count'] > 1) {
+                        $item['count']--;
+                        $this->countOF = $item['count'];
+                    }
+                }
+                return $item;
+            });
+            $this->cart = $this->cart->filter(function ($item){
+                return $item != false;
             });
             session()->put('cart', $this->cart);
-            return true;
+            return $this->countOF;
         }
         return false;
+        /*  if ($key instanceof Model) {
+              $this->cart = $this->cart->filter(function ($item) use ($key) {
+                  return $item['productInfo'] != $key;
+              });
+              session()->put('cart', $this->cart);
+              return true;
+          }
+          return false;*/
     }
 
     /**
@@ -96,11 +116,12 @@ class CartService
             $this->cart = $this->cart->map(function ($item) use ($key) {
                 if ($item['productInfo'] == $key) {
                     $item['count']++;
+                    $this->countOF = $item['count'];
                 }
                 return $item;
             });
             session()->put('cart', $this->cart);
-            return true;
+            return $this->countOF;
         }
         return false;
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Facades\Cart;
 use App\Models\Product;
 use App\Models\ProductInfo;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -32,16 +33,15 @@ class CartController extends Controller
     public function delete_from_cart(ProductInfo $productInfo)
     {
         if (Cart::has($productInfo)) {
-            if (Cart::delete($productInfo)) {
-                return back();
-            }
+           return Cart::delete($productInfo);
         }
     }
 
     public function increaseProductCount(ProductInfo $productInfo)
     {
         if (Cart::has($productInfo)) {
-            Cart::updateProductCount($productInfo);
+            return Cart::updateProductCount($productInfo);
         }
     }
+
 }
