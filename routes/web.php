@@ -32,6 +32,7 @@ Route::post('/upload-article-ckeditor', [\App\Http\Controllers\admin\ArticleCont
 
 
 Route::post('/register-comment', [\App\Http\Controllers\CommentController::class, 'registerComment'])->name('register.comment');
+Route::post('/register-product-comment', [\App\Http\Controllers\CommentController::class, 'registerProductComment'])->name('register.product.comment');
 
 Auth::routes();
 

@@ -9,7 +9,17 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['approved', 'comment', 'parent_id', 'commentable_id', 'commentable_type'];
+    protected $fillable = [
+        'approved',
+        'comment',
+        'parent_id',
+        'commentable_id',
+        'commentable_type',
+        'title',
+        'rate',
+        'positive_points',
+        'negative_points'
+    ];
 
     public function user()
     {
@@ -18,7 +28,7 @@ class Comment extends Model
 
     public function child()
     {
-        return $this->hasMany(Comment::class , 'parent_id' , 'id');
+        return $this->hasMany(Comment::class, 'parent_id', 'id');
     }
 
     /*  public function commentable()

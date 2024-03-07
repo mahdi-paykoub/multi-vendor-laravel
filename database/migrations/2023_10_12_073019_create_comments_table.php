@@ -22,6 +22,11 @@ return new class extends Migration {
             $table->boolean('approved')->default(false);
             $table->text('comment');
 
+            $table->text('title')->nullable();
+            $table->string('rate')->nullable();
+            $table->text('positive_points')->nullable();
+            $table->text('negative_points')->nullable();
+
             $table->unsignedBigInteger('parent_id')->default(0);
 
             $table->timestamps();

@@ -102,7 +102,7 @@
                                 <div class="d-flex justify-content-between px-3 mt-lg-4">
                                     <div>
                                         <div class="fw600 fs14">سبد خرید شما</div>
-                                        <div class="text-secondary fs12 mt-2">۲ کالا</div>
+                                        <div class="text-secondary fs12 mt-2"><span class="fv">{{count(\App\Facades\Cart::all())}}</span> نوع کالا</div>
                                     </div>
                                     <svg stroke="currentColor" class="text-secondary" fill="currentColor"
                                          stroke-width="0"
@@ -145,11 +145,10 @@
 
                                                     <div class="fs14 fw600 px-3 fv"
                                                          data-countproduct="{{$cart['count']}}">{{$cart['count']}}</div>
-
                                                     <svg
                                                         data-productinfoid="{{$cart['productInfo']['id']}}"
                                                         stroke="currentColor"
-                                                        class="text-digi-red decrease-product-count"
+                                                        class="text-digi-red decrease-product-count cursor-pointer"
                                                         fill="currentColor"
                                                         stroke-width="0" viewBox="0 0 24 24"
                                                         height="19"

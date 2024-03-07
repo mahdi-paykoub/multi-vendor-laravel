@@ -4,13 +4,13 @@
 @endsection
 @section('content')
     @php
-                 /* session()->forget('cart');*/
+        /* session()->forget('cart');*/
 
 /*    dd(session()->get('cart'));*/
 
     @endphp
 
-    <!--top bar-->
+        <!--top bar-->
     @include('layouts.product_parts.topbar')
     <!--nav bar-->
     <header class="sticky-top w-100 bg-white" id="navbar-sticky-shadow">
@@ -1132,42 +1132,49 @@
         <div class="row mt-5 bg-white single-p-comment-menu sticky-top px-0 pt-3 z-10">
             <div class="d-flex border-bottom">
                 <div class="ms-3">
-                    <a href="" class="fs13 text-secondary">
-                        دیدگاه ها
+                    <a href="#description-box" class="fs13 text-secondary">
+                        معرفی
                         <div class="active-menu-question mt-2"></div>
                     </a>
                 </div>
                 <div class="mx-3">
-                    <a href="" class="fs13 text-secondary">
-                        دیدگاه ها
-
+                    <a href="#feature-box" class="fs13 text-secondary">
+                        مشخصات
                     </a>
                 </div>
                 <div class="mx-3">
-                    <a href="" class="fs13 text-secondary">
-                        دیدگاه ها
-                    </a>
-                </div>
-                <div class="mx-3">
-                    <a href="" class="fs13 text-secondary">
+                    <a href="#comments-box" class="fs13 text-secondary">
                         دیدگاه ها
                     </a>
                 </div>
                 <div class="mx-3">
-                    <a href="" class="fs13 text-secondary">
-                        دیدگاه ها
+                    <a href="#questions-box" class="fs13 text-secondary">
+                        پرسش ها
                     </a>
                 </div>
 
 
             </div>
         </div>
+        {{--description--}}
+        <div class="row br-bottom-2px pb-4" id="description-box">
+            <div class="mt-5 d-flex">
+                <span class="fw600 icon-dark-color bb-red pb-2 fs15">
+                    معرفی
+                </span>
+            </div>
+            <div class="mt-3">
+                <p class="fs14 lh2" style="color: #23254e">
+                    {{$singleProduct->description}}
+                </p>
+            </div>
+        </div>
         <!--comments-->
-        <div class="row br-bottom-2px pb-4">
+        <div class="row br-bottom-2px pb-4" id="comments-box">
             <div class="my-5 d-flex">
-            <span class="fw600 icon-dark-color bb-red pb-2">
-                امتیاز و دیدگاه کاربران
-            </span>
+                <span class="fw600 icon-dark-color bb-red pb-2 fs15">
+                    امتیاز و دیدگاه کاربران
+                </span>
             </div>
             <br>
             <div class="col-12 col-lg-3">
@@ -1195,154 +1202,187 @@
 
 
                     <!-- Modal -->
-                    <div class="modal fade" id="comment-form-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog modal-fullscreen-md-down modal-dialog-scrollable modal-lg">
-                            <div class="modal-content border-0">
-                                <div class="modal-header">
-                                    <div class="d-flex w-100 justify-content-between align-items-center py-2">
-                                        <div>
-                                            <div class="fw600">
-                                                دیدگاه شما
-                                            </div>
-                                            <div class="fs13 text-secondary-2 mt-3">
-                                                در مورد {{$singleProduct->title}}
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <button type="button" class="btn-close fs14" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="pt-3">
-                                        <div class="row p-2">
-                                            <div class="col-12 col-lg-6">
-                                                <div
-                                                    class="mt-3 fs14 fw600 icon-dark-color text-center border-bottom-light-2 pb-4">
-                                                    <span class="text-digi-red fs12">*</span>
-                                                    امتیاز دهید!:‌
+                    <form action="{{route('register.product.comment')}}" method="post">
+                        <input type="hidden" name="commentable_type" value="{{get_class($singleProduct)}}">
+                        <input type="hidden" name="commentable_id" value="{{$singleProduct->id}}">
+                        <input type="hidden" name="parent_id" value="0">
+                        @csrf
+                        <div class="modal fade" id="comment-form-modal" tabindex="-1"
+                             aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog modal-fullscreen-md-down modal-dialog-scrollable modal-lg">
+                                <div class="modal-content border-0">
+                                    <div class="modal-header">
+                                        <div class="d-flex w-100 justify-content-between align-items-center py-2">
+                                            <div>
+                                                <div class="fw600">
+                                                    دیدگاه شما
                                                 </div>
-
-                                                <div class="mt-4">
-                                                    <div class="fw600 icon-dark-color fs14">
-                                                        دیدگاه خود را شرح دهید
-                                                    </div>
-                                                    <div class="fs14 mt-5">
-                                                        عنوان نظر
-                                                    </div>
-                                                    <div class="mt-3">
-                                                        <input type="text"
-                                                               class="send-comment-title-inp w-100 br7 border px-3">
-                                                    </div>
-                                                    <div class="fs14 mt-5">
-                                                        نکات مثبت
-                                                    </div>
-                                                    <div
-                                                        class="mt-3 p-1 align-items-center send-comment-title-inp w-100 br7 border d-flex justify-content-between">
-                                                        <input type="text" class="h-100 border-0 px-3 w-90">
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                             viewBox="0 0 1024 1024" class="text-secondary-2 ms-2"
-                                                             height="22"
-                                                             width="22"
-                                                             xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
-                                                            <path
-                                                                d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <div class="mt-3">
-
-                                                    </div>
-                                                    <div class="fs14 mt-5">
-                                                        نکات منفی
-                                                    </div>
-                                                    <div
-                                                        class="mt-3 p-1 align-items-center send-comment-title-inp w-100 br7 border d-flex justify-content-between">
-                                                        <input type="text" class="h-100 border-0 px-3 w-90">
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                             viewBox="0 0 1024 1024" class="text-secondary-2 ms-2"
-                                                             height="22"
-                                                             width="22"
-                                                             xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
-                                                            <path
-                                                                d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <div class="fs14 mt-5">
-                                                        متن نظر
-                                                        <span class="text-digi-red fs14">*</span>
-                                                    </div>
-                                                    <div class="mt-3">
-                                                <textarea
-                                                    class="w-100 px-2 text-secondary comment-product-text pt-2 border br7 send-comment-title-inp"
-                                                    placeholder="برای ما بنویسید..."></textarea>
-                                                    </div>
+                                                <div class="fs13 text-secondary-2 mt-3">
+                                                    در مورد {{$singleProduct->title}}
                                                 </div>
                                             </div>
-                                            <div class="d-none d-lg-block col-6">
-                                                <div class="border br7 p-3">
-                                                    <div class="fs14 fw600 icon-dark-color lh2">
-                                                        دیگران را با نوشتن نظرات خود، برای انتخاب این محصول راهنمایی
-                                                        کنید.
-                                                    </div>
-                                                    <div class="lh2 fs13 mt-3">
-                                                        لازم است محتوای ارسالی منطبق برعرف و شئونات جامعه و با بیانی
-                                                        رسمی و
-                                                        عاری
-                                                        از لحن تند، تمسخرو توهین باشد.
-                                                        از ارسال لینک‌ سایت‌های دیگر و ارایه‌ی اطلاعات شخصی نظیر شماره
-                                                        تماس،
-                                                        ایمیل و آی‌دی شبکه‌های اجتماعی پرهیز کنید.
-                                                        در نظر داشته باشید هدف نهایی از ارائه‌ی نظر درباره‌ی کالا
-                                                        ارائه‌ی
-                                                        اطلاعات مشخص و مفید برای راهنمایی سایر کاربران در فرآیند انتخاب
-                                                        و
-                                                        خرید
-                                                        یک محصول است.
-                                                        با توجه به ساختار بخش نظرات، از پرسیدن سوال یا درخواست راهنمایی
-                                                        در
-                                                        این
-                                                        بخش خودداری کرده و سوالات خود را در بخش «پرسش و پاسخ» مطرح کنید.
-                                                        افزودن عکس و ویدیو به نظرات:
-                                                        با مطالعه‌ی این لینک می‌توانید مفید‌ترین الگوی عکاسی از کالایی
-                                                        که
-                                                        خریداری کرده‌اید را مشاهده کنید.
-                                                        پیشنهاد می‌شود قوانین کامل ثبت نظر را در این صفحه مطالعه کنید.
-                                                    </div>
-                                                </div>
+
+                                            <div>
+                                                <button type="button" class="btn-close fs14" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer shadow-sm w-100">
-                                    <div class="row w-100">
-                                        <div class="row align-items-center">
-                                            <div class="col-12 col-lg-6">
-                                                <button class="btn w-100 btn-padding-2 fs15 btn-danger bg-digi-red br7">
-                                                    ثبت
-                                                    دیدگاه
-                                                </button>
-                                            </div>
-                                            <div class="col-12 col-lg-6 text-center mt-3 mt-lg-0">
-                                                <div class="fs12">
-                                                    ثبت دیدگاه به معنی موافقت با <span
-                                                        class="text-info">قوانین انتشار دیجی‌کالا</span> است.
+                                    <div class="modal-body">
+                                        <div class="pt-3">
+                                            <div class="row p-2">
+                                                <div class="col-12 col-lg-6">
+                                                    <div
+                                                        class="mt-3 fs14 fw600 icon-dark-color text-center border-bottom-light-2">
+                                                        <span class="text-digi-red fs12">*</span>
+                                                        امتیاز دهید!:‌
+                                                        <span class="status-rate-text me-1"></span>
+                                                        <div>
+                                                            <div class="range-wrap w-100 mt-3">
+                                                                <input type="range" class="rate-comment w-100" min="0" name="rate"
+                                                                       max="5" step="1">
+                                                                <output class="bubble"></output>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="mt-4">
+                                                        <div class="fw600 icon-dark-color fs14">
+                                                            دیدگاه خود را شرح دهید
+                                                        </div>
+                                                        <div class="fs14 mt-5">
+                                                            عنوان نظر
+                                                            <span class="text-digi-red fs14">*</span>
+                                                        </div>
+                                                        <div class="mt-3">
+                                                            <input type="text" name="title"
+                                                                   class="send-comment-title-inp w-100 br7 border px-3">
+                                                        </div>
+                                                        <div class="fs14 mt-5">
+                                                            نکات مثبت
+                                                        </div>
+                                                        <div
+                                                            class="mt-3 p-1 align-items-center send-comment-title-inp w-100 br7 border d-flex justify-content-between">
+                                                            <input type="text" class="h-100 border-0 px-3 w-90">
+                                                            <svg stroke="currentColor" fill="currentColor"
+                                                                 stroke-width="0"
+                                                                 viewBox="0 0 1024 1024"
+                                                                 class="text-secondary-2 ms-2 cursor-pointer add-positive-point"
+                                                                 height="22"
+                                                                 width="22"
+                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
+                                                                <path
+                                                                    d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="mt-3 positive-p">
+
+                                                        </div>
+                                                        <div class="fs14 mt-5">
+                                                            نکات منفی
+                                                        </div>
+                                                        <div
+                                                            class="mt-3 p-1 align-items-center send-comment-title-inp w-100 br7 border d-flex justify-content-between">
+                                                            <input type="text" class="h-100 border-0 px-3 w-90">
+                                                            <svg stroke="currentColor" fill="currentColor"
+                                                                 stroke-width="0"
+                                                                 viewBox="0 0 1024 1024"
+                                                                 class="text-secondary-2 ms-2 add-negative-point cursor-pointer"
+                                                                 height="22"
+                                                                 width="22"
+                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
+                                                                <path
+                                                                    d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="mt-3 negative-p">
+
+                                                        </div>
+                                                        <div class="fs14 mt-5">
+                                                            متن نظر
+                                                            <span class="text-digi-red fs14">*</span>
+                                                        </div>
+                                                        <div class="mt-3">
+                                                        <textarea
+                                                            name="comment"
+                                                            class="w-100 px-2 text-secondary comment-product-text pt-2 border br7 send-comment-title-inp"
+                                                            placeholder="برای ما بنویسید..."></textarea>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="d-none d-lg-block col-6">
+                                                    <div class="border br7 p-3">
+                                                        <div class="fs14 fw600 icon-dark-color lh2">
+                                                            دیگران را با نوشتن نظرات خود، برای انتخاب این محصول راهنمایی
+                                                            کنید.
+                                                        </div>
+                                                        <div class="lh2 fs13 mt-3">
+                                                            لازم است محتوای ارسالی منطبق برعرف و شئونات جامعه و با بیانی
+                                                            رسمی و
+                                                            عاری
+                                                            از لحن تند، تمسخرو توهین باشد.
+                                                            از ارسال لینک‌ سایت‌های دیگر و ارایه‌ی اطلاعات شخصی نظیر
+                                                            شماره
+                                                            تماس،
+                                                            ایمیل و آی‌دی شبکه‌های اجتماعی پرهیز کنید.
+                                                            در نظر داشته باشید هدف نهایی از ارائه‌ی نظر درباره‌ی کالا
+                                                            ارائه‌ی
+                                                            اطلاعات مشخص و مفید برای راهنمایی سایر کاربران در فرآیند
+                                                            انتخاب
+                                                            و
+                                                            خرید
+                                                            یک محصول است.
+                                                            با توجه به ساختار بخش نظرات، از پرسیدن سوال یا درخواست
+                                                            راهنمایی
+                                                            در
+                                                            این
+                                                            بخش خودداری کرده و سوالات خود را در بخش «پرسش و پاسخ» مطرح
+                                                            کنید.
+                                                            افزودن عکس و ویدیو به نظرات:
+                                                            با مطالعه‌ی این لینک می‌توانید مفید‌ترین الگوی عکاسی از
+                                                            کالایی
+                                                            که
+                                                            خریداری کرده‌اید را مشاهده کنید.
+                                                            پیشنهاد می‌شود قوانین کامل ثبت نظر را در این صفحه مطالعه
+                                                            کنید.
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="modal-footer shadow-sm w-100">
+                                        <div class="row w-100">
+                                            <div class="row align-items-center">
+                                                <div class="col-12 col-lg-6">
+                                                    <button
+                                                        class="btn w-100 btn-padding-2 fs15 btn-danger bg-digi-red br7">
+                                                        ثبت
+                                                        دیدگاه
+                                                    </button>
+                                                </div>
+                                                <div class="col-12 col-lg-6 text-center mt-3 mt-lg-0">
+                                                    <div class="fs12">
+                                                        ثبت دیدگاه به معنی موافقت با <span
+                                                            class="text-info">قوانین انتشار دیجی‌کالا</span> است.
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="d-flex mt-3">
                     <svg stroke="currentColor" class="text-secondary" fill="currentColor" stroke-width="0"
@@ -1818,7 +1858,7 @@
             </div>
         </div>
         <!--feature-->
-        <div class="row br-bottom-2px pb-4">
+        <div class="row br-bottom-2px pb-4" id="feature-box">
             <div class="my-5 d-flex">
             <span class="fw600 icon-dark-color bb-red pb-2">
                مشخصات
@@ -1884,7 +1924,7 @@
             </div>
         </div>
         <!--questions-->
-        <div class="row br-bottom-2px pb-4">
+        <div class="row br-bottom-2px pb-4" id="questions-box">
             <div class="my-4 my-lg-5 d-flex">
             <span class="fw600 icon-dark-color bb-red pb-2">
                 پرسش ها
@@ -2309,6 +2349,91 @@
                                         class="single-product-add-to-cart-btn w-100 text-white br7 border-0 mt-3 bg-digi-red fs14 add-to-cart-js">
                                     افزودن به سبد
             </button>
+            `
+        }
+
+        $('.rate-comment').change(function () {
+            $this = $(this)
+            $status_rate_text = $('.status-rate-text')
+
+            switch (Number($this.val())) {
+                case 0: {
+                    $status_rate_text.text('')
+                    break;
+                }
+                case 1: {
+                    $status_rate_text.html('<span class="text-digi-red">خیلی بد<span/>')
+                    break;
+                }
+                case 2: {
+                    $status_rate_text.html('<span class="text-digi-red">بد<span/>')
+                    break;
+                }
+                case 3: {
+                    $status_rate_text.html('<span class="text-warning">معمولی<span/>')
+                    break;
+                }
+                case 4: {
+                    $status_rate_text.html('<span class="text-digi-green-2">خوب<span/>')
+                    break;
+                }
+                case 5: {
+                    $status_rate_text.html('<span class="text-digi-green">عالی<span/>')
+                    break;
+                }
+            }
+        })
+
+
+        let addPoints = ($this, $type, $class) => {
+            $positive_point = $this.prev().val()
+            $id = $('.' + $class).children().length;
+
+            $('.' + $class).append(addPositivePoint($positive_point, $type, $id))
+            $this.prev().val('');
+        }
+
+        $('.add-positive-point').click(function () {
+            $this = $(this)
+            addPoints($this, 'positive_points', 'positive-p')
+        })
+        $('.add-negative-point').click(function () {
+            $this = $(this)
+            addPoints($this, 'negative_points', 'negative-p')
+        })
+        let addPositivePoint = ($positive_point, $type, $id) => {
+            return `
+             <div class="d-flex justify-content-between align-items-center mt-3" id="${$type + '_' + $id}">
+                                                                <input type="hidden" name="${$type}[]" value="${$positive_point}">
+                                                                <div class="d-flex align-items-center">
+                                                                 ${$type == 'negative_points' ? `
+                                                                 <svg stroke="currentColor" class="text-digi-red ms-2" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"></path></svg>
+                                                                 ` : `
+                                                                 <svg stroke="currentColor" fill="#4caf50"
+                                                                         stroke-width="0" viewBox="0 0 1024 1024"
+                                                                         class="ms-2 cursor-pointer"
+                                                                         height="18" width="18"
+                                                                         xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
+                                                                        <path
+                                                                            d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
+                                                                    </svg>
+                                                                 `}
+
+
+                                                                    <div class="fs13 text-secondary-2">${$positive_point}</div>
+                                                                </div>
+                                                                <svg stroke="currentColor" class="text-secondary-2 cursor-pointer"
+                                                                     onclick="document.getElementById('${$type + '_' + $id}').remove()"
+                                                                     fill="currentColor"
+                                                                     stroke-width="0" viewBox="0 0 24 24" height="19"
+                                                                     width="19" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path fill="none" d="M0 0h24v24H0V0z"></path>
+                                                                    <path
+                                                                        d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"></path>
+                                                                </svg>
+                                                            </div>
             `
         }
     </script>
