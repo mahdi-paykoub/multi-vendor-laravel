@@ -39,7 +39,9 @@
                 <div class="d-flex justify-content-between align-items-center py-4 h-100">
                     <div>
                         <div class="fs15 text-secondary-3">کد ملی</div>
-                        <div class="fs15 mt-2"></div>
+                        @if(($userInfo) !== null)
+                            <div class="fs15 mt-2">{{$userInfo->national_code}}</div>
+                        @endif
                     </div>
                     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
                          type="button" data-bs-toggle="modal" data-bs-target="#userNationalCodeModal"
@@ -54,12 +56,15 @@
                 <div class="d-flex justify-content-between align-items-center py-4 h-100">
                     <div>
                         <div class="fs15 text-secondary-3">شماره موبایل
-                            <span class="phone-number-status text-white">تاییدشده</span>
+                            {{--<span class="phone-number-status text-white">تاییدشده</span>--}}
                         </div>
-                        <div class="fs15 mt-2">مهدی پایکوب</div>
+                        @if($userInfo !== null)
+                            <div class="fs15 mt-2">{{$userInfo->phone_number}}</div>
+                        @endif
                     </div>
                     <svg stroke="currentColor"
                          fill="none" stroke-width="2" viewBox="0 0 24 24"
+                         type="button" data-bs-toggle="modal" data-bs-target="#phoneNumberModal"
                          stroke-linecap="round" stroke-linejoin="round" height="25" width="25"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 20h9"></path>
@@ -72,8 +77,10 @@
                 <div class="d-flex justify-content-between align-items-center py-4 h-100">
                     <div>
                         <div class="fs15 text-secondary-3">ایمیل</div>
+                        <div class="fs15 mt-2">{{auth()->user()->email}}</div>
                     </div>
                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
+                         type="button" data-bs-toggle="modal" data-bs-target="#emailModal"
                          height="25" width="25" xmlns="http://www.w3.org/2000/svg">
                         <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
                         <path d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
@@ -164,13 +171,15 @@
                         <span class="text-danger">*</span>
                     </div>
                     <div class="mt-2">
-                        <input type="text" name="name" value="{{Auth::user()->name}}" class="w-100 identify-inputs br7 on-hover-border-inp">
+                        <input type="text" name="name" value="{{Auth::user()->name}}"
+                               class="w-100 identify-inputs br7 on-hover-border-inp">
                         @error('name')
                         <span class="fs13 text-digi-red px-1">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="text-start mt-4 pt-2">
-                        <button type="submit" class="btn btn-danger bg-digi-red br7 fs14 btn-padding-2">ثبت اطلاعات</button>
+                        <button type="submit" class="btn btn-danger bg-digi-red br7 fs14 btn-padding-2">ثبت اطلاعات
+                        </button>
                     </div>
 
                 </form>
@@ -179,7 +188,8 @@
     </div>
 
     <!--national code Modal -->
-    <div class="modal fade" id="userNationalCodeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="userNationalCodeModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-4 border-0">
                 <div class="d-flex justify-content-between border-bottom pb-3">
@@ -196,7 +206,7 @@
                         </svg>
                     </div>
                 </div>
-                <form action="" method="post">
+                <form action="{{route('update.user.nationalCode')}}" method="post">
                     @csrf
                     <div class="mt-3 text-secondary fs14 lh2">
                         لطفا اطلاعات شناسایی خود را وارد کنید. نام و نام خانوادگی شما باید با اطلاعاتی که وارد می‌کنید
@@ -207,13 +217,101 @@
                         <span class="text-danger">*</span>
                     </div>
                     <div class="mt-2">
-                        <input type="text" name="national_code" class="w-100 identify-inputs br7 on-hover-border-inp">
+                        @if($userInfo === null)
+                            <input type="text" name="national_code"
+                                   class="w-100 identify-inputs br7 on-hover-border-inp">
+                        @else
+                            <input type="text" name="national_code" value="{{$userInfo->national_code}}"
+                                   class="w-100 identify-inputs br7 on-hover-border-inp">
+                        @endif
                         @error('national_code')
                         <span class="fs13 text-digi-red px-1">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="text-start mt-4 pt-2">
-                        <button type="submit" class="btn btn-danger bg-digi-red br7 fs14 btn-padding-2">ثبت اطلاعات</button>
+                        <button type="submit" class="btn btn-danger bg-digi-red br7 fs14 btn-padding-2">ثبت اطلاعات
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--email Modal -->
+    <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-4 border-0">
+                <div class="d-flex justify-content-between border-bottom pb-3">
+                    <div class="fs15 fw600 icon-dark-color">
+                        ویرایش پست الکترونیکی
+                    </div>
+                    <div>
+                        <svg
+                            type="button" data-bs-dismiss="modal" aria-label="Close"
+                            stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
+                            height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <form action="{{route('update.user.email')}}" method="post">
+                    @csrf
+                    <div class="mt-3">
+                        <input type="text" name="email" value="{{auth()->user()->email}}"
+                               class="w-100 identify-inputs br7 on-hover-border-inp">
+                        @error('email')
+                        <span class="fs13 text-digi-red px-1">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="text-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-danger bg-digi-red br7 fs14 btn-padding-2">ثبت اطلاعات
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--phone number Modal -->
+    <div class="modal fade" id="phoneNumberModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-4 border-0">
+                <div class="d-flex justify-content-between border-bottom pb-3">
+                    <div class="fs15 fw600 icon-dark-color">
+                        ویرایش شماره موبایل
+                    </div>
+                    <div>
+                        <svg
+                            type="button" data-bs-dismiss="modal" aria-label="Close"
+                            stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
+                            height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <form action="{{route('update.user.phoneNumber')}}" method="post">
+                    @csrf
+                    <div class="mt-3">
+                        @if($userInfo === null)
+                            <input type="text" name="phone_number"
+                                   class="w-100 identify-inputs br7 on-hover-border-inp">
+                        @else
+                            <input type="text" name="phone_number" value="{{$userInfo->phone_number}}"
+                                   class="w-100 identify-inputs br7 on-hover-border-inp">
+                        @endif
+                        @error('phone_number')
+                        <span class="fs13 text-digi-red px-1">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="text-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-danger bg-digi-red br7 fs14 btn-padding-2">ثبت اطلاعات
+                        </button>
                     </div>
 
                 </form>

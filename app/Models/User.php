@@ -79,4 +79,10 @@ class User extends Authenticatable
     {
         return $this->is_superuser;
     }
+
+
+    public function userInfo()
+    {
+        return $this->hasOne(User::class);
+    }
 }

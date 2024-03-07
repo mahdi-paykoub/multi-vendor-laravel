@@ -88,7 +88,7 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
 
 
 //user Profile
-Route::prefix('profile')->group(function () {
+Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/', [\App\Http\Controllers\userProfile\ProfileController::class, 'indexView'])->name('index.profile');
     Route::get('/comments', [\App\Http\Controllers\userProfile\ProfileController::class, 'commentsView'])->name('comments.profile');
     Route::get('/identify-confirmation', [\App\Http\Controllers\userProfile\ProfileController::class, 'identifyView'])->name('identify.profile');
@@ -98,7 +98,10 @@ Route::prefix('profile')->group(function () {
     Route::get('/lists', [\App\Http\Controllers\userProfile\ProfileController::class, 'wishListView'])->name('lists.profile');
     Route::get('/address', [\App\Http\Controllers\userProfile\ProfileController::class, 'addressView'])->name('address.profile');
 
-    Route::post('/address', [\App\Http\Controllers\userProfile\InfoController::class, 'name_update'])->name('update.user.name');
+    Route::post('/update/user-name', [\App\Http\Controllers\userProfile\InfoController::class, 'name_update'])->name('update.user.name');
+    Route::post('/update/user-national-code', [\App\Http\Controllers\userProfile\InfoController::class, 'national_code_update'])->name('update.user.nationalCode');
+    Route::post('/user-email', [\App\Http\Controllers\userProfile\InfoController::class, 'email_update'])->name('update.user.email');
+    Route::post('/user-phone-number', [\App\Http\Controllers\userProfile\InfoController::class, 'phone_number_update'])->name('update.user.phoneNumber');
 
 });
 

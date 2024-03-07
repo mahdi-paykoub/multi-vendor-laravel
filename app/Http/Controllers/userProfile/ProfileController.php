@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\userProfile;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserInfo;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -17,7 +18,8 @@ class ProfileController extends Controller
         return view('user_profile.identity_confirmation');
     }
     public function infoView(){
-        return view('user_profile.info');
+        $userInfo =UserInfo::where('user_id' , auth()->user()->id)->first();
+        return view('user_profile.info' ,compact('userInfo'));
     }
     public function messageView(){
         return view('user_profile.message');
