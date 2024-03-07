@@ -1241,6 +1241,7 @@
                                                         <div>
                                                             <div class="range-wrap w-100 mt-3">
                                                                 <input type="range" class="rate-comment w-100" min="0" name="rate"
+                                                                       value="0"
                                                                        max="5" step="1">
                                                                 <output class="bubble"></output>
                                                             </div>
@@ -2386,11 +2387,15 @@
 
 
         let addPoints = ($this, $type, $class) => {
-            $positive_point = $this.prev().val()
-            $id = $('.' + $class).children().length;
 
-            $('.' + $class).append(addPositivePoint($positive_point, $type, $id))
-            $this.prev().val('');
+            $positive_point = $this.prev().val()
+            if($positive_point.trim().length !== 0){
+                $id = $('.' + $class).children().length;
+
+                $('.' + $class).append(addPositivePoint($positive_point, $type, $id))
+                $this.prev().val('');
+            }
+
         }
 
         $('.add-positive-point').click(function () {

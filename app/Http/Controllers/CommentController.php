@@ -26,9 +26,8 @@ class CommentController extends Controller
             'commentable_type' => 'required',
             'commentable_id' => 'required',
             'parent_id' => 'required',
-
             'title' => 'required',
-            'rate' => 'required',
+            'rate' => 'required|in:1,2,3,4,5',
         ]);
 
         $points = [
