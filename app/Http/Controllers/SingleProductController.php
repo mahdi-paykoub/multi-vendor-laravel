@@ -14,9 +14,9 @@ class SingleProductController extends Controller
         $images = $singleProduct->galleries()->get();
         $infos = $singleProduct->productInfos()->get();
         $attrs = $singleProduct->productAttributes()->get();
+        $comments = $singleProduct->comments()->where('parent_id', 0)->orderBy('id', 'DESC')->get();
 
-
-        return view('product.singleProduct', compact('singleProduct', 'images', 'infos', 'attrs'));
+        return view('product.singleProduct', compact('singleProduct', 'images', 'infos', 'attrs','comments'));
     }
 
     public function getProductInfoByColor(Request $request)

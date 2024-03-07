@@ -234,12 +234,18 @@ input:focus {
 .display-none {
     display: none;
 }
+.bg-rate-1,
+.bg-rate-2{
 
+    background: #f9bc00;
+}
 .bg-rate-5 {
     background: #00a049;
 }
 
-.bg-rate-3 {
+.bg-rate-3 ,
+.bg-rate-4
+{
     background: #65aa57;
 }
 

@@ -1240,7 +1240,8 @@
                                                         <span class="status-rate-text me-1"></span>
                                                         <div>
                                                             <div class="range-wrap w-100 mt-3">
-                                                                <input type="range" class="rate-comment w-100" min="0" name="rate"
+                                                                <input type="range" class="rate-comment w-100" min="0"
+                                                                       name="rate"
                                                                        value="0"
                                                                        max="5" step="1">
                                                                 <output class="bubble"></output>
@@ -1403,459 +1404,141 @@
             </div>
             <div class="col-12 col-lg-9 mt-4 mt-lg-0">
                 <!--comment cel-->
-                <div class="border-top py-4 d-flex">
-                    <div class="badge bg-rate-5 h-fit">۵.۰</div>
-                    <div class="w-100 me-2">
-                        <div class="d-flex justify-content-between">
-                            <div class="fw600 fs15 lh2">خوبه ولی قاب جلویی خیلی فیکس نمیشه و با کوچکترین حرکت در میاد
-                            </div>
-                            <div>
-                                <svg stroke="currentColor" class="text-secondary-2 cursor-pointer" fill="currentColor"
-                                     stroke-width="0" viewBox="0 0 24 24"
-                                     height="25" width="25" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                                </svg>
+                @if(count($comments) !==0)
+                    @foreach($comments as $comment)
+                        <div class="border-top py-4 d-flex">
+                            <div class="badge bg-rate-{{$comment->rate}} h-fit fv">{{$comment->rate}}.0</div>
+                            <div class="w-100 me-2">
+                                <div class="d-flex justify-content-between">
+                                    <div class="fw600 fs15 lh2">{{$comment->title}}</div>
+                                    <div>
+                                        <svg stroke="currentColor" class="text-secondary-2 cursor-pointer"
+                                             fill="currentColor"
+                                             stroke-width="0" viewBox="0 0 24 24"
+                                             height="25" width="25" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                                        </svg>
 
+                                    </div>
+                                </div>
+                                <div class="mt-4 d-flex align-items-center border-bottom-light-2 pb-3">
+                                    <div class="fs11 text-secondary-2 fv">
+                                        <span>{{jdate($comment->created_at)->format('%d')}}</span>
+                                        <span class="px-1">{{jdate($comment->created_at)->format('%B')}}</span>
+                                        <span>{{jdate($comment->created_at)->format('%Y')}}</span>
+                                    </div>
+                                    <div class="mx-2">
+                                        <svg stroke="currentColor" class="text-secondary-2" fill="currentColor"
+                                             stroke-width="0"
+                                             viewBox="0 0 24 24" height="8"
+                                             width="8" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="fs12 text-secondary-2">
+                                        {{$comment->user()->first()->name}}
+                                    </div>
+                                    <div class="comment-user-status fs12 br10 me-3">
+                                        خریدار
+                                    </div>
+                                </div>
+                                <!--comment content-->
+                                <div class="mt-3 border-bottom-light-2 pb-3">
+                                    @if((int)$comment->rate > 3)
+                                        <svg stroke="currentColor" fill="#4caf50" stroke-width="0" viewBox="0 0 24 24"
+                                             height="1em"
+                                             width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
+                                        </svg>
+                                        <span class="text-success fs14">پیشنهاد می‌کنم</span>
+                                    @endif
+                                    <div class="mt-3 lh2 fs14 icon-dark-color">
+                                        {{$comment->comment}}
+                                    </div>
+                                    <div class="mt-2"></div>
+
+                                    @foreach(collect(json_decode($comment->positive_points)) as $point)
+                                        @if($point !== null)
+                                            <div class="d-flex mt-3 align-items-center">
+                                                <svg stroke="currentColor" fill="#00a049" stroke-width="0"
+                                                     viewBox="0 0 1024 1024"
+                                                     height="17" width="17" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
+                                                    <path
+                                                        d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
+                                                </svg>
+                                                <span class="fs12 me-1">{{$point}}</span>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                    @foreach(collect(json_decode($comment->negative_points)) as $point)
+                                        <div class="d-flex mt-3 align-items-center">
+                                            <svg stroke="currentColor" class="text-danger" fill="currentColor"
+                                                 stroke-width="0"
+                                                 viewBox="0 0 24 24"
+                                                 height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill="none" stroke-width="2" d="M6,12 L18,12"></path>
+                                            </svg>
+                                            <span class="fs12 me-1 ">{{$point}}</span>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="d-flex mt-3 align-items-center">
+                                    <svg stroke="currentColor" class="text-secondary" fill="currentColor"
+                                         stroke-width="0"
+                                         viewBox="0 0 24 24" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M22 5c0-1.654-1.346-3-3-3H5C3.346 2 2 3.346 2 5v2.831c0 1.053.382 2.01 1 2.746V19c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-8.424c.618-.735 1-1.692 1-2.746V5zm-2 0v2.831c0 1.14-.849 2.112-1.891 2.167L18 10c-1.103 0-2-.897-2-2V4h3c.552 0 1 .449 1 1zM10 4h4v4c0 1.103-.897 2-2 2s-2-.897-2-2V4zM4 5c0-.551.448-1 1-1h3v4c0 1.103-.897 2-2 2l-.109-.003C4.849 9.943 4 8.971 4 7.831V5zm6 14v-3h4v3h-4zm6 0v-3c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v3H5v-7.131c.254.067.517.111.787.125A3.988 3.988 0 0 0 9 10.643c.733.832 1.807 1.357 3 1.357s2.267-.525 3-1.357a3.988 3.988 0 0 0 3.213 1.351c.271-.014.533-.058.787-.125V19h-3z"></path>
+                                    </svg>
+                                    <div class="fs12 text-secondary me-1">دنیای لوازم</div>
+                                </div>
+                                <div class="d-flex justify-content-end mt-4 align-items-center">
+                                    <div class="fs12 text-secondary">آیا این دیدگاه مفید بود؟</div>
+                                    <div class="me-5 text-secondary-2">
+                                        <span class="fs14">۱</span>
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                             viewBox="0 0 1024 1024"
+                                             height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M885.9 533.7c16.8-22.2 26.1-49.4 26.1-77.7 0-44.9-25.1-87.4-65.5-111.1a67.67 67.67 0 0 0-34.3-9.3H572.4l6-122.9c1.4-29.7-9.1-57.9-29.5-79.4A106.62 106.62 0 0 0 471 99.9c-52 0-98 35-111.8 85.1l-85.9 311H144c-17.7 0-32 14.3-32 32v364c0 17.7 14.3 32 32 32h601.3c9.2 0 18.2-1.8 26.5-5.4 47.6-20.3 78.3-66.8 78.3-118.4 0-12.6-1.8-25-5.4-37 16.8-22.2 26.1-49.4 26.1-77.7 0-12.6-1.8-25-5.4-37 16.8-22.2 26.1-49.4 26.1-77.7-.2-12.6-2-25.1-5.6-37.1zM184 852V568h81v284h-81zm636.4-353l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 16.5-7.2 32.2-19.6 43l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 16.5-7.2 32.2-19.6 43l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 22.4-13.2 42.6-33.6 51.8H329V564.8l99.5-360.5a44.1 44.1 0 0 1 42.2-32.3c7.6 0 15.1 2.2 21.1 6.7 9.9 7.4 15.2 18.6 14.6 30.5l-9.6 198.4h314.4C829 418.5 840 436.9 840 456c0 16.5-7.2 32.1-19.6 43z"></path>
+                                        </svg>
+                                        <span class="me-2 fs14">۱</span>
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                             viewBox="0 0 1024 1024"
+                                             height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M885.9 490.3c3.6-12 5.4-24.4 5.4-37 0-28.3-9.3-55.5-26.1-77.7 3.6-12 5.4-24.4 5.4-37 0-28.3-9.3-55.5-26.1-77.7 3.6-12 5.4-24.4 5.4-37 0-51.6-30.7-98.1-78.3-118.4a66.1 66.1 0 0 0-26.5-5.4H144c-17.7 0-32 14.3-32 32v364c0 17.7 14.3 32 32 32h129.3l85.8 310.8C372.9 889 418.9 924 470.9 924c29.7 0 57.4-11.8 77.9-33.4 20.5-21.5 31-49.7 29.5-79.4l-6-122.9h239.9c12.1 0 23.9-3.2 34.3-9.3 40.4-23.5 65.5-66.1 65.5-111 0-28.3-9.3-55.5-26.1-77.7zM184 456V172h81v284h-81zm627.2 160.4H496.8l9.6 198.4c.6 11.9-4.7 23.1-14.6 30.5-6.1 4.5-13.6 6.8-21.1 6.7a44.28 44.28 0 0 1-42.2-32.3L329 459.2V172h415.4a56.85 56.85 0 0 1 33.6 51.8c0 9.7-2.3 18.9-6.9 27.3l-13.9 25.4 21.9 19a56.76 56.76 0 0 1 19.6 43c0 9.7-2.3 18.9-6.9 27.3l-13.9 25.4 21.9 19a56.76 56.76 0 0 1 19.6 43c0 9.7-2.3 18.9-6.9 27.3l-14 25.5 21.9 19a56.76 56.76 0 0 1 19.6 43c0 19.1-11 37.5-28.8 48.4z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="mt-4 d-flex border-bottom-light-2 pb-3">
-                            <div class="fs12 text-secondary-2">۱۵ شهریور ۱۴۰۲</div>
-                            <div class="mx-2">
-                                <svg stroke="currentColor" class="text-secondary-2" fill="currentColor" stroke-width="0"
-                                     viewBox="0 0 24 24" height="8"
-                                     width="8" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"></path>
-                                </svg>
-                            </div>
-                            <div class="fs12 text-secondary-2">
-                                مهدی پایکوب
-                            </div>
-                            <div class="comment-user-status fs12 br10 me-3">
-                                خریدار
-                            </div>
-                        </div>
-                        <!--comment content-->
-                        <div class="mt-3 border-bottom-light-2 pb-3">
-                            <svg stroke="currentColor" fill="#4caf50" stroke-width="0" viewBox="0 0 24 24" height="1em"
-                                 width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
+                    @endforeach
+                    <!--more comment btn-->
+                    <div class="border-top mt-4">
+                        <button class="bg-transparent border-0 text-info fs12 fw600 mt-4">
+                            10 دیدگاه دیگر
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                                 height="17"
+                                 width="17" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="none" d="M0 0h24v24H0V0z"></path>
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
                             </svg>
-                            <span class="text-success fs14">پیشنهاد می‌کنم</span>
-                            <div class="mt-3 lh2 fs14 icon-dark-color">
-                                بهترین کاور زد فولد
-                            </div>
-                            <div class="mt-2"></div>
-                            <div class="d-flex mt-3 align-items-center">
-                                <svg stroke="currentColor" fill="#00a049" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="17" width="17" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
-                                    <path d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
-                                </svg>
-                                <span class="fs12 me-1">جنس عالی</span>
-                            </div>
-                            <div class="d-flex mt-3 align-items-center">
-                                <svg stroke="currentColor" class="text-danger" fill="currentColor" stroke-width="0"
-                                     viewBox="0 0 24 24"
-                                     height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill="none" stroke-width="2" d="M6,12 L18,12"></path>
-                                </svg>
-                                <span class="fs12 me-1 ">جنس عالی</span>
-                            </div>
-                        </div>
-                        <div class="d-flex mt-3 align-items-center">
-                            <svg stroke="currentColor" class="text-secondary" fill="currentColor" stroke-width="0"
-                                 viewBox="0 0 24 24" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M22 5c0-1.654-1.346-3-3-3H5C3.346 2 2 3.346 2 5v2.831c0 1.053.382 2.01 1 2.746V19c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-8.424c.618-.735 1-1.692 1-2.746V5zm-2 0v2.831c0 1.14-.849 2.112-1.891 2.167L18 10c-1.103 0-2-.897-2-2V4h3c.552 0 1 .449 1 1zM10 4h4v4c0 1.103-.897 2-2 2s-2-.897-2-2V4zM4 5c0-.551.448-1 1-1h3v4c0 1.103-.897 2-2 2l-.109-.003C4.849 9.943 4 8.971 4 7.831V5zm6 14v-3h4v3h-4zm6 0v-3c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v3H5v-7.131c.254.067.517.111.787.125A3.988 3.988 0 0 0 9 10.643c.733.832 1.807 1.357 3 1.357s2.267-.525 3-1.357a3.988 3.988 0 0 0 3.213 1.351c.271-.014.533-.058.787-.125V19h-3z"></path>
-                            </svg>
-                            <div class="fs12 text-secondary me-1">دنیای لوازم</div>
-                        </div>
-                        <div class="d-flex justify-content-end mt-4 align-items-center">
-                            <div class="fs12 text-secondary">آیا این دیدگاه مفید بود؟</div>
-                            <div class="me-5 text-secondary-2">
-                                <span class="fs14">۱</span>
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M885.9 533.7c16.8-22.2 26.1-49.4 26.1-77.7 0-44.9-25.1-87.4-65.5-111.1a67.67 67.67 0 0 0-34.3-9.3H572.4l6-122.9c1.4-29.7-9.1-57.9-29.5-79.4A106.62 106.62 0 0 0 471 99.9c-52 0-98 35-111.8 85.1l-85.9 311H144c-17.7 0-32 14.3-32 32v364c0 17.7 14.3 32 32 32h601.3c9.2 0 18.2-1.8 26.5-5.4 47.6-20.3 78.3-66.8 78.3-118.4 0-12.6-1.8-25-5.4-37 16.8-22.2 26.1-49.4 26.1-77.7 0-12.6-1.8-25-5.4-37 16.8-22.2 26.1-49.4 26.1-77.7-.2-12.6-2-25.1-5.6-37.1zM184 852V568h81v284h-81zm636.4-353l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 16.5-7.2 32.2-19.6 43l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 16.5-7.2 32.2-19.6 43l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 22.4-13.2 42.6-33.6 51.8H329V564.8l99.5-360.5a44.1 44.1 0 0 1 42.2-32.3c7.6 0 15.1 2.2 21.1 6.7 9.9 7.4 15.2 18.6 14.6 30.5l-9.6 198.4h314.4C829 418.5 840 436.9 840 456c0 16.5-7.2 32.1-19.6 43z"></path>
-                                </svg>
-                                <span class="me-2 fs14">۱</span>
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M885.9 490.3c3.6-12 5.4-24.4 5.4-37 0-28.3-9.3-55.5-26.1-77.7 3.6-12 5.4-24.4 5.4-37 0-28.3-9.3-55.5-26.1-77.7 3.6-12 5.4-24.4 5.4-37 0-51.6-30.7-98.1-78.3-118.4a66.1 66.1 0 0 0-26.5-5.4H144c-17.7 0-32 14.3-32 32v364c0 17.7 14.3 32 32 32h129.3l85.8 310.8C372.9 889 418.9 924 470.9 924c29.7 0 57.4-11.8 77.9-33.4 20.5-21.5 31-49.7 29.5-79.4l-6-122.9h239.9c12.1 0 23.9-3.2 34.3-9.3 40.4-23.5 65.5-66.1 65.5-111 0-28.3-9.3-55.5-26.1-77.7zM184 456V172h81v284h-81zm627.2 160.4H496.8l9.6 198.4c.6 11.9-4.7 23.1-14.6 30.5-6.1 4.5-13.6 6.8-21.1 6.7a44.28 44.28 0 0 1-42.2-32.3L329 459.2V172h415.4a56.85 56.85 0 0 1 33.6 51.8c0 9.7-2.3 18.9-6.9 27.3l-13.9 25.4 21.9 19a56.76 56.76 0 0 1 19.6 43c0 9.7-2.3 18.9-6.9 27.3l-13.9 25.4 21.9 19a56.76 56.76 0 0 1 19.6 43c0 9.7-2.3 18.9-6.9 27.3l-14 25.5 21.9 19a56.76 56.76 0 0 1 19.6 43c0 19.1-11 37.5-28.8 48.4z"></path>
-                                </svg>
-                            </div>
-                        </div>
+                        </button>
                     </div>
-                </div>
-                <div class="border-top py-4 d-flex">
-                    <div class="badge bg-rate-5 h-fit">۵.۰</div>
-                    <div class="w-100 me-2">
-                        <div class="d-flex justify-content-between">
-                            <div class="fw600 fs15 lh2">خوبه ولی قاب جلویی خیلی فیکس نمیشه و با کوچکترین حرکت در میاد
-                            </div>
-                            <div>
-                                <svg stroke="currentColor" class="text-secondary-2 cursor-pointer" fill="currentColor"
-                                     stroke-width="0" viewBox="0 0 24 24"
-                                     height="25" width="25" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                                </svg>
-
-                            </div>
-                        </div>
-                        <div class="mt-4 d-flex border-bottom-light-2 pb-3">
-                            <div class="fs12 text-secondary-2">۱۵ شهریور ۱۴۰۲</div>
-                            <div class="mx-2">
-                                <svg stroke="currentColor" class="text-secondary-2" fill="currentColor" stroke-width="0"
-                                     viewBox="0 0 24 24" height="8"
-                                     width="8" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"></path>
-                                </svg>
-                            </div>
-                            <div class="fs12 text-secondary-2">
-                                مهدی پایکوب
-                            </div>
-                            <div class="comment-user-status fs12 br10 me-3">
-                                خریدار
-                            </div>
-                        </div>
-                        <!--comment content-->
-                        <div class="mt-3 border-bottom-light-2 pb-3">
-                            <svg stroke="currentColor" fill="#4caf50" stroke-width="0" viewBox="0 0 24 24" height="1em"
-                                 width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
-                            </svg>
-                            <span class="text-success fs14">پیشنهاد می‌کنم</span>
-                            <div class="mt-3 lh2 fs14 icon-dark-color">
-                                بهترین کاور زد فولد
-                            </div>
-                            <div class="mt-2"></div>
-                            <div class="d-flex mt-3 align-items-center">
-                                <svg stroke="currentColor" fill="#00a049" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="17" width="17" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
-                                    <path d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
-                                </svg>
-                                <span class="fs12 me-1">جنس عالی</span>
-                            </div>
-                            <div class="d-flex mt-3 align-items-center">
-                                <svg stroke="currentColor" class="text-danger" fill="currentColor" stroke-width="0"
-                                     viewBox="0 0 24 24"
-                                     height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill="none" stroke-width="2" d="M6,12 L18,12"></path>
-                                </svg>
-                                <span class="fs12 me-1 ">جنس عالی</span>
-                            </div>
-                        </div>
-                        <div class="d-flex mt-3 align-items-center">
-                            <svg stroke="currentColor" class="text-secondary" fill="currentColor" stroke-width="0"
-                                 viewBox="0 0 24 24" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M22 5c0-1.654-1.346-3-3-3H5C3.346 2 2 3.346 2 5v2.831c0 1.053.382 2.01 1 2.746V19c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-8.424c.618-.735 1-1.692 1-2.746V5zm-2 0v2.831c0 1.14-.849 2.112-1.891 2.167L18 10c-1.103 0-2-.897-2-2V4h3c.552 0 1 .449 1 1zM10 4h4v4c0 1.103-.897 2-2 2s-2-.897-2-2V4zM4 5c0-.551.448-1 1-1h3v4c0 1.103-.897 2-2 2l-.109-.003C4.849 9.943 4 8.971 4 7.831V5zm6 14v-3h4v3h-4zm6 0v-3c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v3H5v-7.131c.254.067.517.111.787.125A3.988 3.988 0 0 0 9 10.643c.733.832 1.807 1.357 3 1.357s2.267-.525 3-1.357a3.988 3.988 0 0 0 3.213 1.351c.271-.014.533-.058.787-.125V19h-3z"></path>
-                            </svg>
-                            <div class="fs12 text-secondary me-1">دنیای لوازم</div>
-                        </div>
-                        <div class="d-flex justify-content-end mt-4 align-items-center">
-                            <div class="fs12 text-secondary">آیا این دیدگاه مفید بود؟</div>
-                            <div class="me-5 text-secondary-2">
-                                <span class="fs14">۱</span>
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M885.9 533.7c16.8-22.2 26.1-49.4 26.1-77.7 0-44.9-25.1-87.4-65.5-111.1a67.67 67.67 0 0 0-34.3-9.3H572.4l6-122.9c1.4-29.7-9.1-57.9-29.5-79.4A106.62 106.62 0 0 0 471 99.9c-52 0-98 35-111.8 85.1l-85.9 311H144c-17.7 0-32 14.3-32 32v364c0 17.7 14.3 32 32 32h601.3c9.2 0 18.2-1.8 26.5-5.4 47.6-20.3 78.3-66.8 78.3-118.4 0-12.6-1.8-25-5.4-37 16.8-22.2 26.1-49.4 26.1-77.7 0-12.6-1.8-25-5.4-37 16.8-22.2 26.1-49.4 26.1-77.7-.2-12.6-2-25.1-5.6-37.1zM184 852V568h81v284h-81zm636.4-353l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 16.5-7.2 32.2-19.6 43l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 16.5-7.2 32.2-19.6 43l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 22.4-13.2 42.6-33.6 51.8H329V564.8l99.5-360.5a44.1 44.1 0 0 1 42.2-32.3c7.6 0 15.1 2.2 21.1 6.7 9.9 7.4 15.2 18.6 14.6 30.5l-9.6 198.4h314.4C829 418.5 840 436.9 840 456c0 16.5-7.2 32.1-19.6 43z"></path>
-                                </svg>
-                                <span class="me-2 fs14">۱</span>
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M885.9 490.3c3.6-12 5.4-24.4 5.4-37 0-28.3-9.3-55.5-26.1-77.7 3.6-12 5.4-24.4 5.4-37 0-28.3-9.3-55.5-26.1-77.7 3.6-12 5.4-24.4 5.4-37 0-51.6-30.7-98.1-78.3-118.4a66.1 66.1 0 0 0-26.5-5.4H144c-17.7 0-32 14.3-32 32v364c0 17.7 14.3 32 32 32h129.3l85.8 310.8C372.9 889 418.9 924 470.9 924c29.7 0 57.4-11.8 77.9-33.4 20.5-21.5 31-49.7 29.5-79.4l-6-122.9h239.9c12.1 0 23.9-3.2 34.3-9.3 40.4-23.5 65.5-66.1 65.5-111 0-28.3-9.3-55.5-26.1-77.7zM184 456V172h81v284h-81zm627.2 160.4H496.8l9.6 198.4c.6 11.9-4.7 23.1-14.6 30.5-6.1 4.5-13.6 6.8-21.1 6.7a44.28 44.28 0 0 1-42.2-32.3L329 459.2V172h415.4a56.85 56.85 0 0 1 33.6 51.8c0 9.7-2.3 18.9-6.9 27.3l-13.9 25.4 21.9 19a56.76 56.76 0 0 1 19.6 43c0 9.7-2.3 18.9-6.9 27.3l-13.9 25.4 21.9 19a56.76 56.76 0 0 1 19.6 43c0 9.7-2.3 18.9-6.9 27.3l-14 25.5 21.9 19a56.76 56.76 0 0 1 19.6 43c0 19.1-11 37.5-28.8 48.4z"></path>
-                                </svg>
-                            </div>
-                        </div>
+                @else
+                    <div class="fw600 fs15">
+                        شما هم می‌توانید در مورد این کالا نظر دهید.
                     </div>
-                </div>
-                <div class="border-top py-4 d-flex">
-                    <div class="badge bg-rate-5 h-fit">۵.۰</div>
-                    <div class="w-100 me-2">
-                        <div class="d-flex justify-content-between">
-                            <div class="fw600 fs15 lh2">خوبه ولی قاب جلویی خیلی فیکس نمیشه و با کوچکترین حرکت در میاد
-                            </div>
-                            <div>
-                                <svg stroke="currentColor" class="text-secondary-2 cursor-pointer" fill="currentColor"
-                                     stroke-width="0" viewBox="0 0 24 24"
-                                     height="25" width="25" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                                </svg>
-
-                            </div>
-                        </div>
-                        <div class="mt-4 d-flex border-bottom-light-2 pb-3">
-                            <div class="fs12 text-secondary-2">۱۵ شهریور ۱۴۰۲</div>
-                            <div class="mx-2">
-                                <svg stroke="currentColor" class="text-secondary-2" fill="currentColor" stroke-width="0"
-                                     viewBox="0 0 24 24" height="8"
-                                     width="8" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"></path>
-                                </svg>
-                            </div>
-                            <div class="fs12 text-secondary-2">
-                                مهدی پایکوب
-                            </div>
-                            <div class="comment-user-status fs12 br10 me-3">
-                                خریدار
-                            </div>
-                        </div>
-                        <!--comment content-->
-                        <div class="mt-3 border-bottom-light-2 pb-3">
-                            <svg stroke="currentColor" fill="#4caf50" stroke-width="0" viewBox="0 0 24 24" height="1em"
-                                 width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
-                            </svg>
-                            <span class="text-success fs14">پیشنهاد می‌کنم</span>
-                            <div class="mt-3 lh2 fs14 icon-dark-color">
-                                بهترین کاور زد فولد
-                            </div>
-                            <div class="mt-2"></div>
-                            <div class="d-flex mt-3 align-items-center">
-                                <svg stroke="currentColor" fill="#00a049" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="17" width="17" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
-                                    <path d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
-                                </svg>
-                                <span class="fs12 me-1">جنس عالی</span>
-                            </div>
-                            <div class="d-flex mt-3 align-items-center">
-                                <svg stroke="currentColor" class="text-danger" fill="currentColor" stroke-width="0"
-                                     viewBox="0 0 24 24"
-                                     height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill="none" stroke-width="2" d="M6,12 L18,12"></path>
-                                </svg>
-                                <span class="fs12 me-1 ">جنس عالی</span>
-                            </div>
-                        </div>
-                        <div class="d-flex mt-3 align-items-center">
-                            <svg stroke="currentColor" class="text-secondary" fill="currentColor" stroke-width="0"
-                                 viewBox="0 0 24 24" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M22 5c0-1.654-1.346-3-3-3H5C3.346 2 2 3.346 2 5v2.831c0 1.053.382 2.01 1 2.746V19c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-8.424c.618-.735 1-1.692 1-2.746V5zm-2 0v2.831c0 1.14-.849 2.112-1.891 2.167L18 10c-1.103 0-2-.897-2-2V4h3c.552 0 1 .449 1 1zM10 4h4v4c0 1.103-.897 2-2 2s-2-.897-2-2V4zM4 5c0-.551.448-1 1-1h3v4c0 1.103-.897 2-2 2l-.109-.003C4.849 9.943 4 8.971 4 7.831V5zm6 14v-3h4v3h-4zm6 0v-3c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v3H5v-7.131c.254.067.517.111.787.125A3.988 3.988 0 0 0 9 10.643c.733.832 1.807 1.357 3 1.357s2.267-.525 3-1.357a3.988 3.988 0 0 0 3.213 1.351c.271-.014.533-.058.787-.125V19h-3z"></path>
-                            </svg>
-                            <div class="fs12 text-secondary me-1">دنیای لوازم</div>
-                        </div>
-                        <div class="d-flex justify-content-end mt-4 align-items-center">
-                            <div class="fs12 text-secondary">آیا این دیدگاه مفید بود؟</div>
-                            <div class="me-5 text-secondary-2">
-                                <span class="fs14">۱</span>
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M885.9 533.7c16.8-22.2 26.1-49.4 26.1-77.7 0-44.9-25.1-87.4-65.5-111.1a67.67 67.67 0 0 0-34.3-9.3H572.4l6-122.9c1.4-29.7-9.1-57.9-29.5-79.4A106.62 106.62 0 0 0 471 99.9c-52 0-98 35-111.8 85.1l-85.9 311H144c-17.7 0-32 14.3-32 32v364c0 17.7 14.3 32 32 32h601.3c9.2 0 18.2-1.8 26.5-5.4 47.6-20.3 78.3-66.8 78.3-118.4 0-12.6-1.8-25-5.4-37 16.8-22.2 26.1-49.4 26.1-77.7 0-12.6-1.8-25-5.4-37 16.8-22.2 26.1-49.4 26.1-77.7-.2-12.6-2-25.1-5.6-37.1zM184 852V568h81v284h-81zm636.4-353l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 16.5-7.2 32.2-19.6 43l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 16.5-7.2 32.2-19.6 43l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 22.4-13.2 42.6-33.6 51.8H329V564.8l99.5-360.5a44.1 44.1 0 0 1 42.2-32.3c7.6 0 15.1 2.2 21.1 6.7 9.9 7.4 15.2 18.6 14.6 30.5l-9.6 198.4h314.4C829 418.5 840 436.9 840 456c0 16.5-7.2 32.1-19.6 43z"></path>
-                                </svg>
-                                <span class="me-2 fs14">۱</span>
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M885.9 490.3c3.6-12 5.4-24.4 5.4-37 0-28.3-9.3-55.5-26.1-77.7 3.6-12 5.4-24.4 5.4-37 0-28.3-9.3-55.5-26.1-77.7 3.6-12 5.4-24.4 5.4-37 0-51.6-30.7-98.1-78.3-118.4a66.1 66.1 0 0 0-26.5-5.4H144c-17.7 0-32 14.3-32 32v364c0 17.7 14.3 32 32 32h129.3l85.8 310.8C372.9 889 418.9 924 470.9 924c29.7 0 57.4-11.8 77.9-33.4 20.5-21.5 31-49.7 29.5-79.4l-6-122.9h239.9c12.1 0 23.9-3.2 34.3-9.3 40.4-23.5 65.5-66.1 65.5-111 0-28.3-9.3-55.5-26.1-77.7zM184 456V172h81v284h-81zm627.2 160.4H496.8l9.6 198.4c.6 11.9-4.7 23.1-14.6 30.5-6.1 4.5-13.6 6.8-21.1 6.7a44.28 44.28 0 0 1-42.2-32.3L329 459.2V172h415.4a56.85 56.85 0 0 1 33.6 51.8c0 9.7-2.3 18.9-6.9 27.3l-13.9 25.4 21.9 19a56.76 56.76 0 0 1 19.6 43c0 9.7-2.3 18.9-6.9 27.3l-13.9 25.4 21.9 19a56.76 56.76 0 0 1 19.6 43c0 9.7-2.3 18.9-6.9 27.3l-14 25.5 21.9 19a56.76 56.76 0 0 1 19.6 43c0 19.1-11 37.5-28.8 48.4z"></path>
-                                </svg>
-                            </div>
-                        </div>
+                    <div class="text-secondary fs13 lh2 mt-2 ">
+                        اگر این محصول را قبلا از دیجیکالا خریده باشید، دیدگاه شما به عنوان خریدار ثبت خواهد شد. همچنین در صورت تمایل می‌توانید به صورت ناشناس نیز دیدگاه خود را ثبت کنید
                     </div>
-                </div>
-                <div class="border-top py-4 d-flex">
-                    <div class="badge bg-rate-5 h-fit">۵.۰</div>
-                    <div class="w-100 me-2">
-                        <div class="d-flex justify-content-between">
-                            <div class="fw600 fs15 lh2">خوبه ولی قاب جلویی خیلی فیکس نمیشه و با کوچکترین حرکت در میاد
-                            </div>
-                            <div>
-                                <svg stroke="currentColor" class="text-secondary-2 cursor-pointer" fill="currentColor"
-                                     stroke-width="0" viewBox="0 0 24 24"
-                                     height="25" width="25" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                                </svg>
-
-                            </div>
-                        </div>
-                        <div class="mt-4 d-flex border-bottom-light-2 pb-3">
-                            <div class="fs12 text-secondary-2">۱۵ شهریور ۱۴۰۲</div>
-                            <div class="mx-2">
-                                <svg stroke="currentColor" class="text-secondary-2" fill="currentColor" stroke-width="0"
-                                     viewBox="0 0 24 24" height="8"
-                                     width="8" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"></path>
-                                </svg>
-                            </div>
-                            <div class="fs12 text-secondary-2">
-                                مهدی پایکوب
-                            </div>
-                            <div class="comment-user-status fs12 br10 me-3">
-                                خریدار
-                            </div>
-                        </div>
-                        <!--comment content-->
-                        <div class="mt-3 border-bottom-light-2 pb-3">
-                            <svg stroke="currentColor" fill="#4caf50" stroke-width="0" viewBox="0 0 24 24" height="1em"
-                                 width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
-                            </svg>
-                            <span class="text-success fs14">پیشنهاد می‌کنم</span>
-                            <div class="mt-3 lh2 fs14 icon-dark-color">
-                                بهترین کاور زد فولد
-                            </div>
-                            <div class="mt-2"></div>
-                            <div class="d-flex mt-3 align-items-center">
-                                <svg stroke="currentColor" fill="#00a049" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="17" width="17" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
-                                    <path d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
-                                </svg>
-                                <span class="fs12 me-1">جنس عالی</span>
-                            </div>
-                            <div class="d-flex mt-3 align-items-center">
-                                <svg stroke="currentColor" class="text-danger" fill="currentColor" stroke-width="0"
-                                     viewBox="0 0 24 24"
-                                     height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill="none" stroke-width="2" d="M6,12 L18,12"></path>
-                                </svg>
-                                <span class="fs12 me-1 ">جنس عالی</span>
-                            </div>
-                        </div>
-                        <div class="d-flex mt-3 align-items-center">
-                            <svg stroke="currentColor" class="text-secondary" fill="currentColor" stroke-width="0"
-                                 viewBox="0 0 24 24" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M22 5c0-1.654-1.346-3-3-3H5C3.346 2 2 3.346 2 5v2.831c0 1.053.382 2.01 1 2.746V19c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-8.424c.618-.735 1-1.692 1-2.746V5zm-2 0v2.831c0 1.14-.849 2.112-1.891 2.167L18 10c-1.103 0-2-.897-2-2V4h3c.552 0 1 .449 1 1zM10 4h4v4c0 1.103-.897 2-2 2s-2-.897-2-2V4zM4 5c0-.551.448-1 1-1h3v4c0 1.103-.897 2-2 2l-.109-.003C4.849 9.943 4 8.971 4 7.831V5zm6 14v-3h4v3h-4zm6 0v-3c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v3H5v-7.131c.254.067.517.111.787.125A3.988 3.988 0 0 0 9 10.643c.733.832 1.807 1.357 3 1.357s2.267-.525 3-1.357a3.988 3.988 0 0 0 3.213 1.351c.271-.014.533-.058.787-.125V19h-3z"></path>
-                            </svg>
-                            <div class="fs12 text-secondary me-1">دنیای لوازم</div>
-                        </div>
-                        <div class="d-flex justify-content-end mt-4 align-items-center">
-                            <div class="fs12 text-secondary">آیا این دیدگاه مفید بود؟</div>
-                            <div class="me-5 text-secondary-2">
-                                <span class="fs14">۱</span>
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M885.9 533.7c16.8-22.2 26.1-49.4 26.1-77.7 0-44.9-25.1-87.4-65.5-111.1a67.67 67.67 0 0 0-34.3-9.3H572.4l6-122.9c1.4-29.7-9.1-57.9-29.5-79.4A106.62 106.62 0 0 0 471 99.9c-52 0-98 35-111.8 85.1l-85.9 311H144c-17.7 0-32 14.3-32 32v364c0 17.7 14.3 32 32 32h601.3c9.2 0 18.2-1.8 26.5-5.4 47.6-20.3 78.3-66.8 78.3-118.4 0-12.6-1.8-25-5.4-37 16.8-22.2 26.1-49.4 26.1-77.7 0-12.6-1.8-25-5.4-37 16.8-22.2 26.1-49.4 26.1-77.7-.2-12.6-2-25.1-5.6-37.1zM184 852V568h81v284h-81zm636.4-353l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 16.5-7.2 32.2-19.6 43l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 16.5-7.2 32.2-19.6 43l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 22.4-13.2 42.6-33.6 51.8H329V564.8l99.5-360.5a44.1 44.1 0 0 1 42.2-32.3c7.6 0 15.1 2.2 21.1 6.7 9.9 7.4 15.2 18.6 14.6 30.5l-9.6 198.4h314.4C829 418.5 840 436.9 840 456c0 16.5-7.2 32.1-19.6 43z"></path>
-                                </svg>
-                                <span class="me-2 fs14">۱</span>
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M885.9 490.3c3.6-12 5.4-24.4 5.4-37 0-28.3-9.3-55.5-26.1-77.7 3.6-12 5.4-24.4 5.4-37 0-28.3-9.3-55.5-26.1-77.7 3.6-12 5.4-24.4 5.4-37 0-51.6-30.7-98.1-78.3-118.4a66.1 66.1 0 0 0-26.5-5.4H144c-17.7 0-32 14.3-32 32v364c0 17.7 14.3 32 32 32h129.3l85.8 310.8C372.9 889 418.9 924 470.9 924c29.7 0 57.4-11.8 77.9-33.4 20.5-21.5 31-49.7 29.5-79.4l-6-122.9h239.9c12.1 0 23.9-3.2 34.3-9.3 40.4-23.5 65.5-66.1 65.5-111 0-28.3-9.3-55.5-26.1-77.7zM184 456V172h81v284h-81zm627.2 160.4H496.8l9.6 198.4c.6 11.9-4.7 23.1-14.6 30.5-6.1 4.5-13.6 6.8-21.1 6.7a44.28 44.28 0 0 1-42.2-32.3L329 459.2V172h415.4a56.85 56.85 0 0 1 33.6 51.8c0 9.7-2.3 18.9-6.9 27.3l-13.9 25.4 21.9 19a56.76 56.76 0 0 1 19.6 43c0 9.7-2.3 18.9-6.9 27.3l-13.9 25.4 21.9 19a56.76 56.76 0 0 1 19.6 43c0 9.7-2.3 18.9-6.9 27.3l-14 25.5 21.9 19a56.76 56.76 0 0 1 19.6 43c0 19.1-11 37.5-28.8 48.4z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-top py-4 d-flex">
-                    <div class="badge bg-rate-5 h-fit">۵.۰</div>
-                    <div class="w-100 me-2">
-                        <div class="d-flex justify-content-between">
-                            <div class="fw600 fs15 lh2">خوبه ولی قاب جلویی خیلی فیکس نمیشه و با کوچکترین حرکت در میاد
-                            </div>
-                            <div>
-                                <svg stroke="currentColor" class="text-secondary-2 cursor-pointer" fill="currentColor"
-                                     stroke-width="0" viewBox="0 0 24 24"
-                                     height="25" width="25" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                                </svg>
-
-                            </div>
-                        </div>
-                        <div class="mt-4 d-flex border-bottom-light-2 pb-3">
-                            <div class="fs12 text-secondary-2">۱۵ شهریور ۱۴۰۲</div>
-                            <div class="mx-2">
-                                <svg stroke="currentColor" class="text-secondary-2" fill="currentColor" stroke-width="0"
-                                     viewBox="0 0 24 24" height="8"
-                                     width="8" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"></path>
-                                </svg>
-                            </div>
-                            <div class="fs12 text-secondary-2">
-                                مهدی پایکوب
-                            </div>
-                            <div class="comment-user-status fs12 br10 me-3">
-                                خریدار
-                            </div>
-                        </div>
-                        <!--comment content-->
-                        <div class="mt-3 border-bottom-light-2 pb-3">
-                            <svg stroke="currentColor" fill="#4caf50" stroke-width="0" viewBox="0 0 24 24" height="1em"
-                                 width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
-                            </svg>
-                            <span class="text-success fs14">پیشنهاد می‌کنم</span>
-                            <div class="mt-3 lh2 fs14 icon-dark-color">
-                                بهترین کاور زد فولد
-                            </div>
-                            <div class="mt-2"></div>
-                            <div class="d-flex mt-3 align-items-center">
-                                <svg stroke="currentColor" fill="#00a049" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="17" width="17" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
-                                    <path d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
-                                </svg>
-                                <span class="fs12 me-1">جنس عالی</span>
-                            </div>
-                            <div class="d-flex mt-3 align-items-center">
-                                <svg stroke="currentColor" class="text-danger" fill="currentColor" stroke-width="0"
-                                     viewBox="0 0 24 24"
-                                     height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill="none" stroke-width="2" d="M6,12 L18,12"></path>
-                                </svg>
-                                <span class="fs12 me-1 ">جنس عالی</span>
-                            </div>
-                        </div>
-                        <div class="d-flex mt-3 align-items-center">
-                            <svg stroke="currentColor" class="text-secondary" fill="currentColor" stroke-width="0"
-                                 viewBox="0 0 24 24" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M22 5c0-1.654-1.346-3-3-3H5C3.346 2 2 3.346 2 5v2.831c0 1.053.382 2.01 1 2.746V19c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-8.424c.618-.735 1-1.692 1-2.746V5zm-2 0v2.831c0 1.14-.849 2.112-1.891 2.167L18 10c-1.103 0-2-.897-2-2V4h3c.552 0 1 .449 1 1zM10 4h4v4c0 1.103-.897 2-2 2s-2-.897-2-2V4zM4 5c0-.551.448-1 1-1h3v4c0 1.103-.897 2-2 2l-.109-.003C4.849 9.943 4 8.971 4 7.831V5zm6 14v-3h4v3h-4zm6 0v-3c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v3H5v-7.131c.254.067.517.111.787.125A3.988 3.988 0 0 0 9 10.643c.733.832 1.807 1.357 3 1.357s2.267-.525 3-1.357a3.988 3.988 0 0 0 3.213 1.351c.271-.014.533-.058.787-.125V19h-3z"></path>
-                            </svg>
-                            <div class="fs12 text-secondary me-1">دنیای لوازم</div>
-                        </div>
-                        <div class="d-flex justify-content-end mt-4 align-items-center">
-                            <div class="fs12 text-secondary">آیا این دیدگاه مفید بود؟</div>
-                            <div class="me-5 text-secondary-2">
-                                <span class="fs14">۱</span>
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M885.9 533.7c16.8-22.2 26.1-49.4 26.1-77.7 0-44.9-25.1-87.4-65.5-111.1a67.67 67.67 0 0 0-34.3-9.3H572.4l6-122.9c1.4-29.7-9.1-57.9-29.5-79.4A106.62 106.62 0 0 0 471 99.9c-52 0-98 35-111.8 85.1l-85.9 311H144c-17.7 0-32 14.3-32 32v364c0 17.7 14.3 32 32 32h601.3c9.2 0 18.2-1.8 26.5-5.4 47.6-20.3 78.3-66.8 78.3-118.4 0-12.6-1.8-25-5.4-37 16.8-22.2 26.1-49.4 26.1-77.7 0-12.6-1.8-25-5.4-37 16.8-22.2 26.1-49.4 26.1-77.7-.2-12.6-2-25.1-5.6-37.1zM184 852V568h81v284h-81zm636.4-353l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 16.5-7.2 32.2-19.6 43l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 16.5-7.2 32.2-19.6 43l-21.9 19 13.9 25.4a56.2 56.2 0 0 1 6.9 27.3c0 22.4-13.2 42.6-33.6 51.8H329V564.8l99.5-360.5a44.1 44.1 0 0 1 42.2-32.3c7.6 0 15.1 2.2 21.1 6.7 9.9 7.4 15.2 18.6 14.6 30.5l-9.6 198.4h314.4C829 418.5 840 436.9 840 456c0 16.5-7.2 32.1-19.6 43z"></path>
-                                </svg>
-                                <span class="me-2 fs14">۱</span>
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                                     height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M885.9 490.3c3.6-12 5.4-24.4 5.4-37 0-28.3-9.3-55.5-26.1-77.7 3.6-12 5.4-24.4 5.4-37 0-28.3-9.3-55.5-26.1-77.7 3.6-12 5.4-24.4 5.4-37 0-51.6-30.7-98.1-78.3-118.4a66.1 66.1 0 0 0-26.5-5.4H144c-17.7 0-32 14.3-32 32v364c0 17.7 14.3 32 32 32h129.3l85.8 310.8C372.9 889 418.9 924 470.9 924c29.7 0 57.4-11.8 77.9-33.4 20.5-21.5 31-49.7 29.5-79.4l-6-122.9h239.9c12.1 0 23.9-3.2 34.3-9.3 40.4-23.5 65.5-66.1 65.5-111 0-28.3-9.3-55.5-26.1-77.7zM184 456V172h81v284h-81zm627.2 160.4H496.8l9.6 198.4c.6 11.9-4.7 23.1-14.6 30.5-6.1 4.5-13.6 6.8-21.1 6.7a44.28 44.28 0 0 1-42.2-32.3L329 459.2V172h415.4a56.85 56.85 0 0 1 33.6 51.8c0 9.7-2.3 18.9-6.9 27.3l-13.9 25.4 21.9 19a56.76 56.76 0 0 1 19.6 43c0 9.7-2.3 18.9-6.9 27.3l-13.9 25.4 21.9 19a56.76 56.76 0 0 1 19.6 43c0 9.7-2.3 18.9-6.9 27.3l-14 25.5 21.9 19a56.76 56.76 0 0 1 19.6 43c0 19.1-11 37.5-28.8 48.4z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endif
 
 
-                <!--more comment btn-->
-                <div class="border-top mt-4">
-                    <button class="bg-transparent border-0 text-info fs12 fw600 mt-4">
-                        10 دیدگاه دیگر
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="17"
-                             width="17" xmlns="http://www.w3.org/2000/svg">
-                            <path fill="none" d="M0 0h24v24H0V0z"></path>
-                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
-                        </svg>
-                    </button>
-                </div>
             </div>
         </div>
         <!--feature-->
@@ -2389,7 +2072,7 @@
         let addPoints = ($this, $type, $class) => {
 
             $positive_point = $this.prev().val()
-            if($positive_point.trim().length !== 0){
+            if ($positive_point.trim().length !== 0) {
                 $id = $('.' + $class).children().length;
 
                 $('.' + $class).append(addPositivePoint($positive_point, $type, $id))
