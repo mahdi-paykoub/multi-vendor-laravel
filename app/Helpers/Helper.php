@@ -11,3 +11,13 @@ function get_site_itself_productInfo($product)
         ($product->productInfos()->first())
         : $query_site_condition;
 }
+
+if (!function_exists('is_active_route')) {
+    function is_active_route($routeName ,$activeClass)
+    {
+        if (\Illuminate\Support\Facades\Route::currentRouteName() == $routeName){
+            return $activeClass;
+        }
+         return '';
+    }
+}

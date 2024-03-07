@@ -38,28 +38,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-Route::get('routes', function () {
-    $routeCollection = Route::getRoutes();
-
-    echo "<table style='width:100%'>";
-    echo "<tr>";
-    echo "<td width='10%'><h4>HTTP Method</h4></td>";
-    echo "<td width='10%'><h4>Route</h4></td>";
-    echo "<td width='10%'><h4>Name</h4></td>";
-    echo "<td width='70%'><h4>Corresponding Action</h4></td>";
-    echo "</tr>";
-    foreach ($routeCollection as $value) {
-        echo "<tr>";
-        echo "<td>" . $value->methods()[0] . "</td>";
-        echo "<td>" . $value->uri() . "</td>";
-        echo "<td>" . $value->getName() . "</td>";
-        echo "<td>" . $value->getActionName() . "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-});
-
 //google register
 Route::get('/google-register', [\App\Http\Controllers\Auth\GoogleRegisterController::class, 'startGoogleRegister'])->name('google.register');
 Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\GoogleRegisterController::class, 'googleBackUrlLogic']);
@@ -109,7 +87,7 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
 });
 
 
-//user userProfile
+//user Profile
 Route::prefix('profile')->group(function () {
     Route::get('/', [\App\Http\Controllers\userProfile\ProfileController::class, 'indexView'])->name('index.profile');
     Route::get('/comments', [\App\Http\Controllers\userProfile\ProfileController::class, 'commentsView'])->name('comments.profile');
