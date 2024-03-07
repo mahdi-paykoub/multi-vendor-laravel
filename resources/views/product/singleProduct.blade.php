@@ -1178,19 +1178,38 @@
             </div>
             <br>
             <div class="col-12 col-lg-3">
-                <div>
-                    <span class=" icon-dark-color fs30">۴.۲</span>
-                    <span class="fs12 text-secondary">از ۵</span>
-                </div>
-                <div class="d-flex align-items-center mt-3">
-                    <img src="assets/image/text/start-colored.webp" width="20" height="20" alt="">
-                    <img src="assets/image/text/start-colored.webp" width="20" height="20" alt="">
-                    <img src="assets/image/text/start-colored.webp" width="20" height="20" alt="">
-                    <img src="assets/image/text/start-colored.webp" width="20" height="20" alt="">
-                    <img src="assets/image/text/star-no-color.webp" width="20" height="20" alt="">
+                @if(count($comments) !== 0)
+                    @php
+                        $avgStar = \App\Models\Comment::avg('rate');
+                    @endphp
+                    <div>
+                        <span class=" icon-dark-color fs30 fv">{{round($avgStar , 1)}}</span>
+                        <span class="fs12 text-secondary">از ۵</span>
+                    </div>
+                    <div class="d-flex align-items-center mt-3">
+                        @for($i = 0; $i < floor($avgStar); $i++)
+                            <img src="{{url('assets/frontend/image/text/start-colored.webp')}}" width="20" height="20"
+                                 alt="">
+                        @endfor
+                        @for($i = 0; $i < (5 - floor($avgStar)); $i++)
+                            <img src="{{url('assets/frontend/image/text/star-no-color.webp')}}" width="20" height="20"
+                                 alt="">
+                        @endfor
+                        <div class="text-secondary-2 fs11 me-2">از مجموع <span class="fv">{{count($comments)}}</span>
+                            امتیاز
+                        </div>
+                    </div>
+                @else
+                    <div class="fs12 text-secondary">هنوز امتیازی ثبت نشده است</div>
+                    <div class="d-flex align-items-center mt-2">
+                        @for($i = 0; $i < 5; $i++)
+                            <img src="{{url('assets/frontend/image/text/star-no-color.webp')}}" width="20" height="20"
+                                 alt="">
+                        @endfor
 
-                    <div class="text-secondary-2 fs11 me-2">از مجموع ۱۶ امتیاز</div>
-                </div>
+                    </div>
+                @endif
+
                 <div class="mt-2 fs12 text-secondary mt-4">
                     شما هم درباره این کالا دیدگاه ثبت کنید
                 </div>
@@ -1240,7 +1259,8 @@
                                                         <span class="status-rate-text me-1"></span>
                                                         <div>
                                                             <div class="range-wrap w-100 mt-3">
-                                                                <input type="range" class="rate-comment w-100" min="0"
+                                                                <input type="range" class="rate-comment w-100"
+                                                                       min="0"
                                                                        name="rate"
                                                                        value="0"
                                                                        max="5" step="1">
@@ -1322,11 +1342,13 @@
                                                 <div class="d-none d-lg-block col-6">
                                                     <div class="border br7 p-3">
                                                         <div class="fs14 fw600 icon-dark-color lh2">
-                                                            دیگران را با نوشتن نظرات خود، برای انتخاب این محصول راهنمایی
+                                                            دیگران را با نوشتن نظرات خود، برای انتخاب این محصول
+                                                            راهنمایی
                                                             کنید.
                                                         </div>
                                                         <div class="lh2 fs13 mt-3">
-                                                            لازم است محتوای ارسالی منطبق برعرف و شئونات جامعه و با بیانی
+                                                            لازم است محتوای ارسالی منطبق برعرف و شئونات جامعه و با
+                                                            بیانی
                                                             رسمی و
                                                             عاری
                                                             از لحن تند، تمسخرو توهین باشد.
@@ -1334,7 +1356,8 @@
                                                             شماره
                                                             تماس،
                                                             ایمیل و آی‌دی شبکه‌های اجتماعی پرهیز کنید.
-                                                            در نظر داشته باشید هدف نهایی از ارائه‌ی نظر درباره‌ی کالا
+                                                            در نظر داشته باشید هدف نهایی از ارائه‌ی نظر درباره‌ی
+                                                            کالا
                                                             ارائه‌ی
                                                             اطلاعات مشخص و مفید برای راهنمایی سایر کاربران در فرآیند
                                                             انتخاب
@@ -1345,7 +1368,8 @@
                                                             راهنمایی
                                                             در
                                                             این
-                                                            بخش خودداری کرده و سوالات خود را در بخش «پرسش و پاسخ» مطرح
+                                                            بخش خودداری کرده و سوالات خود را در بخش «پرسش و پاسخ»
+                                                            مطرح
                                                             کنید.
                                                             افزودن عکس و ویدیو به نظرات:
                                                             با مطالعه‌ی این لینک می‌توانید مفید‌ترین الگوی عکاسی از
@@ -1386,19 +1410,17 @@
                         </div>
                     </form>
                 </div>
-                <div class="d-flex mt-3">
+                <div class="d-flex mt-3 align-items-center">
                     <svg stroke="currentColor" class="text-secondary" fill="currentColor" stroke-width="0"
                          viewBox="0 0 16 16" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
                         <path
                             d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
                     </svg>
-                    <div class="fs12 text-secondary me-2 mt-1">
-                        <div class="">۵ امتیاز دیجی‌کلاب</div>
-                        <div class="lh2 mt-2"> پس از تایید شدن دیدگاه، با رفتن به صفحه ماموریت‌های دیجی‌کلاب امتیازتان
-                            را
-                            دریافت کنید.
-                        </div>
+                    <div class="fs12 text-secondary me-2 mt-1 lh2">
+                        پس از تایید شدن دیدگاه، با رفتن به صفحه پروفایل خود
+                        یا همین صفحه میتوانید نظر خود را مشاهده کنید.
+
                     </div>
                 </div>
             </div>
@@ -1534,7 +1556,8 @@
                         شما هم می‌توانید در مورد این کالا نظر دهید.
                     </div>
                     <div class="text-secondary fs13 lh2 mt-2 ">
-                        اگر این محصول را قبلا از دیجیکالا خریده باشید، دیدگاه شما به عنوان خریدار ثبت خواهد شد. همچنین در صورت تمایل می‌توانید به صورت ناشناس نیز دیدگاه خود را ثبت کنید
+                        اگر این محصول را قبلا از دیجیکالا خریده باشید، دیدگاه شما به عنوان خریدار ثبت خواهد شد. همچنین
+                        در صورت تمایل می‌توانید به صورت ناشناس نیز دیدگاه خود را ثبت کنید
                     </div>
                 @endif
 
@@ -1553,46 +1576,43 @@
                 مشخصات
             </div>
             <div class="col-12 col-lg-9">
+                @php
+                    $dimensions = json_decode($singleProduct->dimensions)
+                @endphp
                 <div class="row mt-lg-4">
                     <div class="col-2">
-                        <div class="text-secondary fs14">
+                        <div class="text-secondary-2 fs14">
                             ابعاد
                         </div>
                     </div>
                     <div class="col-10 border-bottom-light-2 pb-4">
-                        ۱۵۸x۷۰x۲۰
+
+                        <div class="fs14 me-2 icon-dark-color">{{$dimensions->width}}x{{$dimensions->length}}x{{$dimensions->height}} سانتی متر</div>
                     </div>
                 </div>
                 <div class="row mt-4">
                     <div class="col-2">
-                        <div class="text-secondary fs14">
-                            ابعاد
+                        <div class="text-secondary-2 fs14">
+                            وزن
                         </div>
                     </div>
                     <div class="col-10 border-bottom-light-2 pb-4">
-                        ۱۵۸x۷۰x۲۰
+
+                        <div class="fs14 me-2 icon-dark-color">{{$dimensions->weight}} گرم </div>
                     </div>
                 </div>
+                @foreach($attrs as $attr)
                 <div class="row mt-4">
                     <div class="col-2">
-                        <div class="text-secondary fs14">
-                            ابعاد
+                        <div class="text-secondary-2 fs14">
+                            {{$attr->name}}
                         </div>
                     </div>
                     <div class="col-10 border-bottom-light-2 pb-4">
-                        ۱۵۸x۷۰x۲۰
+                        <div class="fs14 me-2 icon-dark-color">{{$attr->pivot->value->value}}</div>
                     </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-2">
-                        <div class="text-secondary fs14">
-                            ابعاد
-                        </div>
-                    </div>
-                    <div class="col-10 border-bottom-light-2 pb-4">
-                        ۱۵۸x۷۰x۲۰
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <div class="mt-4 d-flex">
