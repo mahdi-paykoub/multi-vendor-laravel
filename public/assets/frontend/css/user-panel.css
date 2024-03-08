@@ -93,3 +93,37 @@
     border: 1px solid #19bfd3 !important;
     transition: .3s all ease;
 }
+
+.search_address_inp {
+    top: 10px;
+    z-index: 1000;
+}
+
+.search_address_inp input {
+    height: 50px;
+    width: 77%;
+    border-radius: 7px;
+    border: none;
+    color: #424750;
+    /*   box-shadow: 0 -7px 7px #dfdfdf;*/
+}
+
+.search_address_inp::placeholder {
+    color: #bababa;
+    font-size: 14px;
+}
+
+.search_address_inp input:focus {
+    border-color: #1e9958 !important;
+}
+
+.ajx-res-src-val {
+    background: white;
+    padding: 20px;
+    width: 77%;
+    margin-top: -2px;
+    border-radius: 0 0 7px 7px;
+    max-height: 310px;
+    overflow-y: scroll;
+    display: none;
+}

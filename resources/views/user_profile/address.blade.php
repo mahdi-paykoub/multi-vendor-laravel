@@ -157,9 +157,15 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <div class="pt-1">
+                    <div class="pt-1 position-relative">
                         {{--map--}}
                         <div id='map' style="height: 400px" class="seller-address-map w-100"></div>
+                        <div class="search_address_inp text-center position-absolute w-100">
+                            <input type="text" class="px-3 border" id="main-sr-addr-inp" placeholder="جستجوی آدرس">
+                            <div class="ajx-res-src-val mx-auto">
+                                {{--add response here--}}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer shadow w-100">
@@ -334,5 +340,48 @@
                 }
             });
         })
+
+
+        $("#main-sr-addr-inp").on("keyup paste", function () {
+            $inpuValue = $(this).val()
+
+            $.ajaxSetup({
+                headers: {'Api-Key': 'service.375ba0da42d041468bb987e2e6b653dc'}
+            })
+            $.ajax({
+                type: 'get',
+                url: 'https://api.neshan.org/v1/search?term=' + $inpuValue + '&lat=' + 35.699756 + '&lng=' + 51.338076 + '',
+                success: function (data) {
+                    console.log(data)
+                    var res = '';
+                    $.each(data.items, function (key, value) {
+                        $cus_class = key == 0 ? "" : "pt-3"
+                        res +=
+                            '<div data-x="' + value.location.x + '" data-y="' + value.location.y + '" class="d-flex response-of-location-search cursor-pointer ' + $cus_class + '">' +
+                            '<svg stroke="currentColor" class="text-secondary" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">' +
+                            '<path fill="none" stroke-width="2" d="M12,22 C12,22 4,16 4,10 C4,5 8,2 12,2 C16,2 20,5 20,10 C20,16 12,22 12,22 Z M12,13 C13.657,13 15,11.657 15,10 C15,8.343 13.657,7 12,7 C10.343,7 9,8.343 9,10 C9,11.657 10.343,13 12,13 L12,13 Z"></path> </svg>' +
+                            '<div class="me-2 w-100 text-end border-bottom pb-3">' +
+                            '<div class="fs15 text-dark">' + value.title + '</div>' +
+                            '<div class="text-secondary mt-2 fs13">' + value.address + '</div></div>' +
+                            '</div>'
+                    });
+
+                    $('.ajx-res-src-val').addClass('d-block').html(res);
+                    if ($inpuValue == '') {
+                        $('.ajx-res-src-val').removeClass('d-block').addClass('display-none');
+                    }
+
+                    $('.response-of-location-search').click(function () {
+                        $lat_n = $(this).attr('data-x')
+                        $lng_n = $(this).attr('data-y')
+
+                        testLMap.setView(new L.LatLng($lng_n, $lat_n), 16, { animation: true });
+
+                        $('.ajx-res-src-val').removeClass('d-block').addClass('display-none');
+
+                    })
+                }
+            });
+        });
     </script>
 @endsection

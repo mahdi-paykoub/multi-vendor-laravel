@@ -86,7 +86,7 @@ let toast = ($errMsg) => {
     </div>
     `
 }
+
 let deleteToast = ($errMsg) => {
     document.getElementById('toast-here').innerHTML = '';
 }
-
