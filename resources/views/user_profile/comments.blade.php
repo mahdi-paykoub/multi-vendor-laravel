@@ -80,38 +80,61 @@
             {{--secon content--}}
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <!--all comments-->
-                <div class="d-md-flex d-block px-lg-4 mt-3 align-items-center pb-3">
-                    <div class="">
-                        <img src="{{asset('assets/frontend/image/product/airpod.webp')}}" width="80" height="80" alt="">
-                        <div class="badge bg-rate-5 fs11 h-fit float-start mt-2 ms-2">۵.۰</div>
-                    </div>
-                    <div class="w-100 mt-2 mt-lg-0 ps-2">
-                        <div class="d-flex justify-content-between me-3 border-bottom-light-2 w-100 mt-2">
-                            <div class="icon-dark-color fs15res pb-3 fw600 lh2">
-                                این موس به نسبت به قیمت ارزش خرید داره
-                                این موس به نسبت به قیمت ارزش خرید داره
-                                این موس به نسبت به قیمت ارزش خرید داره
-                                <span
-                                    class="comment-verified-badge fs11 fw600 br15 ms-3 me-2 d-inline-block mt-2">تایید شده</span>
-                            </div>
-                            <div>
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"
-                                     height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="me-3 border-bottom-light-2 w-100 mt-3">
-                            <div class="text-secondary fs15res pb-3 lh2">
-                                این موس رو من حضوری خریدم و موس خوبیه پیشنهاد میکنم
-                                این موس رو من حضوری خریدم و موس خوبیه پیشنهاد میکنم
-                                این موس رو من حضوری خریدم و موس خوبیه پیشنهاد میکنم
-                            </div>
+                @if(count($user_comments) !== 0)
+                    @foreach($user_comments as $user_comment)
+                        @if ($user_comment->commentable_type === \App\Models\Product::class)
+                            @php
+                                $productImg=$user_comment->commentable->galleries()->first()->image;
+                            @endphp
+                            <div class="d-md-flex d-block px-lg-4 mt-3 align-items-center pb-3">
+                                <div class="">
+                                    <img src="{{$productImg}}" width="80" height="80"
+                                         alt="">
+                                    <div
+                                        class="badge bg-rate-{{$user_comment->rate}} fs11 h-fit float-start mt-2 ms-2 fv">
+                                        {{$user_comment->rate}}.۰
 
+                                    </div>
+                                </div>
+                                <div class="w-100 mt-2 mt-lg-0 ps-2">
+                                    <div class="d-flex justify-content-between me-3 border-bottom-light-2 w-100 mt-2">
+                                        <div class="icon-dark-color fs15res pb-3 fw600 lh2">
+                                            {{$user_comment->title}}
+                                            @if($user_comment->approved !== 0)
+                                                <span
+                                                    class="comment-verified-badge fs11 fw600 br15 ms-3 me-2 d-inline-block mt-2">تایید شده</span>
+                                            @endif
+                                        </div>
+                                        <div>
+                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                                 viewBox="0 0 16 16"
+                                                 height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="me-3 border-bottom-light-2 w-100 mt-3">
+                                        <div class="text-secondary fs15res pb-3 lh2">
+                                            {{$user_comment->comment}}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+
+                @else
+                    <div class="row justify-content-center">
+                        <div class="col-6 col-md-5 col-lg-3 text-center py-5">
+                            <img src="{{asset('assets/frontend/image/text/order-empty.svg')}}" class="w-100 p-3" alt="">
+                            <div class="fs12 icon-dark-color">
+                                هنوز هیچ نظری ندارید
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\userProfile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class ProfileController extends Controller
         return view('user_profile.index');
     }
     public function commentsView(){
-        return view('user_profile.comments');
+        $user_comments = auth()->user()->comments()->get();
+        return view('user_profile.comments',compact('user_comments'));
     }
     public function identifyView(){
         return view('user_profile.identity_confirmation');

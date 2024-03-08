@@ -100,8 +100,9 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 
     Route::post('/update/user-name', [\App\Http\Controllers\userProfile\InfoController::class, 'name_update'])->name('update.user.name');
     Route::post('/update/user-national-code', [\App\Http\Controllers\userProfile\InfoController::class, 'national_code_update'])->name('update.user.nationalCode');
-    Route::post('/user-email', [\App\Http\Controllers\userProfile\InfoController::class, 'email_update'])->name('update.user.email');
-    Route::post('/user-phone-number', [\App\Http\Controllers\userProfile\InfoController::class, 'phone_number_update'])->name('update.user.phoneNumber');
+    Route::post('/update/user-email', [\App\Http\Controllers\userProfile\InfoController::class, 'email_update'])->name('update.user.email');
+    Route::post('/update/user-phone-number', [\App\Http\Controllers\userProfile\InfoController::class, 'phone_number_update'])->name('update.user.phoneNumber');
+    Route::post('/update/user-job', [\App\Http\Controllers\userProfile\InfoController::class, 'job_update'])->name('update.user.job');
 
 });
 

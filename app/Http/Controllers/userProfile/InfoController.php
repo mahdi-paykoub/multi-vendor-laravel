@@ -52,4 +52,15 @@ class InfoController extends Controller
         );
         return back();
     }
+    public function job_update(Request $request)
+    {
+        $validData = $request->validate([
+            'job' => 'required'
+        ]);
+        UserInfo::updateOrCreate(
+            ['user_id' => auth()->user()->id],
+            ['job' => $validData['job']]
+        );
+        return back();
+    }
 }

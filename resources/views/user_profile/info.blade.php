@@ -123,12 +123,15 @@
                 <div class="d-flex justify-content-between align-items-center py-4 h-100">
                     <div>
                         <div class="fs15 text-secondary-3">شغل</div>
-                        <div class="fs20 mt-2">
-
-                        </div>
+                        @if($userInfo !== null)
+                            <div class="fs15 mt-2">
+                                {{$userInfo->job}}
+                            </div>
+                        @endif
                     </div>
                     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
                          stroke-linecap="round" stroke-linejoin="round" height="25" width="25"
+                         type="button" data-bs-toggle="modal" data-bs-target="#jobModal"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 20h9"></path>
                         <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
@@ -283,7 +286,7 @@
             <div class="modal-content p-4 border-0">
                 <div class="d-flex justify-content-between border-bottom pb-3">
                     <div class="fs15 fw600 icon-dark-color">
-                        ویرایش شماره موبایل
+                         شماره موبایل
                     </div>
                     <div>
                         <svg
@@ -306,6 +309,49 @@
                                    class="w-100 identify-inputs br7 on-hover-border-inp">
                         @endif
                         @error('phone_number')
+                        <span class="fs13 text-digi-red px-1">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="text-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-danger bg-digi-red br7 fs14 btn-padding-2">ثبت اطلاعات
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--job Modal -->
+    <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-4 border-0">
+                <div class="d-flex justify-content-between border-bottom pb-3">
+                    <div class="fs15 fw600 icon-dark-color">
+                        شغل خود را بنویسید
+                    </div>
+                    <div>
+                        <svg
+                            type="button" data-bs-dismiss="modal" aria-label="Close"
+                            stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
+                            height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <form action="{{route('update.user.job')}}" method="post">
+                    @csrf
+                    <div class="mt-3">
+                        @if($userInfo === null)
+                            <input type="text" name="job"
+                                   class="w-100 identify-inputs br7 on-hover-border-inp">
+                        @else
+                            <input type="text" name="job" value="{{$userInfo->job}}"
+                                   class="w-100 identify-inputs br7 on-hover-border-inp">
+                        @endif
+                        @error('job')
                         <span class="fs13 text-digi-red px-1">{{ $message }}</span>
                         @enderror
                     </div>
