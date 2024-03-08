@@ -14,7 +14,7 @@ class AddressController extends Controller
             'address' => 'required',
             'city' => 'required',
             'state' => 'required',
-            'postal_code' => 'required',
+            'postal_code' => 'required|digits:10',
             'plaque' => 'required',
         ]);
 

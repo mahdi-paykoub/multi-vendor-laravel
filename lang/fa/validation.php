@@ -199,5 +199,9 @@ return [
         'varAttributes.*.dimensions.length' => 'طول',
         'varAttributes.*.dimensions.width' => 'وزن',
         'varAttributes.*.value' => 'مقدار ویژگی',
+        'postal_code' => 'کد پستی',
+        'plaque' => 'پلاک',
+        'state' => 'استان',
+        'city  ' => 'شهر',
     ],
 ];

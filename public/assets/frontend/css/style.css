@@ -52,9 +52,11 @@ a {
 .fv {
     font-family: vazir !important;
 }
-.ver-5{
+
+.ver-5 {
     vertical-align: 5px;
 }
+
 .br10 {
     border-radius: 10px;
 }
@@ -177,7 +179,7 @@ input:focus {
 }
 
 .text-digi-red {
-    color: #ef394e ;
+    color: #ef394e;
 }
 
 .bg-digi-purple {
@@ -234,18 +236,19 @@ input:focus {
 .display-none {
     display: none;
 }
+
 .bg-rate-1,
-.bg-rate-2{
+.bg-rate-2 {
 
     background: #f9bc00;
 }
+
 .bg-rate-5 {
     background: #00a049;
 }
 
-.bg-rate-3 ,
-.bg-rate-4
-{
+.bg-rate-3,
+.bg-rate-4 {
     background: #65aa57;
 }
 
@@ -289,7 +292,7 @@ input:focus {
 
 /*top bar & nav bar*/
 .header-shadow-unique {
-    box-shadow: 0 1px 0 rgba(0,0,0,.14),0 2px 0 rgba(0,0,0,.05);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .14), 0 2px 0 rgba(0, 0, 0, .05);
 }
 
 .top-bar-parent img {
@@ -321,7 +324,8 @@ input:focus {
     border: 1px solid #e1e1e1;
     border-radius: 30px;
 }
-.z_index100{
+
+.z_index100 {
     z-index: 100;
 }
 
@@ -693,6 +697,7 @@ input:focus {
     top: 50%;
     transform: translate(-50%, -50%)
 }
+
 /*loader*/
 /* HTML: <div class="loader"></div> */
 .loader {
@@ -701,13 +706,44 @@ input:focus {
     border-radius: 50%;
     animation: l5 1s infinite linear alternate;
 }
+
 @keyframes l5 {
-    0%  {box-shadow: 20px 0 #ff0000, -20px 0 rgba(255, 0, 0, 0.13);background: #ff0000
+    0% {
+        box-shadow: 20px 0 #ff0000, -20px 0 rgba(255, 0, 0, 0.13);
+        background: #ff0000
     }
-    33% {box-shadow: 20px 0 #ce1717, -20px 0 rgba(193, 21, 21, 0.13);background: rgba(193, 18, 18, 0.13)
+    33% {
+        box-shadow: 20px 0 #ce1717, -20px 0 rgba(193, 21, 21, 0.13);
+        background: rgba(193, 18, 18, 0.13)
     }
-    66% {box-shadow: 20px 0 rgba(169, 17, 17, 0.13),-20px 0 #b51313; background: rgba(178, 22, 22, 0.13)
+    66% {
+        box-shadow: 20px 0 rgba(169, 17, 17, 0.13), -20px 0 #b51313;
+        background: rgba(178, 22, 22, 0.13)
     }
-    100%{box-shadow: 20px 0 rgba(172, 19, 19, 0.13),-20px 0 #b31111; background: #b31717
+    100% {
+        box-shadow: 20px 0 rgba(172, 19, 19, 0.13), -20px 0 #b31111;
+        background: #b31717
     }
+}
+
+.tosti-box {
+    padding: 20px;
+    background: #0c0c0c;
+    position: fixed;
+    top: 21px;
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 350px;
+    color: #fff;
+    border-radius: 10px;
+    z-index: 100000000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ok-c {
+    color: #00d0d6;
 }

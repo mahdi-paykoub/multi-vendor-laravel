@@ -73,3 +73,20 @@ var swiper_se_top_res = new Swiper(".show-search-results-swiper", {
 
     },
 });
+
+let toast = ($errMsg) => {
+    document.getElementById('toast-here').innerHTML = `
+    <div class="tosti-box">
+        <div class="fs14 lh2">
+           ${$errMsg}
+        </div>
+        <div class="fs14 ok-c cursor-pointer" onclick="deleteToast()">
+            باشه
+        </div>
+    </div>
+    `
+}
+let deleteToast = ($errMsg) => {
+    document.getElementById('toast-here').innerHTML = '';
+}
+

@@ -1896,6 +1896,8 @@
         </div>
     </div>
 
+
+
     @include('layouts.product_parts.footer')
 @endsection
 

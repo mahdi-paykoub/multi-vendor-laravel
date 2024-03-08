@@ -254,6 +254,10 @@
 @section('scripts')
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script src="https://static.neshan.org/sdk/leaflet/v1.9.4/neshan-sdk/v1.0.8/index.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
     <script>
 
         const testLMap = new L.Map("map", {
@@ -325,7 +329,8 @@
                     }
                 },
                 error: function (data) {
-                    console.log(data)
+                    $errormsg = Object.values(data.responseJSON.errors)[0];
+                    toast($errormsg);
                 }
             });
         })
