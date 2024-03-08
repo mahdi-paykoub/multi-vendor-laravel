@@ -322,6 +322,8 @@
             },
          /*   effect: 'fade',*/
         });
+
+
         const testLMap = new L.Map("map", {
             key: "web.7f108dbefd34420ab21ea5b72beb9eee",
             maptype: "neshan",

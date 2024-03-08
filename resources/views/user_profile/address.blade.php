@@ -1,4 +1,8 @@
 @extends('user_profile.profile_layout', ['class' => 'd-none d-lg-block'])
+@section('map_styles')
+    <link rel="stylesheet" href="https://static.neshan.org/sdk/leaflet/v1.9.4/neshan-sdk/v1.0.8/index.css"/>
+
+@endsection
 @section('responsive_setting')
     <div class="d-lg-none d-flex px-3 py-3">
         <div>
@@ -24,7 +28,8 @@
                 <div class="border-custom-bottom bg-danger mt-2"></div>
             </div>
             <div>
-                <button class="btn btn-outline-danger fs15 br7 btn-padding">
+                <button class="btn btn-outline-danger fs15 br7 btn-padding"
+                        type="button" data-bs-toggle="modal" data-bs-target="#mapModal">
                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
                          height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -79,13 +84,15 @@
             </div>
             <div>
                 <div class="text-start">
-                    <svg stroke="currentColor" class="icon-dark-color" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="20"
+                    <svg stroke="currentColor" class="icon-dark-color" fill="currentColor" stroke-width="0"
+                         viewBox="0 0 16 16" height="20"
                          width="20" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
                     </svg>
                 </div>
-                <img src="{{asset('assets/frontend/image/text/emptyAddress.webp')}}" class="mt-2" width="130" height="115" alt="">
+                <img src="{{asset('assets/frontend/image/text/emptyAddress.webp')}}" class="mt-2" width="130"
+                     height="115" alt="">
             </div>
         </div>
 
@@ -125,4 +132,202 @@
            </div>-->
 
     </div>
+
+    <!--map Modal -->
+    <div class="modal fade" id="mapModal" tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down modal-dialog-scrollable modal-lg">
+            <div class="modal-content border-0 br15">
+                <div class="modal-header">
+                    <div class="d-flex w-100 justify-content-between align-items-center">
+                        <div>
+                            <div class="fw600">
+                                آدرس جدید
+                            </div>
+                            <div class="fs13 text-secondary-2 mt-3">
+                                موقعیت مکانی آدرس را مشخص کنید.
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="button" class="btn-close fs14" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="pt-1">
+                        {{--map--}}
+                        <div id='map' style="height: 400px" class="seller-address-map w-100"></div>
+                    </div>
+                </div>
+                <div class="modal-footer shadow w-100">
+                    <div class="row w-100">
+                        <div class="row align-items-center">
+                            <div class="text-center">
+                                <div class="fs13 text-secondary-2">
+                                    مرسوله‌های شما به این موقعیت ارسال خواهد شد.
+                                    بر روی موقیت مورد نظر کلیک کنید.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{--address modal--}}
+    <div class="modal fade" style="z-index: 1000000;"
+         id="addressModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 br15">
+                <div class="modal-header">
+                    <div class="d-flex w-100 justify-content-between align-items-center pt-2">
+                        <div>
+                            <div class="fw600">
+                                جزئیات آدرس
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="button" class="btn-close fs14" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body my-4 px-4">
+                    <div>
+                        <label for="">
+                            استان <span class="text-digi-red">*</span>
+                        </label>
+                        <input type="text" class="form-control mt-1 state" name="shop_state">
+                        <input type="hidden">
+                        <input type="hidden" value="">
+                    </div>
+                    <div class="mt-3">
+                        <label for="">
+                            شهر <span class="text-digi-red">*</span>
+                        </label>
+                        <input type="text" class="form-control mt-1 city" name="shop_city">
+                    </div>
+                    <div class="mt-3">
+                        <label for="">
+                            آدرس <span class="text-digi-red">*</span>
+                        </label>
+                        <input type="text" class="form-control mt-1 address" name="shop_address">
+                        <div class="fs12 text-secondary mt-1">آدرس مطابق با مکان انتخابی شما روی نقشه و قابل ‌ویرایش
+                            است
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <label for="">
+                                پلاک
+                            </label>
+                            <input type="text" class="form-control mt-1 plaque">
+                        </div>
+                        <div class="col-6">
+                            <label for="">
+                                کد پستی <span class="text-digi-red">*</span>
+                            </label>
+                            <input type="text" class="form-control mt-1 postal_code" name="postal_code">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer shadow w-100">
+                    <div class="w-100">
+                        <button
+                            class="btn btn-padding-2 w-100 fs15 btn-danger bg-digi-red br7 send-address-data">
+                            ثبت آدرس
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection
+@section('scripts')
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://static.neshan.org/sdk/leaflet/v1.9.4/neshan-sdk/v1.0.8/index.js"></script>
+    <script>
+
+        const testLMap = new L.Map("map", {
+            key: "web.7f108dbefd34420ab21ea5b72beb9eee",
+            maptype: "neshan",
+            poi: false,
+            traffic: false,
+            center: [35.699756, 51.338076],
+            zoom: 14,
+        })
+
+
+        function onMapClick(e) {
+            $lng = e.latlng.lng
+            $lat = e.latlng.lat
+
+            $.ajaxSetup({
+                headers: {'Api-Key': 'service.fd80e037e6174b4c8763e069fce2a22c'}
+            })
+
+            $.ajax({
+                type: 'get',
+                url: 'https://api.neshan.org/v5/reverse?lat=' + $lat + '&lng=' + $lng + '',
+                success: function (res) {
+                    $city = res.city
+                    $state = res.state
+                    $formatted_address = res.formatted_address
+
+                    $('.address').val($formatted_address)
+                    $('.city').val($city)
+                    $('.state').val($state)
+                }
+            })
+            $('#mapModal').modal('hide');
+            $('#addressModal').modal('toggle');
+
+            var myModal = document.getElementById('addressModal')
+        }
+
+        testLMap.on('click', onMapClick);
+
+
+        $('.send-address-data').click(function () {
+            $state = $('.state').val()
+            $city = $('.city').val()
+            $address = $('.address').val()
+            $postal_code = $('.postal_code').val()
+            $plaque = $('.plaque').val()
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json'
+                }
+            })
+            $.ajax({
+                type: 'POST',
+                url: '/set/user/address',
+                data: JSON.stringify({
+                    state: $state,
+                    city: $city,
+                    address: $address,
+                    postal_code: $postal_code,
+                    plaque: $plaque,
+                }),
+                success: function (data) {
+                    if (data.status) {
+                        location.reload();
+                    }
+                },
+                error: function (data) {
+                    console.log(data)
+                }
+            });
+        })
+    </script>
 @endsection

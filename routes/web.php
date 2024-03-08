@@ -105,5 +105,6 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::post('/update/user-job', [\App\Http\Controllers\userProfile\InfoController::class, 'job_update'])->name('update.user.job');
 
 });
-
+/*set user or seller address*/
+Route::post('/set/user/address', [\App\Http\Controllers\AddressController::class, 'setUserAddress'])->name('set.user.address');
 

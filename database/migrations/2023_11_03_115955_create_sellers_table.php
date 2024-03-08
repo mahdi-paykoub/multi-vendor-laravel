@@ -26,7 +26,7 @@ return new class extends Migration {
             $table->integer('code');
             $table->timestamp('expired_at');
             $table->boolean('is_used')->default(false);
-            $table->unique(['seller_id' , 'code']);
+            $table->unique(['seller_id', 'code']);
             $table->timestamps();
         });
 
@@ -50,6 +50,8 @@ return new class extends Migration {
             $table->timestamps();
         });
 
+
+        /*delete this*/
         Schema::create('seller_addresses', function (Blueprint $table) {
             $table->id();
             $table->text('shop_address');
@@ -61,8 +63,6 @@ return new class extends Migration {
             $table->foreign('seller_id')->references('id')->on('sellers')->onDelete('cascade');
             $table->timestamps();
         });
-
-
 
 
         /*Schema::create('s_shops_info', function (Blueprint $table) {

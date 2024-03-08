@@ -72,7 +72,7 @@
 
 .search_address_inp {
     top: 10px;
-    z-index: 100000;
+    z-index: 1000;
 }
 
 .search_address_inp input {
