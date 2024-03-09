@@ -49,7 +49,8 @@ class ProfileController extends Controller
 
     public function addressView()
     {
-        return view('user_profile.address');
+        $user_addresses = auth()->user()->addresses()->get();
+        return view('user_profile.address' , compact('user_addresses'));
     }
 
 }
