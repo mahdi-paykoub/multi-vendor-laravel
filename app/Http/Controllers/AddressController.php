@@ -29,4 +29,10 @@ class AddressController extends Controller
         return response(['status' => true]);
 
     }
+
+    public function delete_address(Address $address)
+    {
+        $address->delete();
+        return back();
+    }
 }

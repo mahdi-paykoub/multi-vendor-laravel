@@ -98,12 +98,36 @@
                 </div>
                 <div>
                     <div class="text-start">
-                        <svg stroke="currentColor" class="icon-dark-color" fill="currentColor" stroke-width="0"
-                             viewBox="0 0 16 16" height="20"
-                             width="20" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
-                        </svg>
+                        <div class="dropdown">
+                            <svg stroke="currentColor" class="icon-dark-color" fill="currentColor" stroke-width="0"
+                                 viewBox="0 0 16 16" height="20"
+                                 type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+                                 width="20" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
+                            </svg>
+
+                            <ul class="dropdown-menu mt-1 dropdown-del-adr-menu br10 p-3 shadow border-0"
+                                aria-labelledby="dropdownMenuButton1">
+                                <form action="{{route('delete.address' ,$user_address->id )}}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit"
+                                            class="w-100 d-flex align-items-center cursor-pointer bg-transparent border-0">
+                                        <svg stroke="currentColor" class="text-digi-red" fill="currentColor"
+                                             stroke-width="0" viewBox="0 0 24 24"
+                                             height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="none" d="M0 0h24v24H0V0z"></path>
+                                            <path
+                                                d="M15 16h4v2h-4zm0-8h7v2h-7zm0 4h6v2h-6zM3 18c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V8H3v10zm2-8h6v8H5v-8zm5-6H6L5 5H2v2h12V5h-3z"></path>
+                                        </svg>
+                                        <div class="fs14 me-2">حذف آدرس</div>
+                                    </button>
+                                </form>
+                            </ul>
+
+
+                        </div>
                     </div>
                     <img src="{{asset('assets/frontend/image/text/emptyAddress.webp')}}" class="mt-2" width="130"
                          height="115" alt="">

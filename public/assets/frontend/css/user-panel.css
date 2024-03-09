@@ -127,3 +127,6 @@
     overflow-y: scroll;
     display: none;
 }
+.dropdown-del-adr-menu{
+    min-width: 200px !important;
+}
