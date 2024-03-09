@@ -106,8 +106,7 @@
                                 <path
                                     d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
                             </svg>
-
-                            <ul class="dropdown-menu mt-1 dropdown-del-adr-menu br10 p-3 shadow border-0"
+                            <ul class="dropdown-menu mt-2 dropdown-del-adr-menu br10 p-3 shadow border-0"
                                 aria-labelledby="dropdownMenuButton1">
                                 <form action="{{route('delete.address' ,$user_address->id )}}" method="post">
                                     @csrf

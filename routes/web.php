@@ -24,6 +24,8 @@ Route::post('/add-to-cart/{productInfo}', [\App\Http\Controllers\CartController:
 Route::post('/delete-from-cart/{productInfo}', [\App\Http\Controllers\CartController::class, 'delete_from_cart'])->name('delete.from.cart');
 Route::post('/increase-product-count/{productInfo}', [\App\Http\Controllers\CartController::class, 'increaseProductCount'])->name('increase.product.count');
 Route::get('/checkout/cart', [\App\Http\Controllers\CartController::class, 'shop_cart_view'])->name('shop.cart.view');
+/*register order*/
+Route::post('/register/order', [\App\Http\Controllers\OrderController::class, 'registerOrder'])->name('register.order');
 
 
 Route::get('/blog', [\App\Http\Controllers\SingleArticleController::class, 'showHomeBlog'])->name('blog');

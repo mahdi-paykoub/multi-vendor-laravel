@@ -102,7 +102,9 @@
                                 <div class="d-flex justify-content-between px-3 mt-lg-4">
                                     <div>
                                         <div class="fw600 fs14">سبد خرید شما</div>
-                                        <div class="text-secondary fs12 mt-2"><span class="fv">{{count(\App\Facades\Cart::all())}}</span> نوع کالا</div>
+                                        <div class="text-secondary fs12 mt-2"><span
+                                                class="fv">{{count(\App\Facades\Cart::all())}}</span> نوع کالا
+                                        </div>
                                     </div>
                                     <svg stroke="currentColor" class="text-secondary" fill="currentColor"
                                          stroke-width="0"
@@ -339,11 +341,14 @@
                                     </div>
                                 </div>
                                 <div class="mt-4 px-3">
-                                    <button
-                                        class="fs13 w-100 text-white bg-digi-red border-0 br10 fw600 register-order-btn">
-                                        ثبت
-                                        سفارش
-                                    </button>
+                                    <form action="{{route('register.order')}}" method="post">
+                                        @csrf
+                                        <button type="submit"
+                                                class="fs13 w-100 text-white bg-digi-red border-0 br10 fw600 register-order-btn">
+                                            ثبت
+                                            سفارش
+                                        </button>
+                                    </form>
                                 </div>
                                 <div
                                     class="d-flex py-3 px-3 align-items-center justify-content-between bg-secondary-2 mt-3">
@@ -618,7 +623,7 @@
                     console.log(data)
                     if (data) {
                         $this.prev().text(data)
-                    }else {
+                    } else {
                         location.reload();
                     }
                 }
