@@ -341,14 +341,10 @@
                                     </div>
                                 </div>
                                 <div class="mt-4 px-3">
-                                    <form action="{{route('register.order')}}" method="post">
-                                        @csrf
-                                        <button type="submit"
-                                                class="fs13 w-100 text-white bg-digi-red border-0 br10 fw600 register-order-btn">
-                                            ثبت
-                                            سفارش
-                                        </button>
-                                    </form>
+                                    <a href="{{route('shipping.view')}}"
+                                            class="fs14 btn btn-danger w-100 text-white bg-digi-red border-0 br10 fw600 register-order-btn">
+                                        تایید و تکمیل سفارش
+                                    </a>
                                 </div>
                                 <div
                                     class="d-flex py-3 px-3 align-items-center justify-content-between bg-secondary-2 mt-3">

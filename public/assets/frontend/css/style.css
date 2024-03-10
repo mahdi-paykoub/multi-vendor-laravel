@@ -58,7 +58,7 @@ a {
 }
 
 .br10 {
-    border-radius: 10px;
+    border-radius: 10px !important;
 }
 
 .lh1-7 {

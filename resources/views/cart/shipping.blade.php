@@ -157,7 +157,10 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn mt-4 btn btn-danger bg-digi-red w-100 br7 btn-padding-2">پرداخت</button>
+                        <form action="{{route('register.order')}}" method="post">
+                            @csrf
+                            <button class="btn mt-4 btn btn-danger bg-digi-red w-100 btn-padding-2 fs15 br10 fw600">پرداخت</button>
+                        </form>
                     </div>
                 </div>
             </div>
