@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function shipping_view()
+    {
+        return view('cart.shipping');
+    }
+
+
     public function registerOrder()
     {
         $cartItems = Cart::all();
@@ -29,7 +35,7 @@ class OrderController extends Controller
 
             $order->productInfos()->attach($orderItems);
 
-            return redirect(route(''));
+            return redirect(route('shipping.view'));
         }
     }
 }

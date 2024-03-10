@@ -26,6 +26,7 @@ Route::post('/increase-product-count/{productInfo}', [\App\Http\Controllers\Cart
 Route::get('/checkout/cart', [\App\Http\Controllers\CartController::class, 'shop_cart_view'])->name('shop.cart.view');
 /*register order*/
 Route::post('/register/order', [\App\Http\Controllers\OrderController::class, 'registerOrder'])->name('register.order');
+Route::get('/shipping/view', [\App\Http\Controllers\OrderController::class, 'shipping_view'])->name('shipping.view');
 
 
 Route::get('/blog', [\App\Http\Controllers\SingleArticleController::class, 'showHomeBlog'])->name('blog');
