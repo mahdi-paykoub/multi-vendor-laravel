@@ -103,7 +103,7 @@
                                     <div>
                                         <div class="fw600 fs14">سبد خرید شما</div>
                                         <div class="text-secondary fs12 mt-2"><span
-                                                class="fv">{{\App\Facades\Cart::count()}}</span>  کالا
+                                                class="fv p-count">{{\App\Facades\Cart::count()}}</span> کالا
                                         </div>
                                     </div>
                                     <svg stroke="currentColor" class="text-secondary" fill="currentColor"
@@ -315,9 +315,9 @@
                             <!--full-->
                             <div class="border-responsive br7 pt-4">
                                 <div class="d-flex px-3 align-items-center justify-content-between">
-                                    <div class="fs12 fw600 icon-dark-color">قیمت کالاها (۲)</div>
+                                    <div class="fs12 fw600 icon-dark-color">قیمت کالاها (<span class="fv p-count">{{\App\Facades\Cart::count()}}</span>)</div>
                                     <div class="text-secondary fw600">
-                                        ۶۱,۰۴۰,۰۰۰
+                                        <span class="fw600 fv totalPrice">{{number_format(\App\Facades\Cart::totalPrice(), 0, '', ',')}}</span>
                                         <svg class="mr-2" width="17" height="17" viewBox="0 0 25 27" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -327,9 +327,10 @@
                                     </div>
                                 </div>
                                 <div class="d-flex px-3 align-items-center justify-content-between mt-4">
-                                    <div class="fs12 fw600 icon-dark-color">قیمت کالاها (۲)</div>
+                                    <div class="fs12 fw600 icon-dark-color">جمع سبد خرید</div>
                                     <div class="text-secondary fw600">
-                                        ۶۱,۰۴۰,۰۰۰
+                                        <span
+                                            class="fv fw600 totalPrice">{{number_format(\App\Facades\Cart::totalPrice(), 0, '', ',')}}</span>
                                         <svg class="mr-2" width="17" height="17" viewBox="0 0 25 27" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -606,12 +607,14 @@
                 type: 'POST',
                 url: '/increase-product-count/' + $productInfoID,
                 success: function (data) {
-                    if (data) {
-
+                    if (Object.keys(data).length) {
                         $this.next().text(data.count)
-
                         $this.parent().parent().next().find('.price-box').text(Number(data.count * data.price).toLocaleString())
                         $this.prev().addClass('d-none')
+
+                        /*total*/
+                        $('.totalPrice').text(Number(data.totalPrice).toLocaleString())
+                        $('.p-count').text(data.count)
                     }
                 }
             });
@@ -632,10 +635,14 @@
                 type: 'POST',
                 url: '/delete-from-cart/' + $productInfoID,
                 success: function (data) {
-                    if (data) {
+                    if (Object.keys(data).length) {
                         $this.prev().text(data.count)
                         $this.parent().parent().next().find('.price-box').text(Number(data.count * data.price).toLocaleString())
                         $this.prev().prev().prev().addClass('d-none')
+
+                        /*total*/
+                        $('.totalPrice').text(Number(data.totalPrice).toLocaleString())
+                        $('.p-count').text(data.count)
                     } else {
                         location.reload();
                     }

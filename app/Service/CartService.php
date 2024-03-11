@@ -19,6 +19,7 @@ class CartService
 
     public function __construct()
     {
+        $this->response = [];
         $this->cart = session()->get('cart') ?? collect([]);
     }
 
@@ -98,7 +99,15 @@ class CartService
                 return $item != false;
             });
             session()->put('cart', $this->cart);
-            return $this->response;
+
+            if (count($this->response) !== 0) {
+                $totalPrice = ['totalPrice' => $this->totalPrice()];
+                $response = array_merge($totalPrice, $this->response);
+            } else {
+                $response = [];
+            }
+
+            return response($response);
         }
         return false;
     }
@@ -123,7 +132,9 @@ class CartService
                 return $item;
             });
             session()->put('cart', $this->cart);
-            return response($this->response);
+            $totalPrice = ['totalPrice' => $this->totalPrice()];
+            $response = array_merge($totalPrice, $this->response);
+            return response($response);
         }
         return false;
     }
@@ -135,6 +146,17 @@ class CartService
                 return $item['count'];
             });
             return $sum_count;
+        }
+        return false;
+    }
+
+    public function totalPrice()
+    {
+        if ($this->cart->count()) {
+            $total_price = $this->cart->sum(function ($item) {
+                return $item['count'] * $item['productInfo']['price'];
+            });
+            return $total_price;
         }
         return false;
     }

@@ -667,7 +667,7 @@
                     @if(\App\Facades\Cart::count())
                         <div
                             class="fv show-cart-count bg-digi-red position-absolute right-0 fs13 d-flex align-items-center justify-content-center text-white">
-                            <span style="padding-top: 2px">
+                            <span class="p-count" style="padding-top: 2px">
                                 {{\App\Facades\Cart::count()}}
                             </span>
                         </div>
