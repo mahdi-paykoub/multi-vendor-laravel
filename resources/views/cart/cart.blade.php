@@ -103,7 +103,7 @@
                                     <div>
                                         <div class="fw600 fs14">سبد خرید شما</div>
                                         <div class="text-secondary fs12 mt-2"><span
-                                                class="fv">{{count(\App\Facades\Cart::all())}}</span> نوع کالا
+                                                class="fv">{{\App\Facades\Cart::count()}}</span>  کالا
                                         </div>
                                     </div>
                                     <svg stroke="currentColor" class="text-secondary" fill="currentColor"
@@ -138,7 +138,8 @@
                                                     width="114" height="114" alt="">
                                                 <div
                                                     class="mt-md-5 mt-4 mx-auto mb-4 w-fit border position-relative br7 py-2 px-3 d-flex align-items-center justify-content-between text-danger">
-                                                    <div class="loader-pp w-100 h-100 position-absolute top-0 right-0 d-none">
+                                                    <div
+                                                        class="loader-pp w-100 h-100 position-absolute top-0 right-0 d-none">
                                                         <div class="loader-dot-for-cart position-absolute top-0"></div>
                                                     </div>
                                                     <svg stroke="currentColor"

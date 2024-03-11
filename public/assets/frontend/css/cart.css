@@ -50,19 +50,19 @@ background: #f2f2f2;
 
 @keyframes l5 {
     0% {
-        box-shadow: 20px 0 #dc0f0f, -20px 0 rgba(255, 0, 0, 0.13);
-        background: #e80000
+        box-shadow: 20px 0 #ef394e, -20px 0 rgba(244, 81, 81, 0.13);
+        background: #ef394e
     }
     33% {
-        box-shadow: 20px 0 #dc0f0f, -20px 0 rgba(255, 0, 0, 0.13);
+        box-shadow: 20px 0 #ef394e, -20px 0 rgba(229, 51, 51, 0.13);
         background: rgba(255, 0, 0, 0.13)
     }
     66% {
-        box-shadow: 20px 0 rgba(255, 0, 0, 0.13), -20px 0 #dc0f0f;
+        box-shadow: 20px 0 rgba(216, 76, 76, 0.13), -20px 0 #de5050;
         background: rgba(255, 0, 0, 0.13)
     }
     100% {
-        box-shadow: 20px 0 rgba(255, 0, 0, 0.13), -20px 0 #dc0f0f;
-        background: #dc0f0f
+        box-shadow: 20px 0 rgba(222, 85, 85, 0.13), -20px 0 #ef394e;
+        background: #ef394e
     }
 }

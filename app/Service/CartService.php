@@ -127,4 +127,15 @@ class CartService
         }
         return false;
     }
+
+    public function count()
+    {
+        if ($this->cart->count()) {
+            $sum_count = $this->cart->sum(function ($item) {
+                return $item['count'];
+            });
+            return $sum_count;
+        }
+        return false;
+    }
 }

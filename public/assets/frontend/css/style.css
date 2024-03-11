@@ -762,3 +762,10 @@ input:focus {
 .bb-8px{
     border-bottom: 8px solid #f0f0f1;
 }
+.show-cart-count{
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    right: 10px;
+    bottom: -12px;
+}
