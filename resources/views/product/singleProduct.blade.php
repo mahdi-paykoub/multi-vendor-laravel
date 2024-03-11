@@ -117,11 +117,12 @@
         <!--bread crumb-->
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center justify-content-between">
-                <div><a href="" class="fs12 text-secondary-3">فروشگاه اینترنتی دیجی‌کال</a></div>
+          {{--      {{ Breadcrumbs::view('partials.blogBreadcrumbs' ,'singleBlog', $singleProduct) }}--}}
+               {{-- <div><a href="" class="fs12 text-secondary-3">فروشگاه اینترنتی دیجی‌کال</a></div>
                 <div class="px-2 fs12 text-secondary-3">/</div>
                 <div class="fs12 text-secondary-3">کنسول بازی</div>
                 <div class="px-2 fs12 text-secondary-3">/</div>
-                <div class="fs12 text-secondary-3">ps5</div>
+                <div class="fs12 text-secondary-3">ps5</div>--}}
             </div>
             <div class=" align-items-center d-none d-md-flex">
                 <span class="fs12 text-secondary-2 ms-2">فروش در دیجی‌کالا</span>
@@ -318,15 +319,20 @@
                 </div>
                 <div class="border-top mt-4"></div>
                 <div class="d-flex mt-3 align-items-center">
-                    <svg stroke="currentColor" fill="#f6a824" stroke-width="0" viewBox="0 0 1024 1024" height="1em"
-                         width="1em" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"></path>
-                    </svg>
-                    <div class="fs12 me-1">۴.۳</div>
-                    <div class="text-secondary-light fs11 me-1">(۵۵۵)</div>
 
-                    <div class="me-3 text-info fs12">۱۸۶۴ دیدگاه</div>
+                    @if(count($comments) !== 0)
+                        @php
+                            $avgStar = \App\Models\Comment::avg('rate');
+                        @endphp
+                        <svg stroke="currentColor" fill="#f6a824" stroke-width="0" viewBox="0 0 1024 1024" height="1em"
+                             width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"></path>
+                        </svg>
+                        <div class="fs12 me-1 fv text-secondary">{{round($avgStar , 1)}}</div>
+                        <div class="text-secondary-light fs11 me-1 fv">({{count($comments)}})</div>
+                    @endif
+                    <div class="me-3 text-info fs12"><span class="fv">{{count($comments)}}</span> دیدگاه</div>
                     <div class="me-3 text-info fs12">۱۸۶۴ پرسش</div>
                 </div>
                 <div class="d-flex mt-4 align-items-center">

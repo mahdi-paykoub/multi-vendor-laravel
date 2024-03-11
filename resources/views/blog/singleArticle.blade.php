@@ -10,7 +10,7 @@
             <div class="col-12 col-xl-9">
                 <div class="br7 p-xl-4 box-blog-content-shadow">
                     <div class="d-flex align-items-center mb-2">
-                        {{ Breadcrumbs::view('partials.blogBreadcrumbs' ,'singleBlog', $article) }}
+                        {{ Breadcrumbs::view('partials.blogBreadcrumbs' ,'singleBlog' ,$article) }}
                     </div>
                     <div class="pt-4 mt-4 d-flex justify-content-between align-items-center border-top">
                         <div class="fw600 icon-dark-color fs18 lh2">
