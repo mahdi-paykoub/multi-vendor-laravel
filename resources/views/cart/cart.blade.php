@@ -137,7 +137,10 @@
                                                     src="{{$images->image}}"
                                                     width="114" height="114" alt="">
                                                 <div
-                                                    class="mt-md-5 mt-4 mx-auto mb-4 w-fit border br7 py-2 px-3 d-flex align-items-center justify-content-between text-danger">
+                                                    class="mt-md-5 mt-4 mx-auto mb-4 w-fit border position-relative br7 py-2 px-3 d-flex align-items-center justify-content-between text-danger">
+                                                    <div class="loader-pp w-100 h-100 position-absolute top-0 right-0 d-none">
+                                                        <div class="loader-dot-for-cart position-absolute top-0"></div>
+                                                    </div>
                                                     <svg stroke="currentColor"
                                                          data-productinfoid="{{$cart['productInfo']['id']}}"
                                                          class="increase-product-count cursor-pointer"
@@ -149,7 +152,10 @@
                                                     </svg>
 
                                                     <div class="fs14 fw600 px-3 fv"
-                                                         data-countproduct="{{$cart['count']}}">{{$cart['count']}}</div>
+                                                         data-countproduct="{{$cart['count']}}">
+
+                                                        {{$cart['count']}}
+                                                    </div>
                                                     <svg
                                                         data-productinfoid="{{$cart['productInfo']['id']}}"
                                                         stroke="currentColor"
@@ -585,6 +591,7 @@
 
         $('.increase-product-count').click(function () {
             $this = $(this)
+            $this.prev().removeClass('d-none')
             $productInfoID = $(this).attr('data-productinfoid')
 
             $.ajaxSetup({
@@ -599,15 +606,18 @@
                 url: '/increase-product-count/' + $productInfoID,
                 success: function (data) {
                     if (data) {
+
                         $this.next().text(data.count)
 
                         $this.parent().parent().next().find('.price-box').text(Number(data.count * data.price).toLocaleString())
+                        $this.prev().addClass('d-none')
                     }
                 }
             });
         })
         $('.decrease-product-count').click(function () {
             $this = $(this)
+            $this.prev().prev().prev().removeClass('d-none')
             $productInfoID = $(this).attr('data-productinfoid')
 
             $.ajaxSetup({
@@ -624,6 +634,7 @@
                     if (data) {
                         $this.prev().text(data.count)
                         $this.parent().parent().next().find('.price-box').text(Number(data.count * data.price).toLocaleString())
+                        $this.prev().prev().prev().addClass('d-none')
                     } else {
                         location.reload();
                     }
