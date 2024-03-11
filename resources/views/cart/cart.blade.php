@@ -124,10 +124,13 @@
                                         $product =\App\Models\Product::find($product_id);
                                         $images = $product->galleries()->first();
                                         $seller = \App\Models\Seller::find($seller_id)->sellerInfo()->first();
-                                        $price = number_format($cart['productInfo']->price, 0, '', ',');
+                                        $price = $cart['productInfo']->price;
                                         $quantity =$cart['productInfo']->quantity;
+                                        $sum_price = (int)$cart['count'] * (int)$price;
+                                        $sum_price =number_format($sum_price, 0, '', ',') ;
+
                                     @endphp
-                                    <div class="border-bottom pb-4">
+                                    <div class="border-bottom pb-4" id="cartP{{$product_id}}">
                                         <div class="d-md-flex px-4 mt-5">
                                             <div class="text-center">
                                                 <img
@@ -257,7 +260,8 @@
                                                     <div class="me-2">تخفیف</div>
                                                 </div>
                                                 <div class="mt-2 d-flex align-items-center">
-                                                    <div class="fw600 fs18 icon-dark-color fv">{{$price}}</div>
+                                                    <div
+                                                        class="fw600 fs18 icon-dark-color fv price-box">{{$sum_price}}</div>
                                                     <svg class="me-2" width="17" height="17" viewBox="0 0 25 27"
                                                          fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
@@ -342,7 +346,7 @@
                                 </div>
                                 <div class="mt-4 px-3">
                                     <a href="{{route('shipping.view')}}"
-                                            class="fs14 btn btn-danger w-100 text-white bg-digi-red border-0 br10 fw600 register-order-btn">
+                                       class="fs14 btn btn-danger w-100 text-white bg-digi-red border-0 br10 fw600 register-order-btn">
                                         تایید و تکمیل سفارش
                                     </a>
                                 </div>
@@ -594,9 +598,10 @@
                 type: 'POST',
                 url: '/increase-product-count/' + $productInfoID,
                 success: function (data) {
-                    console.log(data)
                     if (data) {
-                        $this.next().text(data)
+                        $this.next().text(data.count)
+
+                        $this.parent().parent().next().find('.price-box').text(Number(data.count * data.price).toLocaleString())
                     }
                 }
             });
@@ -616,9 +621,9 @@
                 type: 'POST',
                 url: '/delete-from-cart/' + $productInfoID,
                 success: function (data) {
-                    console.log(data)
                     if (data) {
-                        $this.prev().text(data)
+                        $this.prev().text(data.count)
+                        $this.parent().parent().next().find('.price-box').text(Number(data.count * data.price).toLocaleString())
                     } else {
                         location.reload();
                     }

@@ -81,39 +81,6 @@ class OrderController extends Controller
             echo $exception->getMessage();
         }
 
-        /*
-        //1-پیدا کردن پرداختی که الان برگشته از جدول دیتابیس خودمون توسط ایدی یونیک
-        //که از اینجا هم باید سفارش را پیدا کنیم تا مبلغ بدست بیاد
-        $payment = Payment::where('resnumber', $request->clientrefid)->firstOrFail();
-
-        //2-ارتباط با درگاه پرداخت
-        $token = config('services.payping.token');
-
-        $payping = new \PayPing\Payment($token);
-
-        try {
-            // $payment->price
-            if ($payping->verify($request->refid, 1000)) {
-                $payment->update([
-                    'status' => 1
-                ]);
-
-                $payment->order()->update([
-                    'status' => 'paid'
-                ]);
-
-                alert()->success('پرداخت شما موفق بود');
-                return redirect('/products');
-            } else {
-                alert()->error('پرداخت شما تایید نشد');
-                return redirect('/products');
-            }
-        } catch (\Exception $e) {
-            $errors = collect(json_decode($e->getMessage(), true));
-
-            alert()->error($errors->first());
-            return redirect('/products');
-        }*/
 
     }
 }

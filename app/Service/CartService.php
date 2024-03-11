@@ -2,7 +2,10 @@
 
 namespace App\Service;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -12,7 +15,7 @@ class CartService
 {
 
     protected $cart;
-    protected $countOF;
+    protected $response;
 
     public function __construct()
     {
@@ -82,38 +85,45 @@ class CartService
                         return false;
                     } elseif ($item['count'] > 1) {
                         $item['count']--;
-                        $this->countOF = $item['count'];
+                        $this->response = [
+                            'count' => $item['count'],
+                            'price' => $item['productInfo']['price'],
+                            'productId' => $item['productInfo']['id'],
+                        ];
                     }
                 }
                 return $item;
             });
-            $this->cart = $this->cart->filter(function ($item){
+            $this->cart = $this->cart->filter(function ($item) {
                 return $item != false;
             });
             session()->put('cart', $this->cart);
-            return $this->countOF;
+            return $this->response;
         }
         return false;
     }
 
+
     /**
      * @param $key
-     * @return bool
+     * @return false|Application|ResponseFactory|\Illuminate\Foundation\Application|Response
      */
-
-
     public function updateProductCount($key)
     {
         if ($key instanceof Model) {
             $this->cart = $this->cart->map(function ($item) use ($key) {
                 if ($item['productInfo'] == $key) {
                     $item['count']++;
-                    $this->countOF = $item['count'];
+                    $this->response = [
+                        'count' => $item['count'],
+                        'price' => $item['productInfo']['price'],
+                        'productId' => $item['productInfo']['id'],
+                    ];
                 }
                 return $item;
             });
             session()->put('cart', $this->cart);
-            return $this->countOF;
+            return response($this->response);
         }
         return false;
     }
