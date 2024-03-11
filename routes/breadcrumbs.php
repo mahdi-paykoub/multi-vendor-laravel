@@ -30,6 +30,3 @@ Breadcrumbs::for('singleBlog', function (BreadcrumbTrail $trail, \App\Models\Art
     $trail->parent('categories', $article);
     $trail->push($article->title, route('single.blog', $article->slug));
 });
-
-
-

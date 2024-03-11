@@ -117,12 +117,11 @@
         <!--bread crumb-->
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center justify-content-between">
-          {{--      {{ Breadcrumbs::view('partials.blogBreadcrumbs' ,'singleBlog', $singleProduct) }}--}}
-               {{-- <div><a href="" class="fs12 text-secondary-3">فروشگاه اینترنتی دیجی‌کال</a></div>
-                <div class="px-2 fs12 text-secondary-3">/</div>
-                <div class="fs12 text-secondary-3">کنسول بازی</div>
-                <div class="px-2 fs12 text-secondary-3">/</div>
-                <div class="fs12 text-secondary-3">ps5</div>--}}
+                <div><a href="{{route('main')}}" class="fs12 text-secondary-3">فروشگاه اینترنتی دیجی‌کال</a></div>
+                @foreach($singleProduct->productCategories()->get() as $cat)
+                    <div class="px-2 fs12 text-secondary-3">/</div>
+                    <a href="" class="fs12 text-secondary-3">{{$cat->title}}</a>
+                @endforeach
             </div>
             <div class=" align-items-center d-none d-md-flex">
                 <span class="fs12 text-secondary-2 ms-2">فروش در دیجی‌کالا</span>
@@ -1593,7 +1592,9 @@
                     </div>
                     <div class="col-10 border-bottom-light-2 pb-4">
 
-                        <div class="fs14 me-2 icon-dark-color">{{$dimensions->width}}x{{$dimensions->length}}x{{$dimensions->height}} سانتی متر</div>
+                        <div class="fs14 me-2 icon-dark-color">{{$dimensions->width}}x{{$dimensions->length}}
+                            x{{$dimensions->height}} سانتی متر
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -1604,20 +1605,20 @@
                     </div>
                     <div class="col-10 border-bottom-light-2 pb-4">
 
-                        <div class="fs14 me-2 icon-dark-color">{{$dimensions->weight}} گرم </div>
+                        <div class="fs14 me-2 icon-dark-color">{{$dimensions->weight}} گرم</div>
                     </div>
                 </div>
                 @foreach($attrs as $attr)
-                <div class="row mt-4">
-                    <div class="col-2">
-                        <div class="text-secondary-2 fs14">
-                            {{$attr->name}}
+                    <div class="row mt-4">
+                        <div class="col-2">
+                            <div class="text-secondary-2 fs14">
+                                {{$attr->name}}
+                            </div>
+                        </div>
+                        <div class="col-10 border-bottom-light-2 pb-4">
+                            <div class="fs14 me-2 icon-dark-color">{{$attr->pivot->value->value}}</div>
                         </div>
                     </div>
-                    <div class="col-10 border-bottom-light-2 pb-4">
-                        <div class="fs14 me-2 icon-dark-color">{{$attr->pivot->value->value}}</div>
-                    </div>
-                </div>
                 @endforeach
             </div>
 
