@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -115,4 +116,4 @@ Route::Delete('/delete/address/{address}', [\App\Http\Controllers\AddressControl
 
 
 // category
-Route::get('/category/{productCategory}', [\App\Http\Controllers\CategoryController::class, 'categoryProducts'])->name('category.product');
+Route::get('/category/{productCategorySlug}', [\App\Http\Controllers\CategoryController::class, 'categoryProducts'])->name('category.product');

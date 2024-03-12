@@ -365,7 +365,7 @@ $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->f
                     <div class="border select-p-color mt-2 p-1 product-circle-color rounded-circle cursor-pointer ms-2"
                         data-colorid="{{$color_id}}">
                         <div class="rounded-circle select-color-box position-relative "
-                            style="background: {{$attr_val->value}}; ">
+                            style="background: {{$attr_val->value}};">
 
                             <svg stroke="currentColor" class="selected-color-svg display-none" fill="currentColor"
                                 stroke-width="0" viewBox="0 0 24 24" height="22" width="22"
