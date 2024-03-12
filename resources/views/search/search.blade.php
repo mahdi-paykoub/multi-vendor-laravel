@@ -9,53 +9,7 @@
 @include('partials.mobileBottomMenue')
 
 
-<div class="container px-4 mt-3">
-    <div class="d-flex align-items-center">
-        <div class="">
-            <a href="{{route('main')}}" class="fs12 text-secondary-3">
-                اینترنتی دیجی‌کال</a>
-            @foreach(array_reverse($parentsName) as $key=> $parentName)
-            <div class="d-inline-block">
-                <div class="d-flex align-items-center">
-                    <div class="px-2 fs12 text-secondary-3">/</div>
-                    <a href="{{ route('category.product', $key) }}" class="fs12 text-secondary-3">{{$parentName}}</a>
-                </div>
-            </div>
-           
-            @endforeach
-
-        </div>
-    </div>
-</div>
-
-
-<div class="container px-4 mt-4 pt-2">
-    <div class="fw600 fs15 icon-dark-color">
-        {{ $cat_name }}
-    </div>
-</div>
-@if ($cat_childs->count())
-<div class="container px-2">
-    <div class="swiper mySwiper category-amazing-swiper">
-        <div class="swiper-wrapper mt-4">
-            @foreach ($cat_childs as $cat_child)
-            <div class="swiper-slide px-3 pt-3 pb-4 text-center br10 bg-secondary-6">
-                <a href="{{route('category.product' , $cat_child->slug)}}">
-                    <div class="position-relative category-img-on-top mix-blend-mode" sty>
-                        <img src="assets/image/category/3390299.jpg" width="85" height="85" alt="">
-                    </div>
-                    <div class="mt-2 px-4 fs13 icon-dark-color">
-                        {{ $cat_child->title }}
-                    </div>
-                </a>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</div>
-@endif
-
-
+@if ($results->count())
 <div class="container mt-4">
     <div class="row">
         <div class="col-12 col-lg-3 ps-4">
@@ -404,22 +358,22 @@
                 </div>
             </div>
             <div class="row border-top">
-                @foreach ($products as $product)
+                @foreach ($results as $result)
                 @php
-                $productInfo = $product->productInfos()->first();
-                $img = $product->galleries()->first();
+                $productInfo = $result->productInfos()->first();
+                $img = $result->galleries()->first();
                 @endphp
 
                 <div
                     class="col-12 col-md-6 col-lg-4 col-xxl-3 pt-3 border-bottom-light-2 border-left-light pb-3 shadow-hover">
-                    <a href="{{route('single.product.view' , $product->slug)}}">
+                    <a href="{{route('single.product.view' , $result->slug)}}">
                         <div class="position-relative text-center p-4">
                             <img src="{{ url($img->image) }}" class="object-contain" width="200" height="200" alt="">
                             <img src="assets/image/text/spacial-sell.svg"
                                 class="position-absolute object-contain top-0 right-0" width="64" height="14" alt="">
                         </div>
-                        <div class="fs12 fw600 icon-dark-color mt-2">
-                            {{ $product->title }}
+                        <div class="fs12 fw600 icon-dark-color mt-2 lh2">
+                            {{ $result->title }}
                         </div>
                         <div class="d-flex justify-content-between mt-4">
                             <div>
@@ -461,7 +415,37 @@
         </div>
     </div>
 </div>
+@else
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-4 col-md-2 text-center mt-4">
+            <img src="{{url('assets/frontend/image/text/not-found.svg')}}" alt="" class="w-100">
+
+        </div>
+
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-12">
+            <div class="border p-4 w-fit mx-auto br10 px-5">
+                <div class="d-flex align-items-center">
+                    <svg stroke="currentColor" class="text-secondary" fill="#f9a825" stroke-width="0"
+                        viewBox="0 0 20 20" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <div class="me-2">
+                        <div class="fw600" style="color: #3f4064;">کالایی با این مشخصات پیدا نکردیم</div>
+                        <div class="fs13 text-secondary-2 mt-2">پیشنهاد می‌کنیم فیلترها را تغییر دهید</div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @include('layouts.product_parts.footer')
 @endsection
 

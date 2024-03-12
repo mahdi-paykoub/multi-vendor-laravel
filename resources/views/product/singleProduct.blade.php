@@ -123,7 +123,7 @@ $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->f
             <div class="d-inline-block">
                 <div class="d-flex align-items-center">
                     <div class="px-2 fs12 text-secondary-3">/</div>
-                    <a href="" class="fs12 text-secondary-3">{{$cat->title}}</a>
+                    <a href="{{ route('category.product' , $cat->slug) }}" class="fs12 text-secondary-3">{{$cat->title}}</a>
                 </div>
             </div>
             @endforeach

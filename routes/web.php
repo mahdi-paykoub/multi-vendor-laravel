@@ -117,3 +117,5 @@ Route::Delete('/delete/address/{address}', [\App\Http\Controllers\AddressControl
 
 // category
 Route::get('/category/{productCategorySlug}', [\App\Http\Controllers\CategoryController::class, 'categoryProducts'])->name('category.product');
+//search
+Route::get('/serach', [\App\Http\Controllers\SearchController::class, 'getSearchedProduct'])->name('search.product');
