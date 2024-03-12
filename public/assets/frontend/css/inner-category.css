@@ -1,0 +1,76 @@
+.inp-search-brand {
+    border: 1px solid #c5c5c5;
+    padding: 9px 50px 9px 10px;
+}
+
+.inp-search-brand::placeholder {
+    color: #a2a2a2;
+    font-size: 14px;
+}
+
+.inp-search-brand + svg {
+    top: 12px;
+    right: 11px;
+}
+
+.max-scroll {
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+.checkbox-wrapper-22 .switch {
+    display: inline-block;
+    height: 22px;
+    position: relative;
+    width: 41px;
+}
+
+.checkbox-wrapper-22 .switch input {
+    display: none;
+}
+
+.checkbox-wrapper-22 .slider {
+    border: 2px solid #b6b6b6;
+    background: transparent;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+
+.checkbox-wrapper-22 .slider:before {
+    background-color: #b6b6b6;
+    bottom: 3px;
+    content: "";
+    height: 12px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 12px;
+}
+
+.checkbox-wrapper-22 input:checked + .slider {
+    background-color: #19bfd3;
+    border-color: #19bfd3 !important;
+}
+
+.checkbox-wrapper-22 input:checked + .slider:before {
+    transform: translateX(19px);
+    background: #fff;
+}
+
+
+.checkbox-wrapper-22 .slider.round {
+    border-radius: 34px;
+}
+
+.checkbox-wrapper-22 .slider.round:before {
+    border-radius: 50%;
+}
+.mix-blend-mode {
+    mix-blend-mode: multiply !important;
+    line-height: 0;
+}

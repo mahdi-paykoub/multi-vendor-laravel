@@ -112,3 +112,7 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 /*set user or seller address*/
 Route::post('/set/user/address', [\App\Http\Controllers\AddressController::class, 'setUserAddress'])->name('set.user.address');
 Route::Delete('/delete/address/{address}', [\App\Http\Controllers\AddressController::class, 'delete_address'])->name('delete.address');
+
+
+// category
+Route::get('/category/{productCategory}', [\App\Http\Controllers\CategoryController::class, 'categoryProducts'])->name('category.product');
