@@ -114,6 +114,10 @@ input:focus {
     font-size: 15px;
 }
 
+.fs17 {
+    font-size: 17px;
+}
+
 .fs18 {
     font-size: 18px;
 }
@@ -345,15 +349,13 @@ input:focus {
     height: 230px;
 }
 
-.popular-search-in-search {
+.popular-search-in-search {}
 
-}
-
-.show-search-results-swiper > div > div {
+.show-search-results-swiper>div>div {
     border: 1px solid #f0f0f1;
 }
 
-#for-main-search-show > div:first-child,
+#for-main-search-show>div:first-child,
 .bbc-c {
     border-bottom: 1px solid #19bfd3;
 }
@@ -410,8 +412,8 @@ input:focus {
     box-shadow: 0 1px 3px #50505063;
 }
 
-.inner-menu-hover-able:hover > a,
-.inner-menu-hover-able:hover > svg {
+.inner-menu-hover-able:hover>a,
+.inner-menu-hover-able:hover>svg {
     color: #ea0808;
 }
 
@@ -431,15 +433,15 @@ input:focus {
     display: block;
 }
 
-.main-menu-category-item:hover + .menu-hovered {
+.main-menu-category-item:hover+.menu-hovered {
     display: block !important;
 }
 
-.inner-menu-hover-able:hover > div {
+.inner-menu-hover-able:hover>div {
     display: block;
 }
 
-.inner-menu-hover-able > div {
+.inner-menu-hover-able>div {
     right: 16.6%;
     top: 0;
     width: 84%;
@@ -576,15 +578,15 @@ input:focus {
 /*end offer swiper*/
 
 /*offer non swiper*/
-.offer-non-swiper > div:first-child > div:first-child {
+.offer-non-swiper>div:first-child>div:first-child {
     border-left: 1px solid rgba(234, 234, 234, 0.70);
 }
 
-.offer-non-swiper > div:nth-child(2) > div:first-child {
+.offer-non-swiper>div:nth-child(2)>div:first-child {
     border-left: 1px solid rgba(234, 234, 234, 0.70);
 }
 
-.offer-non-swiper > div:nth-child(2) > div {
+.offer-non-swiper>div:nth-child(2)>div {
     border-top: 1px solid rgba(234, 234, 234, 0.70);
 }
 
@@ -712,14 +714,17 @@ input:focus {
         box-shadow: 20px 0 #ff0000, -20px 0 rgba(255, 0, 0, 0.13);
         background: #ff0000
     }
+
     33% {
         box-shadow: 20px 0 #ce1717, -20px 0 rgba(193, 21, 21, 0.13);
         background: rgba(193, 18, 18, 0.13)
     }
+
     66% {
         box-shadow: 20px 0 rgba(169, 17, 17, 0.13), -20px 0 #b51313;
         background: rgba(178, 22, 22, 0.13)
     }
+
     100% {
         box-shadow: 20px 0 rgba(172, 19, 19, 0.13), -20px 0 #b31111;
         background: #b31717
@@ -747,22 +752,27 @@ input:focus {
 .ok-c {
     color: #00d0d6;
 }
+
 /*shipping*/
-.input-for-off{
+.input-for-off {
     height: 45px;
     border-radius: 7px;
     border: 1px solid #cccccc;
 }
-.input-for-off::placeholder{
+
+.input-for-off::placeholder {
     color: #9d9d9d;
 }
-.input-for-off:focus{
+
+.input-for-off:focus {
     border-color: #20c7e8;
 }
-.bb-8px{
+
+.bb-8px {
     border-bottom: 8px solid #f0f0f1;
 }
-.show-cart-count{
+
+.show-cart-count {
     width: 18px;
     height: 18px;
     border-radius: 4px;

@@ -310,7 +310,7 @@ $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->f
                 <div class="px-2">/</div>
                 <div>کنسول خانگی</div>
             </div>
-            <div class="mt-3 fw600 icon-dark-color lh2">
+            <div class="mt-3 fw600 icon-dark-color lh2 fs17">
                 {{$singleProduct->title}}
             </div>
             <div class="border-top mt-4"></div>
