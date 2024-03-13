@@ -421,7 +421,7 @@
                             <div class="position-relative text-center p-4">
                                 <img src="{{ url($img->image) }}" class="object-contain" width="200" height="200"
                                     alt="">
-                                    <!-- special sell -->
+                                <!-- special sell -->
                                 <!-- <img src="assets/image/text/spacial-sell.svg"
                                     class="position-absolute object-contain top-0 right-0" width="64" height="14"
                                     alt=""> -->
@@ -467,6 +467,7 @@
 
                     @endforeach
                     {{ $products->links() }}
+                    
                 </div>
 
             </div>
@@ -474,8 +475,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 @include('layouts.product_parts.footer')
@@ -516,6 +515,7 @@ var swiper3 = new Swiper(".category-amazing-swiper", {
 $('ul.pagination').hide();
 $(function() {
     $('.scrolling-pagination').jscroll({
+        loadingHtml: '<div class="mt-3 d-flex justify-content-center"> <div class="loader-scrolling"></div> </div>',
         autoTrigger: true,
         padding: 0,
         nextSelector: '.pagination li.active + li a',
