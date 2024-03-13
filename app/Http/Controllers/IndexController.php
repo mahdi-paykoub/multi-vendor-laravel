@@ -19,6 +19,22 @@ class IndexController extends Controller
     
         $sliders_values =isset( $mainSliderBanners['value']) ?json_decode($mainSliderBanners['value']) :[] ;
 
-        return view('welcome', compact('articles', 'products','product_parent_cats','sliders_values'));
+
+        $first_banner_1=   isset(\App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_1')->first()->value) ?
+        json_decode( \App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_1')->first()->value) :
+        '';
+       $first_banner_2=   isset(\App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_2')->first()->value) ?
+        json_decode( \App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_2')->first()->value) :
+        '';
+        $first_banner_3=   isset(\App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_3')->first()->value) ?
+        json_decode( \App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_3')->first()->value) :
+        '';
+         $first_banner_4=   isset(\App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_4')->first()->value) ?
+        json_decode( \App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_4')->first()->value) :
+        '';
+
+
+        return view('welcome', compact('articles', 'products','product_parent_cats','sliders_values',
+            'first_banner_1','first_banner_2','first_banner_3', 'first_banner_4' ));
     }
 }
