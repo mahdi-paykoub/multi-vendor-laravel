@@ -214,109 +214,19 @@
                                 <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
                             </svg>
                             <form action="{{ route('search.product') }}" class="w-100">
-                                <input type="text" name="search" class="search-navbar-inp w-100 border-0 me-2" placeholder="جستجو">
+                                <input type="text" name="search" class="search-navbar-inp w-100 border-0 me-2 fs14 text-secondary" placeholder="جستجو">
                             </form>
                         </div>
                         <div class="mt-3">
                             <div class="swiper mySwiper show-search-results-swiper">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide p-1 br7">
-                                        <a href="">
-                                            <div class="d-flex align-items-center">
-                                                <div>
-                                                    <img width="60" height="60" class="object-cover" src="{{url('assets/frontend/image/product/mobile-phone.webp')}}" alt="">
-                                                </div>
-                                                <div class="fs11  text-dark">
-                                                    <div class="fs12"> گوشی شایومی برای نسل</div>
-                                                    <div class="mt-2 fs11 text-secondary"> گوشی موبایل شیائومی مدل</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="swiper-slide p-1 br7">
-                                        <a href="">
-                                            <div class="d-flex align-items-center">
-                                                <div>
-                                                    <img width="60" height="60" class="object-cover" src="{{url('assets/frontend/image/product/mobile-phone.webp')}}" alt="">
-                                                </div>
-                                                <div class="fs11  text-dark">
-                                                    <div class="fs12"> گوشی شایومی برای نسل</div>
-                                                    <div class="mt-2 fs11 text-secondary"> گوشی موبایل شیائومی مدل</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="swiper-slide p-1 br7">
-                                        <a href="">
-                                            <div class="d-flex align-items-center">
-                                                <div>
-                                                    <img width="60" height="60" class="object-cover" src="{{url('assets/frontend/image/product/mobile-phone.webp')}}" alt="">
-                                                </div>
-                                                <div class="fs11  text-dark">
-                                                    <div class="fs12"> گوشی شایومی برای نسل</div>
-                                                    <div class="mt-2 fs11 text-secondary"> گوشی موبایل شیائومی مدل</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="swiper-slide p-1 br7">
-                                        <a href="">
-                                            <div class="d-flex align-items-center">
-                                                <div>
-                                                    <img width="60" height="60" class="object-cover" src="{{url('assets/frontend/image/product/mobile-phone.webp')}}" alt="">
-                                                </div>
-                                                <div class="fs11  text-dark">
-                                                    <div class="fs12"> گوشی شایومی برای نسل</div>
-                                                    <div class="mt-2 fs11 text-secondary"> گوشی موبایل شیائومی مدل</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="swiper-slide p-1 br7">
-                                        <a href="">
-                                            <div class="d-flex align-items-center">
-                                                <div>
-                                                    <img width="60" height="60" class="object-cover" src="{{url('assets/frontend/image/product/mobile-phone.webp')}}" alt="">
-                                                </div>
-                                                <div class="fs11  text-dark">
-                                                    <div class="fs12"> گوشی شایومی برای نسل</div>
-                                                    <div class="mt-2 fs11 text-secondary"> گوشی موبایل شیائومی مدل</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="swiper-slide p-1 br7">
-                                        <a href="">
-                                            <div class="d-flex align-items-center">
-                                                <div>
-                                                    <img width="60" height="60" class="object-cover" src="{{url('assets/frontend/image/product/mobile-phone.webp')}}" alt="">
-                                                </div>
-                                                <div class="fs11  text-dark">
-                                                    <div class="fs12"> گوشی شایومی برای نسل</div>
-                                                    <div class="mt-2 fs11 text-secondary"> گوشی موبایل شیائومی مدل</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                <div class="swiper-wrapper parent-of-product-res">
+
+                            
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-4">
-                            <div class="w-100 d-flex justify-content-between align--center px-2 mt-4">
-                                <div class="d-flex">
-                                    <svg stroke="currentColor" fill="#a1a3a8" stroke-width="0" viewBox="0 0 24 24" height="23" width="23" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
-                                    </svg>
-                                    <a href="">
-                                        <div class="fs14 me-3 text-dark">گوشی iphone 13 pro</div>
-                                    </a>
-                                </div>
-                                <div>
-                                    <svg stroke="currentColor" class="text-secondary-2 mb-2" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
-                                    </svg>
-                                </div>
-                            </div>
+                        <div class="mt-4 parent-of-cat-res">
+                          
                         </div>
                         <div class="mt-4">
                             <img class="w-100 search-banner-navbar object-cover br10" src="{{url('assets/frontend/image/banner/c0cabfba852b8e781f0a187399d9148b9aead122_1682838535.webp')}}" alt="">

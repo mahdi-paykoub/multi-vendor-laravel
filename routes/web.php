@@ -119,3 +119,4 @@ Route::Delete('/delete/address/{address}', [\App\Http\Controllers\AddressControl
 Route::get('/category/{productCategorySlug}', [\App\Http\Controllers\CategoryController::class, 'categoryProducts'])->name('category.product');
 //search
 Route::get('/serach', [\App\Http\Controllers\SearchController::class, 'getSearchedProduct'])->name('search.product');
+Route::post('/search/ajax', [\App\Http\Controllers\SearchController::class, 'searchAjax'])->name('search.ajax');
