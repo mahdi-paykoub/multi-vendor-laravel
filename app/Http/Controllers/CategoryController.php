@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function categoryProducts(ProductCategory $productCategory)
     {
         $cat_name = $productCategory->title;
-        $products = $productCategory->products()->get();
+        $products = $productCategory->products()->paginate(6);
         $cat_childs = $productCategory->child()->get();
 
 

@@ -178,3 +178,6 @@ let addSearchProductResult = ($products) => {
     
     `;
 }
+
+
+// fetch post on scrolling

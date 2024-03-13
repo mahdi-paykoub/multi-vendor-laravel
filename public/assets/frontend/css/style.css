@@ -779,3 +779,6 @@ input:focus {
     right: 10px;
     bottom: -12px;
 }
+.page-scroll-fetching nav{
+display: none;
+}
