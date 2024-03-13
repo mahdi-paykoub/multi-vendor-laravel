@@ -88,4 +88,17 @@ class GlobalOptionController extends Controller
         return back();
 
     }
+    public function set_top_bar_img(Request $request){
+        $validData = $request->validate([
+            'img' => 'required',
+            'title' => 'required',
+            'link' => 'required',
+        ]);
+       
+        GlobalOptions::updateOrCreate(
+            ['key' => 'top_bar_img'],
+            ['value' => json_encode($validData)]
+        );
+        return back();
+    }
 }

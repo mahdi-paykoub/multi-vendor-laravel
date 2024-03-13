@@ -41,3 +41,4 @@ Route::get('/global-option', [admin\GlobalOptionController::class, 'mainPageView
 Route::post('/set-logo', [admin\GlobalOptionController::class, 'setLogo'])->name('set.logo');
 Route::post('/set-mail-slider', [admin\GlobalOptionController::class, 'setMainSlider'])->name('set.main.slider');
 Route::post('/set-main-first-banner', [admin\GlobalOptionController::class, 'setMainFirstBanner'])->name('set.main.first.banner');
+Route::post('/set-top-bar-img', [admin\GlobalOptionController::class, 'set_top_bar_img'])->name('set.top.bar.img');
