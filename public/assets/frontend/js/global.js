@@ -31,6 +31,7 @@ document.getElementById('for-delete-elm').onclick = function () {
     document.getElementById('for-delete-elm').classList.add('display-none');
 }
 
+
 var swiper_ama_top = new Swiper(".swiper-ser-res", {
     slidesPerView: 4.3,
     spaceBetween: 0,
@@ -48,27 +49,6 @@ var swiper_ama_top = new Swiper(".swiper-ser-res", {
         },
         '992': {
             slidesPerView: 4.3,
-        },
-
-    },
-});
-var swiper_se_top_res = new Swiper(".show-search-results-swiper", {
-    slidesPerView: 2.2,
-    spaceBetween: 6,
-    freeMode: true,
-    breakpoints: {
-        '480': {
-            slidesPerView: 2.1,
-        },
-        '576': {
-            slidesPerView: 2.6,
-        },
-        '768': {
-            slidesPerView: 3.5,
-
-        },
-        '992': {
-            slidesPerView: 2.5,
         },
 
     },
@@ -91,7 +71,29 @@ let deleteToast = ($errMsg) => {
     document.getElementById('toast-here').innerHTML = '';
 }
 
-
+let do_swiper=()=>{
+    var swiper_se_top_res = new Swiper(".show-search-results-swiper", {
+        slidesPerView: 2.2,
+        spaceBetween: 6,
+        freeMode: true,
+        breakpoints: {
+            '480': {
+                slidesPerView: 2.1,
+            },
+            '576': {
+                slidesPerView: 2.6,
+            },
+            '768': {
+                slidesPerView: 3.5,
+    
+            },
+            '992': {
+                slidesPerView: 2.5,
+            },
+    
+        },
+    });
+}
 // navbar ajax
 $('.search-navbar-inp').on('keyup paste', function () {
     $this = $(this)
@@ -114,6 +116,7 @@ $('.search-navbar-inp').on('keyup paste', function () {
                 console.log(data.products)
                 $('.parent-of-cat-res').html(addSearchCatResult(data.cats))
                 $('.parent-of-product-res').html(addSearchProductResult(data.products))
+                do_swiper();
             }
         });
     }
@@ -152,23 +155,26 @@ let addSearchCatResult = ($cats) => {
 }
 let addSearchProductResult = ($products) => {
     return `
+   
     ${$products.map(function ($product) {
         return `
-        <div class="swiper-slide p-1 br7">
-            <a href="/product/${$product['slug']}">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <img width="60" height="60" class="object-cover" src="${$product['img']}" alt="">
-                    </div>
-                    <div class="fs11  text-dark">
-                        <div class="fs12 me-1"> ${($product['title'].substr(0, $product['title'].lastIndexOf(' ', 20)) + '...')}</div>
-                  
-                    </div>
+                <div class="swiper-slide p-1 br7">
+                    <a href="/product/${$product['slug']}">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <img width="60" height="60" class="object-cover" src="${$product['img']}" alt="">
+                            </div>
+                            <div class="fs11  text-dark">
+                                <div class="fs12 me-1"> ${($product['title'].substr(0, $product['title'].lastIndexOf(' ', 20)) + '...')}</div>
+                        
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </a>
-         </div>
+          
         `
     }).join("")}
+  
     
     `;
 }
