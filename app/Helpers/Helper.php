@@ -13,11 +13,18 @@ function get_site_itself_productInfo($product)
 }
 
 if (!function_exists('is_active_route')) {
-    function is_active_route($routeName ,$activeClass)
+    function is_active_route($routeName, $activeClass)
     {
-        if (\Illuminate\Support\Facades\Route::currentRouteName() == $routeName){
+        if (\Illuminate\Support\Facades\Route::currentRouteName() == $routeName) {
             return $activeClass;
         }
-         return '';
+        return '';
+    }
+}
+
+if (!function_exists('convert_array_to_KeyValuePair')) {
+    function convert_array_to_KeyValuePair($array)
+    {
+        
     }
 }

@@ -116,7 +116,7 @@ Route::Delete('/delete/address/{address}', [\App\Http\Controllers\AddressControl
 
 
 // category
-Route::get('/category/{productCategorySlug}', [\App\Http\Controllers\CategoryController::class, 'categoryProducts'])->name('category.product');
+Route::get('/category/{productCategorySlug}', [\App\Http\Controllers\CategoryController::class, 'mainOrSubCategory'])->name('category.mainOrSubCategory');
 //search
 Route::get('/serach', [\App\Http\Controllers\SearchController::class, 'getSearchedProduct'])->name('search.product');
 Route::post('/search/ajax', [\App\Http\Controllers\SearchController::class, 'searchAjax'])->name('search.ajax');

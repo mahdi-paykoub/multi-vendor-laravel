@@ -570,7 +570,7 @@ input:focus {
     border-bottom: 1px solid rgba(234, 234, 234, 0.8);
 }
 
-.offer-sweiper .swiper-wrapper .swiper-slide:not(:last-child),
+.offer-sweiper .swiper-wrapper .swiper-slide,
 .brand-swiper .swiper-wrapper .swiper-slide:not(:last-child) {
     border-left: 1px solid rgba(234, 234, 234, 0.70);
 }

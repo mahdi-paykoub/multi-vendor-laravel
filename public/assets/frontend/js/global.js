@@ -71,7 +71,7 @@ let deleteToast = ($errMsg) => {
     document.getElementById('toast-here').innerHTML = '';
 }
 
-let do_swiper=()=>{
+let do_swiper = () => {
     var swiper_se_top_res = new Swiper(".show-search-results-swiper", {
         slidesPerView: 2.2,
         spaceBetween: 6,
@@ -85,12 +85,12 @@ let do_swiper=()=>{
             },
             '768': {
                 slidesPerView: 3.5,
-    
+
             },
             '992': {
                 slidesPerView: 2.5,
             },
-    
+
         },
     });
 }
@@ -179,5 +179,3 @@ let addSearchProductResult = ($products) => {
     `;
 }
 
-
-// fetch post on scrolling
