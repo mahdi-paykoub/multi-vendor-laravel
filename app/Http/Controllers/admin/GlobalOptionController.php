@@ -37,7 +37,6 @@ class GlobalOptionController extends Controller
     public function setMainSlider(Request $request)
     {
 
-       
         $validData = $request->validate([
             'slider' => 'required',
             'slider.*' => 'required',
@@ -45,23 +44,12 @@ class GlobalOptionController extends Controller
         ]);
 
 
-        dd($request);
 
-        $prev_sliders = GlobalOptions::where('key', '=', 'mainSlider')->first();
-        if ($prev_sliders) {
-            $new_value = array_merge(json_decode($prev_sliders['value']), $validData['slider']);
-            $prev_sliders->update(
-                [
-                    'value' => $new_value
-                ]
-            );
-        } else {
-            GlobalOptions::create(
-                [
-                    'key' => 'mainSlider',
-                    'value' => json_encode($validData['slider'])
-                ]
-            );
+        foreach ($validData['slider'] as $key => $slide) {
+            GlobalOptions::create([
+                'key' => 'main_sliders',
+                'value' => json_encode($slide),
+            ]);
         }
 
         return back();
@@ -90,15 +78,15 @@ class GlobalOptionController extends Controller
             ['value' => json_encode($validData['first_banner'][4])]
         );
         return back();
-
     }
-    public function set_top_bar_img(Request $request){
+    public function set_top_bar_img(Request $request)
+    {
         $validData = $request->validate([
             'img' => 'required',
             'title' => 'required',
             'link' => 'required',
         ]);
-       
+
         GlobalOptions::updateOrCreate(
             ['key' => 'top_bar_img'],
             ['value' => json_encode($validData)]

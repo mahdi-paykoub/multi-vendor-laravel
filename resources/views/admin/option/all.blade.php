@@ -156,10 +156,9 @@
                 {{--slider--}}
                 <div>
                     @php
-                    $sliders =\App\Models\GlobalOptions::where('key', '=' , 'mainSlider')->first();
-                    $sliders_values =isset( $sliders['value']) ?json_decode($sliders['value']) :[] ;
-                    @endphp
+                    $sliders =\App\Models\GlobalOptions::where('key', 'main_sliders')->get();
 
+                    @endphp
                     <div class="">
                         <div class="card-">
                             <div class="alert border-0 border-start border-5 border-primary alert-dismissible fade show py-2">
@@ -182,16 +181,17 @@
                                     اقدامات
                                 </div>
                             </div>
-                            @foreach($sliders_values as $sliders_value)
+                            @if (count($sliders) != 0)
+                            @foreach($sliders as $slide)
                             <div class="row my-3">
                                 <div class="col-3">
-                                    <img src="{{$sliders_value->img}}" style="object-fit: cover" class="shadow" width="100%" height="150" alt="">
+                                    <img src="{{ json_decode($slide['value'])->img }}" style="object-fit: cover" class="shadow" width="100%" height="150" alt="">
                                 </div>
                                 <div class="col-3">
-                                    {{$sliders_value->title}}
+                                    {{ json_decode($slide['value'])->title }}
                                 </div>
                                 <div class="col-4">
-                                    {{$sliders_value->link}}
+                                    {{ json_decode($slide['value'])->link }}
                                 </div>
                                 <div class="col-2">
                                     <button class="btn btn-danger">حذف</button>
@@ -199,6 +199,7 @@
                             </div>
                             <hr>
                             @endforeach
+                            @endif
                             <div class="text-end mb-4">
                                 <button class="btn btn-primary create-slider-inp w-100 mt-4">افزودن اسلایدر</button>
                             </div>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('global_options', function (Blueprint $table) {
             $table->id();
-            $table->string('key')->unique();
+            $table->string('key');
             $table->text('value');
             $table->timestamps();
         });

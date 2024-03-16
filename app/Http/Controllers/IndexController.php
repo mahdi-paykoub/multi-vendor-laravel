@@ -15,9 +15,9 @@ class IndexController extends Controller
         $articles = Article::take(4)->get();
         $products = Product::all();
         $product_parent_cats=ProductCategory::where('parent' , 0)->get();
-        $mainSliderBanners = (GlobalOptions::where('key' ,'mainSlider')->first());
-    
-        $sliders_values =isset( $mainSliderBanners['value']) ?json_decode($mainSliderBanners['value']) :[] ;
+
+
+        $mainSliders = GlobalOptions::where('key'  , "main_sliders")->get();
 
 
         $first_banner_1=   isset(\App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_1')->first()->value) ?
@@ -34,7 +34,7 @@ class IndexController extends Controller
         '';
 
 
-        return view('welcome', compact('articles', 'products','product_parent_cats','sliders_values',
+        return view('welcome', compact('articles', 'products','product_parent_cats','mainSliders',
             'first_banner_1','first_banner_2','first_banner_3', 'first_banner_4' ));
     }
 }
