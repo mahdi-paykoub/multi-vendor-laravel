@@ -58,25 +58,18 @@ class GlobalOptionController extends Controller
     public function setMainFirstBanner(Request $request)
     {
         $validData = $request->validate([
-            'first_banner.*.*' => 'required',
+            'slider' => 'required',
+            'slider.*' => 'required',
+            'slider.*.*' => 'required',
         ]);
 
-        GlobalOptions::updateOrCreate(
-            ['key' => 'first_banner_1'],
-            ['value' => json_encode($validData['first_banner'][1])]
-        );
-        GlobalOptions::updateOrCreate(
-            ['key' => 'first_banner_2'],
-            ['value' => json_encode($validData['first_banner'][2])]
-        );
-        GlobalOptions::updateOrCreate(
-            ['key' => 'first_banner_3'],
-            ['value' => json_encode($validData['first_banner'][3])]
-        );
-        GlobalOptions::updateOrCreate(
-            ['key' => 'first_banner_4'],
-            ['value' => json_encode($validData['first_banner'][4])]
-        );
+        foreach ($validData['slider'] as $key => $slide) {
+            GlobalOptions::create([
+                'key' => 'main_banners',
+                'value' => json_encode($slide),
+            ]);
+        }
+        
         return back();
     }
     public function set_top_bar_img(Request $request)

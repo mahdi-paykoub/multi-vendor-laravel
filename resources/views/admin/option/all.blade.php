@@ -155,10 +155,6 @@
                 </form>
                 {{--slider--}}
                 <div>
-                    @php
-                    $sliders =\App\Models\GlobalOptions::where('key', 'main_sliders')->get();
-
-                    @endphp
                     <div class="">
                         <div class="card-">
                             <div class="alert border-0 border-start border-5 border-primary alert-dismissible fade show py-2">
@@ -181,6 +177,9 @@
                                     اقدامات
                                 </div>
                             </div>
+                            @php
+                            $sliders =\App\Models\GlobalOptions::where('key', 'main_sliders')->get();
+                            @endphp
                             @if (count($sliders) != 0)
                             @foreach($sliders as $slide)
                             <div class="row my-3">
@@ -212,7 +211,7 @@
                                         {{$message}}
                                     </div>
                                     @enderror
-                                    <button class="btn btn-primary d-none for-add-s-db">ارسال</button>
+                                    <button class="btn btn-secondary w-100 d-none for-add-s-db">ارسال</button>
                                 </div>
                             </form>
                         </div>
@@ -226,131 +225,36 @@
                         </h5>
                         <small>تعیین چهار بنر صفحه اصلی</small>
                     </div>
+                </div>git 
+                @php
+                $mainBanners = App\Models\GlobalOptions::where('key', 'main_banners')->get();
+                @endphp
+                <div class="row">
+                    @if (count($mainBanners) != 0)
+                    @foreach ($mainBanners as $mainBanners)
+                    <div class="col-6 col-lg-3 mt-3">
+                        <a href="">
+                            <img src="{{json_decode($mainBanners['value'])->img}}" class="w-100 object-cover br15 h-100" alt="">
+                        </a>
+                    </div>
+                    @endforeach
+                    @endif
+                </div>
+                <div class="text-end mb-4">
+                    <button class="btn btn-primary create-banner-inp w-100 mt-4">افزودن بنر</button>
                 </div>
                 <form action="{{route('admin.set.main.first.banner')}}" method="post">
                     @csrf
-                    @php
-                    $first_banner_1= isset(\App\Models\GlobalOptions::where('key' ,'=' ,
-                    'first_banner_1')->first()->value) ?
-                    json_decode( \App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_1')->first()->value) :
-                    '';
-                    $first_banner_2= isset(\App\Models\GlobalOptions::where('key' ,'=' ,
-                    'first_banner_2')->first()->value) ?
-                    json_decode( \App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_2')->first()->value) :
-                    '';
-                    $first_banner_3= isset(\App\Models\GlobalOptions::where('key' ,'=' ,
-                    'first_banner_3')->first()->value) ?
-                    json_decode( \App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_3')->first()->value) :
-                    '';
-                    $first_banner_4= isset(\App\Models\GlobalOptions::where('key' ,'=' ,
-                    'first_banner_4')->first()->value) ?
-                    json_decode( \App\Models\GlobalOptions::where('key' ,'=' , 'first_banner_4')->first()->value) :
-                    '';
-                    @endphp
-                    <div class="row align-items-center">
-                        <div class="col-3">
-                            <img src="{{$first_banner_1 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_1->img}}" class="w-100 object-cover" height="100" alt="">
+                    <div class="for_add_banners"></div>
+                    <div class="mt-4">
+                        @error('slider')
+                        <div class="text-danger fw-bold mb-3 mt-1">
+                            {{$message}}
                         </div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label for="image_label">تصویر</label>
-                                <div class="input-group mt-1">
-                                    <input type="text" id="first_banner_img_inp1" class="form-control" name="first_banner[1][img]" value="{{old('first_banner[1][img]' ,$first_banner_1 === '' ? '' :$first_banner_1->img   )}}" aria-label="Image" aria-describedby="button-image">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" id="first_banner_img1">انتخاب
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <label for="">عنوان</label>
-                            <input type="text" name="first_banner[1][title]" class="form-control mt-1" value="{{old('first_banner[1][title]' ,$first_banner_1 === '' ? '' :$first_banner_1->title   )}}">
-                        </div>
-                        <div class="col-3">
-                            <label for="">لینک</label>
-                            <input type="text" name="first_banner[1][link]" class="form-control mt-1" value="{{old('first_banner[1][link]' ,$first_banner_1 === '' ? '' :$first_banner_1->link   )}}">
-                        </div>
-                    </div>
-                    <div class="row mt-4 align-items-center">
-                        <div class="col-3">
-                            <img src="{{$first_banner_2 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_2->img}}" class="w-100 object-cover" height="100" alt="">
-                        </div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label for="image_label">تصویر</label>
-                                <div class="input-group mt-1">
-                                    <input type="text" id="first_banner_img_inp2" class="form-control" name="first_banner[2][img]" value="{{old('first_banner[2][img]' ,$first_banner_2 === '' ? '' :$first_banner_2->img   )}}" aria-label="Image" aria-describedby="button-image">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" id="first_banner_img2">انتخاب
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <label for="">عنوان</label>
-                            <input type="text" name="first_banner[2][title]" class="form-control mt-1" value="{{old('first_banner[2][title]' ,$first_banner_2 === '' ? '' :$first_banner_2->title   )}}">
-                        </div>
-                        <div class="col-3">
-                            <label for="">لینک</label>
-                            <input type="text" name="first_banner[2][link]" class="form-control mt-1" value="{{old('first_banner[2][link]' ,$first_banner_2 === '' ? '' :$first_banner_2->link   )}}">
-                        </div>
-                    </div>
-                    <div class="row mt-4 align-items-center">
-                        <div class="col-3">
-                            <img src="{{$first_banner_3 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_3->img}}" class="w-100 object-cover" height="100" alt="">
-                        </div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label for="image_label">تصویر</label>
-                                <div class="input-group mt-1">
-                                    <input type="text" id="first_banner_img_inp3" class="form-control" name="first_banner[3][img]" value="{{old('first_banner[3][img]' ,$first_banner_3 === '' ? '' :$first_banner_3->img   )}}" aria-label="Image" aria-describedby="button-image">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" id="first_banner_img3">انتخاب
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <label for="">عنوان</label>
-                            <input type="text" name="first_banner[3][title]" class="form-control mt-1" value="{{old('first_banner[3][title]' ,$first_banner_3 === '' ? '' :$first_banner_3->title   )}}">
-                        </div>
-                        <div class="col-3">
-                            <label for="">لینک</label>
-                            <input type="text" name="first_banner[3][link]" class="form-control mt-1" value="{{old('first_banner[3][link]' ,$first_banner_3 === '' ? '' :$first_banner_3->link   )}}">
-                        </div>
-                    </div>
-                    <div class="row mt-4 align-items-center">
-                        <div class="col-3">
-                            <img src="{{$first_banner_4 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_4->img}}" class="w-100 object-cover" height="100" alt="">
-                        </div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label for="image_label">تصویر</label>
-                                <div class="input-group mt-1">
-                                    <input type="text" id="first_banner_img_inp4" class="form-control" name="first_banner[4][img]" value="{{old('first_banner[4][img]' ,$first_banner_4 === '' ? '' :$first_banner_4->img   )}}" aria-label="Image" aria-describedby="button-image">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" id="first_banner_img4">انتخاب
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <label for="">عنوان</label>
-                            <input type="text" name="first_banner[4][title]" class="form-control mt-1" value="{{old('first_banner[4][title]' ,$first_banner_4 === '' ? '' :$first_banner_4->title   )}}">
-                        </div>
-                        <div class="col-3">
-                            <label for="">لینک</label>
-                            <input type="text" name="first_banner[4][link]" class="form-control mt-1" value="{{old('first_banner[4][link]' ,$first_banner_4 === '' ? '' :$first_banner_4->link   )}}">
-                        </div>
+                        @enderror
+                        <button class="btn btn-secondary d-none for-add-b-db w-100">ارسال</button>
                     </div>
 
-                    <div class="text-end mt-4">
-                        <button class="btn-primary btn">ذخیره</button>
-                    </div>
                 </form>
             </div>
             <!-- menu -->
@@ -369,69 +273,6 @@
 @endsection
 @section('scripts')
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-
-        document.getElementById('button-image').addEventListener('click', (event) => {
-            event.preventDefault();
-
-            inputId = 'en_logo';
-
-            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-        });
-
-        // second button
-        document.getElementById('button-image2').addEventListener('click', (event) => {
-            event.preventDefault();
-
-            inputId = 'fa_logo';
-
-            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-        });
-
-        //first banner img 1
-        document.getElementById('first_banner_img1').addEventListener('click', (event) => {
-            event.preventDefault();
-
-            inputId = 'first_banner_img_inp1';
-
-            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-        });
-        //first banner img 2
-        document.getElementById('first_banner_img2').addEventListener('click', (event) => {
-            event.preventDefault();
-
-            inputId = 'first_banner_img_inp2';
-
-            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-        });
-        //first banner img 3
-        document.getElementById('first_banner_img3').addEventListener('click', (event) => {
-            event.preventDefault();
-
-            inputId = 'first_banner_img_inp3';
-
-            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-        });
-        //first banner img 4
-        document.getElementById('first_banner_img4').addEventListener('click', (event) => {
-            event.preventDefault();
-
-            inputId = 'first_banner_img_inp4';
-
-            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-        });
-
-        //top bar img
-        document.getElementById('topBar_img_btn').addEventListener('click', (event) => {
-            event.preventDefault();
-
-            inputId = 'topBar_img';
-
-            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-        });
-    });
-
-
     let createNewSlider = (id) => {
         return `
              <div class="row mt-4 align-items-center" id="slider_${id}">
@@ -441,11 +282,10 @@
                                  <div class="input-group mt-1">
                                      <input type="text" id="image_${id}" class="form-control" name="slider[${id}][img]"
                                             aria-label="Image" aria-describedby="button-image">
-                                     <div class="input-group-append">
-                                         <button class="btn btn-outline-secondary" type="button"
-                                                 id="button-image-${id}">انتخاب
+                                    
+                                         <button class="btn btn-outline-secondary button-image-clicked" type="button">انتخاب
                                          </button>
-                                     </div>
+                                   
                                  </div>
                              </div>
                          </div>
@@ -468,21 +308,44 @@
     }
 
     $('.create-slider-inp').click(function() {
+
         $('.for-add-s-db').removeClass('d-none')
         $parent_of_attr_html = $('.for_add_sliders')
         $id = $parent_of_attr_html.children().length;
 
         $parent_of_attr_html.append(createNewSlider($id))
 
-        document.getElementById('button-image-' + $id).addEventListener('click', (event) => {
+        $('.button-image-clicked').click(function() {
+            $this = $(this)
 
             event.preventDefault();
 
-            inputId = 'image_' + $id;
+            inputId = $this.prev().attr('id');
 
             window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-        });
+        })
     })
+
+
+    $('.create-banner-inp').click(function() {
+
+        $('.for-add-b-db').removeClass('d-none')
+        $parent_of_attr_html = $('.for_add_banners')
+        $id = $parent_of_attr_html.children().length;
+
+        $parent_of_attr_html.append(createNewSlider($id))
+
+        $('.button-image-clicked').click(function() {
+            $this = $(this)
+
+            event.preventDefault();
+
+            inputId = $this.prev().attr('id');
+
+            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
+        })
+    })
+
     // input
     let inputId = '';
 

@@ -278,30 +278,15 @@
 <div class="container">
     <!--introduction 1-->
     <div class="row">
-
+        @if (count($mainBanners) != 0)
+        @foreach ($mainBanners as $mainBanners)
         <div class="col-6 col-lg-3 mt-3">
             <a href="">
-                <img src="{{$first_banner_1 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_1->img}}" class="w-100 object-cover br15 h-100" alt="">
+                <img src="{{json_decode($mainBanners['value'])->img}}" class="w-100 object-cover br15 h-100" alt="">
             </a>
         </div>
-
-        <div class="col-6 col-lg-3 mt-3">
-            <a href="">
-                <img src="{{$first_banner_2 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_2->img}}" class="w-100 object-cover br15 h-100" alt="">
-            </a>
-        </div>
-
-        <div class="col-6 col-lg-3 mt-3">
-            <a href="">
-                <img src="{{$first_banner_3 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_3->img}}" class="w-100 object-cover br15 h-100" alt="">
-            </a>
-        </div>
-
-        <div class="col-6 col-lg-3 mt-3">
-            <a href="">
-                <img src="{{$first_banner_4 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_4->img}}" class="w-100 object-cover br15 h-100" alt="">
-            </a>
-        </div>
+        @endforeach
+        @endif
     </div>
 </div>
 <div class="container px-md-5">
