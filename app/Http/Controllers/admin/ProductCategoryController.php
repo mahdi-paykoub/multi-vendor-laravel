@@ -43,7 +43,10 @@ class ProductCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-
+    public function show()
+    {
+        return view('admin.product_category.landing');
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -67,5 +70,8 @@ class ProductCategoryController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function show_landing() {
+        return view('admin.product_category.landing');    
     }
 }

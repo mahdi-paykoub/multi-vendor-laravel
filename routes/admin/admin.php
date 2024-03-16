@@ -31,6 +31,12 @@ Route::post('/set-seller-status/{seller}', [admin\SellerController::class, 'setS
 Route::post('/attribute/values', [admin\AttributeValueController::class, 'getAttrVal']);
 Route::post('/varAttribute/values', [admin\AttributeValueController::class, 'getVarAttrVal']);
 
+//landing product category
+Route::get('/landing/product/category', [admin\ProductCategoryController::class, 'show_landing'])->name('landing.product.category');
+Route::post('/landing/product/category', [admin\ProductCategoryController::class, 'register_landing_option'])->name('landing.product.category');
+
+
+
 
 Route::get('/set-user-role/{id}', [admin\UserController::class, 'setUserRole'])->name('setUserRole');
 Route::post('/set-user-role-logic/{user}', [admin\UserController::class, 'addUserRole'])->name('setUserRoleLogic');

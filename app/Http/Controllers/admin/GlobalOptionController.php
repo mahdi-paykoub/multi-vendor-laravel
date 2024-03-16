@@ -36,12 +36,16 @@ class GlobalOptionController extends Controller
 
     public function setMainSlider(Request $request)
     {
+
+       
         $validData = $request->validate([
             'slider' => 'required',
             'slider.*' => 'required',
             'slider.*.*' => 'required',
         ]);
 
+
+        dd($request);
 
         $prev_sliders = GlobalOptions::where('key', '=', 'mainSlider')->first();
         if ($prev_sliders) {

@@ -48,6 +48,7 @@
             </li>
         </ul>
         <div class="tab-content py-3">
+            <!-- logos -->
             <div class="tab-pane fade px-3" id="primaryhome" role="tabpanel">
                 @php
                 $prev_enL=isset(\App\Models\GlobalOptions::where('key' ,'=' , 'en_logo')->first()->value)?
@@ -66,12 +67,9 @@
                                 <div class="form-group">
                                     <label for="image_label">لوگوی انگلیسی</label>
                                     <div class="input-group mt-1">
-                                        <input type="text" id="en_logo" class="form-control" name="enLogo"
-                                            aria-label="Image" aria-describedby="button-image"
-                                            value="{{old('title' ,$prev_enL )}}">
+                                        <input type="text" id="en_logo" class="form-control" name="enLogo" aria-label="Image" aria-describedby="button-image" value="{{old('title' ,$prev_enL )}}">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                id="button-image">انتخاب
+                                            <button class="btn btn-outline-secondary" type="button" id="button-image">انتخاب
                                             </button>
                                         </div>
                                     </div>
@@ -85,12 +83,9 @@
                                 <div class="form-group mt-4">
                                     <label for="image_label">لگوی فارسی</label>
                                     <div class="input-group mt-1">
-                                        <input type="text" id="fa_logo" class="form-control" name="faLogo"
-                                            aria-label="Image" aria-describedby="button-image"
-                                            value="{{old('title' ,$prev_fnL )}}">
+                                        <input type="text" id="fa_logo" class="form-control" name="faLogo" aria-label="Image" aria-describedby="button-image" value="{{old('title' ,$prev_fnL )}}">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                id="button-image2">انتخاب
+                                            <button class="btn btn-outline-secondary" type="button" id="button-image2">انتخاب
                                             </button>
                                         </div>
                                     </div>
@@ -110,6 +105,7 @@
                     </form>
                 </div>
             </div>
+            <!-- sliders -->
             <div class="tab-pane fade show active" id="primaryprofile" role="tabpanel">
                 <!-- top bar -->
                 <div class="alert border-0 border-start border-5 border-primary alert-dismissible fade show py-2">
@@ -125,11 +121,10 @@
                 @endphp
                 @if ($topBar_value != null)
                 <div class="mb-3">
-                    <img src="{{$topBar_value->img}}" alt="" class="w-100"
-                        style="height: 80px;object-fit:cover;border-radius:8px">
+                    <img src="{{$topBar_value->img}}" alt="" class="w-100" style="height: 80px;object-fit:cover;border-radius:8px">
                 </div>
                 @endif
-             
+
                 <form action="{{route('admin.set.top.bar.img')}}" method="post" class="mb-4">
                     @csrf
                     <div class="row">
@@ -137,11 +132,9 @@
                             <div class="form-group">
                                 <label for="image_label">تصویر</label>
                                 <div class="input-group mt-1">
-                                    <input type="text" id="topBar_img" class="form-control" name="img" value=""
-                                        aria-label="Image" aria-describedby="button-image">
+                                    <input type="text" id="topBar_img" class="form-control" name="img" value="" aria-label="Image" aria-describedby="button-image">
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button"
-                                            id="topBar_img_btn">انتخاب
+                                        <button class="btn btn-outline-secondary" type="button" id="topBar_img_btn">انتخاب
                                         </button>
                                     </div>
                                 </div>
@@ -169,8 +162,7 @@
 
                     <div class="">
                         <div class="card-">
-                            <div
-                                class="alert border-0 border-start border-5 border-primary alert-dismissible fade show py-2">
+                            <div class="alert border-0 border-start border-5 border-primary alert-dismissible fade show py-2">
                                 <h5 class="fw-bold text-primary">
                                     اسلایدر
                                 </h5>
@@ -193,8 +185,7 @@
                             @foreach($sliders_values as $sliders_value)
                             <div class="row my-3">
                                 <div class="col-3">
-                                    <img src="{{$sliders_value->img}}" style="object-fit: cover" class="shadow"
-                                        width="100%" height="150" alt="">
+                                    <img src="{{$sliders_value->img}}" style="object-fit: cover" class="shadow" width="100%" height="150" alt="">
                                 </div>
                                 <div class="col-3">
                                     {{$sliders_value->title}}
@@ -209,7 +200,7 @@
                             <hr>
                             @endforeach
                             <div class="text-end mb-4">
-                                <button class="btn btn-primary create-slider-inp mt-4">ساخت اسلایدر</button>
+                                <button class="btn btn-primary create-slider-inp w-100 mt-4">افزودن اسلایدر</button>
                             </div>
                             <form action="{{route('admin.set.main.slider')}}" method="post">
                                 @csrf
@@ -220,7 +211,7 @@
                                         {{$message}}
                                     </div>
                                     @enderror
-                                    <button class="btn btn-primary d-none for-add-s-db">افزودن اسلایدر</button>
+                                    <button class="btn btn-primary d-none for-add-s-db">ارسال</button>
                                 </div>
                             </form>
                         </div>
@@ -257,20 +248,15 @@
                     @endphp
                     <div class="row align-items-center">
                         <div class="col-3">
-                            <img src="{{$first_banner_1 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_1->img}}"
-                                class="w-100 object-cover" height="100" alt="">
+                            <img src="{{$first_banner_1 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_1->img}}" class="w-100 object-cover" height="100" alt="">
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="image_label">تصویر</label>
                                 <div class="input-group mt-1">
-                                    <input type="text" id="first_banner_img_inp1" class="form-control"
-                                        name="first_banner[1][img]"
-                                        value="{{old('first_banner[1][img]' ,$first_banner_1 === '' ? '' :$first_banner_1->img   )}}"
-                                        aria-label="Image" aria-describedby="button-image">
+                                    <input type="text" id="first_banner_img_inp1" class="form-control" name="first_banner[1][img]" value="{{old('first_banner[1][img]' ,$first_banner_1 === '' ? '' :$first_banner_1->img   )}}" aria-label="Image" aria-describedby="button-image">
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button"
-                                            id="first_banner_img1">انتخاب
+                                        <button class="btn btn-outline-secondary" type="button" id="first_banner_img1">انتخاب
                                         </button>
                                     </div>
                                 </div>
@@ -278,31 +264,24 @@
                         </div>
                         <div class="col-3">
                             <label for="">عنوان</label>
-                            <input type="text" name="first_banner[1][title]" class="form-control mt-1"
-                                value="{{old('first_banner[1][title]' ,$first_banner_1 === '' ? '' :$first_banner_1->title   )}}">
+                            <input type="text" name="first_banner[1][title]" class="form-control mt-1" value="{{old('first_banner[1][title]' ,$first_banner_1 === '' ? '' :$first_banner_1->title   )}}">
                         </div>
                         <div class="col-3">
                             <label for="">لینک</label>
-                            <input type="text" name="first_banner[1][link]" class="form-control mt-1"
-                                value="{{old('first_banner[1][link]' ,$first_banner_1 === '' ? '' :$first_banner_1->link   )}}">
+                            <input type="text" name="first_banner[1][link]" class="form-control mt-1" value="{{old('first_banner[1][link]' ,$first_banner_1 === '' ? '' :$first_banner_1->link   )}}">
                         </div>
                     </div>
                     <div class="row mt-4 align-items-center">
                         <div class="col-3">
-                            <img src="{{$first_banner_2 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_2->img}}"
-                                class="w-100 object-cover" height="100" alt="">
+                            <img src="{{$first_banner_2 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_2->img}}" class="w-100 object-cover" height="100" alt="">
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="image_label">تصویر</label>
                                 <div class="input-group mt-1">
-                                    <input type="text" id="first_banner_img_inp2" class="form-control"
-                                        name="first_banner[2][img]"
-                                        value="{{old('first_banner[2][img]' ,$first_banner_2 === '' ? '' :$first_banner_2->img   )}}"
-                                        aria-label="Image" aria-describedby="button-image">
+                                    <input type="text" id="first_banner_img_inp2" class="form-control" name="first_banner[2][img]" value="{{old('first_banner[2][img]' ,$first_banner_2 === '' ? '' :$first_banner_2->img   )}}" aria-label="Image" aria-describedby="button-image">
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button"
-                                            id="first_banner_img2">انتخاب
+                                        <button class="btn btn-outline-secondary" type="button" id="first_banner_img2">انتخاب
                                         </button>
                                     </div>
                                 </div>
@@ -310,31 +289,24 @@
                         </div>
                         <div class="col-3">
                             <label for="">عنوان</label>
-                            <input type="text" name="first_banner[2][title]" class="form-control mt-1"
-                                value="{{old('first_banner[2][title]' ,$first_banner_2 === '' ? '' :$first_banner_2->title   )}}">
+                            <input type="text" name="first_banner[2][title]" class="form-control mt-1" value="{{old('first_banner[2][title]' ,$first_banner_2 === '' ? '' :$first_banner_2->title   )}}">
                         </div>
                         <div class="col-3">
                             <label for="">لینک</label>
-                            <input type="text" name="first_banner[2][link]" class="form-control mt-1"
-                                value="{{old('first_banner[2][link]' ,$first_banner_2 === '' ? '' :$first_banner_2->link   )}}">
+                            <input type="text" name="first_banner[2][link]" class="form-control mt-1" value="{{old('first_banner[2][link]' ,$first_banner_2 === '' ? '' :$first_banner_2->link   )}}">
                         </div>
                     </div>
                     <div class="row mt-4 align-items-center">
                         <div class="col-3">
-                            <img src="{{$first_banner_3 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_3->img}}"
-                                class="w-100 object-cover" height="100" alt="">
+                            <img src="{{$first_banner_3 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_3->img}}" class="w-100 object-cover" height="100" alt="">
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="image_label">تصویر</label>
                                 <div class="input-group mt-1">
-                                    <input type="text" id="first_banner_img_inp3" class="form-control"
-                                        name="first_banner[3][img]"
-                                        value="{{old('first_banner[3][img]' ,$first_banner_3 === '' ? '' :$first_banner_3->img   )}}"
-                                        aria-label="Image" aria-describedby="button-image">
+                                    <input type="text" id="first_banner_img_inp3" class="form-control" name="first_banner[3][img]" value="{{old('first_banner[3][img]' ,$first_banner_3 === '' ? '' :$first_banner_3->img   )}}" aria-label="Image" aria-describedby="button-image">
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button"
-                                            id="first_banner_img3">انتخاب
+                                        <button class="btn btn-outline-secondary" type="button" id="first_banner_img3">انتخاب
                                         </button>
                                     </div>
                                 </div>
@@ -342,31 +314,24 @@
                         </div>
                         <div class="col-3">
                             <label for="">عنوان</label>
-                            <input type="text" name="first_banner[3][title]" class="form-control mt-1"
-                                value="{{old('first_banner[3][title]' ,$first_banner_3 === '' ? '' :$first_banner_3->title   )}}">
+                            <input type="text" name="first_banner[3][title]" class="form-control mt-1" value="{{old('first_banner[3][title]' ,$first_banner_3 === '' ? '' :$first_banner_3->title   )}}">
                         </div>
                         <div class="col-3">
                             <label for="">لینک</label>
-                            <input type="text" name="first_banner[3][link]" class="form-control mt-1"
-                                value="{{old('first_banner[3][link]' ,$first_banner_3 === '' ? '' :$first_banner_3->link   )}}">
+                            <input type="text" name="first_banner[3][link]" class="form-control mt-1" value="{{old('first_banner[3][link]' ,$first_banner_3 === '' ? '' :$first_banner_3->link   )}}">
                         </div>
                     </div>
                     <div class="row mt-4 align-items-center">
                         <div class="col-3">
-                            <img src="{{$first_banner_4 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_4->img}}"
-                                class="w-100 object-cover" height="100" alt="">
+                            <img src="{{$first_banner_4 === '' ? url('assets/admin/images/img-not-loaded.jpg') :$first_banner_4->img}}" class="w-100 object-cover" height="100" alt="">
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="image_label">تصویر</label>
                                 <div class="input-group mt-1">
-                                    <input type="text" id="first_banner_img_inp4" class="form-control"
-                                        name="first_banner[4][img]"
-                                        value="{{old('first_banner[4][img]' ,$first_banner_4 === '' ? '' :$first_banner_4->img   )}}"
-                                        aria-label="Image" aria-describedby="button-image">
+                                    <input type="text" id="first_banner_img_inp4" class="form-control" name="first_banner[4][img]" value="{{old('first_banner[4][img]' ,$first_banner_4 === '' ? '' :$first_banner_4->img   )}}" aria-label="Image" aria-describedby="button-image">
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button"
-                                            id="first_banner_img4">انتخاب
+                                        <button class="btn btn-outline-secondary" type="button" id="first_banner_img4">انتخاب
                                         </button>
                                     </div>
                                 </div>
@@ -374,13 +339,11 @@
                         </div>
                         <div class="col-3">
                             <label for="">عنوان</label>
-                            <input type="text" name="first_banner[4][title]" class="form-control mt-1"
-                                value="{{old('first_banner[4][title]' ,$first_banner_4 === '' ? '' :$first_banner_4->title   )}}">
+                            <input type="text" name="first_banner[4][title]" class="form-control mt-1" value="{{old('first_banner[4][title]' ,$first_banner_4 === '' ? '' :$first_banner_4->title   )}}">
                         </div>
                         <div class="col-3">
                             <label for="">لینک</label>
-                            <input type="text" name="first_banner[4][link]" class="form-control mt-1"
-                                value="{{old('first_banner[4][link]' ,$first_banner_4 === '' ? '' :$first_banner_4->link   )}}">
+                            <input type="text" name="first_banner[4][link]" class="form-control mt-1" value="{{old('first_banner[4][link]' ,$first_banner_4 === '' ? '' :$first_banner_4->link   )}}">
                         </div>
                     </div>
 
@@ -389,6 +352,7 @@
                     </div>
                 </form>
             </div>
+            <!-- menu -->
             <div class="tab-pane fade" id="primarycontact" role="tabpanel">
                 {{--blog menu--}}
                 <div class="alert border-0 border-start border-5 border-primary alert-dismissible fade show py-2">
@@ -404,71 +368,71 @@
 @endsection
 @section('scripts')
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
 
-    document.getElementById('button-image').addEventListener('click', (event) => {
-        event.preventDefault();
+        document.getElementById('button-image').addEventListener('click', (event) => {
+            event.preventDefault();
 
-        inputId = 'en_logo';
+            inputId = 'en_logo';
 
-        window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
+            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
+        });
+
+        // second button
+        document.getElementById('button-image2').addEventListener('click', (event) => {
+            event.preventDefault();
+
+            inputId = 'fa_logo';
+
+            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
+        });
+
+        //first banner img 1
+        document.getElementById('first_banner_img1').addEventListener('click', (event) => {
+            event.preventDefault();
+
+            inputId = 'first_banner_img_inp1';
+
+            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
+        });
+        //first banner img 2
+        document.getElementById('first_banner_img2').addEventListener('click', (event) => {
+            event.preventDefault();
+
+            inputId = 'first_banner_img_inp2';
+
+            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
+        });
+        //first banner img 3
+        document.getElementById('first_banner_img3').addEventListener('click', (event) => {
+            event.preventDefault();
+
+            inputId = 'first_banner_img_inp3';
+
+            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
+        });
+        //first banner img 4
+        document.getElementById('first_banner_img4').addEventListener('click', (event) => {
+            event.preventDefault();
+
+            inputId = 'first_banner_img_inp4';
+
+            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
+        });
+
+        //top bar img
+        document.getElementById('topBar_img_btn').addEventListener('click', (event) => {
+            event.preventDefault();
+
+            inputId = 'topBar_img';
+
+            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
+        });
     });
 
-    // second button
-    document.getElementById('button-image2').addEventListener('click', (event) => {
-        event.preventDefault();
 
-        inputId = 'fa_logo';
-
-        window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-    });
-
-    //first banner img 1
-    document.getElementById('first_banner_img1').addEventListener('click', (event) => {
-        event.preventDefault();
-
-        inputId = 'first_banner_img_inp1';
-
-        window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-    });
-    //first banner img 2
-    document.getElementById('first_banner_img2').addEventListener('click', (event) => {
-        event.preventDefault();
-
-        inputId = 'first_banner_img_inp2';
-
-        window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-    });
-    //first banner img 3
-    document.getElementById('first_banner_img3').addEventListener('click', (event) => {
-        event.preventDefault();
-
-        inputId = 'first_banner_img_inp3';
-
-        window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-    });
-    //first banner img 4
-    document.getElementById('first_banner_img4').addEventListener('click', (event) => {
-        event.preventDefault();
-
-        inputId = 'first_banner_img_inp4';
-
-        window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-    });
-
-    //top bar img
-    document.getElementById('topBar_img_btn').addEventListener('click', (event) => {
-        event.preventDefault();
-
-        inputId = 'topBar_img';
-
-        window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-    });
-});
-
-
-let createNewSlider = (id) => {
-    return `
+    let createNewSlider = (id) => {
+        return `
              <div class="row mt-4 align-items-center" id="slider_${id}">
                          <div class="col-4">
                              <div class="form-group">
@@ -500,31 +464,31 @@ let createNewSlider = (id) => {
                          </div>
                      </div>
             `
-}
+    }
 
-$('.create-slider-inp').click(function() {
-    $('.for-add-s-db').removeClass('d-none')
-    $parent_of_attr_html = $('.for_add_sliders')
-    $id = $parent_of_attr_html.children().length;
+    $('.create-slider-inp').click(function() {
+        $('.for-add-s-db').removeClass('d-none')
+        $parent_of_attr_html = $('.for_add_sliders')
+        $id = $parent_of_attr_html.children().length;
 
-    $parent_of_attr_html.append(createNewSlider($id))
+        $parent_of_attr_html.append(createNewSlider($id))
 
-    document.getElementById('button-image-' + $id).addEventListener('click', (event) => {
+        document.getElementById('button-image-' + $id).addEventListener('click', (event) => {
 
-        event.preventDefault();
+            event.preventDefault();
 
-        inputId = 'image_' + $id;
+            inputId = 'image_' + $id;
 
-        window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
-    });
-})
-// input
-let inputId = '';
+            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
+        });
+    })
+    // input
+    let inputId = '';
 
-// set file link
-function fmSetLink($url) {
-    document.getElementById(inputId).value = $url;
-}
+    // set file link
+    function fmSetLink($url) {
+        document.getElementById(inputId).value = $url;
+    }
 </script>
 
 @endsection
