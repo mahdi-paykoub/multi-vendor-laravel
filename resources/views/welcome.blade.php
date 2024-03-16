@@ -316,7 +316,7 @@
             @foreach ($product_parent_cats as $product_parent_cat)
             <div class="col px-0 mt-4 text-center">
                 <a href="{{route('category.mainOrSubCategory' , $product_parent_cat->slug)}}">
-                    <img src="assets/image/category/0c3cc1cb589df1c74c4ad95a742bb6df967956a8_1656161119.webp" alt="">
+                    <img src="{{ $product_parent_cat->img }}" alt="">
                     <div class="text-dark fs13">{{$product_parent_cat->title}}</div>
                 </a>
             </div>

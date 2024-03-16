@@ -34,6 +34,7 @@ class ProductCategoryController extends Controller
             'title' => 'required',
             'parent' => 'required',
             'slug' => 'required|unique:product_categories',
+            'img' => 'required',
         ]);
         ProductCategory::create($validData);
         return back();

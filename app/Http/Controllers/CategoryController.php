@@ -18,7 +18,6 @@ class CategoryController extends Controller
     public function mainOrSubCategory(ProductCategory $productCategory)
     {
 
-
         $parent = $productCategory->parent;
         $cat_childs = $productCategory->child()->get();
 

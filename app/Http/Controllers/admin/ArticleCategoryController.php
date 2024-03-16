@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\ArticleCategory;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ArticleCategoryController extends Controller
 {
