@@ -114,21 +114,6 @@
         </div>
     </div>
 </div>
-<!-- banners -->
-<div class="container px-3">
-    <!--introduction 1-->
-    @if (count($cat_banners) != 0)
-    <div class="row mt-3">
-        @foreach ($cat_banners as $cat_banner)
-        <div class="col-12 col-md-6 mt-3">
-            <a href="">
-                <img src="{{json_decode($cat_banner['value'])->img}}" class="w-100 br15 introduction-img" alt="">
-            </a>
-        </div>
-        @endforeach
-    </div>
-    @endif
-</div>
 
 <!-- child cats -->
 <div class="container px-4 mt-5">
@@ -149,6 +134,22 @@
         @endforeach
     </div>
 </div>
+<!-- banners -->
+<div class="container px-3">
+    <!--introduction 1-->
+    @if (count($cat_banners) != 0)
+    <div class="row mt-3">
+        @foreach ($cat_banners as $cat_banner)
+        <div class="col-12 col-md-6 mt-3">
+            <a href="">
+                <img src="{{json_decode($cat_banner['value'])->img}}" class="w-100 br15 introduction-img" alt="">
+            </a>
+        </div>
+        @endforeach
+    </div>
+    @endif
+</div>
+
 
 <!-- offer -->
 <div class="container px-4 mt-5">
