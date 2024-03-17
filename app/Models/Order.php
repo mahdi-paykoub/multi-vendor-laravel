@@ -14,6 +14,7 @@ class Order extends Model
         'price',
         'status',
         'tracking_serial',
+        'address_id',
     ];
 
     public function user()
