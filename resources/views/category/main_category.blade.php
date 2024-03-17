@@ -13,15 +13,14 @@
 <div class="container mt-4 px-0 px-lg-3">
     <div class="swiper mySwiper slider-swiper landing-carousel br-0-15-responsive">
         <div class="swiper-wrapper">
+            @if (count($cat_sliders) != 0)
+            @foreach ($cat_sliders as $cat_slider)
             <div class="swiper-slide">
-                <img src="assets/image/banner/845b0bf4082d54725ff2365e454e2b15c201edcc_1679499424.webp" class="d-block w-100 br-0-15-responsive" alt="...">
+                <img src="{{json_decode($cat_slider['value'])->img}}" class="d-block w-100 br-0-15-responsive" alt="...">
             </div>
-            <div class="swiper-slide">
-                <img src="assets/image/banner/69bb9eeb4cf5e68cd66dd0145e2a85d67a603644_1681542101.webp" class="d-block w-100 br-0-15-responsive" alt="...">
-            </div>
-            <div class="swiper-slide">
-                <img src="assets/image/banner/665e64874b02d76cc3e8b4015bd8715ea2409e86_1681542692.webp" class="d-block w-100 br-0-15-responsive" alt="...">
-            </div>
+            @endforeach
+            @endif
+
         </div>
         <div class="landing-next-btn">
             <svg stroke="currentColor" class="icon-dark-color position-absolute m-auto" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -118,29 +117,17 @@
 <!-- banners -->
 <div class="container px-3">
     <!--introduction 1-->
+    @if (count($cat_banners) != 0)
     <div class="row mt-3">
+        @foreach ($cat_banners as $cat_banner)
         <div class="col-12 col-md-6 mt-3">
             <a href="">
-                <img src="assets/image/banner/c76819b158cce634ace871e33ba37ecfa9873b92_1693398663.webp" class="w-100 br15 introduction-img" alt="">
+                <img src="{{json_decode($cat_banner['value'])->img}}" class="w-100 br15 introduction-img" alt="">
             </a>
         </div>
-        <div class="col-12 col-md-6 mt-3">
-            <a href="">
-                <img src="assets/image/banner/c76819b158cce634ace871e33ba37ecfa9873b92_1693398663.webp" class="w-100 br15 introduction-img" alt="">
-            </a>
-        </div>
-        <div class="col-12 col-md-6 mt-3">
-            <a href="">
-                <img src="assets/image/banner/c76819b158cce634ace871e33ba37ecfa9873b92_1693398663.webp" class="w-100 br15 introduction-img" alt="">
-            </a>
-        </div>
-        <div class="col-12 col-md-6 mt-3">
-            <a href="">
-                <img src="assets/image/banner/c76819b158cce634ace871e33ba37ecfa9873b92_1693398663.webp" class="w-100 br15 introduction-img" alt="">
-            </a>
-        </div>
-
+        @endforeach
     </div>
+    @endif
 </div>
 
 <!-- child cats -->

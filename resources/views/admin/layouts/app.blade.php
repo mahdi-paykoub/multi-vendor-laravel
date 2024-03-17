@@ -141,7 +141,7 @@
                 </li>
 
                 <li>
-                    <a href="{{route('admin.landing.product.category')}}"><i class="bx bx-left-arrow-alt"></i>
+                    <a href="{{route('admin.select.category.view')}}"><i class="bx bx-left-arrow-alt"></i>
                             لندینگ دسته محصولات
                     </a>
                 </li>

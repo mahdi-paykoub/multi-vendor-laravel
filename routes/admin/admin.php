@@ -32,8 +32,10 @@ Route::post('/attribute/values', [admin\AttributeValueController::class, 'getAtt
 Route::post('/varAttribute/values', [admin\AttributeValueController::class, 'getVarAttrVal']);
 
 //landing product category
-Route::get('/landing/product/category', [admin\ProductCategoryController::class, 'show_landing'])->name('landing.product.category');
-Route::post('/landing/product/category', [admin\ProductCategoryController::class, 'register_landing_option'])->name('landing.product.category');
+Route::get('/select/category', [admin\ProductCategoryController::class, 'select_category_view'])->name('select.category.view');
+Route::get('/landing/{productCategory}', [admin\ProductCategoryController::class, 'show_landing'])->name('show.landing.category');
+Route::post('/create/landing/slider/{id}', [admin\ProductCategoryController::class, 'create_landing_slider'])->name('create.landing.slider');
+Route::post('/create/landing/banner/{id}', [admin\ProductCategoryController::class, 'create_landing_banner'])->name('create.landing.banner');
 
 
 

@@ -225,7 +225,7 @@
                         </h5>
                         <small>تعیین چهار بنر صفحه اصلی</small>
                     </div>
-                </div>git 
+                </div>
                 @php
                 $mainBanners = App\Models\GlobalOptions::where('key', 'main_banners')->get();
                 @endphp

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GlobalOptions;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\VarDumper;
@@ -37,8 +38,15 @@ class CategoryController extends Controller
             $this->getAllCatChilds($productCategory);
 
             $allChilds = $this->childsName;
+
+
+            $cat_banners = GlobalOptions::where('key', 'main_category_banners')->where('ref_id', $productCategory->id)->get();
+
+            $cat_sliders = GlobalOptions::where('key', 'main_category_sliders')->where('ref_id', $productCategory->id)->get();
+
+
             $products = $productCategory->products()->get();
-            return view('category.main_category', compact('cat_childs', 'products', 'allChilds'));
+            return view('category.main_category', compact('cat_childs', 'products', 'allChilds', 'cat_sliders',  'cat_banners'));
         }
     }
 

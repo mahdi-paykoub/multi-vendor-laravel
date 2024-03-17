@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\GlobalOptions;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
@@ -71,7 +72,64 @@ class ProductCategoryController extends Controller
     {
         //
     }
-    public function show_landing() {
-        return view('admin.product_category.landing');    
+    public function select_category_view()
+    {
+        $cats = ProductCategory::where('parent', 0)->get();
+        return view('admin.product_category.select_category', compact('cats'));
+    }
+
+    public function show_landing(ProductCategory $productCategory)
+    {
+        $cat_id = $productCategory->id;
+
+        $cat_sliders = GlobalOptions::where('key', 'main_category_sliders')->where('ref_id', $cat_id)->get();
+
+        $cat_banners = GlobalOptions::where('key', 'main_category_banners')->where('ref_id', $cat_id)->get();
+
+        return view('admin.product_category.landing', compact('cat_id', 'cat_sliders', 'cat_banners'));
+    }
+
+    public function create_landing_slider(Request $request, $id)
+    {
+
+        $validData = $request->validate([
+            'slider' => 'required',
+            'slider.*' => 'required',
+            'slider.*.*' => 'required',
+        ]);
+
+
+
+        foreach ($validData['slider'] as $key => $slide) {
+            GlobalOptions::create([
+                'key' => 'main_category_sliders',
+                'value' => json_encode($slide),
+                'ref_id' => $id
+            ]);
+        }
+
+        return back();
+    }
+
+    public function create_landing_banner(Request $request, $id)
+    {
+
+        $validData = $request->validate([
+            'slider' => 'required',
+            'slider.*' => 'required',
+            'slider.*.*' => 'required',
+        ]);
+
+
+
+        foreach ($validData['slider'] as $key => $slide) {
+            GlobalOptions::create([
+                'key' => 'main_category_banners',
+                'value' => json_encode($slide),
+                'ref_id' => $id
+            ]);
+        }
+
+        return back();
     }
 }
