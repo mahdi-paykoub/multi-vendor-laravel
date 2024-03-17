@@ -28,7 +28,8 @@ Route::get('/checkout/cart', [\App\Http\Controllers\CartController::class, 'shop
 /*register order*/
 Route::post('/register/order', [\App\Http\Controllers\OrderController::class, 'registerOrder'])->name('register.order');
 Route::get('/checkout/shipping', [\App\Http\Controllers\OrderController::class, 'shipping_view'])->name('shipping.view');
-Route::get('/payment/callback', [\App\Http\Controllers\OrderController::class, 'payment_callback'])->name('payment.callback');
+Route::post('/payment/callback', [\App\Http\Controllers\OrderController::class, 'payment_callback'])->name('payment.callback');
+Route::get('/checkout/thank-you/{text}', [\App\Http\Controllers\OrderController::class, 'show_thank_you'])->name('checkout.thank-you');
 
 
 Route::get('/blog', [\App\Http\Controllers\SingleArticleController::class, 'showHomeBlog'])->name('blog');

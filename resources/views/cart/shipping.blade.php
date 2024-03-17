@@ -68,6 +68,7 @@
                                     </a>
 
                                     @foreach ($userAddress as $Address)
+
                                     <div class="border-bottom pb-3 pt-3 cursor-pointer p-adr" data-adrtxt="{{$Address->address}}" data-adrid="{{$Address->id}}">
                                         <div class="mb-3 fs13 lh2 addr-text">
                                             {{$Address->address}}
@@ -250,8 +251,8 @@
         $("#setAddressModal").modal('show');
     });
     $('.p-adr').click(function() {
-        $adr_id =$(this).attr('data-adrid')
-        $adr_text =$(this).attr('data-adrtxt')
+        $adr_id = $(this).attr('data-adrid')
+        $adr_text = $(this).attr('data-adrtxt')
         $('input[name=address_id]').val($adr_id)
         $('.adr-show-text').text($adr_text)
         $("#selectAddressModal").modal('hide');

@@ -41,7 +41,7 @@ class OrderController extends Controller
                 return back();
             }
         }
-       
+
         $cartItems = Cart::all();
 
         if (count($cartItems) !== 0) {
@@ -67,9 +67,9 @@ class OrderController extends Controller
             //payment
 
             $invoice = (new Invoice)->amount(1000);
-            return ShetabitPayment::callbackUrl(route('payment.callback'))->purchase($invoice, function ($driver, $transactionId) use ($order) {
+            return ShetabitPayment::callbackUrl(route('payment.callback'))->purchase($invoice, function ($driver, $transactionId) use ($order, $invoice) {
                 $order->payments()->create([
-                    'res_number' => $transactionId,
+                    'res_number' => $invoice->getUuid(),
                     //4-حذف تمام محصولات موجود در سید خرید
                     /* $cart->flush();*/
                 ]);
@@ -79,7 +79,7 @@ class OrderController extends Controller
 
     public function payment_callback(Request $request)
     {
-        $payment = Payment::where('resnumber', $request->clientrefid)->firstOrFail();
+        $payment = Payment::where('res_number', $request->clientrefid)->firstOrFail();
 
         try {
             $receipt = ShetabitPayment::amount(1000)->transactionId($request->clientrefid)->verify();
@@ -92,12 +92,11 @@ class OrderController extends Controller
             ]);
             /*redirect here*/
         } catch (InvalidPaymentException $exception) {
-            /**
-             * when payment is not verified, it will throw an exception.
-             * We can catch the exception to handle invalid payments.
-             * getMessage method, returns a suitable message that can be used in user interface.
-             **/
-            echo $exception->getMessage();
+            return redirect(route('checkout.thank-you' , $exception->getMessage()));
         }
+    }
+    public function show_thank_you($text)
+    {
+        return view('cart.thank_you' ,compact('text'));
     }
 }
