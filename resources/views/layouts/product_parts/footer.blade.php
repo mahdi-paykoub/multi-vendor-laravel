@@ -3,7 +3,7 @@
     <div class="container px-4 pb-4">
         <div class="d-flex justify-content-between">
             <div>
-                <img src="assets/image/logo/digi.svg" height="30" alt="">
+                <img src="{{get_fa_logo()}}" height="30" alt="">
                 <div class="mt-3">
                     <span class="ms-3 fs12 icon-dark-color">تلفن پشتیبانی ۶۱۹۳۰۰۰۰ - ۰۲۱</span>
                     <span>|</span>

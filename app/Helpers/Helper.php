@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\GlobalOptions;
+
 function image_url_assets($img, $thumbnail)
 {
     return $img ? $img : $thumbnail;
@@ -22,9 +25,28 @@ if (!function_exists('is_active_route')) {
     }
 }
 
-if (!function_exists('convert_array_to_KeyValuePair')) {
-    function convert_array_to_KeyValuePair($array)
+if (!function_exists('get_en_logo')) {
+    function get_en_logo()
     {
-        
+        $en_logo = GlobalOptions::where('key', 'en_logo')->first();
+        if ($en_logo != null) {
+            return $en_logo->value;
+        } else {
+            return url('assets/frontend/image/logo/en_logo_not_loaded.png');
+        }
+    }
+}
+
+
+
+if (!function_exists('get_fa_logo')) {
+    function get_fa_logo()
+    {
+        $fa_logo = GlobalOptions::where('key', 'fa_logo')->first();
+        if ($fa_logo != null) {
+            return $fa_logo->value;
+        } else {
+            return url('assets/frontend/image/logo/en_logo_not_loaded.png');
+        }
     }
 }

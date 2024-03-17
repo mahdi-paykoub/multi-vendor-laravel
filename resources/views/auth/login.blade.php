@@ -10,7 +10,7 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="text-center">
-                        <img src="{{url('assets/frontend/image/logo/logo.svg')}}" width="140" height="50" alt="">
+                        <img src="{{get_en_logo()}}" width="140" height="50" alt="">
                     </div>
                     <div class="mt-4">
                         <a href="{{route('login')}}" class="fw600 fs18 icon-dark-color">ورود</a>

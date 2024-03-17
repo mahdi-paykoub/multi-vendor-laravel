@@ -69,7 +69,7 @@
                                     <div class="input-group mt-1">
                                         <input type="text" id="en_logo" class="form-control" name="enLogo" aria-label="Image" aria-describedby="button-image" value="{{old('title' ,$prev_enL )}}">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button" id="button-image">انتخاب
+                                            <button class="btn btn-outline-secondary" type="button" id="en_logo_btn">انتخاب
                                             </button>
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@
                                     <div class="input-group mt-1">
                                         <input type="text" id="fa_logo" class="form-control" name="faLogo" aria-label="Image" aria-describedby="button-image" value="{{old('title' ,$prev_fnL )}}">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button" id="button-image2">انتخاب
+                                            <button class="btn btn-outline-secondary" type="button" id="fa_logo_btn">انتخاب
                                             </button>
                                         </div>
                                     </div>
@@ -273,6 +273,29 @@
 @endsection
 @section('scripts')
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        // en logo
+        document.getElementById('en_logo_btn').addEventListener('click', (event) => {
+            event.preventDefault();
+
+            inputId = 'en_logo';
+
+            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
+        });
+
+        //  fa logo
+        document.getElementById('fa_logo_btn').addEventListener('click', (event) => {
+            event.preventDefault();
+
+            inputId = 'fa_logo';
+
+            window.open('/file-manager/fm-button', 'fm', 'width=1000,height=500');
+        });
+    });
+
+
+
     let createNewSlider = (id) => {
         return `
              <div class="row mt-4 align-items-center" id="slider_${id}">

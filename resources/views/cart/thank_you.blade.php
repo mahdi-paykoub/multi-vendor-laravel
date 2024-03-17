@@ -65,13 +65,9 @@
 
                 </div>
                 <div class="mt-4">
-                 
-
                     <div class="text-danger fw600 fs20" style="color: #b2001a;">
-                      {{ $text }}
+                        متاسفانه پرداخت شما ناموفق بود!
                     </div>
-               
-
                     <div class="fs14  mt-3">
                         <span class="text-secondary">شماره سفارش</span>
                         <span>۳۸۲۹۳۳۴۷۷</span>
@@ -81,7 +77,7 @@
                     </div>
                 </div>
                 <div class="d-none d-lg-block">
-                    <img src="assets/image/text/Fail.svg" width="200" height="96" alt="">
+                    <img src="{{url('assets/frontend/image/text/Fail.svg')}}" width="200" height="96" alt="">
                 </div>
             </div>
         </div>
