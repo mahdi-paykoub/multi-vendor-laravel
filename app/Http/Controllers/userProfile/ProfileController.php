@@ -4,6 +4,7 @@ namespace App\Http\Controllers\userProfile;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Like;
 use App\Models\Product;
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
@@ -44,13 +45,18 @@ class ProfileController extends Controller
 
     public function wishListView()
     {
-        return view('user_profile.wish_list');
+        $liked_posts = Like::where('user_id', auth()->user()->id)->get();
+
+        $products = [];
+        foreach ($liked_posts as $liked_post) {
+            $products[] = Product::where('id', $liked_post->product_id)->first();
+        }
+        return view('user_profile.wish_list', compact('products'));
     }
 
     public function addressView()
     {
         $user_addresses = auth()->user()->addresses()->get();
-        return view('user_profile.address' , compact('user_addresses'));
+        return view('user_profile.address', compact('user_addresses'));
     }
-
 }
