@@ -4,7 +4,9 @@
         <div class="d-flex justify-content-between align-items-center w-100">
             <div class="d-flex search-input-width align-items-center">
                 <div class="d-none d-lg-block">
+                    <a href="{{route('main')}}">
                     <img src="{{get_en_logo()}}" width="115" height="30" alt="">
+                    </a>
                 </div>
                 {{--mobile search--}}
                 <div class="mobile-search-box w-100 px-3 d-lg-none d-flex align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="offcanvasBottom">
