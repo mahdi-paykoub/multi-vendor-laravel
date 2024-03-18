@@ -5,6 +5,7 @@ namespace App\Http\Controllers\userProfile;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Like;
+use App\Models\Notification;
 use App\Models\Product;
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
@@ -35,7 +36,11 @@ class ProfileController extends Controller
 
     public function messageView()
     {
-        return view('user_profile.message');
+        $loginDate = auth()->user()->created_at->format('Y-m-d');
+
+        $notifications = Notification::whereDate('created_at', '>=', $loginDate)->get();
+
+        return view('user_profile.message', compact('notifications'));
     }
 
     public function ordersView()
@@ -58,5 +63,9 @@ class ProfileController extends Controller
     {
         $user_addresses = auth()->user()->addresses()->get();
         return view('user_profile.address', compact('user_addresses'));
+    }
+    public function getNotificationDetail(Notification $notification)
+    {
+        return view('user_profile.notofication_datail', compact('notification'));
     }
 }

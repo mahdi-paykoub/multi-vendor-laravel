@@ -142,11 +142,27 @@
 
                 <li>
                     <a href="{{route('admin.select.category.view')}}"><i class="bx bx-left-arrow-alt"></i>
-                            لندینگ دسته محصولات
+                        لندینگ دسته محصولات
                     </a>
                 </li>
 
+
             </ul>
+            </li>
+            <li>
+                <a href="javascript:;" class="has-arrow" aria-expanded="false">
+                    <div class="parent-icon"><i class="fadeIn animated bx bx-message-square-edit"></i>
+                    </div>
+                    <div class="menu-title">پیغام ها</div>
+                </a>
+                <ul class="mm-collapse">
+                    <li><a href="{{route('admin.notification.index')}}"><i class="bx bx-left-arrow-alt"></i>پیغام ها</a>
+                    </li>
+
+                    <li><a href="{{route('admin.notification.create')}}"><i class="bx bx-left-arrow-alt"></i> ساخت پیغام</a>
+                    </li>
+
+                </ul>
             </li>
             <li>
                 <a href="javascript:;" class="has-arrow">

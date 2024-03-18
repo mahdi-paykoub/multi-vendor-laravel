@@ -103,7 +103,9 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/comments', [\App\Http\Controllers\userProfile\ProfileController::class, 'commentsView'])->name('comments.profile');
     Route::get('/identify-confirmation', [\App\Http\Controllers\userProfile\ProfileController::class, 'identifyView'])->name('identify.profile');
     Route::get('/info', [\App\Http\Controllers\userProfile\ProfileController::class, 'infoView'])->name('info.profile');
-    Route::get('/message', [\App\Http\Controllers\userProfile\ProfileController::class, 'messageView'])->name('message.profile');
+    Route::get('/notification', [\App\Http\Controllers\userProfile\ProfileController::class, 'messageView'])->name('message.profile');
+    Route::get('/notification/detail/{notification}', [\App\Http\Controllers\userProfile\ProfileController::class, 'getNotificationDetail'])->name('notification.detail.profile');
+
     Route::get('/orders', [\App\Http\Controllers\userProfile\ProfileController::class, 'ordersView'])->name('orders.profile');
     Route::get('/lists', [\App\Http\Controllers\userProfile\ProfileController::class, 'wishListView'])->name('lists.profile');
     Route::get('/address', [\App\Http\Controllers\userProfile\ProfileController::class, 'addressView'])->name('address.profile');
@@ -113,7 +115,6 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::post('/update/user-email', [\App\Http\Controllers\userProfile\InfoController::class, 'email_update'])->name('update.user.email');
     Route::post('/update/user-phone-number', [\App\Http\Controllers\userProfile\InfoController::class, 'phone_number_update'])->name('update.user.phoneNumber');
     Route::post('/update/user-job', [\App\Http\Controllers\userProfile\InfoController::class, 'job_update'])->name('update.user.job');
-
 });
 /*set user or seller address*/
 Route::post('/set/user/address', [\App\Http\Controllers\AddressController::class, 'setUserAddress'])->name('set.user.address');
