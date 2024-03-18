@@ -2056,6 +2056,8 @@ $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->f
                     $('.like-icon').addClass('icon-dark-color').removeClass('text-red')
                     $('.like-icon path').attr('fill', '#fff')
 
+                } else if (data.status == false) {
+                    window.location.replace(data.url);
                 }
             }
         });

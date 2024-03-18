@@ -7,6 +7,7 @@ use App\Models\Like;
 use App\Models\Product;
 use App\Models\Seller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SingleProductController extends Controller
 {
@@ -17,9 +18,12 @@ class SingleProductController extends Controller
         $attrs = $singleProduct->productAttributes()->get();
         $comments = $singleProduct->comments()->where('parent_id', 0)->orderBy('id', 'DESC')->get();
 
-        $is_liked = Like::where('user_id', auth()->user()->id)->where('product_id', $singleProduct->id)->first();
+        $is_liked = null;
+        if (Auth::check()) {
+            $is_liked = Like::where('user_id', auth()->user()->id)->where('product_id', $singleProduct->id)->first();
+        }
 
-        return view('product.singleProduct', compact('singleProduct', 'images', 'infos', 'attrs', 'comments','is_liked'));
+        return view('product.singleProduct', compact('singleProduct', 'images', 'infos', 'attrs', 'comments', 'is_liked'));
     }
 
     public function getProductInfoByColor(Request $request)
@@ -48,21 +52,24 @@ class SingleProductController extends Controller
     }
     public function like_product(Request $request)
     {
-        $validData = $request->validate([
-            'productId' => 'required',
-        ]);
-
-        $is_like = Like::where('user_id', auth()->user()->id)->where('product_id', $validData['productId'])->first();
-
-        if ($is_like == null) {
-            Like::create([
-                'user_id' => auth()->user()->id,
-                'product_id' => $validData['productId']
+        if (Auth::check()) {
+            $validData = $request->validate([
+                'productId' => 'required',
             ]);
-            return response(['status' => 'create']);
-        } else {
-            $is_like->delete();
-            return response(['status' => 'delete']);
+
+            $is_like = Like::where('user_id', auth()->user()->id)->where('product_id', $validData['productId'])->first();
+
+            if ($is_like == null) {
+                Like::create([
+                    'user_id' => auth()->user()->id,
+                    'product_id' => $validData['productId']
+                ]);
+                return response(['status' => 'create']);
+            } else {
+                $is_like->delete();
+                return response(['status' => 'delete']);
+            }
         }
+        return response(['status' => false, 'url' => route('login')]);
     }
 }
