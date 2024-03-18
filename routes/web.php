@@ -17,8 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('main');
 Route::get('/blog/{articleSinglePage}', [\App\Http\Controllers\SingleArticleController::class, 'showSingleBlog'])->name('single.blog');
 Route::get('/product/{singleProduct}', [\App\Http\Controllers\SingleProductController::class, 'showSingleProduct'])->name('single.product.view');
+
+
 /*ajax*/
 Route::post('/get-product-info-by-color', [\App\Http\Controllers\SingleProductController::class, 'getProductInfoByColor']);
+Route::post('/like/product', [\App\Http\Controllers\SingleProductController::class, 'like_product']);
+
 
 /*shop cart*/
 Route::post('/add-to-cart/{productInfo}', [\App\Http\Controllers\CartController::class, 'add_to_cart'])->name('add.to.cart');

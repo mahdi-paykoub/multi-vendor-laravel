@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\Cart;
+use App\Models\Like;
 use App\Models\Product;
 use App\Models\Seller;
 use Illuminate\Http\Request;
@@ -16,7 +17,9 @@ class SingleProductController extends Controller
         $attrs = $singleProduct->productAttributes()->get();
         $comments = $singleProduct->comments()->where('parent_id', 0)->orderBy('id', 'DESC')->get();
 
-        return view('product.singleProduct', compact('singleProduct', 'images', 'infos', 'attrs','comments'));
+        $is_liked = Like::where('user_id', auth()->user()->id)->where('product_id', $singleProduct->id)->first();
+
+        return view('product.singleProduct', compact('singleProduct', 'images', 'infos', 'attrs', 'comments','is_liked'));
     }
 
     public function getProductInfoByColor(Request $request)
@@ -42,5 +45,24 @@ class SingleProductController extends Controller
         }
 
         return response($returned_data);
+    }
+    public function like_product(Request $request)
+    {
+        $validData = $request->validate([
+            'productId' => 'required',
+        ]);
+
+        $is_like = Like::where('user_id', auth()->user()->id)->where('product_id', $validData['productId'])->first();
+
+        if ($is_like == null) {
+            Like::create([
+                'user_id' => auth()->user()->id,
+                'product_id' => $validData['productId']
+            ]);
+            return response(['status' => 'create']);
+        } else {
+            $is_like->delete();
+            return response(['status' => 'delete']);
+        }
     }
 }
