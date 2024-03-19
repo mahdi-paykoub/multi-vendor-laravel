@@ -130,3 +130,17 @@
 .dropdown-del-adr-menu{
     min-width: 200px !important;
 }
+.wish-inp{
+    border-radius: 7px;
+    
+    border: 1px solid #e0e0e2;
+}
+.h40{
+    height: 40px;
+}
+.h120{
+    height: 120px;
+}
+.empty-wish-list-box{
+    background-color: #4696e30d;
+}

@@ -102,7 +102,7 @@
                     <div class="col-6 col-md-5 col-lg-3 text-center py-5">
                         <img src="{{url('assets/frontend/image/text/favorites-list-empty.svg')}}" class="w-100 p-3" alt="">
                         <div class="fs14 icon-dark-color">
-                          لیست علاقه مندی شما خالی است
+                            لیست علاقه مندی شما خالی است
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                 <div class="fs14">اینجا می‌توانید لیست‌های مختلف از کالاهای محبوبتان بسازید و به دیگران
                     پیشنهاد دهید.
                 </div>
-                <button class="btn btn-danger fs14 bg-digi-red">
+                <button class="btn btn-danger fs14 bg-digi-red br7" data-bs-toggle="modal" data-bs-target="#addWishListModal">
                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
                         <path d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
@@ -129,11 +129,18 @@
             <!--full-->
             <div class="row px-4 pb-4">
                 <div class="col-12 col-lg-6 mt-3">
-                    <div class="border-responsive br10 p-lg-4">
+                    <div class="border-responsive br10 p-lg-4 h-100">
                         <div class="fw600 fs13">عنوان</div>
+                        <div class="">
+                            <img width="48" height="50" class="object-fit-cover mt-4 ms-2" src="{{url('assets/frontend/image/product/664d3783527b060deb7d4eedb71b5ce283adc598_1611391561.webp')}}" alt="">
+                        </div>
                         <div class="mt-3 lh2 text-secondary fs11">
                             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
                             گرافیک است. چاپگرها وتری ر.
+                        </div>
+                        <div class="empty-wish-list-box p-1 mt-3 d-flex align-items-center justify-content-center">
+                            <img src="{{url('assets/frontend/image/text/wish-list.svg')}}" width="56" height="50" alt="">
+                            <div class="fs12">این لیست خالی است!</div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-4">
                             <button class="btn btn-outline-danger fs12 br7">
@@ -151,95 +158,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 mt-3">
-                    <div class="border-responsive br10 p-lg-4">
-                        <div class="fw600 fs13">عنوان</div>
-                        <div class="mt-3 lh2 text-secondary fs11">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                            گرافیک است. چاپگرها وتری ر.
+
+
+            </div>
+
+
+            <!-- add whish list modal -->
+            <div class="modal fade" id="addWishListModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down modal-dialog-scrollable">
+                    <div class="modal-content border-0">
+                        <div class="d-flex justify-content-between p-3 border-bottom">
+                            <div class="modal-title fw600" id="exampleModalLabel">ساختن لیست</div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mt-4">
-                            <button class="btn btn-outline-danger fs12 br7">
-                                <svg stroke="currentColor" class="ms-1" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 12c0 1.654 1.346 3 3 3 .794 0 1.512-.315 2.049-.82l5.991 3.424c-.018.13-.04.26-.04.396 0 1.654 1.346 3 3 3s3-1.346 3-3-1.346-3-3-3c-.794 0-1.512.315-2.049.82L8.96 12.397c.018-.131.04-.261.04-.397s-.022-.266-.04-.397l5.991-3.423c.537.505 1.255.82 2.049.82 1.654 0 3-1.346 3-3s-1.346-3-3-3-3 1.346-3 3c0 .136.022.266.04.397L8.049 9.82A2.982 2.982 0 0 0 6 9c-1.654 0-3 1.346-3 3z"></path>
-                                </svg>
-                                اشتراک گذاری
-                            </button>
-                            <a href="" class="fs12 text-info fw600">
-                                مشاهده و ویرایش
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="17" width="17" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 mt-3">
-                    <div class="border-responsive br10 p-lg-4">
-                        <div class="fw600 fs13">عنوان</div>
-                        <div class="mt-3 lh2 text-secondary fs11">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                            گرافیک است. چاپگرها وتری ر.
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mt-4">
-                            <button class="btn btn-outline-danger fs12 br7">
-                                <svg stroke="currentColor" class="ms-1" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 12c0 1.654 1.346 3 3 3 .794 0 1.512-.315 2.049-.82l5.991 3.424c-.018.13-.04.26-.04.396 0 1.654 1.346 3 3 3s3-1.346 3-3-1.346-3-3-3c-.794 0-1.512.315-2.049.82L8.96 12.397c.018-.131.04-.261.04-.397s-.022-.266-.04-.397l5.991-3.423c.537.505 1.255.82 2.049.82 1.654 0 3-1.346 3-3s-1.346-3-3-3-3 1.346-3 3c0 .136.022.266.04.397L8.049 9.82A2.982 2.982 0 0 0 6 9c-1.654 0-3 1.346-3 3z"></path>
-                                </svg>
-                                اشتراک گذاری
-                            </button>
-                            <a href="" class="fs12 text-info fw600">
-                                مشاهده و ویرایش
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="17" width="17" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 mt-3">
-                    <div class="border-responsive br10 p-lg-4">
-                        <div class="fw600 fs13">عنوان</div>
-                        <div class="mt-3 lh2 text-secondary fs11">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                            گرافیک است. چاپگرها وتری ر.
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mt-4">
-                            <button class="btn btn-outline-danger fs12 br7">
-                                <svg stroke="currentColor" class="ms-1" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 12c0 1.654 1.346 3 3 3 .794 0 1.512-.315 2.049-.82l5.991 3.424c-.018.13-.04.26-.04.396 0 1.654 1.346 3 3 3s3-1.346 3-3-1.346-3-3-3c-.794 0-1.512.315-2.049.82L8.96 12.397c.018-.131.04-.261.04-.397s-.022-.266-.04-.397l5.991-3.423c.537.505 1.255.82 2.049.82 1.654 0 3-1.346 3-3s-1.346-3-3-3-3 1.346-3 3c0 .136.022.266.04.397L8.049 9.82A2.982 2.982 0 0 0 6 9c-1.654 0-3 1.346-3 3z"></path>
-                                </svg>
-                                اشتراک گذاری
-                            </button>
-                            <a href="" class="fs12 text-info fw600">
-                                مشاهده و ویرایش
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="17" width="17" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 mt-3">
-                    <div class="border-responsive br10 p-lg-4">
-                        <div class="fw600 fs13">عنوان</div>
-                        <div class="mt-3 lh2 text-secondary fs11">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                            گرافیک است. چاپگرها وتری ر.
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mt-4">
-                            <button class="btn btn-outline-danger fs12 br7">
-                                <svg stroke="currentColor" class="ms-1" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 12c0 1.654 1.346 3 3 3 .794 0 1.512-.315 2.049-.82l5.991 3.424c-.018.13-.04.26-.04.396 0 1.654 1.346 3 3 3s3-1.346 3-3-1.346-3-3-3c-.794 0-1.512.315-2.049.82L8.96 12.397c.018-.131.04-.261.04-.397s-.022-.266-.04-.397l5.991-3.423c.537.505 1.255.82 2.049.82 1.654 0 3-1.346 3-3s-1.346-3-3-3-3 1.346-3 3c0 .136.022.266.04.397L8.049 9.82A2.982 2.982 0 0 0 6 9c-1.654 0-3 1.346-3 3z"></path>
-                                </svg>
-                                اشتراک گذاری
-                            </button>
-                            <a href="" class="fs12 text-info fw600">
-                                مشاهده و ویرایش
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="17" width="17" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
-                                </svg>
-                            </a>
+                        <div class="modal-body">
+                            <form action="">
+                                <div class="">
+                                    <label for="" class="fs14">عنوان لیست*</label>
+                                    <input type="text" class="w-100 mt-2 px-2 wish-inp h40 text-secondary fs14">
+                                </div>
+                                <div class="mt-4">
+                                    <label for="" class="fs14">توضیحات</label>
+                                    <div>
+                                        <textarea name="" class="w-100 wish-inp mt-2 p-2 h120 text-secondary fs14" id="" cols="20"></textarea>
+                                    </div>
+                                </div>
+                                <div class="mt-3 text-start">
+                                    <button class="btn btn-outline-danger px-3 br10 fs15 ms-2">انصراف</button>
+
+                                    <button class="btn btn-danger bg-digi-red br10 fs15">تایید</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
