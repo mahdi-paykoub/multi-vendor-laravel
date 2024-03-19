@@ -111,7 +111,9 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/lists', [\App\Http\Controllers\userProfile\ProfileController::class, 'wishListView'])->name('lists.profile');
     Route::get('/wish-list/{wishList}/details', [\App\Http\Controllers\userProfile\ProfileController::class, 'wishListDetailView'])->name('wish.lists.detail.profile');
 
+
     Route::post('/add/wish-lists', [WishListController::class, 'addWishList'])->name('add.wish.list');
+    Route::delete('/delete/wish-lists/{wishList}', [WishListController::class, 'deleteWishList'])->name('delete.wish.list');
 
 
     Route::get('/address', [\App\Http\Controllers\userProfile\ProfileController::class, 'addressView'])->name('address.profile');

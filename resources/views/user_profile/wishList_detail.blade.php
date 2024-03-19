@@ -28,15 +28,21 @@
             <div class="fw600 icon-dark-color">
                 {{ $wishList->title }}
             </div>
-            <div class="cursor-pointer">
-                <svg stroke="currentColor" class="icon-dark-color" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="none" d="M0 0h24v24H0V0z"></path>
-                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5-1-1h-5l-1 1H5v2h14V4z"></path>
-                </svg>
+            <div class="cursor-pointer d-flex align-items-center">
+                <form action="{{route('delete.wish.list' ,$wishList->id )}}" method="post">
+                    @csrf
+                    @method('delete')
+                    <button class="border-0 bg-transparent">
+                    <svg  stroke="currentColor" class="icon-dark-color" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="none" d="M0 0h24v24H0V0z"></path>
+                        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5-1-1h-5l-1 1H5v2h14V4z"></path>
+                    </svg>
+                    </button>
+                </form>
+
                 <svg stroke="currentColor" class="icon-dark-color" style="transform: rotate(180deg);" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M384 64a64 64 0 0 0-64 64 64 64 0 0 0 1.1 11.3l-146.3 73.2A64 64 0 0 0 128 192a64 64 0 0 0-64 64 64 64 0 0 0 64 64 64 64 0 0 0 46.8-20.5L321 372.7a64 64 0 0 0-1 11.3 64 64 0 0 0 64 64 64 64 0 0 0 64-64 64 64 0 0 0-64-64 64 64 0 0 0-46.8 20.5L191 267.4a64 64 0 0 0 1-11.4 64 64 0 0 0-1.1-11.4l146.3-73.1A64 64 0 0 0 384 192a64 64 0 0 0 64-64 64 64 0 0 0-64-64z"></path>
                 </svg>
-
             </div>
         </div>
         <div class="mt-3 fs14 text-secondary">

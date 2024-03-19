@@ -18,4 +18,9 @@ class WishListController extends Controller
         auth()->user()->wishLists()->create($validData);
         return back();
     }
+    public function deleteWishList(WishList $wishList)
+    {
+        $wishList->delete();
+        return redirect(route('lists.profile'));
+    }
 }
