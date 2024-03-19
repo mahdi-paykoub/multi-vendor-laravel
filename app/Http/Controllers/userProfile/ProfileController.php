@@ -71,4 +71,8 @@ class ProfileController extends Controller
     {
         return view('user_profile.notofication_datail', compact('notification'));
     }
+    public function wishListDetailView(WishList $wishList)
+    {
+        return view('user_profile.wishList_detail', compact('wishList'));
+    }
 }

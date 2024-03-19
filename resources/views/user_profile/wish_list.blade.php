@@ -151,7 +151,7 @@
                                 </svg>
                                 اشتراک گذاری
                             </button>
-                            <a href="" class="fs12 text-info fw600">
+                            <a href="/profile/wish-list/{{$wishList->id}}/details" class="fs12 text-info fw600">
                                 مشاهده و ویرایش
                                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="17" width="17" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
@@ -213,7 +213,7 @@
                         <div class="col-6 col-lg-3 mt-4 mt-lg-0 text-center">
                             <img src="{{url('assets/frontend/image/text/wish-list-birth.svg')}}" width="36" height="36" alt="">
                             <div class="fw600 fs12 icon-dark-color mt-1">
-                                آرزوها 
+                                آرزوها
                             </div>
                             <div class="text-secondary fs12 mt-2 lh2">
                                 کالاهایی که دوست دارید در آینده داشته باشید.
