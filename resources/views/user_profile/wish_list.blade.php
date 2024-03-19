@@ -127,16 +127,18 @@
 
 
             <!--full-->
+
             <div class="row px-4 pb-4">
+                @if (count($wishLists) != 0)
+                @foreach ($wishLists as $wishList)
                 <div class="col-12 col-lg-6 mt-3">
                     <div class="border-responsive br10 p-lg-4 h-100">
-                        <div class="fw600 fs13">عنوان</div>
+                        <div class="fw600 fs13">{{ $wishList->title }}</div>
                         <div class="">
                             <img width="48" height="50" class="object-fit-cover mt-4 ms-2" src="{{url('assets/frontend/image/product/664d3783527b060deb7d4eedb71b5ce283adc598_1611391561.webp')}}" alt="">
                         </div>
                         <div class="mt-3 lh2 text-secondary fs11">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                            گرافیک است. چاپگرها وتری ر.
+                            {{ $wishList->description }}
                         </div>
                         <div class="empty-wish-list-box p-1 mt-3 d-flex align-items-center justify-content-center">
                             <img src="{{url('assets/frontend/image/text/wish-list.svg')}}" width="56" height="50" alt="">
@@ -158,8 +160,68 @@
                         </div>
                     </div>
                 </div>
-
-
+                @endforeach
+                @else
+                <!--empty-->
+                <div class="row justify-content-center pt-lg-5">
+                    <div class="col-6 col-md-5 col-lg-3 text-center">
+                        <img src="{{url('assets/frontend/image/text/wish-list.svg')}}" class="w-100 p-3" alt="">
+                        <div class="fs14 icon-dark-color">
+                            هنوز هیچ لیستی نساخته اید
+                        </div>
+                        <button class="btn btn-outline-danger fs12 br7 mt-3 d-lg-none">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
+                                <path d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
+                            </svg>
+                            ساختن لیست جدید
+                        </button>
+                    </div>
+                    <div class="text-center mt-4 pt-2">
+                        <div class="fs15 text-secondary">
+                            می‌توانید از لیست‌های زیر اﺳﺘﻔﺎده ﮐﻨﯿﺪ یا لیست خلاقانه خود را بسازید.
+                        </div>
+                    </div>
+                    <div class="row mt-5 pb-5">
+                        <div class="col-6 col-lg-3 text-center">
+                            <img src="{{url('assets/frontend/image/text/wish-list-home.svg')}}" width="36" height="36" alt="">
+                            <div class="fw600 fs12 icon-dark-color mt-1">
+                                خرید روزانه
+                            </div>
+                            <div class="text-secondary fs12 mt-2 lh2">
+                                خرید های روزانه را به صورت یکجا در اینجا ثبت کنید
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3 text-center">
+                            <img src="{{url('assets/frontend/image/text/wish-list-home.svg')}}" width="36" height="36" alt="">
+                            <div class="fw600 fs12 icon-dark-color mt-1">
+                                پیشنهاد به دوستان
+                            </div>
+                            <div class="text-secondary fs12 mt-2 lh2">
+                                کالاهای موردنظرتان را به دوستان پیشنهاد کنید.
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3 mt-4 mt-lg-0 text-center">
+                            <img src="{{url('assets/frontend/image/text/wish-list-birthday.svg')}}" width="36" height="36" alt="">
+                            <div class="fw600 fs12 icon-dark-color mt-1">
+                                هدیه‌ها
+                            </div>
+                            <div class="text-secondary fs12 mt-2 lh2">
+                                برای هدیه خریدن، از قبل ایده‌هایتان را جمع کنید.
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3 mt-4 mt-lg-0 text-center">
+                            <img src="{{url('assets/frontend/image/text/wish-list-birth.svg')}}" width="36" height="36" alt="">
+                            <div class="fw600 fs12 icon-dark-color mt-1">
+                                آرزوها 
+                            </div>
+                            <div class="text-secondary fs12 mt-2 lh2">
+                                کالاهایی که دوست دارید در آینده داشته باشید.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
             </div>
 
 
@@ -172,88 +234,28 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="">
+                            <form action="{{route('add.wish.list')}}" method="post">
+                                @csrf
                                 <div class="">
                                     <label for="" class="fs14">عنوان لیست*</label>
-                                    <input type="text" class="w-100 mt-2 px-2 wish-inp h40 text-secondary fs14">
+                                    <input type="text" name="title" class="w-100 mt-2 px-2 wish-inp h40 text-secondary fs14">
                                 </div>
                                 <div class="mt-4">
                                     <label for="" class="fs14">توضیحات</label>
                                     <div>
-                                        <textarea name="" class="w-100 wish-inp mt-2 p-2 h120 text-secondary fs14" id="" cols="20"></textarea>
+                                        <textarea name="description" class="w-100 wish-inp mt-2 p-2 h120 text-secondary fs14" id="" cols="20"></textarea>
                                     </div>
                                 </div>
                                 <div class="mt-3 text-start">
-                                    <button class="btn btn-outline-danger px-3 br10 fs15 ms-2">انصراف</button>
-
-                                    <button class="btn btn-danger bg-digi-red br10 fs15">تایید</button>
+                                    <button class="btn btn-outline-danger px-3 br10 fs15 ms-2" type="button">انصراف</button>
+                                    <button class="btn btn-danger bg-digi-red br10 fs15" type="submit">تایید</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--empty-->
-            <!--  <div class="row justify-content-center pt-lg-5">
-                      <div class="col-6 col-md-5 col-lg-3 text-center">
-                          <img src="assets/image/text/wish-list.svg" class="w-100 p-3" alt="">
-                          <div class="fs14 icon-dark-color">
-                              هنوز هیچ لیستی نساخته اید
-                          </div>
-                          <button class="btn btn-outline-danger fs12 br7 mt-3 d-lg-none">
-                              <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                   viewBox="0 0 1024 1024"
-                                   height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"></path>
-                                  <path d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"></path>
-                              </svg>
-                              ساختن لیست جدید
-                          </button>
-                      </div>
-                      <div class="text-center mt-4">
-                          <div class="fs14 text-secondary">
-                              می‌توانید از لیست‌های زیر اﺳﺘﻔﺎده ﮐﻨﯿﺪ یا لیست خلاقانه خود را بسازید.
-                          </div>
-                      </div>
-                      <div class="row mt-5 pb-5">
-                          <div class="col-6 col-lg-3 text-center">
-                              <img src="assets/image/text/wish-list-home.svg" width="36" height="36" alt="">
-                              <div class="fw600 fs12 icon-dark-color mt-1">
-                                  خرید روزانه
-                              </div>
-                              <div class="text-secondary fs12 mt-2 lh2">
-                                  خرید های روزانه را به صورت یکجا در اینجا ثبت کنید
-                              </div>
-                          </div>
-                          <div class="col-6 col-lg-3 text-center">
-                              <img src="assets/image/text/wish-list-home.svg" width="36" height="36" alt="">
-                              <div class="fw600 fs12 icon-dark-color mt-1">
-                                  خرید روزانه
-                              </div>
-                              <div class="text-secondary fs12 mt-2 lh2">
-                                  خرید های روزانه را به صورت یکجا در اینجا ثبت کنید
-                              </div>
-                          </div>
-                          <div class="col-6 col-lg-3 mt-4 mt-lg-0 text-center">
-                              <img src="assets/image/text/wish-list-birthday.svg" width="36" height="36" alt="">
-                              <div class="fw600 fs12 icon-dark-color mt-1">
-                                  خرید روزانه
-                              </div>
-                              <div class="text-secondary fs12 mt-2 lh2">
-                                  خرید های روزانه را به صورت یکجا در اینجا ثبت کنید
-                              </div>
-                          </div>
-                          <div class="col-6 col-lg-3 mt-4 mt-lg-0 text-center">
-                              <img src="assets/image/text/wish-list-birth.svg" width="36" height="36" alt="">
-                              <div class="fw600 fs12 icon-dark-color mt-1">
-                                  خرید روزانه
-                              </div>
-                              <div class="text-secondary fs12 mt-2 lh2">
-                                  خرید های روزانه را به صورت یکجا در اینجا ثبت کنید
-                              </div>
-                          </div>
-                      </div>
-                  </div>-->
+
         </div>
         <!-- notofication -->
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">

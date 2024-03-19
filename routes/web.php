@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\userProfile\WishListController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -108,6 +109,9 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 
     Route::get('/orders', [\App\Http\Controllers\userProfile\ProfileController::class, 'ordersView'])->name('orders.profile');
     Route::get('/lists', [\App\Http\Controllers\userProfile\ProfileController::class, 'wishListView'])->name('lists.profile');
+    Route::post('/add/wish-lists', [WishListController::class, 'addWishList'])->name('add.wish.list');
+
+
     Route::get('/address', [\App\Http\Controllers\userProfile\ProfileController::class, 'addressView'])->name('address.profile');
 
     Route::post('/update/user-name', [\App\Http\Controllers\userProfile\InfoController::class, 'name_update'])->name('update.user.name');

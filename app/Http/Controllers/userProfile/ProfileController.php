@@ -8,6 +8,7 @@ use App\Models\Like;
 use App\Models\Notification;
 use App\Models\Product;
 use App\Models\UserInfo;
+use App\Models\WishList;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -56,7 +57,9 @@ class ProfileController extends Controller
         foreach ($liked_posts as $liked_post) {
             $products[] = Product::where('id', $liked_post->product_id)->first();
         }
-        return view('user_profile.wish_list', compact('products'));
+
+        $wishLists = auth()->user()->wishLists()->get();
+        return view('user_profile.wish_list', compact('products', 'wishLists'));
     }
 
     public function addressView()
