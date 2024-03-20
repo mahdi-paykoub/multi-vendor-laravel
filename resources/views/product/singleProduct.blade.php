@@ -1602,6 +1602,7 @@ $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->f
 <div class="modal fade" id="registerToWishListModal" tabindex="-1" aria-labelledby="registerToWishListModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content p-3 border-0">
+
             <div class="d-flex justify-content-between border-bottom pb-3">
                 <div class="d-flex align-items-center">
                     <div class="fs15 me-2 fw600">افزودن به لیست</div>
@@ -1609,6 +1610,7 @@ $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->f
 
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            @auth
 
             <div class="mt-4 fs15">
                 کالا را به کدام لیست اضافه می‌کنید؟
@@ -1646,6 +1648,14 @@ $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->f
                     </div>
                 </form>
             </div>
+            @endauth
+            @guest
+            <div class="mt-4 fs14">
+                برای ثبت در علاقه مندی ابتدا <a href="{{route('login')}}">وارد</a> سایت شوید
+              
+            </div>
+            @endguest
+
         </div>
     </div>
 </div>
