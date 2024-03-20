@@ -51,4 +51,8 @@ class Product extends Model
     {
         return $this->hasMany(Gallery::class);
     }
+    public function wishLists()
+    {
+        return $this->belongsToMany(WishList::class);
+    }
 }

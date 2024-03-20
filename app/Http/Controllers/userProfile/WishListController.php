@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\userProfile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\WishList;
 use Illuminate\Http\Request;
 
@@ -22,5 +23,15 @@ class WishListController extends Controller
     {
         $wishList->delete();
         return redirect(route('lists.profile'));
+    }
+    public function addProductToWishList(Request $request)
+    {
+
+        if (!isset($request['productId'])) {
+            return response(['status' => false, 'msg' => 'اشکال در ارتباط']);
+        }
+
+        Product::find($request['productId'])->wishLists()->sync($request['wish_list_ids']);
+        return response(['status' => true, 'msg' => 'عملیات با موفقیت انجام شد.']);
     }
 }

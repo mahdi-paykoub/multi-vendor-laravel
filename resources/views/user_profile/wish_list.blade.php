@@ -32,13 +32,15 @@
         </li>
         <li class="nav-item" role="presentation">
             <button class="bg-transparent border-0 px-3  text-secondary fs15res active-user-tab-menu" id="delivered-orders" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"> لیست عمومی
-                <span class="badge bg-secondary-4">۱</span>
+                @if (count($wishLists) != 0)
+                <span class="badge bg-secondary-4 fv">{{ count($wishLists) }}</span>
+                @endif
             </button>
             <div class="mt-2"></div>
         </li>
         <li class="nav-item" role="presentation">
             <button class="bg-transparent border-0 px-3  text-secondary fs15res active-user-tab-menu" id="delivered-orders" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="profile" aria-selected="false"> اطلاع‌رسانی‌ها
-                <span class="badge bg-secondary-4">۱</span>
+   
             </button>
             <div class="mt-2"></div>
         </li>

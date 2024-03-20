@@ -158,7 +158,7 @@ $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->f
                         </svg>
                     </div>
                     <div class="mt-3 pt-1">
-                        <svg stroke="currentColor" class="icon-dark-color" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="26" width="26" xmlns="http://www.w3.org/2000/svg">
+                        <svg stroke="currentColor" data-bs-toggle="modal" data-bs-target="#registerToWishListModal" class="icon-dark-color cursor-pointer" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="26" width="26" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19 15v-3h-2v3h-3v2h3v3h2v-3h3v-2h-.937zM4 7h11v2H4zm0 4h11v2H4zm0 4h8v2H4z">
                             </path>
                         </svg>
@@ -1567,7 +1567,7 @@ $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->f
 
 
 
-<!-- Modal -->
+<!-- added to cart Modal -->
 <div class="modal fade" id="showCart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content p-3 border-0">
@@ -1594,6 +1594,57 @@ $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->f
             <div>
                 <a href="{{route('shop.cart.view')}}" style="padding: 10px 0;" class="single-product-add-to-cart-btn w-100 text-white br7 border-0 d-block text-center mt-3 bg-digi-red fs14 ">برو
                     به سبد خرید</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- register to wish list modal -->
+<div class="modal fade" id="registerToWishListModal" tabindex="-1" aria-labelledby="registerToWishListModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3 border-0">
+            <div class="d-flex justify-content-between border-bottom pb-3">
+                <div class="d-flex align-items-center">
+                    <div class="fs15 me-2 fw600">افزودن به لیست</div>
+                </div>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="mt-4 fs15">
+                کالا را به کدام لیست اضافه می‌کنید؟
+            </div>
+            <div class="mt-2">
+                <form action="{{route('add.product.to.wish.list')}}" method="post">
+                    @csrf
+                    <a href="{{route('lists.profile')}}">
+                        <div class="d-flex align-items-center border p-3 br7 mt-2">
+                            <svg stroke="currentColor" class="text-info" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="text-secondary-2 ms-2 cursor-pointer add-positive-point" height="22" width="22" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z">
+                                </path>
+                                <path d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z">
+                                </path>
+                            </svg>
+                            <div class="me-3 fs14 text-info">لیست جدید</div>
+                        </div>
+                    </a>
+                    @foreach ($wishLists as $wishList)
+                    @php
+                    $product_ids = $wishList->products()->pluck('id');
+
+                    $check_status = $product_ids->contains($singleProduct->id) ? 'checked' : ''
+                    @endphp
+                    <div class="d-flex align-items-center border p-3 br7 mt-2">
+                        <input id="{{ $wishList->title }}-{{  $wishList->id }}" type="checkbox" {{ $check_status }} name="wish_list_ids[]" value="{{ $wishList->id }}" class="form-check-input mb-1">
+                        <label class="me-3 fs15" for="{{ $wishList->title }}-{{  $wishList->id }}">{{ $wishList->title }}</label>
+                    </div>
+                    @endforeach
+
+
+                    <div class="mt-4 text-start">
+                        <button class="btn btn-outline-danger px-3 br10 fs15 ms-1" type="button">انصراف</button>
+                        <button data-productid="{{$singleProduct->id}}" class="btn btn-danger bg-digi-red br10 fs15 send-product-wish-list-ids" type="button">تایید</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -2060,6 +2111,42 @@ $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->f
                     window.location.replace(data.url);
                 }
             }
+        });
+    })
+
+    $('.send-product-wish-list-ids').click(function() {
+        $this = $(this)
+        $productId = $this.attr('data-productid')
+        var values = $("input[name='wish_list_ids[]']").map(function() {
+            if ($(this).is(":checked")) {
+                return $(this).val();
+            }
+        }).get();
+        console.log(values)
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                'Content-Type': 'application/json'
+            }
+        })
+
+        $.ajax({
+            type: 'POST',
+            url: '/profile/add/product/to/wish-lists',
+            data: JSON.stringify({
+                productId: $productId,
+                wish_list_ids: values
+            }),
+            success: function(data) {
+                if (!data.status) {
+                    toast(data.msg)
+                }
+                if (data.status) {
+                    $('#registerToWishListModal').modal('hide')
+                    toast(data.msg)
+                }
+            },
+
         });
     })
 </script>

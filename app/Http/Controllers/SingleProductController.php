@@ -23,7 +23,9 @@ class SingleProductController extends Controller
             $is_liked = Like::where('user_id', auth()->user()->id)->where('product_id', $singleProduct->id)->first();
         }
 
-        return view('product.singleProduct', compact('singleProduct', 'images', 'infos', 'attrs', 'comments', 'is_liked'));
+        $wishLists = auth()->user()->wishLists()->get();
+
+        return view('product.singleProduct', compact('singleProduct', 'images', 'infos', 'attrs', 'comments', 'is_liked' ,'wishLists'));
     }
 
     public function getProductInfoByColor(Request $request)

@@ -114,6 +114,8 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 
     Route::post('/add/wish-lists', [WishListController::class, 'addWishList'])->name('add.wish.list');
     Route::delete('/delete/wish-lists/{wishList}', [WishListController::class, 'deleteWishList'])->name('delete.wish.list');
+    // ajax
+    Route::post('/add/product/to/wish-lists', [WishListController::class, 'addProductToWishList'])->name('add.product.to.wish.list');
 
 
     Route::get('/address', [\App\Http\Controllers\userProfile\ProfileController::class, 'addressView'])->name('address.profile');
