@@ -40,7 +40,7 @@
         </li>
         <li class="nav-item" role="presentation">
             <button class="bg-transparent border-0 px-3  text-secondary fs15res active-user-tab-menu" id="delivered-orders" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="profile" aria-selected="false"> اطلاع‌رسانی‌ها
-   
+
             </button>
             <div class="mt-2"></div>
         </li>
@@ -133,19 +133,29 @@
             <div class="row px-4 pb-4">
                 @if (count($wishLists) != 0)
                 @foreach ($wishLists as $wishList)
+                @php
+                $products= $wishList->products()->get();
+                @endphp
                 <div class="col-12 col-lg-6 mt-3">
                     <div class="border-responsive br10 p-lg-4 h-100">
                         <div class="fw600 fs13">{{ $wishList->title }}</div>
                         <div class="">
-                            <img width="48" height="50" class="object-fit-cover mt-4 ms-2" src="{{url('assets/frontend/image/product/664d3783527b060deb7d4eedb71b5ce283adc598_1611391561.webp')}}" alt="">
+                            @foreach ($products as $product)
+                            @php
+                            $img =$product->galleries()->first();
+                            @endphp
+                            <img width="48" height="50" class="object-fit-cover mt-4 ms-2" src="{{$img->image}}" alt="">
+                            @endforeach
                         </div>
                         <div class="mt-3 lh2 text-secondary fs11">
                             {{ $wishList->description }}
                         </div>
+                        @if (count($products) == 0)
                         <div class="empty-wish-list-box p-1 mt-3 d-flex align-items-center justify-content-center">
                             <img src="{{url('assets/frontend/image/text/wish-list.svg')}}" width="56" height="50" alt="">
                             <div class="fs12">این لیست خالی است!</div>
                         </div>
+                        @endif
                         <div class="d-flex justify-content-between align-items-center mt-4">
                             <button class="btn btn-outline-danger fs12 br7">
                                 <svg stroke="currentColor" class="ms-1" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
