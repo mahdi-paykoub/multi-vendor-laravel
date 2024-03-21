@@ -21,12 +21,16 @@ class IndexController extends Controller
         $mainBanners = GlobalOptions::where('key', 'main_banners')->get();
 
 
+
+
+
         return view('welcome', compact(
             'articles',
             'products',
             'product_parent_cats',
             'mainSliders',
-            'mainBanners'
+            'mainBanners',
+         
         ));
     }
 }

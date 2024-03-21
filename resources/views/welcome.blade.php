@@ -279,14 +279,15 @@
     <!--introduction 1-->
     <div class="row">
         @if (count($mainBanners) != 0)
-        @foreach ($mainBanners as $mainBanners)
+        @foreach ($mainBanners->slice(0,4) as $mainBanner)
         <div class="col-6 col-lg-3 mt-3">
             <a href="">
-                <img src="{{json_decode($mainBanners['value'])->img}}" class="w-100 object-cover br15 h-100" alt="">
+                <img src="{{json_decode($mainBanner['value'])->img}}" class="w-100 object-cover br15 h-100" alt="">
             </a>
         </div>
         @endforeach
         @endif
+
     </div>
 </div>
 <div class="container px-md-5">
@@ -312,16 +313,15 @@
 <div class="container">
     <!--introduction 1-->
     <div class="row mt-5">
+
+        @foreach ($mainBanners->slice(4,2) as $mainBanner)
         <div class="col-12 col-md-6">
             <a href="">
-                <img src="assets/image/banner/c76819b158cce634ace871e33ba37ecfa9873b92_1693398663.webp" class="w-100 br15 introduction-img" alt="">
+                <img src="{{json_decode($mainBanner['value'])->img}}" class="w-100 br15 introduction-img" alt="">
             </a>
         </div>
-        <div class="col-12 col-md-6 mt-3 mt-md-0">
-            <a href="">
-                <img src="assets/image/banner/6d28fce4d8f4137532b20564c132547d6d51857d_1693380989.webp" class="w-100 br15 introduction-img" alt="">
-            </a>
-        </div>
+        @endforeach
+
 
     </div>
 </div>
@@ -540,16 +540,13 @@
 <div class="container ">
     <!--introduction 2-->
     <div class="row mt-4">
+        @foreach ($mainBanners->slice(6,2) as $mainBanner)
         <div class="col-12 col-md-6">
             <a href="">
-                <img src="assets/image/banner/c76819b158cce634ace871e33ba37ecfa9873b92_1693398663.webp" class="w-100 br15 introduction-img" alt="">
+                <img src="{{json_decode($mainBanner['value'])->img}}" class="w-100 br15 introduction-img" alt="">
             </a>
         </div>
-        <div class="col-12 col-md-6 mt-3 mt-md-0">
-            <a href="">
-                <img src="assets/image/banner/6d28fce4d8f4137532b20564c132547d6d51857d_1693380989.webp" class="w-100 br15 introduction-img" alt="">
-            </a>
-        </div>
+        @endforeach
 
     </div>
 </div>

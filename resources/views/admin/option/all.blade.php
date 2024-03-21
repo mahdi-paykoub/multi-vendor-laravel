@@ -217,7 +217,7 @@
                         </div>
                     </div>
                 </div>
-                {{--first banner--}}
+                {{--banner--}}
                 <div class="mt-5">
                     <div class="alert border-0 border-start border-5 border-primary alert-dismissible fade show py-2">
                         <h5 class="fw-bold text-primary">
@@ -256,6 +256,17 @@
                     </div>
 
                 </form>
+
+
+                <div class="mt-5">
+                    <div class="alert border-0 border-start border-5 border-primary alert-dismissible fade show py-2">
+                        <h5 class="fw-bold text-primary">
+                           
+                        </h5>
+                        <small>تعیین  بنر های صفحه اصلی</small>
+                    </div>
+                </div>
+
             </div>
             <!-- menu -->
             <div class="tab-pane fade" id="primarycontact" role="tabpanel">
