@@ -1273,38 +1273,20 @@
         <!--left location-->
         <div class="ms-2 mt-2">
             <!-- Button trigger modal -->
-            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    class="border-0 fs12 icon-dark-color bg-transparent">
+            <a href="{{route('address.profile')}}"
+                    class="border-0 fs12 icon-dark-color bg-transparent text-dark">
                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="18"
                      width="18" xmlns="http://www.w3.org/2000/svg">
                     <path fill="none" stroke-width="2"
                           d="M12,22 C12,22 4,16 4,10 C4,5 8,2 12,2 C16,2 20,5 20,10 C20,16 12,22 12,22 Z M12,13 C13.657,13 15,11.657 15,10 C15,8.343 13.657,7 12,7 C10.343,7 9,8.343 9,10 C9,11.657 10.343,13 12,13 L12,13 Z"></path>
                 </svg>
                 <span class="me-2">لطفا شهر خود را انتخاب کنید</span>
-            </button>
+            </a>
             <!-- Modal -->
 
         </div>
     </nav>
 </header>
-<!-- set address modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 {{--hover--}}
 <div class="position-fixed display-none w-100 blur-page-on-focus" id="blur-page-on-focus"></div>
