@@ -54,10 +54,20 @@
 
                             <div class="mb-3">
                                 <label class="form-label">نامک دسته</label>
-                                <input type="text" class="form-control @error('slug') is-invalid @enderror" name="slug" value="{{old('slug')}}" placeholder="عنوان دسته را وارد کنید">
+                                <input type="text" class="form-control @error('slug') is-invalid @enderror" name="slug" value="{{old('slug')}}" placeholder="نامک دسته را وارد کنید">
 
                             </div>
                             @error('slug')
+                            <div class="text-danger fw-bold mb-3">
+                                {{$message}}
+                            </div>
+                            @enderror
+                            <div class="mb-3">
+                                <label class="form-label">آیکون</label>
+                                <input type="text" class="form-control @error('slug') is-invalid @enderror" name="icon" value="{{old('icon')}}" placeholder="آیکون دسته را وارد کنید">
+
+                            </div>
+                            @error('icon')
                             <div class="text-danger fw-bold mb-3">
                                 {{$message}}
                             </div>
