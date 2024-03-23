@@ -49,30 +49,24 @@ class OrderController extends Controller
                 return $cart['productInfo']['price'] * $cart['count'];
             });
 
-
             $orderItems = $cartItems->mapWithKeys(function ($cart) {
                 return [$cart['productInfo']['id'] => ['quantity' => (int)$cart['count']]];
             });
-
-
             $order = auth()->user()->orders()->create([
                 'status' => 'unpaid',
                 'price' => $price,
                 'address_id' => $user_addres->id
             ]);
-
             $order->productInfos()->attach($orderItems);
 
-
             //payment
-
             $invoice = (new Invoice)->amount(1000);
             return ShetabitPayment::callbackUrl(route('payment.callback'))->purchase($invoice, function ($driver, $transactionId) use ($order, $invoice) {
                 $order->payments()->create([
                     'res_number' => $invoice->getUuid(),
-                    //4-حذف تمام محصولات موجود در سید خرید
-                    /* $cart->flush();*/
                 ]);
+                // empty cart
+                Cart::flush();
             })->pay()->render();
         }
     }
@@ -83,14 +77,17 @@ class OrderController extends Controller
 
         try {
             $receipt = ShetabitPayment::amount(1000)->transactionId($request->clientrefid)->verify();
+            // payment status
             $payment->update([
                 'status' => 1
             ]);
-
+            // order status
             $payment->order()->update([
                 'status' => 'paid'
             ]);
-            /*redirect here*/
+
+
+
             return redirect(route('checkout.thank-you.success'));
         } catch (InvalidPaymentException $exception) {
             return redirect(route('checkout.thank-you.fail'));

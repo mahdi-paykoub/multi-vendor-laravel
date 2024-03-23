@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="container px-lg-5">
     <div class="row br10 border-responsive p-3 mt-lg-4 text-center position-relative">
         <div class="fw600 align-items-center position-absolute link-top-right d-none d-lg-flex">

@@ -339,7 +339,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="d-flex px-3 align-items-center justify-content-between text-red mt-4">
+                                <!-- <div class="d-flex px-3 align-items-center justify-content-between text-red mt-4">
                                     <div class="fs12 fw600">سود شما از خرید</div>
                                     <div class="fw600 fs18">
                                         (۲٪)
@@ -351,7 +351,7 @@
                                                 fill="currentColor"></path>
                                         </svg>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="mt-4 px-3">
                                     <a href="{{route('shipping.view')}}"
                                        class="fs14 btn btn-danger w-100 text-white bg-digi-red border-0 br10 fw600 register-order-btn">

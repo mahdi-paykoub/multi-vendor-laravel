@@ -113,6 +113,14 @@ class CartService
     }
 
 
+
+    public function flush()
+    {
+        $this->cart = collect([]);
+        session()->put('cart', $this->cart);
+        return $this;
+    }
+
     /**
      * @param $key
      * @return false|Application|ResponseFactory|\Illuminate\Foundation\Application|Response
