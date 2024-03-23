@@ -399,18 +399,53 @@ input:focus {
 }
 
 .menu-hovered {
+    display: none;
     right: 15px;
     top: 49px;
     z-index: 1000;
-    width: 88%;
     border-radius: 0 0 0 10px;
-    height: 60vh;
-    max-height: 60vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    display: none;
     box-shadow: 0 1px 3px #50505063;
 }
+.inner-menu-hover-able>div {
+    right: 190px;
+    top: 0;
+}
+.set-he {
+    height: 400px !important;
+    max-height: 400px !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.set-height-child {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+
+/* width */
+.set-height-child::-webkit-scrollbar {
+    width: 7px;
+   
+  }
+  
+  /* Track */
+.set-height-child::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  /* Handle */
+.set-height-child::-webkit-scrollbar-thumb {
+    background: #b9b9b9;
+    border-radius: 4px;
+  }
+  
+  /* Handle on hover */
+.set-height-child::-webkit-scrollbar-thumb:hover {
+    background: #919191;
+  }
+
+
 
 .inner-menu-hover-able:hover>a,
 .inner-menu-hover-able:hover>svg {
@@ -441,11 +476,7 @@ input:focus {
     display: block;
 }
 
-.inner-menu-hover-able>div {
-    right: 16.6%;
-    top: 0;
-    width: 84%;
-}
+
 
 .bg-main-left-menu {
     background: #f5f5f5;
@@ -779,8 +810,9 @@ input:focus {
     right: 10px;
     bottom: -12px;
 }
-.page-scroll-fetching nav{
-display: none;
+
+.page-scroll-fetching nav {
+    display: none;
 }
 
 
@@ -788,12 +820,15 @@ display: none;
     width: 40px;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: 
-      radial-gradient(farthest-side,#ef394e 94%,#0000) top/8px 8px no-repeat,
-      conic-gradient(#0000 30%,#ef394e);
-    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+    background:
+        radial-gradient(farthest-side, #ef394e 94%, #0000) top/8px 8px no-repeat,
+        conic-gradient(#0000 30%, #ef394e);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
     animation: l13 1s infinite linear;
-  }
-  @keyframes l13{ 
-    100%{transform: rotate(1turn)}
-  }
+}
+
+@keyframes l13 {
+    100% {
+        transform: rotate(1turn)
+    }
+}

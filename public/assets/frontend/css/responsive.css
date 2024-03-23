@@ -441,6 +441,12 @@
     .border-responsive-width {
         width: 60%;
     }
+    .menu-hovered{
+        width: 950px;
+    }
+    .inner-menu-hover-able>div {
+        width: 772px;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -472,6 +478,12 @@
 
     .border-responsive-width {
         width: 70%;
+    }
+    .menu-hovered{
+        width: 1150px;
+    }
+    .inner-menu-hover-able>div {
+        width: 973px;
     }
 }
 
