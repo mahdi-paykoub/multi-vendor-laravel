@@ -37,15 +37,7 @@
                     </div>
                 </a>
             </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" data-bs-toggle="tab" href="#primarycontact" role="tab" aria-selected="false">
-                    <div class="d-flex align-items-center">
-                        <div class="tab-icon"><i class='bx bxs-microphone font-18 me-1'></i>
-                        </div>
-                        <div class="tab-title">منو ها</div>
-                    </div>
-                </a>
-            </li>
+            
         </ul>
         <div class="tab-content py-3">
             <!-- logos -->
@@ -268,16 +260,7 @@
                 </div>
 
             </div>
-            <!-- menu -->
-            <div class="tab-pane fade" id="primarycontact" role="tabpanel">
-                {{--blog menu--}}
-                <div class="alert border-0 border-start border-5 border-primary alert-dismissible fade show py-2">
-                    <h5 class="fw-bold text-primary">
-                        منو اصلی وبلاگ
-                    </h5>
-                    <small>تعیین منوی اصلی در بالای صفحه</small>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>

@@ -406,10 +406,12 @@ input:focus {
     border-radius: 0 0 0 10px;
     box-shadow: 0 1px 3px #50505063;
 }
+
 .inner-menu-hover-able>div {
     right: 190px;
     top: 0;
 }
+
 .set-he {
     height: 400px !important;
     max-height: 400px !important;
@@ -424,26 +426,33 @@ input:focus {
 
 
 /* width */
-.set-height-child::-webkit-scrollbar {
+.set-height-child::-webkit-scrollbar,
+.set-he::-webkit-scrollbar {
     width: 7px;
-   
-  }
-  
-  /* Track */
+
+}
+
+/* Track */
 .set-height-child::-webkit-scrollbar-track {
     background: #ffffff;
-  }
-  
-  /* Handle */
-.set-height-child::-webkit-scrollbar-thumb {
-    background: #b9b9b9;
+}
+
+.set-he::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+/* Handle */
+.set-height-child::-webkit-scrollbar-thumb,
+.set-he::-webkit-scrollbar-thumb {
+    background: #c7c7c7;
     border-radius: 4px;
-  }
-  
-  /* Handle on hover */
-.set-height-child::-webkit-scrollbar-thumb:hover {
+}
+
+/* Handle on hover */
+.set-height-child::-webkit-scrollbar-thumb:hover,
+.set-he::-webkit-scrollbar-thumb:hover {
     background: #919191;
-  }
+}
 
 
 

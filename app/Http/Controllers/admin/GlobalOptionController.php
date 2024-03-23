@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\GlobalOptions;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
 class GlobalOptionController extends Controller
@@ -69,7 +70,7 @@ class GlobalOptionController extends Controller
                 'value' => json_encode($slide),
             ]);
         }
-        
+
         return back();
     }
     public function set_top_bar_img(Request $request)
@@ -84,6 +85,38 @@ class GlobalOptionController extends Controller
             ['key' => 'top_bar_img'],
             ['value' => json_encode($validData)]
         );
+        return back();
+    }
+    public function menuPageView()
+    {
+        $cats = ProductCategory::all();
+        return view('admin.option.menu', compact('cats'));
+    }
+
+    public function registerMainMenu(Request $request)
+    {
+        $validData = $request->validate([
+            'menu.*.*' => 'required',
+        ]);
+
+        if ($request['menu'] != null) {
+            foreach ($request['menu'] as $menu) {
+                GlobalOptions::create([
+                    'key' => 'main_menu',
+                    'value' => json_encode($menu)
+                ]);
+            }
+        }
+
+        if ($request['cat_menu'] != null) {
+            foreach ($request['cat_menu'] as $menu) {
+                GlobalOptions::create([
+                    'key' => 'main_menu',
+                    'value' => false,
+                    'ref_id' => $menu
+                ]);
+            }
+        }
         return back();
     }
 }

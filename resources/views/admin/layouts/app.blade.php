@@ -220,6 +220,11 @@
                             امکانات عمومی
                         </a>
                     </li>
+                    <li>
+                        <a href="{{route('admin.global.option.menu')}}"><i class="bx bx-left-arrow-alt"></i>
+                           منوها
+                        </a>
+                    </li>
                 </ul>
             </li>
 
