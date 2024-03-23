@@ -64,8 +64,20 @@
 
                 <!--top menu-->
                 <div class="main-nav-menu d-flex">
-                    <div class="mx-3 py-2 border-bottom-hover-red">
-                        <a href="">
+                    @php
+                    $mian_menus =App\Models\GlobalOptions::where('key' , 'main_menu')->get();
+
+                    @endphp
+                    @foreach ($mian_menus as $mian_menu)
+
+                    @if (!$mian_menu->value)
+                    @php
+                    $cat= App\Models\ProductCategory::where('id' , $mian_menu->ref_id)->first();
+
+
+                    @endphp
+                    <div class="mx-3 py-2 border-bottom-hover-red @if($loop->last) d-none d-xl-block @endif">
+                        <a href="/category/{{$cat->slug}}">
                             <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <path d="M9 15l6 -6"></path>
@@ -73,52 +85,30 @@
                                 <circle cx="14.5" cy="14.5" r=".5" fill="currentColor"></circle>
                                 <path d="M5 7.2a2.2 2.2 0 0 1 2.2 -2.2h1a2.2 2.2 0 0 0 1.55 -.64l.7 -.7a2.2 2.2 0 0 1 3.12 0l.7 .7a2.2 2.2 0 0 0 1.55 .64h1a2.2 2.2 0 0 1 2.2 2.2v1a2.2 2.2 0 0 0 .64 1.55l.7 .7a2.2 2.2 0 0 1 0 3.12l-.7 .7a2.2 2.2 0 0 0 -.64 1.55v1a2.2 2.2 0 0 1 -2.2 2.2h-1a2.2 2.2 0 0 0 -1.55 .64l-.7 .7a2.2 2.2 0 0 1 -3.12 0l-.7 -.7a2.2 2.2 0 0 0 -1.55 -.64h-1a2.2 2.2 0 0 1 -2.2 -2.2v-1a2.2 2.2 0 0 0 -.64 -1.55l-.7 -.7a2.2 2.2 0 0 1 0 -3.12l.7 -.7a2.2 2.2 0 0 0 .64 -1.55v-1"></path>
                             </svg>
-                            <span class="fs12">شگفت انگیزها</span>
+                            <span class="fs12 @if($loop->last) border-start ps-3 @endif">{{$cat->title}}</span>
                         </a>
                     </div>
-                    <div class="mx-3 py-2 border-bottom-hover-red">
-                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M9 15l6 -6"></path>
-                            <circle cx="9.5" cy="9.5" r=".5" fill="currentColor"></circle>
-                            <circle cx="14.5" cy="14.5" r=".5" fill="currentColor"></circle>
-                            <path d="M5 7.2a2.2 2.2 0 0 1 2.2 -2.2h1a2.2 2.2 0 0 0 1.55 -.64l.7 -.7a2.2 2.2 0 0 1 3.12 0l.7 .7a2.2 2.2 0 0 0 1.55 .64h1a2.2 2.2 0 0 1 2.2 2.2v1a2.2 2.2 0 0 0 .64 1.55l.7 .7a2.2 2.2 0 0 1 0 3.12l-.7 .7a2.2 2.2 0 0 0 -.64 1.55v1a2.2 2.2 0 0 1 -2.2 2.2h-1a2.2 2.2 0 0 0 -1.55 .64l-.7 .7a2.2 2.2 0 0 1 -3.12 0l-.7 -.7a2.2 2.2 0 0 0 -1.55 -.64h-1a2.2 2.2 0 0 1 -2.2 -2.2v-1a2.2 2.2 0 0 0 -.64 -1.55l-.7 -.7a2.2 2.2 0 0 1 0 -3.12l.7 -.7a2.2 2.2 0 0 0 .64 -1.55v-1"></path>
-                        </svg>
-                        <span class="fs12">سوپرمارکتی</span>
+                    @else
+                    <div class="mx-3 py-2 border-bottom-hover-red @if($loop->last) d-none d-xl-block @endif">
+                        <a href="{{json_decode($mian_menu->value)->link}}">
+                            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M9 15l6 -6"></path>
+                                <circle cx="9.5" cy="9.5" r=".5" fill="currentColor"></circle>
+                                <circle cx="14.5" cy="14.5" r=".5" fill="currentColor"></circle>
+                                <path d="M5 7.2a2.2 2.2 0 0 1 2.2 -2.2h1a2.2 2.2 0 0 0 1.55 -.64l.7 -.7a2.2 2.2 0 0 1 3.12 0l.7 .7a2.2 2.2 0 0 0 1.55 .64h1a2.2 2.2 0 0 1 2.2 2.2v1a2.2 2.2 0 0 0 .64 1.55l.7 .7a2.2 2.2 0 0 1 0 3.12l-.7 .7a2.2 2.2 0 0 0 -.64 1.55v1a2.2 2.2 0 0 1 -2.2 2.2h-1a2.2 2.2 0 0 0 -1.55 .64l-.7 .7a2.2 2.2 0 0 1 -3.12 0l-.7 -.7a2.2 2.2 0 0 0 -1.55 -.64h-1a2.2 2.2 0 0 1 -2.2 -2.2v-1a2.2 2.2 0 0 0 -.64 -1.55l-.7 -.7a2.2 2.2 0 0 1 0 -3.12l.7 -.7a2.2 2.2 0 0 0 .64 -1.55v-1"></path>
+                            </svg>
+                            <span class="fs12  @if($loop->last) border-start ps-3 @endif">{{json_decode($mian_menu->value)->title}}</span>
+                        </a>
                     </div>
-                    <div class="mx-3 py-2 border-bottom-hover-red">
-                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M9 15l6 -6"></path>
-                            <circle cx="9.5" cy="9.5" r=".5" fill="currentColor"></circle>
-                            <circle cx="14.5" cy="14.5" r=".5" fill="currentColor"></circle>
-                            <path d="M5 7.2a2.2 2.2 0 0 1 2.2 -2.2h1a2.2 2.2 0 0 0 1.55 -.64l.7 -.7a2.2 2.2 0 0 1 3.12 0l.7 .7a2.2 2.2 0 0 0 1.55 .64h1a2.2 2.2 0 0 1 2.2 2.2v1a2.2 2.2 0 0 0 .64 1.55l.7 .7a2.2 2.2 0 0 1 0 3.12l-.7 .7a2.2 2.2 0 0 0 -.64 1.55v1a2.2 2.2 0 0 1 -2.2 2.2h-1a2.2 2.2 0 0 0 -1.55 .64l-.7 .7a2.2 2.2 0 0 1 -3.12 0l-.7 -.7a2.2 2.2 0 0 0 -1.55 -.64h-1a2.2 2.2 0 0 1 -2.2 -2.2v-1a2.2 2.2 0 0 0 -.64 -1.55l-.7 -.7a2.2 2.2 0 0 1 0 -3.12l.7 -.7a2.2 2.2 0 0 0 .64 -1.55v-1"></path>
-                        </svg>
-                        <span class="fs12">پرفروش ترین</span>
-                    </div>
-                    <div class="mx-3 py-2 border-bottom-hover-red">
-                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M9 15l6 -6"></path>
-                            <circle cx="9.5" cy="9.5" r=".5" fill="currentColor"></circle>
-                            <circle cx="14.5" cy="14.5" r=".5" fill="currentColor"></circle>
-                            <path d="M5 7.2a2.2 2.2 0 0 1 2.2 -2.2h1a2.2 2.2 0 0 0 1.55 -.64l.7 -.7a2.2 2.2 0 0 1 3.12 0l.7 .7a2.2 2.2 0 0 0 1.55 .64h1a2.2 2.2 0 0 1 2.2 2.2v1a2.2 2.2 0 0 0 .64 1.55l.7 .7a2.2 2.2 0 0 1 0 3.12l-.7 .7a2.2 2.2 0 0 0 -.64 1.55v1a2.2 2.2 0 0 1 -2.2 2.2h-1a2.2 2.2 0 0 0 -1.55 .64l-.7 .7a2.2 2.2 0 0 1 -3.12 0l-.7 -.7a2.2 2.2 0 0 0 -1.55 -.64h-1a2.2 2.2 0 0 1 -2.2 -2.2v-1a2.2 2.2 0 0 0 -.64 -1.55l-.7 -.7a2.2 2.2 0 0 1 0 -3.12l.7 -.7a2.2 2.2 0 0 0 .64 -1.55v-1"></path>
-                        </svg>
-                        <span class="fs12">کارت هدیه</span>
-                    </div>
+                    @endif
+                    @endforeach
+
+
                     <!--last index class (border-bottom-hover-red & ps-3 d-none d-lg-block)-->
-                    <div class="mx-3 py-2 border-bottom-hover-red d-none d-xl-block">
-                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M9 15l6 -6"></path>
-                            <circle cx="9.5" cy="9.5" r=".5" fill="currentColor"></circle>
-                            <circle cx="14.5" cy="14.5" r=".5" fill="currentColor"></circle>
-                            <path d="M5 7.2a2.2 2.2 0 0 1 2.2 -2.2h1a2.2 2.2 0 0 0 1.55 -.64l.7 -.7a2.2 2.2 0 0 1 3.12 0l.7 .7a2.2 2.2 0 0 0 1.55 .64h1a2.2 2.2 0 0 1 2.2 2.2v1a2.2 2.2 0 0 0 .64 1.55l.7 .7a2.2 2.2 0 0 1 0 3.12l-.7 .7a2.2 2.2 0 0 0 -.64 1.55v1a2.2 2.2 0 0 1 -2.2 2.2h-1a2.2 2.2 0 0 0 -1.55 .64l-.7 .7a2.2 2.2 0 0 1 -3.12 0l-.7 -.7a2.2 2.2 0 0 0 -1.55 -.64h-1a2.2 2.2 0 0 1 -2.2 -2.2v-1a2.2 2.2 0 0 0 -.64 -1.55l-.7 -.7a2.2 2.2 0 0 1 0 -3.12l.7 -.7a2.2 2.2 0 0 0 .64 -1.55v-1"></path>
-                        </svg>
-                        <span class="fs12 border-start ps-3">تخفیف ها و پیشنهادات</span>
-                    </div>
+
                 </div>
-                <div class="fs12 main-nav-menu">
+                <div class="fs12 main-nav-menu border-right">
                     <a href="">
                         <span class="ms-3">سوالی دارید؟</span>
                     </a>

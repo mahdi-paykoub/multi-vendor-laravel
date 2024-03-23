@@ -95,6 +95,7 @@ class GlobalOptionController extends Controller
 
     public function registerMainMenu(Request $request)
     {
+
         $validData = $request->validate([
             'menu.*.*' => 'required',
         ]);
