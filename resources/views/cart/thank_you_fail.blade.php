@@ -65,7 +65,7 @@
 
                 </div>
                 <div class="mt-4">
-                    <div class="text-danger fw600 fs20" style="color: #b2001a;">
+                    <div class="fw600 fs20" style="color: #b2001a;">
                         متاسفانه پرداخت شما ناموفق بود!
                     </div>
                     <div class="fs14  mt-3">

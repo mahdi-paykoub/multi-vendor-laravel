@@ -91,12 +91,17 @@ class OrderController extends Controller
                 'status' => 'paid'
             ]);
             /*redirect here*/
+            return redirect(route('checkout.thank-you.success'));
         } catch (InvalidPaymentException $exception) {
-            return redirect(route('checkout.thank-you'));
+            return redirect(route('checkout.thank-you.fail'));
         }
     }
-    public function show_thank_you()
+    public function show_thank_you_fail()
     {
-        return view('cart.thank_you');
+        return view('cart.thank_you_fail');
+    }
+    public function show_thank_you_success()
+    {
+        return view('cart.thank_you_success');
     }
 }

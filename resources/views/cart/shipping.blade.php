@@ -10,7 +10,7 @@
             </svg>
             <div class="fs15 me-2"> آدرس و زمان ارسال</div>
         </div>
-        <img src="{{url('assets/frontend/image/logo/digi-farsi.svg')}}" height="24" alt="">
+        <img src="{{get_fa_logo()}}" height="24" alt="">
         <div class="d-lg-none mt-3 bb-8px"></div>
     </div>
     @if (isset($userAddress))

@@ -34,7 +34,8 @@ Route::get('/checkout/cart', [\App\Http\Controllers\CartController::class, 'shop
 Route::post('/register/order', [\App\Http\Controllers\OrderController::class, 'registerOrder'])->name('register.order');
 Route::get('/checkout/shipping', [\App\Http\Controllers\OrderController::class, 'shipping_view'])->name('shipping.view');
 Route::post('/payment/callback', [\App\Http\Controllers\OrderController::class, 'payment_callback'])->name('payment.callback');
-Route::get('/checkout/thank-you/fali', [\App\Http\Controllers\OrderController::class, 'show_thank_you'])->name('checkout.thank-you');
+Route::get('/checkout/thank-you/fali', [\App\Http\Controllers\OrderController::class, 'show_thank_you_fail'])->name('checkout.thank-you.fail');
+Route::get('/checkout/thank-you/success', [\App\Http\Controllers\OrderController::class, 'show_thank_you_success'])->name('checkout.thank-you.success');
 
 
 Route::get('/blog', [\App\Http\Controllers\SingleArticleController::class, 'showHomeBlog'])->name('blog');

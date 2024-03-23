@@ -50,6 +50,13 @@
             </div>
         </form>
 
+
+        <div class="alert border-0 border-start border-5 border-primary alert-dismissible fade show py-2">
+            <h5 class="fw-bold text-primary">
+                منو فوتر
+            </h5>
+            <small>تعیین منوی   های فوتر </small>
+        </div>
     </div>
 </div>
 @endsection
