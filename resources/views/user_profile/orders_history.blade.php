@@ -32,17 +32,17 @@
     <ul class="nav nav-tabs justify-content-around justify-content-lg-start mt-lg-5 mt-4" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="bg-transparent border-0 px-3 text-secondary fs15res active-user-tab-menu active" id="current-orders" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">جاری
-            @if (count($paid_orders) != 0)
-               <span class="badge bg-secondary-4 fv">{{ count($paid_orders) }}</span>
-               @endif
+                @if (count($paid_orders) != 0)
+                <span class="badge bg-secondary-4 fv">{{ count($paid_orders) }}</span>
+                @endif
             </button>
             <div class="mt-2"></div>
         </li>
         <li class="nav-item" role="presentation">
             <button class="bg-transparent border-0 px-3  text-secondary fs15res active-user-tab-menu" id="delivered-orders" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"> تحویل شده
-               @if (count($paid_orders) != 0)
-               <span class="badge bg-secondary-4 fv">{{ count($paid_orders) }}</span>
-               @endif
+                @if (count($paid_orders) != 0)
+                <span class="badge bg-secondary-4 fv">{{ count($paid_orders) }}</span>
+                @endif
             </button>
             <div class="mt-2"></div>
         </li>
@@ -62,8 +62,8 @@
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div class="border-responsive br7">
-                @foreach ($paid_orders as $paid_order)
+            @foreach ($paid_orders->reverse() as $paid_order)
+            <div class="border-responsive br7 @if(!$loop->first) mt-3 @endif">
                 <a href="/profile/orders/detail/{{$paid_order->id}}">
                     <div class="d-flex align-items-center p-3 justify-content-between">
                         <div class="d-flex">
@@ -119,18 +119,15 @@
                     @endphp
                     <div class="border-bottom">
                         <div class="d-flex align-items-center p-3">
-                            <div class="fs13 text-dark">مرسوله ۱ از ۱</div>
+                            <div class="fs13 text-dark">مرسوله <span class="fv">{{ $loop->index + 1 }}</span> از <span class="fv">{{ count($paid_order->productInfos()->get()) }}</span></div>
                             <svg stroke="currentColor" class="text-secondary-2 mx-2" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="8" width="8" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"></path>
                             </svg>
-
                         </div>
-
                         <div class="d-flex align-items-center p-3 justify-content-between">
                             <div class=" fs13 d-flex align-items-center">
                                 <span class="text-secondary-2 ms-1">تحویل</span>
                                 <span class="text-dark"> پنج‌شنبه ۹ فروردین بازه ۹ - ۱۵</span>
-
                             </div>
                             <div class="" style="width: 45%;">
                                 <div class="fs12 text-success">
@@ -146,17 +143,17 @@
                             <img src="{{ $img }}" width="65" height="65" class="mx-2 mt-2" alt="">
                         </div>
                     </div>
+                    @endforeach
                 </a>
-                @endforeach
+
                 <div class="d-flex align-items-center p-3 org-color">
                     <svg stroke="currentColor" class="ms-2" fill="#f9a825" stroke-width="0" viewBox="0 0 16 16" height="15" width="15" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
                     </svg>
                     <div class="fs12"> پرداخت سفارش با موفقیت انجام شده است (در انتظار ارسال) </div>
                 </div>
-                @endforeach
-
             </div>
+            @endforeach
         </div>
 
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
