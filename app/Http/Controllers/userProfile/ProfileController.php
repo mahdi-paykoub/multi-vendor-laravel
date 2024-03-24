@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Notification;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\UserInfo;
 use App\Models\WishList;
@@ -46,7 +47,8 @@ class ProfileController extends Controller
 
     public function ordersView()
     {
-        return view('user_profile.orders_history');
+        $paid_orders = Order::where('status' , 'paid')->get();
+        return view('user_profile.orders_history' ,compact('paid_orders'));
     }
 
     public function wishListView()
@@ -77,6 +79,7 @@ class ProfileController extends Controller
         return view('user_profile.wishList_detail', compact('wishList', 'products'));
     }
     public function orderDetailView(){
+       
         return view('user_profile.order_detail');
     }
 }
