@@ -32,19 +32,23 @@
     <ul class="nav nav-tabs justify-content-around justify-content-lg-start mt-lg-5 mt-4" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="bg-transparent border-0 px-3 text-secondary fs15res active-user-tab-menu active" id="current-orders" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">جاری
-                <span class="badge fv">3</span>
+            @if (count($paid_orders) != 0)
+               <span class="badge bg-secondary-4 fv">{{ count($paid_orders) }}</span>
+               @endif
             </button>
             <div class="mt-2"></div>
         </li>
         <li class="nav-item" role="presentation">
             <button class="bg-transparent border-0 px-3  text-secondary fs15res active-user-tab-menu" id="delivered-orders" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"> تحویل شده
-                <span class="badge bg-secondary-4">۱</span>
+               @if (count($paid_orders) != 0)
+               <span class="badge bg-secondary-4 fv">{{ count($paid_orders) }}</span>
+               @endif
             </button>
             <div class="mt-2"></div>
         </li>
         <li class="nav-item" role="presentation">
             <button class="bg-transparent border-0 px-3  text-secondary fs15res active-user-tab-menu" id="delivered-orders" data-bs-toggle="tab" data-bs-target="#returned" type="button" role="tab" aria-controls="profile" aria-selected="false"> مرجوع شده
-                <span class="badge bg-secondary-4">۱</span>
+                <span class="badge bg-secondary-4 fv">0</span>
             </button>
             <div class="mt-2"></div>
         </li>
@@ -59,9 +63,8 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="border-responsive br7">
-
                 @foreach ($paid_orders as $paid_order)
-                <a href="">
+                <a href="/profile/orders/detail/{{$paid_order->id}}">
                     <div class="d-flex align-items-center p-3 justify-content-between">
                         <div class="d-flex">
                             <svg stroke="currentColor" fill="#6bb927" stroke-width="0" viewBox="0 0 640 512" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -99,7 +102,6 @@
                         </svg>
                         <div class="fs13 text-secondary">
                             مبلغ
-
                         </div>
 
                         <div class="fs13 fv me-2 text-dark">
@@ -127,8 +129,8 @@
                         <div class="d-flex align-items-center p-3 justify-content-between">
                             <div class=" fs13 d-flex align-items-center">
                                 <span class="text-secondary-2 ms-1">تحویل</span>
-                                <span class="text-dark">   پنج‌شنبه ۹ فروردین بازه ۹ - ۱۵</span>
-                             
+                                <span class="text-dark"> پنج‌شنبه ۹ فروردین بازه ۹ - ۱۵</span>
+
                             </div>
                             <div class="" style="width: 45%;">
                                 <div class="fs12 text-success">

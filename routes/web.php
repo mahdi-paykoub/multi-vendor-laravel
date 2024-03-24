@@ -109,7 +109,7 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/notification/detail/{notification}', [\App\Http\Controllers\userProfile\ProfileController::class, 'getNotificationDetail'])->name('notification.detail.profile');
 
     Route::get('/orders', [\App\Http\Controllers\userProfile\ProfileController::class, 'ordersView'])->name('orders.profile');
-    Route::get('/orders/detail', [\App\Http\Controllers\userProfile\ProfileController::class, 'orderDetailView'])->name('orders.detail.profile');
+    Route::get('/orders/detail/{order}', [\App\Http\Controllers\userProfile\ProfileController::class, 'orderDetailView'])->name('orders.detail.profile');
     Route::get('/lists', [\App\Http\Controllers\userProfile\ProfileController::class, 'wishListView'])->name('lists.profile');
     Route::get('/wish-list/{wishList}/details', [\App\Http\Controllers\userProfile\ProfileController::class, 'wishListDetailView'])->name('wish.lists.detail.profile');
 

@@ -47,8 +47,8 @@ class ProfileController extends Controller
 
     public function ordersView()
     {
-        $paid_orders = Order::where('status' , 'paid')->get();
-        return view('user_profile.orders_history' ,compact('paid_orders'));
+        $paid_orders = Order::where('status', 'paid')->get();
+        return view('user_profile.orders_history', compact('paid_orders'));
     }
 
     public function wishListView()
@@ -78,8 +78,8 @@ class ProfileController extends Controller
         $products = $wishList->products()->get();
         return view('user_profile.wishList_detail', compact('wishList', 'products'));
     }
-    public function orderDetailView(){
-       
-        return view('user_profile.order_detail');
+    public function orderDetailView(Order $order)
+    {
+        return view('user_profile.order_detail', compact('order'));
     }
 }
