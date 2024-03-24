@@ -76,4 +76,7 @@ class ProfileController extends Controller
         $products = $wishList->products()->get();
         return view('user_profile.wishList_detail', compact('wishList', 'products'));
     }
+    public function orderDetailView(){
+        return view('user_profile.order_detail');
+    }
 }
