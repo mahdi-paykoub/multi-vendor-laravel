@@ -35,7 +35,7 @@
                             </span>
                             </div>
                             <div class="mt-4 pt-3">
-                                <input type="text" name="code" class="br7 w-100 phone-number-inp px-2">
+                                <input type="text" name="code" class="br7 w-100 phone-number-inp px-2 fs15">
                             </div>
                             @foreach($errors->all() as $error)
                                 <div class="fs13 px-1 text-digi-red mt-2">
@@ -64,10 +64,10 @@
                     </div>
                     <div class="col-12 col-lg-6 d-none d-lg-block text-center">
                         <div>
-                            <img src="assets/image/text/afb0eaadb57060d2de49.png" class="" alt="">
+                            <img src="{{url('assets/frontend/image/text/afb0eaadb57060d2de49.png')}}" class="" alt="">
                         </div>
                         <div>
-                            <img src="assets/image/text/737a1abb4fdfc439ea7e.png" width="230" height="170"
+                            <img src="{{url('assets/frontend/image/text/737a1abb4fdfc439ea7e.png')}}" width="230" height="170"
                                  class="mt-4 d-none d-lg-inline" alt="">
                         </div>
                     </div>

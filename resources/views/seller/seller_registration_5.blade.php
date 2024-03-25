@@ -17,7 +17,7 @@
                 به خانواده بزرگ فروشندگان دیجی‌کالا خوش آمدید!
             </div>
             <div class="mt-4 text-center">
-                <img src="assets/image/text/890f29859841e4c432c2.png" width="320" height="240" alt="">
+                <img src="{{url('assets/frontend/image/text/890f29859841e4c432c2.png')}}" width="320" height="240" alt="">
             </div>
             <div class=" text-center">
                 <form action="{{route('final.seller.register')}}" method="post">

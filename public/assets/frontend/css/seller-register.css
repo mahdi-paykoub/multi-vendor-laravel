@@ -24,8 +24,8 @@
 
 .right-progress-menu {
     background-color: #fcfeff;
-    /* border-left: 1px solid #efefef;
-     height: 100vh;*/
+    border-left: 1px solid #efefef;
+    height: 100%;
 }
 
 .icon-p-shape {
@@ -103,7 +103,8 @@
     overflow-y: scroll;
     display: none;
 }
-.seller-next-qu{
+
+.seller-next-qu {
     left: 20px;
     position: absolute;
     top: 50%;

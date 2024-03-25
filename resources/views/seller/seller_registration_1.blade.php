@@ -11,7 +11,7 @@
         <div class="col-10 col-lg-5">
             <div class="border br7 p-3">
                 <div class="text-center">
-                    <img src="assets/image/text/59e4a50609903c2c1c74.png" width="200" height="150" alt="">
+                    <img src="{{url('assets/frontend/image/text/59e4a50609903c2c1c74.png')}}" width="200" height="150" alt="">
                 </div>
                 <div class="mt-3 icon-dark-color fw600">
                     فروشنده حقیقی
@@ -38,7 +38,7 @@
         <div class="col-10 col-lg-5 mt-4 mt-lg-0">
             <div class="border br7 p-3">
                 <div class="text-center">
-                    <img src="assets/image/text/f5eb55b576507aeb4869.png" width="200" height="150" alt="">
+                    <img src="{{url('assets/frontend/image/text/f5eb55b576507aeb4869.png')}}" width="200" height="150" alt="">
                 </div>
                 <div class="mt-3 icon-dark-color fw600">
                     فروشنده حقیقی
