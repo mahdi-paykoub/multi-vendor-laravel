@@ -768,3 +768,10 @@
 
     @include('layouts.seller_panel_parts.footer')
 @endsection
+@section('scripts')
+<script>
+    $('.profile-menu-svg').click(function() {
+        $('.profile-menu').toggle()
+    })
+</script>
+@endsection

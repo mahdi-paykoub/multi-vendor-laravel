@@ -997,6 +997,12 @@
     $('.continue-fourth-part').click(function() {
         open_new_step('fourthStep', 'fourth-collapse')
     })
+
+
+    $('.profile-menu-svg').click(function() {
+        $('.profile-menu').toggle()
+    })
 </script>
+
 @endsection
 <!-- TODO refasctore validation of this form -->
