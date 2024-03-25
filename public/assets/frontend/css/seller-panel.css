@@ -282,7 +282,7 @@ body {
 
 }
 
-.for-change-inp:checked + div {
+.for-change-inp:checked+div {
     background: #f5f7fa !important;
     font-weight: 600;
 }
@@ -502,7 +502,7 @@ body {
 }
 
 /* HTML: <div class="loader"></div> */
-.loader-after-submit-parent .loader ,
+.loader-after-submit-parent .loader,
 .loader21 {
     width: 28px;
     --b: 8px;
@@ -510,7 +510,7 @@ body {
     border-radius: 50%;
     background: #44405f;
     -webkit-mask: repeating-conic-gradient(#0000 0deg, #000 1deg 70deg, #0000 71deg 90deg),
-    radial-gradient(farthest-side, #0000 calc(100% - var(--b) - -5px), #000 calc(100% - var(--b)));
+        radial-gradient(farthest-side, #0000 calc(100% - var(--b) - -5px), #000 calc(100% - var(--b)));
     -webkit-mask-composite: destination-in;
     mask-composite: intersect;
     animation: l5 1s infinite;
@@ -556,8 +556,46 @@ body {
     border: 1px solid #e3e3e3 !important;
     padding-bottom: 54px;
 }
-.color-picker-value{
+
+.color-picker-value {
     width: 100%;
     height: 41px;
     padding: 5px;
+}
+
+
+
+/* seller profile */
+.add-logo-btn-box {
+    width: 64px;
+    height: 64px;
+    border: 1px solid #1ab1d4;
+}
+
+.add-logo-btn-box svg {
+    color: #1ab1d4;
+}
+
+.right-menu-box-p>a:not(:last-child),
+.right-menu-box-p>div:first-child {
+    border-bottom: 1px solid #efefef;
+}
+
+.border-bottom-menu-bar {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    padding-right: 15px;
+}
+
+.border-bottom-menu-bar.active {
+    border-right: 2px solid #1ab1d4;
+    color: #1ab1d4 !important;
+    font-weight: 600;
+}
+
+.status-box {
+    background-color: #d1edfd;
+    color: #479ff0;
+    padding: 5px 12px;
+    border-radius: 25px;
 }

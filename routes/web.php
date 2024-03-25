@@ -92,9 +92,15 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     Route::get('/find/product', [\App\Http\Controllers\SellerPanelViewController::class, 'find_product'])->name('seller.panel.find.product');
 
 
+    //seller profile
+    Route::get('/profile', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile'])->name('seller.profile.view');
+    Route::get('/profile/address', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_address'])->name('seller.profile.address');
+    Route::get('/profile/store-info', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_store_info'])->name('seller.profile.store.info');
+    Route::get('/profile/finance', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_finance'])->name('seller.profile.finance');
+    Route::get('/profile/document-info', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_document_info'])->name('seller.profile.document.info');
+
     /*ajax to get product cats*/
     Route::post('/get-product-categories-ajax', [\App\Http\Controllers\ProductAjaxController::class, 'getCats']);
-
     Route::post('/seller-create-product', [\App\Http\Controllers\SellerCreateProductController::class, 'create_product'])->name('seller.create.product.logic');
 });
 
