@@ -861,3 +861,15 @@ input:focus {
 .footer-text a {
     color: #19bfd3;
 }
+.relative-products-parent .swiper-slide img {
+    width: 90%;
+}
+.br-bottom-2px {
+    border-bottom: 3px solid rgba(236, 236, 236, 0.89) !important;
+}
+.bb-red {
+    border-bottom: 2px solid #ef394e;
+}
+.related-products-swiper .swiper-slide {
+    border-left: 1px solid rgba(233, 233, 233, 0.70);
+}

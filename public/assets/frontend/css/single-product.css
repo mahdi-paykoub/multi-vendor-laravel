@@ -8,25 +8,13 @@
     padding: 14px 0;
 }
 
-.br-bottom-2px {
-    border-bottom: 3px solid rgba(236, 236, 236, 0.89) !important;
-}
 
 .single-product-status-swiper {
     border-top: 1px solid rgba(239, 239, 239, 0.77);
 }
 
-.bb-red {
-    border-bottom: 2px solid #ef394e;
-}
 
-.relative-products-parent .swiper-slide img {
-    width: 90%;
-}
 
-.related-products-swiper .swiper-slide {
-    border-left: 1px solid rgba(233, 233, 233, 0.70);
-}
 
 .play-video-parent {
     background: rgba(141, 141, 141, 0.57);
