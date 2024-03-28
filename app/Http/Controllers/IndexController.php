@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Brand;
 use App\Models\GlobalOptions;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -20,6 +21,7 @@ class IndexController extends Controller
         $mainSliders = GlobalOptions::where('key', "main_sliders")->get();
         $mainBanners = GlobalOptions::where('key', 'main_banners')->get();
 
+        $brands = Brand::inRandomOrder()->limit(12)->get();
 
 
 
@@ -30,6 +32,7 @@ class IndexController extends Controller
             'product_parent_cats',
             'mainSliders',
             'mainBanners',
+            'brands',
          
         ));
     }

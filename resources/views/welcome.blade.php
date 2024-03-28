@@ -482,56 +482,16 @@
                         <path d="M243,96.05a20,20,0,0,0-17.26-13.72l-57-4.93-22.3-53.14h0a20,20,0,0,0-36.82,0L87.29,77.4l-57,4.93A20,20,0,0,0,18.87,117.4l43.32,37.8-13,56.24A20,20,0,0,0,79,233.1l49-29.76,49,29.76a20,20,0,0,0,29.8-21.66l-13-56.24,43.32-37.8A20,20,0,0,0,243,96.05Zm-66.75,42.62a20,20,0,0,0-6.35,19.63l11.39,49.32-42.94-26.08a19.9,19.9,0,0,0-20.7,0L74.71,207.62,86.1,158.3a20,20,0,0,0-6.35-19.63L41.66,105.44,91.8,101.1a19.92,19.92,0,0,0,16.69-12.19L128,42.42l19.51,46.49A19.92,19.92,0,0,0,164.2,101.1l50.14,4.34Z">
                         </path>
                     </svg>
-                    محبوب‌ترین برندها
+                    محبوب ترین برندها
                 </h5>
             </div>
             <div class="swiper mySwiper brand-swiper py-3 my-4">
                 <div class="swiper-wrapper">
+                    @foreach ($brands as $brand)
                     <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/brand.png" class="w-75" alt="">
+                        <img src="{{$brand->image}}" class="w-75" alt="">
                     </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/percil.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/huawei.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/brand.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/percil.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/huawei.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/brand.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/percil.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/huawei.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/brand.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/percil.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/huawei.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/brand.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/percil.png" class="w-75" alt="">
-                    </div>
-                    <div class="swiper-slide text-center">
-                        <img src="assets/image/brand/huawei.png" class="w-75" alt="">
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -32,6 +32,7 @@ class BrandController extends Controller
     {
         $validData = $request->validate([
             'name' => 'required',
+            'image' => 'required',
             'slug' => 'required|unique:brands',
         ]);
 
