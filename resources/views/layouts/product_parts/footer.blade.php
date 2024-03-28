@@ -1,4 +1,7 @@
 {{--footer--}}
+@php
+$footer_text = App\Models\GlobalOptions::where('key', 'footer_text')->first();
+@endphp
 <footer class="main-footer mt-5">
     <div class="container px-4 pb-4">
         <div class="d-flex justify-content-between">
@@ -47,7 +50,7 @@
             <div class="col text-center d-none d-md-block">
                 <img src="{{url('assets/frontend/image/footer/original-products.svg')}}" width="56" height="56" alt="">
                 <div class="fs12 icon-dark-color">
-                    ﺿﻤﺎﻧﺖ اﺻﻞ ﺑﻮدن ﮐﺎﻟﺎ 
+                    ﺿﻤﺎﻧﺖ اﺻﻞ ﺑﻮدن ﮐﺎﻟﺎ
                 </div>
             </div>
         </div>
@@ -182,19 +185,9 @@
         </div>
         <!--footer description-->
         <div class="row mt-5 main-footer pt-5">
-            <div class="col-12 col-xl-8">
-                <h5 class="icon-dark-color fw600">
-                    فروشگاه اینترنتی دیجی‌کالا، بررسی، انتخاب و خرید آنلاین
-                </h5>
-                <div class="text-secondary fs12 lh2">
-                    یک خرید اینترنتی مطمئن، نیازمند فروشگاهی است که بتواند کالاهایی متنوع، باکیفیت و دارای قیمت
-                    مناسب را
-                    در مدت زمانی کوتاه به دست مشتریان خود برساند و ضمانت بازگشت کالا هم داشته باشد؛ ویژگی‌هایی که
-                    فروشگاه اینترنتی دیجی‌کالا سال‌هاست بر روی آن‌ها کار کرده و توانسته از این طریق مشتریان ثابت خود
-                    را
-                    داشته باشد.
-
-                </div>
+            <div class="col-12 col-xl-8 footer-text">
+                {!! $footer_text->value !!}
+            
             </div>
             <div class="col-12 col-xl-4 mt-4 mt-xl-0">
                 <div class="d-flex justify-content-center justify-content-md-end">

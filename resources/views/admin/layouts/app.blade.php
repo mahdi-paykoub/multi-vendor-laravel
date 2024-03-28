@@ -225,6 +225,11 @@
                            منوها
                         </a>
                     </li>
+                    <li>
+                        <a href="{{route('admin.global.option.footer')}}"><i class="bx bx-left-arrow-alt"></i>
+                           فوتر
+                        </a>
+                    </li>
                 </ul>
             </li>
 

@@ -120,4 +120,21 @@ class GlobalOptionController extends Controller
         }
         return back();
     }
+    public function footerPageView(Request $request)
+    {
+        return view('admin.option.footer');
+    }
+    public function footerRegisterText(Request $request)
+    {
+       
+        $validData = $request->validate([
+            'body' => 'required',
+        ]);
+
+        GlobalOptions::updateOrCreate(
+            ['key' => 'footer_text'],
+            ['value' => $validData['body']]
+        );
+        return back();
+    }
 }

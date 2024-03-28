@@ -841,3 +841,23 @@ input:focus {
         transform: rotate(1turn)
     }
 }
+
+.footer-text h1,
+.footer-text h2,
+.footer-text h3,
+.footer-text h4,
+.footer-text h5,
+.footer-text h6 {
+    color: #62666d;
+    font-size: 20px;
+}
+
+.footer-text p {
+    color: #81858b;
+    line-height: 2;
+    font-size: 13px;
+}
+
+.footer-text a {
+    color: #19bfd3;
+}

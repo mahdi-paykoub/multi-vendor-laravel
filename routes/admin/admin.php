@@ -48,6 +48,8 @@ Route::post('/set-user-role-logic/{user}', [admin\UserController::class, 'addUse
 //global options
 Route::get('/global-option', [admin\GlobalOptionController::class, 'mainPageView'])->name('global.option');
 Route::get('/global-option/menu', [admin\GlobalOptionController::class, 'menuPageView'])->name('global.option.menu');
+Route::get('/global-option/footer', [admin\GlobalOptionController::class, 'footerPageView'])->name('global.option.footer');
+Route::post('/global-option/footer/register-text', [admin\GlobalOptionController::class, 'footerRegisterText'])->name('global.option.regoster.text');
 Route::post('/global-option/register/main/menu', [admin\GlobalOptionController::class, 'registerMainMenu'])->name('global.option.register.main.menu');
 Route::post('/set-logo', [admin\GlobalOptionController::class, 'setLogo'])->name('set.logo');
 Route::post('/set-mail-slider', [admin\GlobalOptionController::class, 'setMainSlider'])->name('set.main.slider');
