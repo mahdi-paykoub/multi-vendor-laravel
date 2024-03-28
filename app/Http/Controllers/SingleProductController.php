@@ -17,6 +17,7 @@ class SingleProductController extends Controller
         $infos = $singleProduct->productInfos()->get();
         $attrs = $singleProduct->productAttributes()->get();
         $comments = $singleProduct->comments()->where('parent_id', 0)->orderBy('id', 'DESC')->get();
+        $relatedProducts = $singleProduct->productCategories()->first()->products()->where('id', '!=', $singleProduct->id)->get();
 
         $is_liked = null;
         if (Auth::check()) {
@@ -27,7 +28,7 @@ class SingleProductController extends Controller
         if (Auth::check()) {
             $wishLists = auth()->user()->wishLists()->get();
         }
-        return view('product.singleProduct', compact('singleProduct', 'images', 'infos', 'attrs', 'comments', 'is_liked', 'wishLists'));
+        return view('product.singleProduct', compact('singleProduct', 'images', 'infos', 'attrs', 'comments', 'is_liked', 'wishLists', 'relatedProducts'));
     }
 
     public function getProductInfoByColor(Request $request)
