@@ -144,3 +144,6 @@ Route::get('/category/{productCategorySlug}', [\App\Http\Controllers\CategoryCon
 //search
 Route::get('/serach', [\App\Http\Controllers\SearchController::class, 'getSearchedProduct'])->name('search.product');
 Route::post('/search/ajax', [\App\Http\Controllers\SearchController::class, 'searchAjax'])->name('search.ajax');
+
+// landing seller
+Route::get('/landings/seller-introduction', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_landing'])->name('seller.landing');

@@ -36,6 +36,12 @@ class SellerPanelViewController extends Controller
         return view('seller.profile.seller_upload_document');
     }
 
+    public function seller_landing()
+    {
+        return view('seller.landing');
+    }
+
+    
 
     public function find_product()
     {

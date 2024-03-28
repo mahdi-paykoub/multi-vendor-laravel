@@ -112,7 +112,7 @@
                     <a href="">
                         <span class="ms-3">سوالی دارید؟</span>
                     </a>
-                    <a href="">
+                    <a href="{{route('seller.landing')}}">
                         <span>در دیجی‌کالا بفروشید!</span>
                     </a>
                 </div>
