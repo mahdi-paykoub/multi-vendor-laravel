@@ -300,6 +300,7 @@ $productSeller = \App\Models\Seller::find($infos[0]->seller_id)->sellerInfo()->f
 
             <div class="fw600 fs14 mt-4">
                 <span class="fs15"> رنگ: </span>
+               
                 @php
                 $color_ids =$singleProduct->productInfos()->groupBy('attr_value_id')->pluck('attr_value_id');
                 @endphp

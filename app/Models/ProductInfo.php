@@ -20,4 +20,12 @@ class ProductInfo extends Model
     {
         return $this->belongsToMany(Order::class);
     }
+    public function attr()
+    {
+        return $this->belongsTo(Attr::class);
+    }
+    public function attr_value()
+    {
+        return $this->belongsTo(AttrValue::class);
+    }
 }

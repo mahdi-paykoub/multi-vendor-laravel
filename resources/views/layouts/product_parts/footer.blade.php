@@ -165,7 +165,7 @@ $footer_text = App\Models\GlobalOptions::where('key', 'footer_text')->first();
             </div>
         </div>
         <!--application download-->
-        <div class="row mt-5 application-download-box br10 p-3">
+        <!-- <div class="row mt-5 application-download-box br10 p-3">
             <div class="col-12 col-lg-5">
                 <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
                     <img src="assets/image/logo/footerlogo2.webp" width="44" height="44" alt="">
@@ -182,7 +182,7 @@ $footer_text = App\Models\GlobalOptions::where('key', 'footer_text')->first();
                 <img src="assets/image/footer/coffe-bazzar.svg" height="45" width="160" class="mx-1 mt-3 mt-lg-0 object-cover" alt="">
 
             </div>
-        </div>
+        </div> -->
         <!--footer description-->
         <div class="row mt-5 main-footer pt-5">
             <div class="col-12 col-xl-8 footer-text">
@@ -192,13 +192,13 @@ $footer_text = App\Models\GlobalOptions::where('key', 'footer_text')->first();
             <div class="col-12 col-xl-4 mt-4 mt-xl-0">
                 <div class="d-flex justify-content-center justify-content-md-end">
                     <div class="border p-3 br7">
-                        <img src="assets/image/footer/rezi.webp" width="80" height="80" alt="">
+                        <img src="{{url('assets/frontend/image/footer/rezi.webp')}}" class="object-contain" width="80" height="80" alt="">
                     </div>
                     <div class="border p-3 br7 me-2">
-                        <img src="assets/image/footer/rezi.webp" width="80" height="80" alt="">
+                        <img src="{{url('assets/frontend/image/footer/kasbokar.webp')}}" class="object-contain" width="80" height="80" alt="">
                     </div>
                     <div class="border p-3 br7 me-2">
-                        <img src="assets/image/footer/rezi.webp" width="80" height="80" alt="">
+                        <img src="{{url('assets/frontend/image/footer/enamad.png')}}" class="object-contain" width="80" height="80" alt="">
                     </div>
                 </div>
             </div>

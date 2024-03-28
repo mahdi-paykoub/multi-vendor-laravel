@@ -51,11 +51,11 @@
         </form>
 
 
-        <div class="alert border-0 border-start border-5 border-primary alert-dismissible fade show py-2">
+        <div class="alert border-0 border-start border-5 mt-5 border-primary alert-dismissible fade show py-2">
             <h5 class="fw-bold text-primary">
-                منو فوتر
+                منو زیر اسلایدر صفحه اصلی
             </h5>
-            <small>تعیین منوی   های فوتر </small>
+            <small>تعیین منو </small>
         </div>
     </div>
 </div>

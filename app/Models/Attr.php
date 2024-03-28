@@ -21,4 +21,8 @@ class Attr extends Model
     {
         return $this->hasMany(AttrValue::class);
     }
+    public function productInfo()
+    {
+        return $this->belongsTo(ProductInfo::class);
+    }
 }

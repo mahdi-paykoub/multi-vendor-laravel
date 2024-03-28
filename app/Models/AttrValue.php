@@ -14,4 +14,8 @@ class AttrValue extends Model
     {
         return $this->belongsTo(Attr::class);
     }
+    public function productInfo()
+    {
+        return $this->belongsTo(ProductInfo::class);
+    }
 }

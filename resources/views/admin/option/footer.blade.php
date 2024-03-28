@@ -46,6 +46,14 @@
                 <button class="mt-4 btn btn-primary px-4">ارسال</button>
             </div>
         </form>
+
+
+        <div class="alert border-0 border-start border-5 border-primary alert-dismissible fade show py-2">
+            <h5 class="fw-bold text-primary">
+                منو های فوتر
+            </h5>
+            <small> تعیین سه ستون اصلی منو در فوتر</small>
+        </div>
     </div>
 </div>
 @endsection
