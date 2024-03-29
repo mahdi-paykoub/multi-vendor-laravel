@@ -1,6 +1,4 @@
 @extends('seller.profile.layout')
-
-
 @section('profile_content')
 <!--content-->
 <div class="border-bottom-light-2">
@@ -33,7 +31,7 @@
             <div class="fs14 text-secondary">
                 <div>کُد ملی</div>
                 @if ($seller_info->national_code != null)
-                <div class="fs15 text-dark mt-3 fw600">{{ $seller_info->national_code }}</div>
+                <div class="fs15 text-dark mt-3 fw600 fv">{{ $seller_info->national_code }}</div>
                 @else
                 <div class="fs15 text-dark mt-3 fw600">وارد کنید</div>
                 @endif
@@ -50,16 +48,12 @@
     <div class="col-12 col-lg-6 border-left-responsive px-4 py-4 border-bottom">
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
-                <div>شماره موبایل ثبت‌نام <span class="fs14 text-danger">*</span> </div>
-                <div class="fs15 text-dark mt-3 fw600">۹۸۹۳۰۹۵۱۹۳۶۵ </div>
+                <div>شماره موبایل ثبت‌نام <span class="fs14 text-danger">*</span>
+                <span class="fs12 badge-green me-2">تایید شده</span>
+                </div>
+                <div class="fs15 text-dark mt-3 fw600 fv">{{ $phone_number }} </div>
             </div>
-            <div>
-                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" class="text-info" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-
-            </div>
+           
         </div>
     </div>
     <div class="col-12 col-lg-6 px-4 py-4 border-bottom">
@@ -70,7 +64,8 @@
                 <div class="fs15 text-dark mt-3 fw600">{{ $seller_info->email }}</div>
                 @else
                 <div class="fs15 text-dark mt-3 fw600">وارد کنید</div>
-                @endif            </div>
+                @endif
+            </div>
             <div>
                 <svg stroke="currentColor" fill="none" data-bs-toggle="modal" data-bs-target="#setEmailModal" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" class="text-info" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <line x1="12" y1="5" x2="12" y2="19"></line>

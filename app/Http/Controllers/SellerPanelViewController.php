@@ -17,7 +17,8 @@ class SellerPanelViewController extends Controller
     public function seller_profile()
     {
         $seller_info = get_seller_by_token()->sellerInfo()->first();
-        return view('seller.profile.seller_info' ,compact('seller_info'));
+        $phone_number=get_seller_by_token()->phone_number;
+        return view('seller.profile.seller_info' ,compact('seller_info','phone_number'));
     }
 
     public function seller_profile_address()
@@ -26,7 +27,8 @@ class SellerPanelViewController extends Controller
     }
     public function seller_profile_store_info()
     {
-        return view('seller.profile.store_info');
+        $shop_info = get_seller_by_token()->sellerInfo()->first();
+        return view('seller.profile.store_info' , compact('shop_info'));
     }
 
     public function seller_profile_finance()

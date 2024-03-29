@@ -105,6 +105,12 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     Route::post('/profile/email', [\App\Http\Controllers\SellerInfoController::class, 'register_seller_email'])->name('seller.profile.email');
     Route::post('/profile/national-code', [\App\Http\Controllers\SellerInfoController::class, 'register_seller_nationalCode'])->name('seller.profile.nationalCode');
 
+    Route::post('/profile/store-name', [\App\Http\Controllers\SellerInfoController::class, 'register_store_name'])->name('seller.profile.store.name');
+    Route::post('/profile/store-about', [\App\Http\Controllers\SellerInfoController::class, 'register_store_about'])->name('seller.profile.store.about');
+    Route::post('/profile/store-fix-number', [\App\Http\Controllers\SellerInfoController::class, 'register_store_fix_number'])->name('seller.profile.store.fix_number');
+    Route::post('/profile/store-website', [\App\Http\Controllers\SellerInfoController::class, 'register_store_website'])->name('seller.profile.store.website');
+    Route::post('/profile/store-logo', [\App\Http\Controllers\SellerInfoController::class, 'register_store_logo'])->name('seller.profile.store.logo');
+
 
     /*ajax to get product cats*/
     Route::post('/get-product-categories-ajax', [\App\Http\Controllers\ProductAjaxController::class, 'getCats']);

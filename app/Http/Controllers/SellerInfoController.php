@@ -126,4 +126,76 @@ class SellerInfoController extends Controller
 
         return back();
     }
+
+
+
+
+
+
+    public function register_store_name(Request $request)
+    {
+        $validData = $request->validate([
+            'shop_name' => 'required',
+        ]);
+
+        get_seller_by_token()->sellerInfo()->update([
+            'shop_name' => $validData['shop_name']
+        ]);
+
+
+        return back();
+    }
+    public function register_store_about(Request $request)
+    {
+        $validData = $request->validate([
+            'shop_about' => 'required',
+        ]);
+
+        get_seller_by_token()->sellerInfo()->update([
+            'about_shop' => $validData['shop_about']
+        ]);
+
+
+        return back();
+    }
+    public function register_store_fix_number(Request $request)
+    {
+        $validData = $request->validate([
+            'shop_number' => 'required',
+        ]);
+
+        get_seller_by_token()->sellerInfo()->update([
+            'shop_number' => $validData['shop_number']
+        ]);
+
+
+        return back();
+    }
+    public function register_store_website(Request $request)
+    {
+        $validData = $request->validate([
+            'shop_website' => 'required',
+        ]);
+
+        get_seller_by_token()->sellerInfo()->update([
+            'shop_website' => $validData['shop_website']
+        ]);
+
+
+        return back();
+    }
+    public function register_store_logo(Request $request)
+    {
+        $validData = $request->validate([
+            'shop_logo' => 'required',
+        ]);
+
+        get_seller_by_token()->sellerInfo()->update([
+            'shop_logo' => $validData['shop_logo']
+        ]);
+
+
+        return back();
+    }
+    
 }
