@@ -85,4 +85,45 @@ class SellerInfoController extends Controller
         //redirect to seller panel
         return redirect(route('seller.panel.index'));
     }
+
+    // prodile
+    public function register_seller_name(Request $request)
+    {
+        $validData = $request->validate([
+            'name' => 'required',
+        ]);
+
+        get_seller_by_token()->sellerInfo()->update([
+            'name' => $validData['name']
+        ]);
+
+
+        return back();
+    }
+    public function register_seller_email(Request $request)
+    {
+        $validData = $request->validate([
+            'email' => 'required',
+        ]);
+
+        get_seller_by_token()->sellerInfo()->update([
+            'email' => $validData['email']
+        ]);
+
+
+        return back();
+    }
+    public function register_seller_nationalCode(Request $request)
+    {
+        $validData = $request->validate([
+            'national_code' => 'required',
+        ]);
+
+        get_seller_by_token()->sellerInfo()->update([
+            'national_code' => $validData['national_code']
+        ]);
+
+
+        return back();
+    }
 }

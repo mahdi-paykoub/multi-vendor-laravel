@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\ProductCategory;
+use App\Models\SellerInfo;
 use Illuminate\Http\Request;
 
 class SellerPanelViewController extends Controller
@@ -15,7 +16,8 @@ class SellerPanelViewController extends Controller
 
     public function seller_profile()
     {
-        return view('seller.profile.seller_info');
+        $seller_info = get_seller_by_token()->sellerInfo()->first();
+        return view('seller.profile.seller_info' ,compact('seller_info'));
     }
 
     public function seller_profile_address()
@@ -54,5 +56,4 @@ class SellerPanelViewController extends Controller
         $brands = Brand::all();
         return view('seller.panel.create', compact('product_cats', 'brands'));
     }
-
 }

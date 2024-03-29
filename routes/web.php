@@ -101,7 +101,10 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
 
 
 
-    Route::post('/profile/name', [\App\Http\Controllers\SellerPanelViewController::class, 'register_seller_name'])->name('seller.profile.name');
+    Route::post('/profile/name', [\App\Http\Controllers\SellerInfoController::class, 'register_seller_name'])->name('seller.profile.name');
+    Route::post('/profile/email', [\App\Http\Controllers\SellerInfoController::class, 'register_seller_email'])->name('seller.profile.email');
+    Route::post('/profile/national-code', [\App\Http\Controllers\SellerInfoController::class, 'register_seller_nationalCode'])->name('seller.profile.nationalCode');
+
 
     /*ajax to get product cats*/
     Route::post('/get-product-categories-ajax', [\App\Http\Controllers\ProductAjaxController::class, 'getCats']);

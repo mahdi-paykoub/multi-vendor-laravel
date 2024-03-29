@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\GlobalOptions;
+use App\Models\Seller;
 use Illuminate\Support\Facades\Route;
 
 if (!function_exists('image_url_assets')) {
@@ -61,5 +62,12 @@ if (!function_exists('get_fa_logo')) {
         } else {
             return url('assets/frontend/image/logo/en_logo_not_loaded.png');
         }
+    }
+}
+
+if (!function_exists('get_seller_by_token')) {
+    function get_seller_by_token()
+    {
+        return Seller::where('token', session('seller_token'))->first();
     }
 }

@@ -14,7 +14,11 @@
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
                 <div> نام و نام خانوادگی</div>
+                @if ($seller_info->name != null)
+                <div class="fs15 text-dark mt-3 fw600">{{ $seller_info->name }}</div>
+                @else
                 <div class="fs15 text-dark mt-3 fw600">وارد کنید</div>
+                @endif
             </div>
             <div>
                 <svg stroke="currentColor" class="text-info cursor-pointer" data-bs-toggle="modal" data-bs-target="#setNameModal" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +32,11 @@
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
                 <div>کُد ملی</div>
-                <div class="fs15 text-dark mt-3 fw600">۱۳۶۲۶۶۷۱۱۰</div>
+                @if ($seller_info->national_code != null)
+                <div class="fs15 text-dark mt-3 fw600">{{ $seller_info->national_code }}</div>
+                @else
+                <div class="fs15 text-dark mt-3 fw600">وارد کنید</div>
+                @endif
             </div>
             <div>
                 <svg stroke="currentColor" fill="none" data-bs-toggle="modal" data-bs-target="#setNationalCode" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" class="text-info" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -58,8 +66,11 @@
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
                 <div>ایمیل<span class="fs14 text-danger">*</span> </div>
+                @if ($seller_info->email != null)
+                <div class="fs15 text-dark mt-3 fw600">{{ $seller_info->email }}</div>
+                @else
                 <div class="fs15 text-dark mt-3 fw600">وارد کنید</div>
-            </div>
+                @endif            </div>
             <div>
                 <svg stroke="currentColor" fill="none" data-bs-toggle="modal" data-bs-target="#setEmailModal" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" class="text-info" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -96,13 +107,16 @@
                 <h5 class="modal-title fs15 icon-dark-color fw600" id="exampleModalLabel">اطلاعات خود را وارد کنید</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <label for="" class="fs14">نام</label>
-                <input type="text" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
-            </div>
-            <div class="modal-footer mt-3">
-                <button type="button" class="btn-for-seller-profile">تایید</button>
-            </div>
+            <form action="{{route('seller.profile.name')}}" method="post">
+                @csrf
+                <div class="modal-body">
+                    <label for="" class="fs14">نام و نام خانوادگی</label>
+                    <input type="text" name="name" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
+                </div>
+                <div class="modal-footer mt-3">
+                    <button type="submit" class="btn-for-seller-profile">تایید</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -115,16 +129,20 @@
                 <h5 class="modal-title fs15 icon-dark-color fw600" id="exampleModalLabel">اطلاعات خود را وارد کنید</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <label for="" class="fs14">کدملی</label>
-                <input type="text" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
-            </div>
-            <div class="modal-footer mt-3">
-                <button type="button" class="btn-for-seller-profile">تایید</button>
-            </div>
+            <form action="{{route('seller.profile.nationalCode')}}" method="post">
+                @csrf
+                <div class="modal-body">
+                    <label for="" class="fs14">کدملی</label>
+                    <input type="text" name="national_code" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
+                </div>
+                <div class="modal-footer mt-3">
+                    <button type="submit" class="btn-for-seller-profile">تایید</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
 <!-- email  modal -->
 <div class="modal fade" id="setEmailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -133,13 +151,16 @@
                 <h5 class="modal-title fs15 icon-dark-color fw600" id="exampleModalLabel">اطلاعات خود را وارد کنید</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <label for="" class="fs14">ایمیل</label>
-                <input type="text" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
-            </div>
-            <div class="modal-footer mt-3">
-                <button type="button" class="btn-for-seller-profile">تایید</button>
-            </div>
+            <form action="{{route('seller.profile.email')}}" method="post">
+                @csrf
+                <div class="modal-body">
+                    <label for="" class="fs14">ایمیل</label>
+                    <input type="text" name="email" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
+                </div>
+                <div class="modal-footer mt-3">
+                    <button type="submit" class="btn-for-seller-profile">تایید</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
