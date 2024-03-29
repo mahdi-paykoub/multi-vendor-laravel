@@ -99,6 +99,10 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     Route::get('/profile/finance', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_finance'])->name('seller.profile.finance');
     Route::get('/profile/document-info', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_document_info'])->name('seller.profile.document.info');
 
+
+
+    Route::post('/profile/name', [\App\Http\Controllers\SellerPanelViewController::class, 'register_seller_name'])->name('seller.profile.name');
+
     /*ajax to get product cats*/
     Route::post('/get-product-categories-ajax', [\App\Http\Controllers\ProductAjaxController::class, 'getCats']);
     Route::post('/seller-create-product', [\App\Http\Controllers\SellerCreateProductController::class, 'create_product'])->name('seller.create.product.logic');

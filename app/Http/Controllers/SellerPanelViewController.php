@@ -26,7 +26,7 @@ class SellerPanelViewController extends Controller
     {
         return view('seller.profile.store_info');
     }
-    
+
     public function seller_profile_finance()
     {
         return view('seller.profile.seller_finance');
@@ -41,7 +41,7 @@ class SellerPanelViewController extends Controller
         return view('seller.landing');
     }
 
-    
+
 
     public function find_product()
     {
@@ -54,4 +54,5 @@ class SellerPanelViewController extends Controller
         $brands = Brand::all();
         return view('seller.panel.create', compact('product_cats', 'brands'));
     }
+
 }
