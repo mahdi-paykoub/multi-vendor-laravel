@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('styles')
 <link rel="stylesheet" href="{{asset('assets/frontend/css/seller-panel.css')}}">
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 @endsection
 
 @section('content')
@@ -14,7 +15,7 @@
                 <!--add shop logo-->
                 <div class="right-menu-box-p">
                     <div class="d-flex px-3 border-bottom-menu-bar pb-4 align-items-center">
-                        <div class="add-logo-btn-box br10 d-flex align-items-center justify-content-center">
+                        <div class="add-logo-btn-box cursor-pointer br10 d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#setLogoModal">
                             <div class="text-center">
                                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M363 277h-86v86h-42v-86h-86v-42h86v-86h42v86h86v42z"></path>
@@ -26,7 +27,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="fs15 fw600 icon-dark-color me-4">
+                        <div class="fs15 fw600 icon-dark-color me-4" >
                             لاراولیک
                         </div>
                     </div>
@@ -103,9 +104,38 @@
 @endsection
 
 @section('scripts')
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+
 <script>
     $('.profile-menu-svg').click(function() {
         $('.profile-menu').toggle()
     })
+
+
+    Dropzone.options.storeLogo = {
+        autoProcessQueue: false,
+        maxFiles:1,
+
+
+        init: function() {
+            var myDropzone = this;
+
+            // Update selector to match your button
+            $("#submit-store-logo-img").click(function(e) {
+                e.preventDefault();
+                myDropzone.processQueue();
+            });
+        
+            this.on("success", function(files, response) {
+
+                console.log(response);
+            });
+            this.on("error", function(files, response) {
+                console.log(response);
+            });
+        }
+
+    }
 </script>
+
 @endsection

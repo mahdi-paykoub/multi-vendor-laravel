@@ -186,16 +186,23 @@ class SellerInfoController extends Controller
     }
     public function register_store_logo(Request $request)
     {
+
         $validData = $request->validate([
-            'shop_logo' => 'required',
+            'file' => 'required',
         ]);
+
+        /*add gallery img*/
+        $file = $request->file('file');
+     
+        $destinationPath = '/assets/frontend/image/store-logo/' . now()->year . '/' . now()->month . '/' . now()->day . '/';
+        $file->move(public_path($destinationPath), $file->getClientOriginalName());
+        /*end add gallery img*/
 
         get_seller_by_token()->sellerInfo()->update([
-            'shop_logo' => $validData['shop_logo']
+            'shop_logo' => $destinationPath . $file->getClientOriginalName()
         ]);
 
 
-        return back();
+        return response([]);
     }
-    
 }

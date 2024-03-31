@@ -148,7 +148,7 @@
                 @csrf
                 <div class="modal-body">
 
-                    <input type="text" name="shop_name" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
+                    <input type="text" name="shop_name" value="{{$shop_info->shop_name}}" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
                 </div>
                 <div class="modal-footer mt-3">
                     <button type="submit" class="btn-for-seller-profile">تایید</button>
@@ -169,7 +169,7 @@
             <form action="{{route('seller.profile.store.about')}}" method="post">
                 @csrf
                 <div class="modal-body">
-                    <textarea name="shop_about" style="height: 130px;" id="" cols="30" rows="10" class="w-100 mt-2 inp-seller-profile p-3 text-secondary"></textarea>
+                    <textarea name="shop_about" style="height: 130px;" id="" cols="30" rows="10" class="w-100 mt-2 inp-seller-profile p-3 text-secondary">{{$shop_info->about_shop}}</textarea>
                 </div>
                 <div class="modal-footer mt-3">
                     <button type="submit" class="btn-for-seller-profile">تایید</button>
@@ -190,7 +190,7 @@
                 @csrf
                 <div class="modal-body">
                     <label for="" class="fs14 text-secondary mt-3">شماره تلفن ثابت فروشگاه خود را وارد کنید</label>
-                    <input type="text" name="shop_number" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
+                    <input type="text" name="shop_number" value="{{$shop_info->shop_number}}" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
                 </div>
                 <div class="modal-footer mt-3">
                     <button type="submit" class="btn-for-seller-profile">تایید</button>
@@ -211,7 +211,7 @@
                 @csrf
                 <div class="modal-body">
                     <label for="" class="fs14 text-secondary mt-3">آدرس وب‌سایت فروشگاه</label>
-                    <input type="text" name="shop_website" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
+                    <input type="text" name="shop_website" value="{{$shop_info->shop_website}}" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
                 </div>
                 <div class="modal-footer mt-3">
                     <button type="submit" class="btn-for-seller-profile">تایید</button>
@@ -225,21 +225,46 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0">
             <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
-                <h5 class="modal-title fs15 icon-dark-color fw600" id="exampleModalLabel">اطلاعات خود را وارد کنید</h5>
+                <h5 class="modal-title fs15 icon-dark-color fw600" id="exampleModalLabel">نماد فروشگاه (لوگو)</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{route('seller.profile.store.logo')}}" method="post">
-                @csrf
-                <div class="modal-body">
-                    <label for="" class="fs14">نام و نام خانوادگی</label>
-                    <input type="text" name="shop_logo" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
-                </div>
-                <div class="modal-footer mt-3">
-                    <button type="submit" class="btn-for-seller-profile">تایید</button>
-                </div>
-            </form>
+
+
+            <div class="modal-body">
+                <label for="" class="fs14"> اگر لوگو دارید، بارگذاری کنید چون فروشگاه‌ را حرفه‌ای نشان می‌دهد</label>
+            </div>
+            <div>
+                <form method="post" action="{{route('seller.profile.store.logo')}}" class="dropzone border-0 d-block store-logo-dropzone" id="storeLogo">
+                    @csrf
+                    <div class="d-flex align-items-center dz-default dz-message py-0 my-0">
+                        <div style="height:120px;width:120px" class="add-logo-btn-box  br10 d-flex align-items-center justify-content-center">
+                            <div class="text-center">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M363 277h-86v86h-42v-86h-86v-42h86v-86h42v86h86v42z"></path>
+                                    <path d="M256 90c44.3 0 86 17.3 117.4 48.6C404.7 170 422 211.7 422 256s-17.3 86-48.6 117.4C342 404.7 300.3 422 256 422c-44.3 0-86-17.3-117.4-48.6C107.3 342 90 300.3 90 256c0-44.3 17.3-86 48.6-117.4C170 107.3 211.7 90 256 90m0-42C141.1 48 48 141.1 48 256s93.1 208 208 208 208-93.1 208-208S370.9 48 256 48z">
+                                    </path>
+                                </svg>
+                                <div class="fs12">
+                                    افزودن
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pe-3 text-secondary-2">
+                            <div class="fs11">پس‌زمینه ترجیحاً سفید</div>
+                            <div class="fs11 mt-2">قالب مربع</div>
+                            <div class="fs11 mt-2">حداقل ۶۰۰ در ۶۰۰ پیکسل</div>
+                            <div class="fs11 mt-2">فرمت PNG یا JPG</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer mt-3" action="{{route('seller.profile.store.logo')}}" method="post">
+                <button class="btn-for-seller-profile" id="submit-store-logo-img">تایید</button>
+            </div>
+
         </div>
     </div>
 </div>
+
 
 @endsection
