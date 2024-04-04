@@ -38,18 +38,6 @@
 
     @if(count($user_addresses) !== 0)
 
-
-    @else
-    <div class="row justify-content-center">
-
-        <div class="col-6 col-md-5 col-lg-3 text-center py-5 mt-5">
-            <img src="{{url('assets/frontend/image/text/address.svg')}}" class="w-100 p-3" alt="">
-            <div class="fs14 icon-dark-color">
-                هنوز آدرس ثبت نکرده‌اید.
-            </div>
-        </div>
-    </div>
-    @endif
     @foreach($user_addresses as $user_address)
     <div class="py-4 d-flex justify-content-between @if(!$loop->last) border-bottom @endif">
         <div>
@@ -111,6 +99,18 @@
         </div>
     </div>
     @endforeach
+    @else
+    <div class="row justify-content-center">
+
+        <div class="col-6 col-md-5 col-lg-3 text-center py-5 mt-5">
+            <img src="{{url('assets/frontend/image/text/address.svg')}}" class="w-100 p-3" alt="">
+            <div class="fs14 icon-dark-color">
+                هنوز آدرس ثبت نکرده‌اید.
+            </div>
+        </div>
+    </div>
+    @endif
+
 
     <div class="mt-5 text-start d-lg-none">
         <button class="btn btn-danger bg-digi-red text-white fs15 btn-padding br15">
