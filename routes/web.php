@@ -98,7 +98,9 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     Route::get('/profile/store-info', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_store_info'])->name('seller.profile.store.info');
     Route::get('/profile/finance', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_finance'])->name('seller.profile.finance');
     Route::get('/profile/document-info', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_document_info'])->name('seller.profile.document.info');
-
+    // seller address
+    Route::post('/set/seller/address', [\App\Http\Controllers\AddressController::class, 'setSellerAddress'])->name('set.seller.address');
+    Route::Delete('/delete/address/{address}', [\App\Http\Controllers\AddressController::class, 'delete_address'])->name('delete.seller.address');
 
 
     Route::post('/profile/name', [\App\Http\Controllers\SellerInfoController::class, 'register_seller_name'])->name('seller.profile.name');
@@ -135,6 +137,11 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 
     Route::post('/add/wish-lists', [WishListController::class, 'addWishList'])->name('add.wish.list');
     Route::delete('/delete/wish-lists/{wishList}', [WishListController::class, 'deleteWishList'])->name('delete.wish.list');
+    /*set user or seller address*/
+    Route::post('/set/user/address', [\App\Http\Controllers\AddressController::class, 'setUserAddress'])->name('set.user.address');
+    Route::Delete('/delete/address/{address}', [\App\Http\Controllers\AddressController::class, 'delete_address'])->name('delete.address');
+
+
     // ajax
     Route::post('/add/product/to/wish-lists', [WishListController::class, 'addProductToWishList'])->name('add.product.to.wish.list');
 
@@ -147,9 +154,6 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::post('/update/user-phone-number', [\App\Http\Controllers\userProfile\InfoController::class, 'phone_number_update'])->name('update.user.phoneNumber');
     Route::post('/update/user-job', [\App\Http\Controllers\userProfile\InfoController::class, 'job_update'])->name('update.user.job');
 });
-/*set user or seller address*/
-Route::post('/set/user/address', [\App\Http\Controllers\AddressController::class, 'setUserAddress'])->name('set.user.address');
-Route::Delete('/delete/address/{address}', [\App\Http\Controllers\AddressController::class, 'delete_address'])->name('delete.address');
 
 
 // category

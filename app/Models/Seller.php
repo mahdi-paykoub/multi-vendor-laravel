@@ -27,4 +27,8 @@ class Seller extends Model
         return $this->hasMany(SellerAddress::class);
     }
 
+    public function addresses()
+    {
+        return $this->morphMany(Address::class, 'addressable');
+    }
 }

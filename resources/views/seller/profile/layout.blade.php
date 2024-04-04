@@ -2,8 +2,12 @@
 @section('styles')
 <link rel="stylesheet" href="{{asset('assets/frontend/css/seller-panel.css')}}">
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-@endsection
 
+@endsection
+@section('map_styles')
+<link rel="stylesheet" href="https://static.neshan.org/sdk/leaflet/v1.9.4/neshan-sdk/v1.0.8/index.css" />
+
+@endsection
 @section('content')
 @include('layouts.seller_panel_parts.header')
 
@@ -27,7 +31,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="fs15 fw600 icon-dark-color me-4" >
+                        <div class="fs15 fw600 icon-dark-color me-4">
                             لاراولیک
                         </div>
                     </div>
@@ -99,12 +103,13 @@
 </div>
 
 
-
 @include('layouts.seller_panel_parts.footer')
 @endsection
 
 @section('scripts')
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<script src="https://static.neshan.org/sdk/leaflet/v1.9.4/neshan-sdk/v1.0.8/index.js"></script>
+
 
 <script>
     $('.profile-menu-svg').click(function() {
@@ -114,7 +119,7 @@
 
     Dropzone.options.storeLogo = {
         autoProcessQueue: false,
-        maxFiles:1,
+        maxFiles: 1,
 
 
         init: function() {
@@ -125,7 +130,7 @@
                 e.preventDefault();
                 myDropzone.processQueue();
             });
-        
+
             this.on("success", function(files, response) {
 
                 console.log(response);
@@ -138,4 +143,136 @@
     }
 </script>
 
+
+<!-- map -->
+<script>
+    $('#mapModal').on('shown.bs.modal', function(e) {
+
+        const testLMap = new L.Map("map", {
+            key: "web.7f108dbefd34420ab21ea5b72beb9eee",
+            maptype: "neshan",
+            poi: false,
+            traffic: false,
+            center: [35.699756, 51.338076],
+            zoom: 14,
+        })
+
+
+        function onMapClick(e) {
+            $lng = e.latlng.lng
+            $lat = e.latlng.lat
+
+            $.ajaxSetup({
+                headers: {
+                    'Api-Key': 'service.fd80e037e6174b4c8763e069fce2a22c'
+                }
+            })
+
+            $.ajax({
+                type: 'get',
+                url: 'https://api.neshan.org/v5/reverse?lat=' + $lat + '&lng=' + $lng + '',
+                success: function(res) {
+                    $city = res.city
+                    $state = res.state
+                    $formatted_address = res.formatted_address
+
+                    $('.address').val($formatted_address)
+                    $('.city').val($city)
+                    $('.state').val($state)
+                }
+            })
+            $('#mapModal').modal('hide');
+            $('#addressModal').modal('toggle');
+
+            var myModal = document.getElementById('addressModal')
+        }
+
+        testLMap.on('click', onMapClick);
+
+
+        $('.send-address-data').click(function() {
+            $state = $('.state').val()
+            $city = $('.city').val()
+            $address = $('.address').val()
+            $postal_code = $('.postal_code').val()
+            $plaque = $('.plaque').val()
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json'
+                }
+            })
+            $.ajax({
+                type: 'POST',
+                url: '/seller-panel/set/seller/address',
+                data: JSON.stringify({
+                    state: $state,
+                    city: $city,
+                    address: $address,
+                    postal_code: $postal_code,
+                    plaque: $plaque,
+                }),
+                success: function(data) {
+
+                    if (data.status) {
+                        location.reload();
+                    }
+                },
+                error: function(data) {
+
+                    $errormsg = Object.values(data.responseJSON.errors)[0];
+                    toast($errormsg);
+                }
+            });
+        })
+
+
+        $("#main-sr-addr-inp").on("keyup paste", function() {
+            $inpuValue = $(this).val()
+
+            $.ajaxSetup({
+                headers: {
+                    'Api-Key': 'service.375ba0da42d041468bb987e2e6b653dc'
+                }
+            })
+            $.ajax({
+                type: 'get',
+                url: 'https://api.neshan.org/v1/search?term=' + $inpuValue + '&lat=' + 35.699756 + '&lng=' + 51.338076 + '',
+                success: function(data) {
+                    console.log(data)
+                    var res = '';
+                    $.each(data.items, function(key, value) {
+                        $cus_class = key == 0 ? "" : "pt-3"
+                        res +=
+                            '<div data-x="' + value.location.x + '" data-y="' + value.location.y + '" class="d-flex response-of-location-search cursor-pointer ' + $cus_class + '">' +
+                            '<svg stroke="currentColor" class="text-secondary" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">' +
+                            '<path fill="none" stroke-width="2" d="M12,22 C12,22 4,16 4,10 C4,5 8,2 12,2 C16,2 20,5 20,10 C20,16 12,22 12,22 Z M12,13 C13.657,13 15,11.657 15,10 C15,8.343 13.657,7 12,7 C10.343,7 9,8.343 9,10 C9,11.657 10.343,13 12,13 L12,13 Z"></path> </svg>' +
+                            '<div class="me-2 w-100 text-end border-bottom pb-3">' +
+                            '<div class="fs15 text-dark">' + value.title + '</div>' +
+                            '<div class="text-secondary mt-2 fs13">' + value.address + '</div></div>' +
+                            '</div>'
+                    });
+
+                    $('.ajx-res-src-val').addClass('d-block').html(res);
+                    if ($inpuValue == '') {
+                        $('.ajx-res-src-val').removeClass('d-block').addClass('display-none');
+                    }
+
+                    $('.response-of-location-search').click(function() {
+                        $lat_n = $(this).attr('data-x')
+                        $lng_n = $(this).attr('data-y')
+
+                        testLMap.setView(new L.LatLng($lng_n, $lat_n), 16, {
+                            animation: true
+                        });
+
+                        $('.ajx-res-src-val').removeClass('d-block').addClass('display-none');
+
+                    })
+                }
+            });
+        });
+    });
+</script>
 @endsection
