@@ -80,7 +80,7 @@
                         </svg>
                     </div>
                 </div>
-                <div style="" class="seller-pr-brands-p pt-2">
+                <div class="seller-pr-brands-p pt-2">
                     <div class="d-flex mt-2 justify-content-between px-3 align-items-center">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault7">
@@ -380,10 +380,21 @@
                 <div class="px-2 c-border-b">
                     @foreach ($products as $product)
                     @php
+
+                    $productInfoUN = $product->productInfos()->pluck('attr_value_id');
+                    if(count($productInfoUN->unique()) > 1){
+                    continue;
+                    }
+
+
                     $img = $product->galleries()->first()->image;
                     $cat = $product->productCategories()->first()->title;
+
+                
+
                     $productInfo = $product->productInfos()->get();
                     $min_price = $productInfo->min('price');
+                 
                     @endphp
 
                     <div class="px-lg-3 on-hover-act-btns border-bottom pb-3">
@@ -391,7 +402,7 @@
                             <a href="/product/{{$product->slug}}">
                                 <div class="d-lg-flex d-block align-items-center text-center">
                                     <img src="{{$img}}" width="60" height="60" alt="">
-                                    <div class="fs13 me-3 text-secondary text-hover-dashed mt-3 mt-lg-0"> سایه بان مدل
+                                    <div class="fs13 me-3 text-secondary text-hover-dashed mt-3 mt-lg-0">
                                         {{ $product->title }}
                                     </div>
                                 </div>
@@ -399,6 +410,9 @@
                             <div>
                                 @php
                                 $pinfo = [
+                                'attr_id'=> $productInfo[0]->attr_id,
+                                'attr_value_id'=> $productInfo[0]->attr_value_id,
+                                'product_id'=> $product->id,
                                 'title'=> $product->title,
                                 'image'=> $img,
                                 'cat'=> $cat,
@@ -498,7 +512,7 @@
 
 
 <!-- you aloso sell modal -->
-<div class="modal fade" id="youSellModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="youSellModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl br10">
         <div class="modal-content border-0">
             <div class="row">
@@ -531,10 +545,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- you also sell product modal -->
-<div class="modal fade" id="youSellProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="youSellModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg br10">
         <div class="modal-content border-0">
             <div class="d-flex justify-content-between align-items-center p-4">
@@ -581,12 +595,13 @@
             </div>
             <div class="text-start px-4 pb-4">
                 <button class="fs14 btn btn-light border px-4 text-secondary br7 mt-4 w-fit">انصراف</button>
-                <button class="fs14 btn btn-info text-white me-2 px-4 text-secondary br7 mt-4 w-fit">تایید</button>
+                <button class="fs14 btn btn-info send-you-sell-btn text-white me-2 px-4 text-secondary br7 mt-4 w-fit">تایید</button>
             </div>
 
         </div>
     </div>
 </div>
+<div class="p-info-selected" data-selectedproduct="">sdcsdcsdcsdc</div>
 
 @include('layouts.seller_panel_parts.footer')
 @endsection
@@ -599,23 +614,34 @@
 
     $('#youSellModal').on('show.bs.modal', function(e) {
         var data = $(e.relatedTarget).data('productinfo');
-        $('.i-know-btn').attr('data-producti', JSON.stringify(data))
-    });
-
-
-    $('.i-know-btn').click(function() {
-        $('#youSellModal').modal('hide');
-    })
-    $('#youSellProductModal').on('show.bs.modal', function(e) {
-        var data = $(e.relatedTarget).data('producti');
-
-        console.log(data)
+        $('.p-info-selected').attr('data-selectedproduct', JSON.stringify(data))
         $('.cat-of-p').text(data.cat)
         $('.image-of-p').attr('src', data.image)
         $('.title-of-p').text(data.title)
         $('.price-of-p').text(Number(data.min_price).toLocaleString())
         $('.var-of-p').text(data.variety)
-        $('.slug-of-p').attr('href','/product/' +  data.slug)
+        $('.slug-of-p').attr('href', '/product/' + data.slug)
     });
+
+    $('.send-you-sell-btn').click(function() {
+        $data = $('.p-info-selected').attr('data-selectedproduct')
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                'Content-Type': 'application/json'
+            }
+        })
+
+        $.ajax({
+            type: 'POST',
+            url: '/seller-panel/seller/you/also/sell',
+            data: JSON.stringify({
+                data: $data
+            }),
+            success: function(response) {
+                console.log(response)
+            }
+        });
+    })
 </script>
 @endsection

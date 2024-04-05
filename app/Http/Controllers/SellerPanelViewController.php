@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductInfo;
 use App\Models\SellerInfo;
 use Illuminate\Http\Request;
 
@@ -18,19 +19,19 @@ class SellerPanelViewController extends Controller
     public function seller_profile()
     {
         $seller_info = get_seller_by_token()->sellerInfo()->first();
-        $phone_number=get_seller_by_token()->phone_number;
-        return view('seller.profile.seller_info' ,compact('seller_info','phone_number'));
+        $phone_number = get_seller_by_token()->phone_number;
+        return view('seller.profile.seller_info', compact('seller_info', 'phone_number'));
     }
 
     public function seller_profile_address()
     {
         $user_addresses = get_seller_by_token()->addresses()->get();
-        return view('seller.profile.seller_address' ,compact('user_addresses'));
+        return view('seller.profile.seller_address', compact('user_addresses'));
     }
     public function seller_profile_store_info()
     {
         $shop_info = get_seller_by_token()->sellerInfo()->first();
-        return view('seller.profile.store_info' , compact('shop_info'));
+        return view('seller.profile.store_info', compact('shop_info'));
     }
 
     public function seller_profile_finance()
@@ -52,7 +53,7 @@ class SellerPanelViewController extends Controller
     public function find_product()
     {
         $products = Product::all();
-        return view('seller.panel.find',compact('products'));
+        return view('seller.panel.find', compact('products'));
     }
 
     public function add_product_v()

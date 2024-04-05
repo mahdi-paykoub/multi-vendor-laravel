@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attr;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\ProductInfo;
 use App\Models\Seller;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
@@ -110,7 +111,6 @@ class SellerCreateProductController extends Controller
             );
 
             $product->productAttributes()->attach($attr->id, ['attr_value_id' => $attr_value->id]);
-
         });
         /*and add fixed attr*/
 
@@ -165,5 +165,24 @@ class SellerCreateProductController extends Controller
         /*end add variable attr*/
 
         return back();
+    }
+
+    public function you_also_sell(Request $request)
+    {
+        $validData = $request->validate([
+            'data' => 'required'
+        ]);
+        
+        $data = json_decode($validData['data']);
+
+        ProductInfo::create([
+            'seller_id' => get_seller_by_token()->id,
+            'product_id' => $data->product_id,
+            'attr_id' => $data->attr_id,
+            'attr_value_id' => $data->attr_value_id,
+            'price' => $data->min_price,
+            'quantity' => 1,
+        ]);
+      
     }
 }
