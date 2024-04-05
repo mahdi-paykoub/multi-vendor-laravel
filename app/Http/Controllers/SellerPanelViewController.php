@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\SellerInfo;
 use Illuminate\Http\Request;
@@ -50,7 +51,8 @@ class SellerPanelViewController extends Controller
 
     public function find_product()
     {
-        return view('seller.panel.find');
+        $products = Product::all();
+        return view('seller.panel.find',compact('products'));
     }
 
     public function add_product_v()
