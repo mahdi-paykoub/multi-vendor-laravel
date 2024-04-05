@@ -397,7 +397,7 @@
                                 </div>
                             </a>
                             <div>
-                                <button class="fs13 you-also-sell-btn mt-3 mt-lg-0"><span class="d-none d-lg-inline">شما هم </span>
+                                <button data-bs-toggle="modal" data-bs-target="#youSellModal" class="fs13 you-also-sell-btn mt-3 mt-lg-0"><span class="d-none d-lg-inline">شما هم </span>
                                     بفروشید
                                 </button>
                             </div>
@@ -487,6 +487,41 @@
 </div>
 
 
+<!-- you aloso sell modal -->
+<div class="modal fade" id="youSellModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl br10">
+        <div class="modal-content border-0">
+            <div class="row">
+                <div class="col-6 p-4 text-center">
+                    <div class="mt-3 fs20">
+                        نکات لازم قبل از فروش کالای درج شده در دیجی کالا:
+                    </div>
+                    <div class="text-secondary lh2 fs15 mt-3" style="line-height: 2.8;">
+                        لطفا ابتدا تمامی اطلاعات درج شده را با کالای خود مقایسه و در صورت مطابقت این اطلاعات، “شما هم بفروشید” را انتخاب کنید در غیر این صورت کالای جدید درج کنید. (ارسال کالای مغایر با اطلاعات درج شده، موجب جریمه و کسر امتیاز می شود) حتما قبل از انتخاب گزینه "شما هم بفروشید" روی کالاهایی که نشان غیر اصل ندارند از اصالت کالای خود مطمئن شوید و در صورت غیر اصل بودن کالا، روی کالا با نشان غیر اصل قیمت گذاری کنید و در صورتی که کالای مورد نظر با نشان مربوطه وجود ندارد، اقدام به درج کالای جدید به همراه نشان غیر اصل کنید.
+                    </div>
+                    <button class="fs14 btn btn-info mt-4 px-5 text-white br10 btn-padding">متوجه شدم</button>
+                </div>
+                <div class="col-6 p-4  py-4" style="background-color:#f5f7fa ;">
+                
+                    <div class="d-flex justify-content-between">
+                        <div></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="text-center  py-5">
+                        <img src="{{url('assets/frontend/image/text/89f1d173.png')}}" class="" alt="">
+                        <div class="fw600 fs18 mt-4 icon-dark-color">
+                            فروش کالای غیر اصل:
+                        </div>
+                        <div class="text-secondary lh2 fs15 mt-3" style="line-height: 2.8;">
+                        همان طور که اطلاع دارید فروش کالای غیر اصل فقط در صورت درج "نشان کالای غیر اصل" هنگام درج کالا ممکن است. در صورت فروش کالای غیر اصل بدون داشتن این نشان شما موظف به پرداخت جریمه ای معادل 10 برابر کل فروش آن کالای غیر اصل خواهید بود.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @include('layouts.seller_panel_parts.footer')
 @endsection
