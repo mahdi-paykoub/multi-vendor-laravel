@@ -499,10 +499,10 @@
                     <div class="text-secondary lh2 fs15 mt-3" style="line-height: 2.8;">
                         لطفا ابتدا تمامی اطلاعات درج شده را با کالای خود مقایسه و در صورت مطابقت این اطلاعات، “شما هم بفروشید” را انتخاب کنید در غیر این صورت کالای جدید درج کنید. (ارسال کالای مغایر با اطلاعات درج شده، موجب جریمه و کسر امتیاز می شود) حتما قبل از انتخاب گزینه "شما هم بفروشید" روی کالاهایی که نشان غیر اصل ندارند از اصالت کالای خود مطمئن شوید و در صورت غیر اصل بودن کالا، روی کالا با نشان غیر اصل قیمت گذاری کنید و در صورتی که کالای مورد نظر با نشان مربوطه وجود ندارد، اقدام به درج کالای جدید به همراه نشان غیر اصل کنید.
                     </div>
-                    <button class="fs14 btn btn-info mt-4 px-5 text-white br10 btn-padding">متوجه شدم</button>
+                    <button class="fs14 btn btn-info mt-4 px-5 text-white br10 btn-padding i-know-btn">متوجه شدم</button>
                 </div>
                 <div class="col-6 p-4  py-4" style="background-color:#f5f7fa ;">
-                
+
                     <div class="d-flex justify-content-between">
                         <div></div>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -513,12 +513,67 @@
                             فروش کالای غیر اصل:
                         </div>
                         <div class="text-secondary lh2 fs15 mt-3" style="line-height: 2.8;">
-                        همان طور که اطلاع دارید فروش کالای غیر اصل فقط در صورت درج "نشان کالای غیر اصل" هنگام درج کالا ممکن است. در صورت فروش کالای غیر اصل بدون داشتن این نشان شما موظف به پرداخت جریمه ای معادل 10 برابر کل فروش آن کالای غیر اصل خواهید بود.
+                            همان طور که اطلاع دارید فروش کالای غیر اصل فقط در صورت درج "نشان کالای غیر اصل" هنگام درج کالا ممکن است. در صورت فروش کالای غیر اصل بدون داشتن این نشان شما موظف به پرداخت جریمه ای معادل 10 برابر کل فروش آن کالای غیر اصل خواهید بود.
                         </div>
                     </div>
 
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- you also sell product modal -->
+<div class="modal fade" id="youSellProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl br10">
+        <div class="modal-content border-0">
+            <div class="d-flex justify-content-between align-items-center p-4">
+                <div class="fw600 text-secondary">
+                    تأیید عملیات فروش
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <div class="px-4">
+                <div class="px-lg-3 on-hover-act-btns border-bottom pb-3 border br10">
+                    <div class="d-lg-flex text-center d-block justify-content-lg-between p-4 align-items-center">
+                        <a href="/product/4524">
+                            <div class="d-lg-flex d-block align-items-center text-center">
+                                <img src="/assets/frontend/image/product/2024/3/28/07125b962a7e1ece3ec4eaff24e5df4cf6183f4d_1693135026.jpg" width="60" height="60" alt="">
+                                <div class="fs13 me-3 text-secondary text-hover-dashed mt-3 mt-lg-0"> سایه بان مدل
+                                    4524
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="pr-b-info p-2">
+                        <div class="d-flex justify-content-between align-items-center px-4">
+                            <div>
+                                <span class="fs12 text-secondary-2">گروه:</span>
+                                <span class="fs13 text-secondary">کالای دیجیتال</span>
+                            </div>
+                            <div>
+                                <span class="fs12 text-secondary-2">وضعیت جاری:</span>
+                                <span class="fs13 text-secondary">قابل فروش</span>
+                            </div>
+                            <div>
+                                <span class="fs12 text-secondary-2">تعداد تنوع فعال:</span>
+                                <span class="fs13 text-secondary fv">2</span>
+                            </div>
+                            <div class="d-none d-md-block">
+                                <span class="fs12 text-secondary-2">کمترین قیمت روی سایت:</span>
+                                <span class="fs13 text-secondary fv">1,800,000</span>
+                                <span class="fs12 text-secondary">ریال</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-start px-4 pb-4">
+                <button class="fs14 btn btn-light border px-4 text-secondary br7 mt-4 w-fit">انصراف</button>
+                <button class="fs14 btn btn-info text-white me-2 px-4 text-secondary br7 mt-4 w-fit">تایید</button>
+            </div>
+
         </div>
     </div>
 </div>
@@ -529,6 +584,12 @@
 <script>
     $('.profile-menu-svg').click(function() {
         $('.profile-menu').toggle()
+    })
+
+    $('.i-know-btn').click(function() {
+        $('#youSellModal').modal('hide');
+
+        $('#youSellProductModal').modal('show');
     })
 </script>
 @endsection
