@@ -397,7 +397,17 @@
                                 </div>
                             </a>
                             <div>
-                                <button data-bs-toggle="modal" data-bs-target="#youSellModal" class="fs13 you-also-sell-btn mt-3 mt-lg-0"><span class="d-none d-lg-inline">شما هم </span>
+                                @php
+                                $pinfo = [
+                                'title'=> $product->title,
+                                'image'=> $img,
+                                'cat'=> $cat,
+                                'variety'=> count($productInfo),
+                                'min_price'=> $min_price,
+                                'slug'=> $product->slug,
+                                ];
+                                @endphp
+                                <button data-bs-toggle="modal" data-bs-target="#youSellModal" data-productinfo="{{json_encode($pinfo)}}" class="fs13 you-also-sell-btn mt-3 mt-lg-0"><span class="d-none d-lg-inline">شما هم </span>
                                     بفروشید
                                 </button>
                             </div>
@@ -499,7 +509,7 @@
                     <div class="text-secondary lh2 fs15 mt-3" style="line-height: 2.8;">
                         لطفا ابتدا تمامی اطلاعات درج شده را با کالای خود مقایسه و در صورت مطابقت این اطلاعات، “شما هم بفروشید” را انتخاب کنید در غیر این صورت کالای جدید درج کنید. (ارسال کالای مغایر با اطلاعات درج شده، موجب جریمه و کسر امتیاز می شود) حتما قبل از انتخاب گزینه "شما هم بفروشید" روی کالاهایی که نشان غیر اصل ندارند از اصالت کالای خود مطمئن شوید و در صورت غیر اصل بودن کالا، روی کالا با نشان غیر اصل قیمت گذاری کنید و در صورتی که کالای مورد نظر با نشان مربوطه وجود ندارد، اقدام به درج کالای جدید به همراه نشان غیر اصل کنید.
                     </div>
-                    <button class="fs14 btn btn-info mt-4 px-5 text-white br10 btn-padding i-know-btn">متوجه شدم</button>
+                    <button data-bs-toggle="modal" data-bs-target="#youSellProductModal" data-producti="" class="fs14 btn btn-info mt-4 px-5 text-white br10 btn-padding i-know-btn">متوجه شدم</button>
                 </div>
                 <div class="col-6 p-4  py-4" style="background-color:#f5f7fa ;">
 
@@ -525,7 +535,7 @@
 
 <!-- you also sell product modal -->
 <div class="modal fade" id="youSellProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl br10">
+    <div class="modal-dialog modal-dialog-centered modal-lg br10">
         <div class="modal-content border-0">
             <div class="d-flex justify-content-between align-items-center p-4">
                 <div class="fw600 text-secondary">
@@ -534,14 +544,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
             </div>
-            <div class="px-4">
+            <div class="px-lg-4 px-2">
                 <div class="px-lg-3 on-hover-act-btns border-bottom pb-3 border br10">
                     <div class="d-lg-flex text-center d-block justify-content-lg-between p-4 align-items-center">
-                        <a href="/product/4524">
+                        <a class="slug-of-p" href="">
                             <div class="d-lg-flex d-block align-items-center text-center">
-                                <img src="/assets/frontend/image/product/2024/3/28/07125b962a7e1ece3ec4eaff24e5df4cf6183f4d_1693135026.jpg" width="60" height="60" alt="">
-                                <div class="fs13 me-3 text-secondary text-hover-dashed mt-3 mt-lg-0"> سایه بان مدل
-                                    4524
+                                <img class="image-of-p" src="" width="60" height="60" alt="">
+                                <div class="fs13 title-of-p me-3 text-secondary text-hover-dashed mt-3 mt-lg-0"> سایه بان مدل
+
                                 </div>
                             </div>
                         </a>
@@ -550,7 +560,7 @@
                         <div class="d-flex justify-content-between align-items-center px-4">
                             <div>
                                 <span class="fs12 text-secondary-2">گروه:</span>
-                                <span class="fs13 text-secondary">کالای دیجیتال</span>
+                                <span class="fs13 text-secondary cat-of-p"></span>
                             </div>
                             <div>
                                 <span class="fs12 text-secondary-2">وضعیت جاری:</span>
@@ -558,11 +568,11 @@
                             </div>
                             <div>
                                 <span class="fs12 text-secondary-2">تعداد تنوع فعال:</span>
-                                <span class="fs13 text-secondary fv">2</span>
+                                <span class="fs13 text-secondary fv var-of-p"></span>
                             </div>
                             <div class="d-none d-md-block">
                                 <span class="fs12 text-secondary-2">کمترین قیمت روی سایت:</span>
-                                <span class="fs13 text-secondary fv">1,800,000</span>
+                                <span class="fs13 text-secondary price-of-p fv"></span>
                                 <span class="fs12 text-secondary">ریال</span>
                             </div>
                         </div>
@@ -586,10 +596,26 @@
         $('.profile-menu').toggle()
     })
 
+
+    $('#youSellModal').on('show.bs.modal', function(e) {
+        var data = $(e.relatedTarget).data('productinfo');
+        $('.i-know-btn').attr('data-producti', JSON.stringify(data))
+    });
+
+
     $('.i-know-btn').click(function() {
         $('#youSellModal').modal('hide');
-
-        $('#youSellProductModal').modal('show');
     })
+    $('#youSellProductModal').on('show.bs.modal', function(e) {
+        var data = $(e.relatedTarget).data('producti');
+
+        console.log(data)
+        $('.cat-of-p').text(data.cat)
+        $('.image-of-p').attr('src', data.image)
+        $('.title-of-p').text(data.title)
+        $('.price-of-p').text(Number(data.min_price).toLocaleString())
+        $('.var-of-p').text(data.variety)
+        $('.slug-of-p').attr('href','/product/' +  data.slug)
+    });
 </script>
 @endsection
