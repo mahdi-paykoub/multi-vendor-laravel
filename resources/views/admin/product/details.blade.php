@@ -52,7 +52,10 @@ $seller_info= $seller->sellerInfo()->first();
             <img src="{{$product->galleries()->first()->image}}" class="img-fluid" alt="...">
             <div class="row mb-3 row-cols-auto g-2 justify-content-center mt-3">
 
-                @foreach ($product->galleries()->get() as $img)
+                @foreach ($product->galleries()->get() as $key => $img)
+                @if ($key == 0)
+                @continue
+                @endif
                 <div class="col"><img src="{{$img->image}}" width="70" class="border rounded cursor-pointer" alt=""></div>
                 @endforeach
             </div>
@@ -128,15 +131,26 @@ $seller_info= $seller->sellerInfo()->first();
                     @elseif ($productInfos[0]->attr()->first()->name == 'size')
                     <h5>
                         تنوع براساس سایز است
-                        </ا>
-                        @foreach ($productInfos as $productInfo)
-                        <div class="color-indigators d-flex align-items-center gap-2 mt-4">
-                            <div class="color-indigator-item px-3">{{$productInfo->attr_value()->first()->value}}</div>
-                            <div class="px-3">{{number_format($productInfo->price)}} تومان</div>
-                            <div class="px-3">تعداد: {{$productInfo->quantity}}</div>
-                        </div>
-                        @endforeach
-                        @endif
+                    </h5>
+                    @foreach ($productInfos as $productInfo)
+                    @php
+                    $dimensions = json_decode($productInfo->dimensions)
+                    @endphp
+                    <div class="color-indigators d-flex align-items-center gap-2 mt-4">
+                        <div class="px-3">سایز: {{$productInfo->attr_value()->first()->value}}</div>
+                        <div class="px-3">{{number_format($productInfo->price)}} تومان</div>
+                        <div class="px-3">تعداد: {{$productInfo->quantity}}</div>
+                        <div class="px-3">ابعاد: {{$dimensions->width}}x{{$dimensions->length}}
+                            x{{$dimensions->height}} سانتی متر</div>
+
+                    </div>
+                    @endforeach
+                    @elseif ($productInfos[0]->attr()->first()->name == 'none')
+                    <div class="color-indigators d-flex align-items-center gap-2 mt-4">
+                        <div class="px-3">{{number_format($productInfo->price)}} تومان</div>
+                        <div class="px-3">تعداد: {{$productInfo->quantity}}</div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -161,48 +175,44 @@ $seller_info= $seller->sellerInfo()->first();
                     <div class="d-flex align-items-center">
                         <div class="tab-icon"><i class="bx bx-bookmark-alt font-18 me-1"></i>
                         </div>
-                        <div class="tab-title">برچسب ها</div>
+                        <div class="tab-title">ویژگی ها</div>
                     </div>
                 </a>
             </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" data-bs-toggle="tab" href="#primarycontact" role="tab" aria-selected="false">
-                    <div class="d-flex align-items-center">
-                        <div class="tab-icon"><i class="bx bx-star font-18 me-1"></i>
-                        </div>
-                        <div class="tab-title">نظرات</div>
-                    </div>
-                </a>
-            </li>
+           
         </ul>
         <div class="tab-content pt-3">
             <div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
                 {{$product->description}}
             </div>
             <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
-                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی
-                    نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با
-                    تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم
-                    ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی
-                    نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با
-                    تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-                    ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی
-                    نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با
-                    تولید سادگی نامفهوم.</p>
+                <div class="d-flex mt-3">
+                    <div>
+                        ابعاد کلی :
+                    </div>
+                    @php
+                    $p_dimensions = json_decode($product->dimensions)
+                    @endphp
+                    <div class="fs14 me-2 fw600 icon-dark-color px-2">{{$p_dimensions->width}}x{{$p_dimensions->length}}
+                        x{{$p_dimensions->height}} سانتی متر</div>
+                </div>
+                <div class="d-flex mt-3">
+                    <div>
+                        وزن :
+                    </div>
+                    <div class="fs14 me-2 fw600 icon-dark-color px-2">{{$p_dimensions->weight}}</div>
+                </div>
+                @foreach ( $product->productAttributes()->get() as $attr)
+                <div class="d-flex mt-3">
+                    <div>
+                        {{ $attr->name }} :
+                    </div>
+                    <div class="fs14 me-2 fw600 icon-dark-color px-2">{{$attr->pivot->value->value}}</div>
+                </div>
+                @endforeach
+
             </div>
-            <div class="tab-pane fade" id="primarycontact" role="tabpanel">
-                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی
-                    نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با
-                    تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-                    ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی
-                    نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با
-                    تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن
-                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.
-                </p>
-            </div>
+           
         </div>
     </div>
 
