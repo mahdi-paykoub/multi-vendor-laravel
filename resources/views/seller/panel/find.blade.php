@@ -340,38 +340,7 @@
                         </div>
                         <div class="col-12 col-xl-6 mt-4 mt-xl-0">
                             <div class="d-flex justify-content-end">
-                                <nav class="seller-find-pr-pa">
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">
-                                                <svg stroke="currentColor" fill="#8b8b8b" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill="none" d="M0 0h24v24H0V0z"></path>
-                                                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
-                                                </svg>
-
-                                            </a>
-                                        </li>
-
-                                        <li class="page-item"><a class="page-link" href="#">۱</a></li>
-                                        <li class="page-item active">
-                                            <a class="page-link" href="#">۲</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">۳</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">۱</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">۳</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">۱</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">۳</a></li>
-
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">
-                                                <svg stroke="currentColor" fill="#8b8b8b" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill="none" d="M0 0h24v24H0V0z"></path>
-                                                    <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
-                                                </svg>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                {{ $products->links('vendor.pagination.seller_pagination') }}
                             </div>
                         </div>
                     </div>
@@ -386,15 +355,12 @@
                     continue;
                     }
 
-
                     $img = $product->galleries()->first()->image;
                     $cat = $product->productCategories()->first()->title;
-
-                
-
+                    $productInfoSeller = $product->productInfos()->pluck('seller_id')->contains(get_seller_by_token()->id);
                     $productInfo = $product->productInfos()->get();
                     $min_price = $productInfo->min('price');
-                 
+
                     @endphp
 
                     <div class="px-lg-3 on-hover-act-btns border-bottom pb-3">
@@ -421,9 +387,15 @@
                                 'slug'=> $product->slug,
                                 ];
                                 @endphp
+                                @if ($productInfoSeller)
+                                <button class="fs12 text-white btn btn-info mt-3 mt-lg-0">
+                                    فروشنده اید!
+                                </button>
+                                @else
                                 <button data-bs-toggle="modal" data-bs-target="#youSellModal" data-productinfo="{{json_encode($pinfo)}}" class="fs13 you-also-sell-btn mt-3 mt-lg-0"><span class="d-none d-lg-inline">شما هم </span>
                                     بفروشید
                                 </button>
+                                @endif
                             </div>
                         </div>
                         <div class="pr-b-info p-2">
@@ -468,38 +440,7 @@
                         </div>
                         <div class="col-12 col-xl-6 mt-4 mt-xl-0">
                             <div class="d-flex justify-content-end">
-                                <nav class="seller-find-pr-pa">
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">
-                                                <svg stroke="currentColor" fill="#8b8b8b" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill="none" d="M0 0h24v24H0V0z"></path>
-                                                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
-                                                </svg>
-
-                                            </a>
-                                        </li>
-
-                                        <li class="page-item"><a class="page-link" href="#">۱</a></li>
-                                        <li class="page-item active">
-                                            <a class="page-link" href="#">۲</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">۳</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">۱</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">۳</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">۱</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">۳</a></li>
-
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">
-                                                <svg stroke="currentColor" fill="#8b8b8b" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill="none" d="M0 0h24v24H0V0z"></path>
-                                                    <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
-                                                </svg>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                {{ $products->links('vendor.pagination.seller_pagination') }}
                             </div>
                         </div>
                     </div>
@@ -601,7 +542,7 @@
         </div>
     </div>
 </div>
-<div class="p-info-selected" data-selectedproduct="">sdcsdcsdcsdc</div>
+<div class="p-info-selected" data-selectedproduct=""></div>
 
 @include('layouts.seller_panel_parts.footer')
 @endsection

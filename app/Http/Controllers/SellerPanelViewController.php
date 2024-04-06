@@ -52,7 +52,7 @@ class SellerPanelViewController extends Controller
 
     public function find_product()
     {
-        $products = Product::all();
+        $products = Product::paginate(1);
         return view('seller.panel.find', compact('products'));
     }
 
