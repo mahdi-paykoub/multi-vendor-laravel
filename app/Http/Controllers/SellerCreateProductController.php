@@ -79,6 +79,7 @@ class SellerCreateProductController extends Controller
             'description' => $validData['description'],
             'originality' => $originality,
             'dimensions' => $dimensions,
+            'status' => 'unpublished',
         ]);
         /*end add product*/
 
@@ -172,7 +173,7 @@ class SellerCreateProductController extends Controller
         $validData = $request->validate([
             'data' => 'required'
         ]);
-        
+
         $data = json_decode($validData['data']);
 
         ProductInfo::create([
@@ -183,6 +184,5 @@ class SellerCreateProductController extends Controller
             'price' => $data->min_price,
             'quantity' => 1,
         ]);
-      
     }
 }

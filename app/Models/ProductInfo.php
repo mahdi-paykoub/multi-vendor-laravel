@@ -28,4 +28,5 @@ class ProductInfo extends Model
     {
         return $this->belongsTo(AttrValue::class);
     }
+  
 }

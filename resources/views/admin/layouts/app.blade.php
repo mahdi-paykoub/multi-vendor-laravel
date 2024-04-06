@@ -92,7 +92,11 @@
                         <div class="menu-title">فروشگاه</div>
                     </a>
                     <ul>
-                        <li><a href="{{route('admin.product.index')}}"><i class="bx bx-left-arrow-alt"></i>محصولات</a>
+                        <li><a href="{{route('admin.product.index')}}"><i class="bx bx-left-arrow-alt"></i>همه محصولات</a>
+                        </li>
+                        <li><a href="{{route('admin.published.products')}}"><i class="bx bx-left-arrow-alt"></i>محصولات تایید شده</a>
+                        </li>
+                        <li><a href="{{route('admin.unpublished.products')}}"><i class="bx bx-left-arrow-alt"></i>محصولات تایید نشده</a>
                         </li>
                         <li><a href="ecommerce-products-details.html"><i class="bx bx-left-arrow-alt"></i>جزئیات
                                 محصول</a>

@@ -55,8 +55,10 @@ class ProductController extends Controller
         $attributes->each(function ($item) use ($product) {
 
             $attr = Attr::firstOrCreate(
-                ['name' => $item['name'],
-                    'is_variable' => false],
+                [
+                    'name' => $item['name'],
+                    'is_variable' => false
+                ],
             );
 
             $attr_value = $attr->productAttributeValues()->firstOrCreate(
@@ -64,7 +66,6 @@ class ProductController extends Controller
             );
 
             $product->productAttributes()->attach($attr->id, ['attr_value_id' => $attr_value->id]);
-
         });
 
         $varAttributes = collect($validData['varAttributes']);
@@ -72,8 +73,10 @@ class ProductController extends Controller
         $varAttributes->each(function ($item) use ($product) {
             if (!($item['name'] == -1) || !($item['value'] == -1)) {
                 $attr = Attr::firstOrCreate(
-                    ['name' => $item['name'],
-                        'is_variable' => true],
+                    [
+                        'name' => $item['name'],
+                        'is_variable' => true
+                    ],
                 );
                 $attr_value = $attr->productAttributeValues()->firstOrCreate(
                     ['value' => $item['value']]
@@ -94,7 +97,6 @@ class ProductController extends Controller
                     'quantity' => $item['quantity']
                 ]);
             }
-
         });
 
         return back();
@@ -136,6 +138,21 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+        return back();
+    }
+    public function published_products()
+    {
+        $products = Product::where('status', 'published')->get();
+        return view('admin.product.published', compact('products'));
+    }
+    public function unpublished_products()
+    {
+        $products = Product::where('status', 'unpublished')->get();
+        return view('admin.product.unpublished', compact('products'));
+    }
+    public function approved_product_status(Product $product)
+    {
+        $product->update(['status' => 'published']);
         return back();
     }
 }

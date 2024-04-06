@@ -1,7 +1,16 @@
 {{--footer--}}
+
 @php
-$footer_text = App\Models\GlobalOptions::where('key', 'footer_text')->first();
+use App\Models\GlobalOptions;
+
+$footer_text = GlobalOptions::where('key', 'footer_text')->first();
+if ($footer_text != null) {
+$footer_text = $footer_text->value;
+} else {
+$footer_text = '';
+}
 @endphp
+
 <footer class="main-footer mt-5">
     <div class="container px-4 pb-4">
         <div class="d-flex justify-content-between">
@@ -186,8 +195,8 @@ $footer_text = App\Models\GlobalOptions::where('key', 'footer_text')->first();
         <!--footer description-->
         <div class="row mt-5 main-footer pt-5">
             <div class="col-12 col-xl-8 footer-text">
-                {!! $footer_text->value !!}
-            
+                {!! $footer_text !!}
+
             </div>
             <div class="col-12 col-xl-4 mt-4 mt-xl-0">
                 <div class="d-flex justify-content-center justify-content-md-end">
