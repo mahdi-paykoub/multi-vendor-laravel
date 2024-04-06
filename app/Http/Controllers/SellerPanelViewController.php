@@ -62,4 +62,8 @@ class SellerPanelViewController extends Controller
         $brands = Brand::all();
         return view('seller.panel.create', compact('product_cats', 'brands'));
     }
+    public function seller_notofications()
+    {
+        return view('seller.panel.notification');
+    }
 }

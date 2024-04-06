@@ -16,6 +16,10 @@ return new class extends Migration
             $table->text('title');
             $table->text('link')->nullable();
             $table->text('description');
+
+            $table->unsignedBigInteger('seller_id')->nullable();
+            $table->foreign('seller_id')->references('id')->on('sellers')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

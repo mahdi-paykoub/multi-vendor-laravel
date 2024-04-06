@@ -90,8 +90,7 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     Route::get('/index', [\App\Http\Controllers\SellerPanelViewController::class, 'index'])->name('seller.panel.index');
     Route::get('/add-product', [\App\Http\Controllers\SellerPanelViewController::class, 'add_product_v'])->name('seller.panel.create.product');
     Route::get('/find/product', [\App\Http\Controllers\SellerPanelViewController::class, 'find_product'])->name('seller.panel.find.product');
-
-
+    Route::get('/notofications', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_notofications'])->name('seller.notofications');
 
 
     //seller profile
@@ -105,6 +104,7 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     Route::Delete('/delete/address/{address}', [\App\Http\Controllers\AddressController::class, 'delete_address'])->name('delete.seller.address');
 
 
+    // seller register info
     Route::post('/profile/name', [\App\Http\Controllers\SellerInfoController::class, 'register_seller_name'])->name('seller.profile.name');
     Route::post('/profile/email', [\App\Http\Controllers\SellerInfoController::class, 'register_seller_email'])->name('seller.profile.email');
     Route::post('/profile/national-code', [\App\Http\Controllers\SellerInfoController::class, 'register_seller_nationalCode'])->name('seller.profile.nationalCode');
@@ -119,8 +119,11 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     /*ajax to get product cats*/
     Route::post('/get-product-categories-ajax', [\App\Http\Controllers\ProductAjaxController::class, 'getCats']);
     Route::post('/seller-create-product', [\App\Http\Controllers\SellerCreateProductController::class, 'create_product'])->name('seller.create.product.logic');
-
     Route::post('/seller/you/also/sell', [\App\Http\Controllers\SellerCreateProductController::class, 'you_also_sell'])->name('seller.you.also.sell');
+
+
+   
+
 
 });
 
