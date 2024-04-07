@@ -40,7 +40,7 @@ class ProfileController extends Controller
     {
         $loginDate = auth()->user()->created_at->format('Y-m-d');
 
-        $notifications = Notification::whereDate('created_at', '>=', $loginDate)->get();
+        $notifications = Notification::whereDate('created_at', '>=', $loginDate)->where('seller_id' , null)->get();
 
         return view('user_profile.message', compact('notifications'));
     }
