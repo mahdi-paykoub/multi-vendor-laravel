@@ -624,7 +624,8 @@ body {
 .inp-seller-profile:focus {
     border-color: #028e71;
 }
-.btn-for-seller-profile{
+
+.btn-for-seller-profile {
     padding: 9px 79px;
     border: 0;
     font-size: 13px;
@@ -632,8 +633,17 @@ body {
     background: #1ab1d4;
     color: white;
 }
-.store-logo-dropzone .dz-preview{
+
+.store-logo-dropzone .dz-preview {
     margin-top: 40px !important;
     margin-right: 0 !important;
 }
- 
+
+/* seller manage product */
+.onhover-bg-blue:hover {
+    box-shadow: 0 1px 5px rgb(0 0 0 / 20%);
+    background-color: #edf9fc;
+    transition: .2s ease all;
+    border-color: none !important;
+}
+/* end seller manage product */

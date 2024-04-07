@@ -92,7 +92,10 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     Route::get('/find/product', [\App\Http\Controllers\SellerPanelViewController::class, 'find_product'])->name('seller.panel.find.product');
     Route::get('/notofications', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_notofications'])->name('seller.notofications');
     Route::get('/notofication/detail/{notification}', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_notofication_detail'])->name('seller.notofication.detail');
+    Route::get('/product-management', [\App\Http\Controllers\SellerPanelViewController::class, 'product_management'])->name('seller.panel.product.management');
 
+
+    
     //seller profile
     Route::get('/profile', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile'])->name('seller.profile.view');
     Route::get('/profile/address', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_address'])->name('seller.profile.address');

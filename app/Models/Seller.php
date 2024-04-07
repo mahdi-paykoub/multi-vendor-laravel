@@ -22,6 +22,11 @@ class Seller extends Model
         return $this->hasOne(SellerInfo::class);
     }
 
+    public function productInfos()
+    {
+        return $this->hasMany(ProductInfo::class);
+    }
+
     public function sellerAdresses()
     {
         return $this->hasMany(SellerAddress::class);

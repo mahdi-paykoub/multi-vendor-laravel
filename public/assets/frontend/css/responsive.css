@@ -123,7 +123,9 @@
     .fs15res {
         font-size: 13px;
     }
-
+    .w-res-25{
+        width: 100%;
+    }
 }
 
 @media (min-width: 576px) {
@@ -249,7 +251,9 @@
     .fs15res {
         font-size: 13px;
     }
-
+    .w-res-25{
+        width: 100%;
+    }
 }
 
 @media (min-width: 768px) {
@@ -446,6 +450,9 @@
     }
     .inner-menu-hover-able>div {
         width: 772px;
+    }
+    .w-res-25{
+        width: 25%;
     }
 }
 

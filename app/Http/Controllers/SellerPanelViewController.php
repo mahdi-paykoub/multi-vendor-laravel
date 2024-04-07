@@ -69,6 +69,16 @@ class SellerPanelViewController extends Controller
     }
     public function seller_notofication_detail(Notification $notification)
     {
-        return view('seller.panel.notification_detail' , compact('notification'));
+        return view('seller.panel.notification_detail', compact('notification'));
+    }
+    public function product_management()
+    {
+        $seller_products = [];
+        $product_infos = get_seller_by_token()->productInfos()->get()->unique('product_id');
+
+        foreach ($product_infos as $product_info) {
+            $seller_products[] = $product_info->product()->first();
+        }
+        return view('seller.panel.product_management' ,compact('seller_products'));
     }
 }
