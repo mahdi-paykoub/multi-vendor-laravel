@@ -8,7 +8,7 @@
 
 
 <!--content-->
-<div class="container px-4 mt-5">
+<div class="container px-4 mt-4">
     <div class="d-md-flex align-items-center d-block">
         <div class="fs14 fw600 text-secondary ps-2">اعلان ها</div>
         <svg stroke="currentColor" class="d-none d-md-block" fill="none" stroke-width="1" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">

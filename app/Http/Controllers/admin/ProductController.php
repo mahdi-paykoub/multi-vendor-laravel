@@ -148,8 +148,13 @@ class ProductController extends Controller
     }
     public function unpublished_products()
     {
-        $products = Product::where('status', 'unpublished')->get();
+        $products = Product::where('status', 'unpublished')->orWhere('status' , 'needToEdit')->get();
         return view('admin.product.unpublished', compact('products'));
+    }
+    public function release_queue_product()
+    {
+        $products = Product::where('status', 'releaseQueue')->get();
+        return view('admin.product.release_queue', compact('products'));
     }
     public function change_product_status(Request $request, Product $product)
     {

@@ -87,6 +87,7 @@ Route::middleware(['checkSellerTokenSession'])->prefix('seller')->group(function
 });
 //seller panel
 Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(function () {
+    //seller panel
     Route::get('/index', [\App\Http\Controllers\SellerPanelViewController::class, 'index'])->name('seller.panel.index');
     Route::get('/add-product', [\App\Http\Controllers\SellerPanelViewController::class, 'add_product_v'])->name('seller.panel.create.product');
     Route::get('/find/product', [\App\Http\Controllers\SellerPanelViewController::class, 'find_product'])->name('seller.panel.find.product');
@@ -102,7 +103,6 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     Route::get('/profile/store-info', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_store_info'])->name('seller.profile.store.info');
     Route::get('/profile/finance', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_finance'])->name('seller.profile.finance');
     Route::get('/profile/document-info', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_profile_document_info'])->name('seller.profile.document.info');
-    // seller address
     Route::post('/set/seller/address', [\App\Http\Controllers\AddressController::class, 'setSellerAddress'])->name('set.seller.address');
     Route::Delete('/delete/address/{address}', [\App\Http\Controllers\AddressController::class, 'delete_address'])->name('delete.seller.address');
 
@@ -111,7 +111,6 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     Route::post('/profile/name', [\App\Http\Controllers\SellerInfoController::class, 'register_seller_name'])->name('seller.profile.name');
     Route::post('/profile/email', [\App\Http\Controllers\SellerInfoController::class, 'register_seller_email'])->name('seller.profile.email');
     Route::post('/profile/national-code', [\App\Http\Controllers\SellerInfoController::class, 'register_seller_nationalCode'])->name('seller.profile.nationalCode');
-
     Route::post('/profile/store-name', [\App\Http\Controllers\SellerInfoController::class, 'register_store_name'])->name('seller.profile.store.name');
     Route::post('/profile/store-about', [\App\Http\Controllers\SellerInfoController::class, 'register_store_about'])->name('seller.profile.store.about');
     Route::post('/profile/store-fix-number', [\App\Http\Controllers\SellerInfoController::class, 'register_store_fix_number'])->name('seller.profile.store.fix_number');
@@ -123,10 +122,6 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     Route::post('/get-product-categories-ajax', [\App\Http\Controllers\ProductAjaxController::class, 'getCats']);
     Route::post('/seller-create-product', [\App\Http\Controllers\SellerCreateProductController::class, 'create_product'])->name('seller.create.product.logic');
     Route::post('/seller/you/also/sell', [\App\Http\Controllers\SellerCreateProductController::class, 'you_also_sell'])->name('seller.you.also.sell');
-
-
-   
-
 
 });
 

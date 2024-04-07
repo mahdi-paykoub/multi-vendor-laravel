@@ -94,6 +94,8 @@
                     <ul>
                         <li><a href="{{route('admin.product.index')}}"><i class="bx bx-left-arrow-alt"></i>همه محصولات</a>
                         </li>
+                        <li><a href="{{route('admin.release.queue.products')}}"><i class="bx bx-left-arrow-alt"></i>محصولات در صف انتشار</a>
+                        </li>
                         <li><a href="{{route('admin.published.products')}}"><i class="bx bx-left-arrow-alt"></i>محصولات تایید شده</a>
                         </li>
                         <li><a href="{{route('admin.unpublished.products')}}"><i class="bx bx-left-arrow-alt"></i>محصولات تایید نشده</a>
@@ -226,12 +228,12 @@
                     </li>
                     <li>
                         <a href="{{route('admin.global.option.menu')}}"><i class="bx bx-left-arrow-alt"></i>
-                           منوها
+                            منوها
                         </a>
                     </li>
                     <li>
                         <a href="{{route('admin.global.option.footer')}}"><i class="bx bx-left-arrow-alt"></i>
-                           فوتر
+                            فوتر
                         </a>
                     </li>
                 </ul>

@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::resource('article', admin\ArticleController::class)->except('show');
+Route::get('/product/release/queue', [admin\ProductController::class, 'release_queue_product'])->name('release.queue.products');
 Route::get('/product/unpublished', [admin\ProductController::class, 'unpublished_products'])->name('unpublished.products');
 Route::get('/product/published', [admin\ProductController::class, 'published_products'])->name('published.products');
 Route::post('/product/changeStatus/{product}', [admin\ProductController::class, 'change_product_status'])->name('change.product.status');
