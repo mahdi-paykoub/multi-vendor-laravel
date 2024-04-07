@@ -31,4 +31,8 @@ class Seller extends Model
     {
         return $this->morphMany(Address::class, 'addressable');
     }
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

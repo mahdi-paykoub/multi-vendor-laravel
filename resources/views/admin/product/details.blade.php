@@ -40,11 +40,9 @@ $seller_info= $seller->sellerInfo()->first();
     <div class="row g-0">
         <div class="col-md-4 border-end">
             <div class="m-4 d-flex justify-content-between">
-                <form action="{{route('admin.approved.products' , $product->slug)}}" method="post">
-                    @method('put')
-                    @csrf
-                    <button class="btn btn-success">تایید محصول</button>
-                </form>
+
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#sellerNotifModal">تایید محصول</button>
+
                 <button class="btn btn-danger" type="submit">عدم تایید محصول</button>
 
             </div>
@@ -179,7 +177,7 @@ $seller_info= $seller->sellerInfo()->first();
                     </div>
                 </a>
             </li>
-           
+
         </ul>
         <div class="tab-content pt-3">
             <div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
@@ -212,11 +210,44 @@ $seller_info= $seller->sellerInfo()->first();
                 @endforeach
 
             </div>
-           
+
         </div>
     </div>
 
 </div>
+<!-- Modal -->
+<div class="modal fade" id="sellerNotifModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centerd">
+        <form action="{{route('admin.approved.products' , $product->slug)}}" method="post">
+            @csrf
+            <input type="hidden" name="seller_id" value="{{$seller->id}}">
+            <div class="modal-content">
+                <div class="modal-header">
 
+                    <h5 class="modal-title" id="exampleModalLabel"> ارسال پیام تایید</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mt-3">
+                        <label for="">عنوان پیام</label>
+                        <input type="text" name="title" class="form-control mt-1">
+                    </div>
+                    <div class="mt-3">
+                        <label for="">لینک پیام</label>
+                        <input type="text" name="link" class="form-control mt-1">
+                    </div>
+                    <div class="mt-3">
+                        <label for="">لینک پیام</label>
+                        <textarea name="description"  class="form-control mt-1" id="" cols="30" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                    <button type="submit" class="btn btn-primary">ارسال</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 @endsection

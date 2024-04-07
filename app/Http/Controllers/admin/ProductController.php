@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attr;
+use App\Models\Notification;
 use App\Models\Product;
 use App\Models\ProductAttribute;
 use App\Models\ProductInfo;
@@ -150,9 +151,20 @@ class ProductController extends Controller
         $products = Product::where('status', 'unpublished')->get();
         return view('admin.product.unpublished', compact('products'));
     }
-    public function approved_product_status(Product $product)
+    public function approved_product_status(Request $request, Product $product)
     {
+        $validData = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'seller_id' => 'required',
+        ]);
         $product->update(['status' => 'published']);
+        Notification::create([
+            'title' => $validData['title'],
+            'description' => $validData['description'],
+            'seller_id' =>$validData['seller_id'],
+            'link'=>$request['link']
+        ]);
         return back();
     }
 }
