@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Notification;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductInfo;
@@ -65,5 +66,9 @@ class SellerPanelViewController extends Controller
     public function seller_notofications()
     {
         return view('seller.panel.notification');
+    }
+    public function seller_notofication_detail(Notification $notification)
+    {
+        return view('seller.panel.notification_detail' , compact('notification'));
     }
 }

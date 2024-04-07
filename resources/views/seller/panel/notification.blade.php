@@ -24,11 +24,13 @@
 <div class="container px-4 mt-4">
     <div class="row">
         @if (count(get_seller_by_token()->notifications()->get()) != 0)
-        <div class="col-12 bg-white br10 p-4">
+        <div class="col-12 bg-white br10 p-4 pb-0 mb-5">
             @foreach (get_seller_by_token()->notifications()->get() as $notification)
-            <div class="d-flex">
+            <div class="d-flex @if (!$loop->last)
+            border-bottom-light-2
+            @endif pb-4 mb-4">
                 <div>
-                    <div class="speaker-img-pa bg-digi-red rounded-circle px-1">
+                    <div class="speaker-img-pa bg-info rounded-circle px-1">
                         <img src="http://localhost:8000/assets/frontend/image/text/speaker.webp" width="16" height="16" alt="">
 
                     </div>
@@ -45,7 +47,7 @@
                             @if ($notification->link !=null)
                             <a href="/{{$notification->link}}" class="text-info fs13 fw600">
                                 @else
-                                <a href="" class="text-info fs13 fw600">
+                                <a href="/seller-panel/notofication/detail/{{$notification->id}}" class="text-info fs13 fw600">
 
                                     @endif
                                     جزئیات بیشتر
@@ -66,7 +68,7 @@
             @endforeach
         </div>
         @else
-        <div class="col-12 bg-white br10 p-4 text-center">
+        <div class="col-12 bg-white br10 p-4 text-center mb-5">
             <img src="{{url('assets/frontend/image/text/emptymsg.png')}}" alt="">
             <div class="fs14 mt-3">نتیجه‌ای پیدا نکردیم...</div>
             <div class="fs12 text-secondary mt-2">فیلترها را تغییر دهید و دوباره امتحان کنید</div>
