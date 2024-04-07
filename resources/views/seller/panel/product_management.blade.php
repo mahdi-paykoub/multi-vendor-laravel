@@ -9,7 +9,7 @@
 
 <!--content-->
 <!-- text -->
-<div class="container px-4 mt-5">
+<div class="container px-4 mt-4">
     <div class="d-md-flex align-items-center d-block">
         <div class="fs14 fw600 text-secondary ps-2">مدیریت کالا</div>
         <svg stroke="currentColor" class="d-none d-md-block" fill="none" stroke-width="1" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -55,10 +55,10 @@
         </div>
     </div>
 </div>
-<div class="container px-4 mt-4">
+<div class="container px-4 mt-5">
     <div class="row">
         <div class="col-6">
-            <a href="" class="fs12 add-new-product-btn text-white br7">
+            <a href="{{route('seller.panel.create.product')}}" class="fs12 add-new-product-btn text-white br7">
                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                     <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z">
                     </path>
@@ -66,10 +66,10 @@
 
                 افزودن کالای جدید</a>
         </div>
-        <div class="col-6 text-end ps-3">
+        <div class="col-6 text-start ps-3">
             <span class="fs15">
                 <span class="text-secondary">تعداد نتایج:</span>
-                <span class="tey">۸</span>
+                <span class="fv fs14">{{ count($seller_products) }}</span>
             </span>
         </div>
     </div>
@@ -78,30 +78,53 @@
 <div class="container px-4 mt-1 pb-4 mt-5">
     @foreach ($seller_products as $seller_product)
     @php
-    $cat =$seller_product->productCategories()->first();
+    $cat =$seller_product->productCategories()->orderBy('id', 'desc')->first();
+    $img= $seller_product->galleries()->first()->image;
+    $brand = $seller_product->brand()->first();
+    $brandName = $brand === null ? 'فاقد برند': $brand->name;
     @endphp
     <div class="d-lg-flex border align-items-center br7 p-2 px-3 onhover-bg-blue mt-3">
+
         <div class="w-res-25">
             <div class="d-flex align-items-center">
-                <img src="assets/image/product/113502481.webp" width="60" height="60" alt="">
+                @if ($seller_product->status == 'published')
+                <a href="/product/{{$seller_product->slug}}">
+                    <img src="{{ $img }}" width="60" height="60" alt="">
+                </a>
+                @else
+                <img src="{{ $img }}" width="60" height="60" alt="">
+                @endif
+
+                @if ($seller_product->status == 'published')
+                <a href="/product/{{$seller_product->slug}}">
+                    <div class="me-2">
+                        <div class="fs13 text-dark"> {{$seller_product->title}}</div>
+                        <div class="bg-secondary-3 w-fit py-1 px-3 fs12 text-secondary mt-2 br15">
+                            DKP-14581762
+                        </div>
+                    </div>
+                </a>
+                @else
                 <div class="me-2">
-                    <div class="fs13"> {{$seller_product->title}}</div>
+                    <div class="fs13 text-dark"> {{$seller_product->title}}</div>
                     <div class="bg-secondary-3 w-fit py-1 px-3 fs12 text-secondary mt-2 br15">
                         DKP-14581762
                     </div>
                 </div>
+                @endif
             </div>
         </div>
         <div class="d-md-flex align-items-center justify-content-between w-100 mt-3 mt-lg-0">
             <div class="fs14 lh2 mt-3 mt-md-0">
                 <span class="fs12 text-secondary d-lg-none">گروه کالایی:</span>
-                {{ $cat->name }}
+                {{ $cat->title }}
             </div>
             <div class="bg-secondary-3 d-none d-lg-block w-fit py-1 px-3 fs12 text-secondary mt-2 br15 mt-3 mt-md-0">
                 دیجی‌کالا
             </div>
             <div class="text-success fs14 lh2 mt-3 mt-md-0 d-none d-lg-block">
-                تجهیزات
+                <span class="fs11 text-secondary">برند: </span>
+                {{ $brandName }}
             </div>
             <div class="d-flex justify-content-between align-items-center mt-4 d-md-none">
                 <div class="bg-secondary-3 w-fit py-1 px-3 fs12 text-secondary br15 mt-md-0">
@@ -110,9 +133,24 @@
                 <button class="fs12 add-new-product-btn text-white br7 border-0 px-4 shadow-none p-2">انتشار
                     کالا</button>
             </div>
-            <div class="bg-secondary-3 d-none d-lg-block w-fit py-1 px-3 fs12 text-secondary mt-2 br15 mt-3 mt-md-0">
-                آماده انتشار
+            @if ($seller_product->status == 'published')
+            <div class="bg-digi-green d-none d-lg-block w-fit py-1 px-3 fs12 text-white mt-2 br15 mt-3 mt-md-0">
+                منتشر شده
             </div>
+            @elseif ($seller_product->status == 'unpublished')
+            <div class="bg-digi-red d-none d-none d-lg-block w-fit py-1 px-3 fs12 text-white mt-2 br15 mt-3 mt-md-0">
+                عدم انتشار
+            </div>
+            @elseif ($seller_product->status == 'releaseQueue')
+            <div class="bg-secondary-3 d-none d-none d-lg-block w-fit py-1 px-3 fs12 text-secondary mt-2 br15 mt-3 mt-md-0">
+                در صف انتشار
+            </div>
+            @elseif ($seller_product->status == 'needToEdit')
+            <div class="bg-warning d-none d-lg-block w-fit py-1 px-3 fs12 text-white mt-2 br15 mt-3 mt-md-0">
+                نیاز به ویرایش
+            </div>
+            @endif
+
             <div class="fs14 lh2 mt-3 mt-md-0 d-none d-lg-block">
                 ۰
             </div>

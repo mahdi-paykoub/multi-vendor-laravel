@@ -151,14 +151,15 @@ class ProductController extends Controller
         $products = Product::where('status', 'unpublished')->get();
         return view('admin.product.unpublished', compact('products'));
     }
-    public function approved_product_status(Request $request, Product $product)
+    public function change_product_status(Request $request, Product $product)
     {
         $validData = $request->validate([
             'title' => 'required',
             'description' => 'required',
             'seller_id' => 'required',
+            'status' => 'required',
         ]);
-        $product->update(['status' => 'published']);
+        $product->update(['status' => $validData['status']]);
         Notification::create([
             'title' => $validData['title'],
             'description' => $validData['description'],

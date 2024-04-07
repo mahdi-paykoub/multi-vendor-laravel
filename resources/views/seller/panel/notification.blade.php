@@ -25,7 +25,7 @@
     <div class="row">
         @if (count(get_seller_by_token()->notifications()->get()) != 0)
         <div class="col-12 bg-white br10 p-4 pb-0 mb-5">
-            @foreach (get_seller_by_token()->notifications()->get() as $notification)
+            @foreach (get_seller_by_token()->notifications()->get()->reverse() as $notification)
             <div class="d-flex @if (!$loop->last)
             border-bottom-light-2
             @endif pb-4 mb-4">
@@ -48,7 +48,6 @@
                             <a href="/{{$notification->link}}" class="text-info fs13 fw600">
                                 @else
                                 <a href="/seller-panel/notofication/detail/{{$notification->id}}" class="text-info fs13 fw600">
-
                                     @endif
                                     جزئیات بیشتر
                                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">

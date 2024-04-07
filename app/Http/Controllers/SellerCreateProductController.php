@@ -79,7 +79,7 @@ class SellerCreateProductController extends Controller
             'description' => $validData['description'],
             'originality' => $originality,
             'dimensions' => $dimensions,
-            'status' => 'unpublished',
+            'status' => 'releaseQueue',
         ]);
         /*end add product*/
 

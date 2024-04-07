@@ -40,11 +40,7 @@ $seller_info= $seller->sellerInfo()->first();
     <div class="row g-0">
         <div class="col-md-4 border-end">
             <div class="m-4 d-flex justify-content-between">
-
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#sellerNotifModal">تایید محصول</button>
-
-                <button class="btn btn-danger" type="submit">عدم تایید محصول</button>
-
+                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#sellerNotifModal">تغییر وضعیت محصول</button>
             </div>
 
             <img src="{{$product->galleries()->first()->image}}" class="img-fluid" alt="...">
@@ -215,19 +211,40 @@ $seller_info= $seller->sellerInfo()->first();
     </div>
 
 </div>
-<!-- Modal -->
+<!-- approved - seller Notif Modal -->
 <div class="modal fade" id="sellerNotifModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centerd">
-        <form action="{{route('admin.approved.products' , $product->slug)}}" method="post">
+        <form action="{{route('admin.change.product.status' , $product->slug)}}" method="post">
             @csrf
             <input type="hidden" name="seller_id" value="{{$seller->id}}">
             <div class="modal-content">
                 <div class="modal-header">
-
                     <h5 class="modal-title" id="exampleModalLabel"> ارسال پیام تایید</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                
                 <div class="modal-body">
+                   
+                    <div class="d-flex justify-content-between">
+                        <div>وضعیت فعلی محصول</div>
+                        @if ($product->status == 'published')
+                        <button class="btn btn-success btn-sm">منتشر شده</button>
+                        @elseif ($product->status == 'unpublished')
+                        <button class="btn btn-danger btn-sm">عدم انتشار </button>
+                        @elseif ($product->status == 'needToEdit')
+                        <button class="btn btn-warning btn-sm text-white">نیاز به ویرایش </button>
+
+                        @endif
+                       
+                    </div>
+                    <div class="mt-3">
+                        <label for="">تعیین وضعیت</label>
+                        <select class="form-control mt-1" name="status" id="">
+                            <option value="published">تایید محصول</option>
+                            <option value="unpublished">عدم تایید محصول</option>
+                            <option value="needToEdit">نیاز به ویرایش محصول</option>
+                        </select>
+                    </div>
                     <div class="mt-3">
                         <label for="">عنوان پیام</label>
                         <input type="text" name="title" class="form-control mt-1">
@@ -237,8 +254,8 @@ $seller_info= $seller->sellerInfo()->first();
                         <input type="text" name="link" class="form-control mt-1">
                     </div>
                     <div class="mt-3">
-                        <label for="">لینک پیام</label>
-                        <textarea name="description"  class="form-control mt-1" id="" cols="30" rows="5"></textarea>
+                        <label for="">متن پیام</label>
+                        <textarea name="description" class="form-control mt-1" id="" cols="30" rows="5"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -249,5 +266,7 @@ $seller_info= $seller->sellerInfo()->first();
         </form>
     </div>
 </div>
+
+
 
 @endsection
