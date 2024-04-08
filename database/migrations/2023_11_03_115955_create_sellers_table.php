@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -15,7 +16,7 @@ return new class extends Migration {
             $table->string('phone_number')->unique();
             $table->boolean('active')->default(false);
             $table->string('token')->nullable()->unique();
-            $table->enum('status', array('approved', 'unapproved'))->default('unapproved');
+            $table->enum('status', array('approved', 'unapproved', 'approvedQueue', 'needToEdit'))->default('unapproved');
             $table->timestamps();
         });
 
@@ -45,6 +46,7 @@ return new class extends Migration {
             $table->date('shop_closed_days')->nullable();
             $table->string('cart_number')->nullable();
             $table->string('cart_name')->nullable();
+            $table->string('confirmed_parts')->nullable();
             $table->unsignedBigInteger('seller_id');
             $table->foreign('seller_id')->references('id')->on('sellers')->onDelete('cascade');
             $table->timestamps();
@@ -109,7 +111,6 @@ return new class extends Migration {
 
             $table->timestamps();
         });*/
-
     }
 
     /**

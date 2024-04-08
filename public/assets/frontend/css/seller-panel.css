@@ -646,4 +646,11 @@ body {
     transition: .2s ease all;
     border-color: none !important;
 }
+.badge-red{
+    color: #ef5661!important;
+    background-color: rgba(239,86,97,.18)!important;
+    border-radius: 5px;
+    padding: 2px 7px;
+}
 /* end seller manage product */
+

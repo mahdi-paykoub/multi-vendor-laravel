@@ -272,7 +272,9 @@ input:focus {
     width: 5rem;
     height: 2px;
 }
-
+.border-custom-light{
+    border: 1px solid rgba(236, 236, 236, 0.932);
+}
 .btn-outline-danger {
     border-color: #ef4056;
     color: #ef4056;

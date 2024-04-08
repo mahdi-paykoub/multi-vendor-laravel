@@ -69,7 +69,7 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                         </div>
                         <div class="text-center fs14 text-secondary-2 ">
                             عضویت از
-                           <span class="fv">{{ jdate($seller->created_at)->ago()  }}</span>
+                            <span class="fv">{{ jdate($seller->created_at)->ago()  }}</span>
                         </div>
 
                         <div class="d-flex justify-content-center mt-4 p-3">
@@ -178,17 +178,19 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                 </div>
                 <div class="col-12 col-md-4 mt-3 mt-md-0">
                     <div class="seller-box-type bg-white br10 p-2">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="text-secondary fw600 px-3">افزودن محصول جدید</div>
-                            <div>
-                                <button class="pay-status-btn border-0 br7 shadow-none bg-white d-flex align-items-center">
-                                    <span class="fv">0</span>
-                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
-                                    </svg>
-                                </button>
+                        <a href="{{route('seller.panel.product.management')}}">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="text-secondary fw600 px-3">مدیریت محصولات</div>
+                                <div>
+                                    <button class="pay-status-btn border-0 br7 shadow-none bg-white d-flex align-items-center">
+                                        <span class="fv">0</span>
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mt-3 mt-md-0">
@@ -209,7 +211,140 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
             </div>
 
             <div class="row mt-2">
-                <div class="col-12 col-md-4 mt-3">
+                <div class="col-12 mt-4">
+                    <div class="bg-white br10 p-3">
+                        <div class="fs15">
+                            برای فروش در دیجی‌کالا چه کاری نیاز است؟
+                        </div>
+                        <div class="fs13 mt-2 text-secondary border-bottom-light-2 pb-3">
+                            با وارد کردن اطلاعات زیر، ثبت‌نام خود را کامل کنید تا بتوانید فروش در دیجی‌کالا را شروع کنید
+                        </div>
+
+
+                        <div class="row mt-4">
+                            <div class="col-4">
+                                <a href="{{route('seller.profile.view')}}" class="text-dark">
+                                    <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
+                                        <div>
+                                            <span class="fs14 fw600">نام و نام خانوادگی</span>
+                                            <span class="fs12 badge-green me-2">تایید شده</span>
+                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                        </div>
+                                        <div>
+                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <a href="{{route('seller.profile.store.info')}}" class="text-dark">
+                                    <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
+                                        <div>
+                                            <span class="fs14 fw600">نام فروشگاه</span>
+                                            <span class="fs12 badge-green me-2">تایید شده</span>
+                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                        </div>
+                                        <div>
+                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <a href="{{route('seller.profile.address')}}" class="text-dark">
+                                    <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
+                                        <div>
+                                            <span class="fs14 fw600 fw600">آدرس فروشگاه</span>
+                                            <span class="fs12 badge-green me-2">تایید شده</span>
+                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                        </div>
+                                        <div>
+                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <a href="{{route('seller.profile.finance')}}" class="text-dark">
+                                    <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
+                                        <div>
+                                            <span class="fs14 fw600">شماره کارت</span>
+                                            <span class="fs12 badge-green me-2">تایید شده</span>
+                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                        </div>
+                                        <div>
+                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <a href="{{route('seller.profile.view')}}" class="text-dark">
+                                    <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
+                                        <div>
+                                            <span class="fs14 fw600">ایمیل</span>
+                                            <span class="fs12 badge-green me-2">تایید شده</span>
+                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                        </div>
+                                        <div>
+                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <a href="{{route('seller.profile.view')}}" class="text-dark">
+                                    <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
+                                        <div>
+                                            <span class="fs14 fw600">کد ملی</span>
+                                            <span class="fs12 badge-green me-2">تایید شده</span>
+                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                        </div>
+                                        <div>
+                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <a href="{{route('seller.profile.document.info')}}" class="text-dark">
+                                    <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
+                                        <div>
+                                            <span class="fs14 fw600">مدارک</span>
+                                            <span class="fs12 badge-green me-2">تایید شده</span>
+                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                        </div>
+                                        <div>
+                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-4">
+
+                                <button class="btn btn-info px-5 mt-3 text-white fs14 btn-padding br7">بررسی اطلاعات من</button>
+                              
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <div class="col-12 col-md-4 mt-3">
                     <div class="seller-performance-info bg-white panel-info-box br10">
                         <div class="border-bottom border-bottom p-3 fs15 fw600 text-secondary-2">
                             مدیریت موجودی انبار
@@ -415,7 +550,7 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
         </div>
