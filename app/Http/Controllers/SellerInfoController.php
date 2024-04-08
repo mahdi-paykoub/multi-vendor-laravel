@@ -193,7 +193,7 @@ class SellerInfoController extends Controller
 
         /*add gallery img*/
         $file = $request->file('file');
-     
+
         $destinationPath = '/assets/frontend/image/store-logo/' . now()->year . '/' . now()->month . '/' . now()->day . '/';
         $file->move(public_path($destinationPath), $file->getClientOriginalName());
         /*end add gallery img*/
@@ -204,5 +204,31 @@ class SellerInfoController extends Controller
 
 
         return response([]);
+    }
+    public function register_cart_number(Request $request)
+    {
+        $validData = $request->validate([
+            'cart_number' => 'required',
+        ]);
+
+        get_seller_by_token()->sellerInfo()->update([
+            'cart_number' => $validData['cart_number']
+        ]);
+
+
+        return back();
+    }
+    public function register_cart_name(Request $request)
+    {
+        $validData = $request->validate([
+            'cart_name' => 'required',
+        ]);
+
+        get_seller_by_token()->sellerInfo()->update([
+            'cart_name' => $validData['cart_name']
+        ]);
+
+
+        return back();
     }
 }

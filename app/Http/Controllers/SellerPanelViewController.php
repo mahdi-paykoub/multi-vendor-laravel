@@ -37,7 +37,8 @@ class SellerPanelViewController extends Controller
 
     public function seller_profile_finance()
     {
-        return view('seller.profile.seller_finance');
+        $seller_info = get_seller_by_token()->sellerInfo()->first();
+        return view('seller.profile.seller_finance' , compact('seller_info'));
     }
     public function seller_profile_document_info()
     {
