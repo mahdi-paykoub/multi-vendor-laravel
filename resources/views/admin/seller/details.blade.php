@@ -3,6 +3,7 @@
 @section('content')
 @php
 $sellerInfo = $seller->sellerInfo()->first();
+$addresses=$seller->addresses()->get();
 @endphp
 <!--breadcrumb-->
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -38,21 +39,53 @@ $sellerInfo = $seller->sellerInfo()->first();
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="fs14">
+                                تایید لوگو :
+                            </div>
+                            <svg data-infoname="logo" class="approveTick ms-2" data-approvedstatus="@php echo has_info_confirmed($sellerInfo , 'cart_name') @endphp" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
+                                <path class="circle" fill="@if (has_info_confirmed($sellerInfo , 'cart_name')) #15ca20 @else #333 @endif" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
+                                <path class="background" fill="@if (has_info_confirmed($sellerInfo, 'cart_name')) #15ca20 @else #fff @endif" d="M512 140c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm193.4 225.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.3 0 19.9 5 25.9 13.3l71.2 98.8 157.2-218c6-8.4 15.7-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.4 12.7z"></path>
+                                <path class="tick" fill="@if (has_info_confirmed($sellerInfo, 'cart_name')) #fff @else #333 @endif" d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"></path>
+                            </svg>
+                        </div>
                         <div class="d-flex flex-column align-items-center text-center">
+
                             <img src="{{image_url_assets($seller->sellerInfo->shop_logo,asset('assets/admin/images/avatar.jpg'))}}" alt="Admin" class="rounded-circle object-cover p-1 bg-primary" width="110" height="110">
                             <div class="mt-3">
+                                تعیین وضعیت فروشگاه:
+                            </div>
+                            <div class="mt-1 d-flex">
                                 <h4>{{$seller->sellerInfo->name}}</h4>
-                                <p class="text-secondary mb-1">توسعه دهنده فرانت اند</p>
-                                <p class="text-muted font-size-sm">ایران، تهران</p>
-                                @if($seller->status === 'approved')
-                                <button class="btn btn-success">تایید شده</button>
-                                @elseif($seller->status === 'unapproved')
-                                <form action="{{route('admin.setSellerStatus' , $seller->id)}}" method="post">
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    @if ($seller->status == 'approved')
+                                    <button type="button" class="btn btn-success btn-sm">تایید شده </button>
+                                    @else
+                                    <button type="button" class="btn btn-success btn-sm" onclick="$('#approvedForm').submit()">تایید شده </button>
+                                    @endif
+                                    @if ($seller->status == 'needToEdit')
+                                    <button type="button" class="btn btn-primary btn-sm"> در انتظار ویرایش</button>
+                                    @else
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="$('#needToEditForm').submit()">نیاز به ویرایش</button>
+                                    @endif
+                                    @if ($seller->status == 'unapproved')
+                                    <button type="button" class="btn btn-danger btn-sm">تایید نشده</button>
+                                    @else
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="$('#unapprovedForm').submit()">عدم تایید</button>
+                                    @endif
+                                </div>
+                                <form id="approvedForm" action="{{route('admin.setSellerStatus' , $seller->id)}}" method="post">
                                     @csrf
                                     <input type="hidden" value="approved" name="status">
-                                    <button class="btn btn-success">تایید فروشگاه</button>
                                 </form>
-                                @endif
+                                <form id="needToEditForm" action="{{route('admin.setSellerStatus' , $seller->id)}}" method="post">
+                                    @csrf
+                                    <input type="hidden" value="needToEdit" name="status">
+                                </form>
+                                <form id="unapprovedForm" action="{{route('admin.setSellerStatus' , $seller->id)}}" method="post">
+                                    @csrf
+                                    <input type="hidden" value="unapproved" name="status">
+                                </form>
                             </div>
                         </div>
                         <hr class="my-4">
@@ -287,26 +320,49 @@ $sellerInfo = $seller->sellerInfo()->first();
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="d-flex align-items-center mb-3">وضعیت پروژه ها</h5>
-                                <p>طراحی وب</p>
-                                <div class="progress mb-3" style="height: 5px">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="d-flex align-items-center mb-3">آدرس های ثبت شده</h5>
+                                    <div>
+                                        <svg data-infoname="address" class="approveTick ms-2" data-approvedstatus="@php echo has_info_confirmed($sellerInfo , 'cart_name') @endphp" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
+                                            <path class="circle" fill="@if (has_info_confirmed($sellerInfo , 'cart_name')) #15ca20 @else #333 @endif" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
+                                            <path class="background" fill="@if (has_info_confirmed($sellerInfo, 'cart_name')) #15ca20 @else #fff @endif" d="M512 140c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm193.4 225.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.3 0 19.9 5 25.9 13.3l71.2 98.8 157.2-218c6-8.4 15.7-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.4 12.7z"></path>
+                                            <path class="tick" fill="@if (has_info_confirmed($sellerInfo, 'cart_name')) #fff @else #333 @endif" d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"></path>
+                                        </svg>
+                                    </div>
                                 </div>
-                                <p>وبسایت بازاریابی</p>
-                                <div class="progress mb-3" style="height: 5px">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p>تک صفحه ای</p>
-                                <div class="progress mb-3" style="height: 5px">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p>الگوی موبایل</p>
-                                <div class="progress mb-3" style="height: 5px">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p>پنل مدیریتی</p>
-                                <div class="progress" style="height: 5px">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div>
+                                    @if (count($addresses) !=0)
+                                    @foreach ($addresses as $address)
+                                    <div class="py-4 d-flex justify-content-between border-bottom">
+                                        <div>
+                                            <div class="mb-3 fs15res lh2">
+                                                {{ $address->address }}
+                                            </div>
+                                            <div class="text-secondary-3">
+                                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="21" width="21" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M256 0c17.7 0 32 14.3 32 32V66.7C368.4 80.1 431.9 143.6 445.3 224H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H445.3C431.9 368.4 368.4 431.9 288 445.3V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.3C143.6 431.9 80.1 368.4 66.7 288H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H66.7C80.1 143.6 143.6 80.1 224 66.7V32c0-17.7 14.3-32 32-32zM128 256a128 128 0 1 0 256 0 128 128 0 1 0 -256 0zm128-80a80 80 0 1 1 0 160 80 80 0 1 1 0-160z"></path>
+                                                </svg>
+                                                <span class="fs15res me-1"> {{ $address->state }}</span>
+                                            </div>
+                                            <div class="mt-2 text-secondary-3">
+                                                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" height="21" width="21" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                                </svg>
+                                                <span class="fs15res me-1"> {{ $address->postal_code }}</span>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+                                    @endforeach
+                                    @else
+                                    <div class="alert alert-info">
+                                        آدرسی ثبت نشده است
+                                    </div>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
@@ -381,9 +437,9 @@ $sellerInfo = $seller->sellerInfo()->first();
         var data = $(e.relatedTarget).attr('data-infoname');
         var approvedstatus = $(e.relatedTarget).attr('data-approvedstatus');
 
-        if(approvedstatus){
+        if (approvedstatus) {
             $text = 'آیا از لغو تایید اطمینان دارید؟';
-        }else{
+        } else {
             $text = 'آیا از تایید اطمینان دارید؟';
         }
 
