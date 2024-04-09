@@ -27,7 +27,7 @@
 </div>
 
 
-<div class="d-flex align-items-center py-4 border-bottom">
+<!-- <div class="d-flex align-items-center py-4 border-bottom">
     <div>
         <img class="br10 object-cover" src="assets/image/product/3b9d595499916e1c9294c385c081ec2a36e2a772_1694358064.webp" width="70" height="70" alt="">
     </div>
@@ -73,5 +73,5 @@
     <div class="status-box fs12 me-2">
         در حال بررسی
     </div>
-</div>
+</div> -->
 @endsection

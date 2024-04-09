@@ -31,7 +31,13 @@
     <div class="col-12 col-lg-6 border-left-responsive px-4 py-4 border-bottom">
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
-                <div> نام فروشگاه</div>
+                <div> نام فروشگاه
+                    @if (has_info_confirmed($shop_info , 'shop_name'))
+                    <span class="fs12 badge-green me-2">تایید شده</span>
+                    @else
+                    <span class="fs12 badge-red me-2">تایید نشده</span>
+                    @endif
+                </div>
                 @if ($shop_info->shop_name != null)
                 <div class="fs15 text-dark mt-3 fw600">{{ $shop_info->shop_name }}</div>
                 @else
@@ -49,7 +55,13 @@
     <div class="col-12 col-lg-6 px-4 py-4 border-bottom">
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
-                <div>درباره فروشگاه</div>
+                <div>درباره فروشگاه
+                    @if (has_info_confirmed($shop_info , 'about_shop'))
+                    <span class="fs12 badge-green me-2">تایید شده</span>
+                    @else
+                    <span class="fs12 badge-red me-2">تایید نشده</span>
+                    @endif
+                </div>
                 @if ($shop_info->about_shop != null)
                 <div class="fs15 text-dark mt-3 fw600">{{ $shop_info->about_shop }}</div>
                 @else
@@ -68,7 +80,13 @@
     <div class="col-12 col-lg-6 border-left-responsive px-4 py-4 border-bottom">
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
-                <div>شماره تلفن ثابت فروشگاه</div>
+                <div>شماره تلفن ثابت فروشگاه
+                    @if (has_info_confirmed($shop_info , 'shop_number'))
+                    <span class="fs12 badge-green me-2">تایید شده</span>
+                    @else
+                    <span class="fs12 badge-red me-2">تایید نشده</span>
+                    @endif
+                </div>
                 @if ($shop_info->shop_number != null)
                 <div class="fs15 text-dark mt-3 fw600">{{ $shop_info->shop_number }}</div>
                 @else
@@ -86,7 +104,13 @@
     <div class="col-12 col-lg-6 px-4 py-4 border-bottom">
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
-                <div>وب‌سایت فروشگاه</div>
+                <div>وب‌سایت فروشگاه
+                    @if (has_info_confirmed($shop_info , 'website'))
+                    <span class="fs12 badge-green me-2">تایید شده</span>
+                    @else
+                    <span class="fs12 badge-red me-2">تایید نشده</span>
+                    @endif
+                </div>
                 @if ($shop_info->shop_website != null)
                 <div class="fs15 text-dark mt-3 fw600">{{ $shop_info->shop_website }}</div>
                 @else
@@ -120,7 +144,13 @@
                     </div>
                 </div>
                 <div class="me-3">
-                    <div>نماد فروشگاه (لوگو)</div>
+                    <div>نماد فروشگاه (لوگو)
+                        @if (has_info_confirmed($shop_info , 'logo'))
+                        <span class="fs12 badge-green me-2">تایید شده</span>
+                        @else
+                        <span class="fs12 badge-red me-2">تایید نشده</span>
+                        @endif
+                    </div>
                     <div class="fs12 text-secondary-2 mt-3">اگر لوگو دارید، بارگذاری کنید</div>
                 </div>
             </div>

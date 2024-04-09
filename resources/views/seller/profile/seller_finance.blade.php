@@ -14,7 +14,13 @@
     <div class="col-12 col-lg-6 border-left-responsive px-4 py-4 border-bottom">
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
-                <div> شماره کارت </div>
+                <div> شماره کارت
+                    @if (has_info_confirmed($seller_info , 'cart_number'))
+                    <span class="fs12 badge-green me-2">تایید شده</span>
+                    @else
+                    <span class="fs12 badge-red me-2">تایید نشده</span>
+                    @endif
+                </div>
                 @if ($seller_info->cart_number != null)
                 <div class="fs15 text-dark mt-3 fw600">{{ $seller_info->cart_number }}</div>
                 @else
@@ -32,7 +38,13 @@
     <div class="col-12 col-lg-6 px-4 py-4 border-bottom">
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
-                <div> صاحب حساب</div>
+                <div> صاحب حساب
+                    @if (has_info_confirmed($seller_info , 'cart_name'))
+                    <span class="fs12 badge-green me-2">تایید شده</span>
+                    @else
+                    <span class="fs12 badge-red me-2">تایید نشده</span>
+                    @endif
+                </div>
                 @if ($seller_info->cart_name != null)
                 <div class="fs15 text-dark mt-3 fw600 fv">{{ $seller_info->cart_name }}</div>
                 @else
@@ -67,7 +79,9 @@
                     <div class="pb-4 pt-3 fs14">
                         شماره کارت باید متعلق به صاحب کُد ملی باشد
                     </div class="">
-                    <label for="" class="fs14">شماره کارت</label>
+                    <label for="" class="fs14">شماره کارت
+
+                    </label>
                     <input type="text" value="@if ($seller_info->cart_number != null){{$seller_info->cart_number}}@endif" name="cart_number" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
                 </div>
                 <div class="modal-footer mt-3">
@@ -89,7 +103,9 @@
             <form action="{{route('seller.profile.cart.name')}}" method="post">
                 @csrf
                 <div class="modal-body">
-                    <label for="" class="fs14">نام کامل صاحب حساب</label>
+                    <label for="" class="fs14">نام کامل صاحب حساب
+
+                    </label>
                     <input type="text" value="@if ($seller_info->cart_name != null){{$seller_info->cart_name}}@endif" name="cart_name" class="w-100 mt-2 inp-seller-profile px-3 text-secondary">
                 </div>
                 <div class="modal-footer mt-3">

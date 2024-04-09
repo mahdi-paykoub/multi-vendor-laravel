@@ -27,7 +27,8 @@ class SellerPanelViewController extends Controller
     public function seller_profile_address()
     {
         $user_addresses = get_seller_by_token()->addresses()->get();
-        return view('seller.profile.seller_address', compact('user_addresses'));
+        $shop_info = get_seller_by_token()->sellerInfo()->first();
+        return view('seller.profile.seller_address', compact('user_addresses' , 'shop_info'));
     }
     public function seller_profile_store_info()
     {

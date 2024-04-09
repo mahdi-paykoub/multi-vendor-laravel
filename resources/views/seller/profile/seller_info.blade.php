@@ -11,12 +11,21 @@
     <div class="col-12 col-lg-6 border-left-responsive px-4 py-4 border-bottom">
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
-                <div> نام و نام خانوادگی</div>
+                <div>
+                    نام و نام خانوادگی
+                    @if (has_info_confirmed($seller_info , 'name'))
+                    <span class="fs12 badge-green me-2">تایید شده</span>
+                    @else
+                    <span class="fs12 badge-red me-2">تایید نشده</span>
+                    @endif
+                </div>
                 @if ($seller_info->name != null)
                 <div class="fs15 text-dark mt-3 fw600">{{ $seller_info->name }}</div>
+
                 @else
                 <div class="fs15 text-dark mt-3 fw600">وارد کنید</div>
                 @endif
+
             </div>
             <div>
                 <svg stroke="currentColor" class="text-info cursor-pointer" data-bs-toggle="modal" data-bs-target="#setNameModal" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +38,13 @@
     <div class="col-12 col-lg-6 px-4 py-4 border-bottom">
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
-                <div>کُد ملی</div>
+                <div>کُد ملی
+                    @if (has_info_confirmed($seller_info , 'national_code'))
+                    <span class="fs12 badge-green me-2">تایید شده</span>
+                    @else
+                    <span class="fs12 badge-red me-2">تایید نشده</span>
+                    @endif
+                </div>
                 @if ($seller_info->national_code != null)
                 <div class="fs15 text-dark mt-3 fw600 fv">{{ $seller_info->national_code }}</div>
                 @else
@@ -49,17 +64,23 @@
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
                 <div>شماره موبایل ثبت‌نام <span class="fs14 text-danger">*</span>
-                <span class="fs12 badge-green me-2">تایید شده</span>
+                    <span class="fs12 badge-green me-2">تایید شده</span>
                 </div>
                 <div class="fs15 text-dark mt-3 fw600 fv">{{ $phone_number }} </div>
             </div>
-           
+
         </div>
     </div>
     <div class="col-12 col-lg-6 px-4 py-4 border-bottom">
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs14 text-secondary">
-                <div>ایمیل<span class="fs14 text-danger">*</span> </div>
+                <div>ایمیل<span class="fs14 text-danger">*</span>
+                    @if (has_info_confirmed($seller_info , 'email'))
+                    <span class="fs12 badge-green me-2">تایید شده</span>
+                    @else
+                    <span class="fs12 badge-red me-2">تایید نشده</span>
+                    @endif
+                </div>
                 @if ($seller_info->email != null)
                 <div class="fs15 text-dark mt-3 fw600">{{ $seller_info->email }}</div>
                 @else

@@ -6,13 +6,19 @@
 <!--content-->
 <div class="border-bottom-light-2">
     <div class="w-fit">
-        <span class="px-3 text-info">آدرس شما</span>
+        <span class="px-3 text-info">آدرس شما
+        </span>
         <div class="w-100 mt-2 px-4" style="width: 100%;height: 4px;background: #1ab1d4;border-radius: 5px 5px 0 0"></div>
     </div>
 </div>
 <div class="d-lg-flex justify-content-between align-items-center mt-3 border-bottom-light-2 pb-3">
     <div class="fs14">
         اینجا می‌توانید آدرس‌‌هایتان را ببنید و مدیریت کنید
+        @if (has_info_confirmed($shop_info , 'address'))
+        <span class="fs12 badge-green me-2">تایید شده</span>
+        @else
+        <span class="fs12 badge-red me-2">تایید نشده</span>
+        @endif
     </div>
     <div class="mt-4 mt-lg-0">
         <button class="border-0 text-white br7 btn-padding fs14 px-4" style="background-color: #1ab1d4;" type="button" data-bs-toggle="modal" data-bs-target="#mapModal">
