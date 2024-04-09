@@ -227,8 +227,11 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
                                             <span class="fs14 fw600">نام و نام خانوادگی</span>
+                                            @if (has_info_confirmed($sellerInfo , 'name'))
                                             <span class="fs12 badge-green me-2">تایید شده</span>
-                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                            @else
+                                            <span class="fs12 badge-red me-2">تایید نشده</span>
+                                            @endif
                                         </div>
                                         <div>
                                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
@@ -243,8 +246,11 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
                                             <span class="fs14 fw600">نام فروشگاه</span>
+                                            @if (has_info_confirmed($sellerInfo , 'shop_name'))
                                             <span class="fs12 badge-green me-2">تایید شده</span>
-                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                            @else
+                                            <span class="fs12 badge-red me-2">تایید نشده</span>
+                                            @endif
                                         </div>
                                         <div>
                                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
@@ -259,8 +265,11 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
                                             <span class="fs14 fw600 fw600">آدرس فروشگاه</span>
+                                            @if (has_info_confirmed($sellerInfo , 'address'))
                                             <span class="fs12 badge-green me-2">تایید شده</span>
-                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                            @else
+                                            <span class="fs12 badge-red me-2">تایید نشده</span>
+                                            @endif
                                         </div>
                                         <div>
                                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
@@ -275,8 +284,11 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
                                             <span class="fs14 fw600">شماره کارت</span>
+                                            @if (has_info_confirmed($sellerInfo , 'cart_number'))
                                             <span class="fs12 badge-green me-2">تایید شده</span>
-                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                            @else
+                                            <span class="fs12 badge-red me-2">تایید نشده</span>
+                                            @endif
                                         </div>
                                         <div>
                                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
@@ -291,8 +303,11 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
                                             <span class="fs14 fw600">ایمیل</span>
+                                            @if (has_info_confirmed($sellerInfo , 'email'))
                                             <span class="fs12 badge-green me-2">تایید شده</span>
-                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                            @else
+                                            <span class="fs12 badge-red me-2">تایید نشده</span>
+                                            @endif
                                         </div>
                                         <div>
                                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
@@ -307,8 +322,11 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
                                             <span class="fs14 fw600">کد ملی</span>
+                                            @if (has_info_confirmed($sellerInfo , 'national_code'))
                                             <span class="fs12 badge-green me-2">تایید شده</span>
-                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                            @else
+                                            <span class="fs12 badge-red me-2">تایید نشده</span>
+                                            @endif
                                         </div>
                                         <div>
                                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
@@ -323,8 +341,11 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
                                             <span class="fs14 fw600">مدارک</span>
+                                            <!-- @if (has_info_confirmed($sellerInfo , 'name'))
                                             <span class="fs12 badge-green me-2">تایید شده</span>
-                                            <!-- <span class="fs12 badge-red me-2">تایید شده</span> -->
+                                            @else
+                                            <span class="fs12 badge-red me-2">تایید نشده</span>
+                                            @endif -->
                                         </div>
                                         <div>
                                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="19" width="19" xmlns="http://www.w3.org/2000/svg">
@@ -337,7 +358,7 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                             <div class="col-4">
 
                                 <button class="btn btn-info px-5 mt-3 text-white fs14 btn-padding br7">بررسی اطلاعات من</button>
-                              
+
                             </div>
 
                         </div>

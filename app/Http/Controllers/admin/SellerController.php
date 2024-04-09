@@ -95,7 +95,7 @@ class SellerController extends Controller
             });
 
             SellerInfo::where('seller_id', $validData['seller_id'])->update([
-                'confirmed_parts' => json_encode($confirmed_parts)
+                'confirmed_parts' => json_encode($confirmed_parts->values())
             ]);
 
             return response(['status' => 'removed']);
