@@ -149,7 +149,7 @@ $sellerInfo = $seller->sellerInfo()->first();
                             <div class="col-sm-9 text-secondary">
                                 <div class="d-flex align-items-center">
                                     <input type="text" class="form-control" value="{{$sellerInfo->name}}" disabled>
-                                    <svg data-infoname="name" class="approveTick ms-2" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
+                                    <svg data-infoname="name" class="approveTick ms-2" data-approvedstatus="@php echo has_info_confirmed($sellerInfo , 'name') @endphp" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
                                         <path class="circle" fill="@if (has_info_confirmed($sellerInfo , 'name')) #15ca20 @else #333 @endif" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
                                         <path class="background" fill="@if (has_info_confirmed($sellerInfo, 'name')) #15ca20 @else #fff @endif" d="M512 140c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm193.4 225.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.3 0 19.9 5 25.9 13.3l71.2 98.8 157.2-218c6-8.4 15.7-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.4 12.7z"></path>
                                         <path class="tick" fill="@if (has_info_confirmed($sellerInfo, 'name')) #fff @else #333 @endif" d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"></path>
@@ -165,7 +165,7 @@ $sellerInfo = $seller->sellerInfo()->first();
                             <div class="col-sm-9 text-secondary">
                                 <div class="d-flex align-items-center">
                                     <input type="text" class="form-control" value="{{$sellerInfo->email}}" disabled>
-                                    <svg data-infoname="email" class="approveTick ms-2" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
+                                    <svg data-infoname="email" class="approveTick ms-2" data-approvedstatus="@php echo has_info_confirmed($sellerInfo , 'email') @endphp" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
                                         <path class="circle" fill="@if (has_info_confirmed($sellerInfo , 'email')) #15ca20 @else #333 @endif" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
                                         <path class="background" fill="@if (has_info_confirmed($sellerInfo, 'email')) #15ca20 @else #fff @endif" d="M512 140c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm193.4 225.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.3 0 19.9 5 25.9 13.3l71.2 98.8 157.2-218c6-8.4 15.7-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.4 12.7z"></path>
                                         <path class="tick" fill="@if (has_info_confirmed($sellerInfo, 'email')) #fff @else #333 @endif" d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"></path>
@@ -181,7 +181,7 @@ $sellerInfo = $seller->sellerInfo()->first();
                             <div class="col-sm-9 text-secondary">
                                 <div class="d-flex align-items-center">
                                     <input type="text" class="form-control" value="{{$sellerInfo->national_code}}" disabled>
-                                    <svg data-infoname="national_code" class="approveTick ms-2" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
+                                    <svg data-infoname="national_code" class="approveTick ms-2" data-approvedstatus="@php echo has_info_confirmed($sellerInfo , 'national_code') @endphp" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
                                         <path class="circle" fill="@if (has_info_confirmed($sellerInfo , 'national_code')) #15ca20 @else #333 @endif" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
                                         <path class="background" fill="@if (has_info_confirmed($sellerInfo, 'national_code')) #15ca20 @else #fff @endif" d="M512 140c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm193.4 225.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.3 0 19.9 5 25.9 13.3l71.2 98.8 157.2-218c6-8.4 15.7-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.4 12.7z"></path>
                                         <path class="tick" fill="@if (has_info_confirmed($sellerInfo, 'national_code')) #fff @else #333 @endif" d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"></path>
@@ -196,7 +196,7 @@ $sellerInfo = $seller->sellerInfo()->first();
                             <div class="col-sm-9 text-secondary">
                                 <div class="d-flex align-items-center">
                                     <input type="text" class="form-control" value="{{$sellerInfo->shop_number}}" disabled>
-                                    <svg data-infoname="shop_number" class="approveTick ms-2" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
+                                    <svg data-infoname="shop_number" class="approveTick ms-2" data-approvedstatus="@php echo has_info_confirmed($sellerInfo , 'shop_number') @endphp" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
                                         <path class="circle" fill="@if (has_info_confirmed($sellerInfo , 'shop_number')) #15ca20 @else #333 @endif" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
                                         <path class="background" fill="@if (has_info_confirmed($sellerInfo, 'shop_number')) #15ca20 @else #fff @endif" d="M512 140c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm193.4 225.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.3 0 19.9 5 25.9 13.3l71.2 98.8 157.2-218c6-8.4 15.7-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.4 12.7z"></path>
                                         <path class="tick" fill="@if (has_info_confirmed($sellerInfo, 'shop_number')) #fff @else #333 @endif" d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"></path>
@@ -211,7 +211,7 @@ $sellerInfo = $seller->sellerInfo()->first();
                             <div class="col-sm-9 text-secondary">
                                 <div class="d-flex align-items-center">
                                     <input type="text" class="form-control" value="{{$sellerInfo->website}}" disabled>
-                                    <svg data-infoname="website" class="approveTick ms-2" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
+                                    <svg data-infoname="website" class="approveTick ms-2" data-approvedstatus="@php echo has_info_confirmed($sellerInfo , 'website') @endphp" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
                                         <path class="circle" fill="@if (has_info_confirmed($sellerInfo , 'website')) #15ca20 @else #333 @endif" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
                                         <path class="background" fill="@if (has_info_confirmed($sellerInfo, 'website')) #15ca20 @else #fff @endif" d="M512 140c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm193.4 225.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.3 0 19.9 5 25.9 13.3l71.2 98.8 157.2-218c6-8.4 15.7-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.4 12.7z"></path>
                                         <path class="tick" fill="@if (has_info_confirmed($sellerInfo, 'website')) #fff @else #333 @endif" d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"></path>
@@ -226,7 +226,7 @@ $sellerInfo = $seller->sellerInfo()->first();
                             <div class="col-sm-9 text-secondary">
                                 <div class="d-flex align-items-center">
                                     <input type="text" class="form-control" value="{{$sellerInfo->cart_number}}" disabled>
-                                    <svg data-infoname="cart_number" class="approveTick ms-2" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
+                                    <svg data-infoname="cart_number" class="approveTick ms-2" data-approvedstatus="@php echo has_info_confirmed($sellerInfo , 'cart_number') @endphp" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
                                         <path class="circle" fill="@if (has_info_confirmed($sellerInfo , 'cart_number')) #15ca20 @else #333 @endif" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
                                         <path class="background" fill="@if (has_info_confirmed($sellerInfo, 'cart_number')) #15ca20 @else #fff @endif" d="M512 140c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm193.4 225.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.3 0 19.9 5 25.9 13.3l71.2 98.8 157.2-218c6-8.4 15.7-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.4 12.7z"></path>
                                         <path class="tick" fill="@if (has_info_confirmed($sellerInfo, 'cart_number')) #fff @else #333 @endif" d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"></path>
@@ -241,7 +241,7 @@ $sellerInfo = $seller->sellerInfo()->first();
                             <div class="col-sm-9 text-secondary">
                                 <div class="d-flex align-items-center">
                                     <input type="text" class="form-control" value="{{$sellerInfo->cart_name}}" disabled>
-                                    <svg data-infoname="cart_name" class="approveTick ms-2" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
+                                    <svg data-infoname="cart_name" class="approveTick ms-2" data-approvedstatus="@php echo has_info_confirmed($sellerInfo , 'cart_name') @endphp" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
                                         <path class="circle" fill="@if (has_info_confirmed($sellerInfo , 'cart_name')) #15ca20 @else #333 @endif" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
                                         <path class="background" fill="@if (has_info_confirmed($sellerInfo, 'cart_name')) #15ca20 @else #fff @endif" d="M512 140c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm193.4 225.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.3 0 19.9 5 25.9 13.3l71.2 98.8 157.2-218c6-8.4 15.7-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.4 12.7z"></path>
                                         <path class="tick" fill="@if (has_info_confirmed($sellerInfo, 'cart_name')) #fff @else #333 @endif" d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"></path>
@@ -266,7 +266,7 @@ $sellerInfo = $seller->sellerInfo()->first();
                                     <div style="font-size: 14px;">
                                         {{ $sellerInfo->about_shop }}
                                     </div>
-                                    <svg data-infoname="about_shop" class="approveTick ms-2" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
+                                    <svg data-infoname="about_shop" data-approvedstatus="@php echo has_info_confirmed($sellerInfo , 'about_shop') @endphp" class="approveTick ms-2" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="28" width="28" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#areYouConfirmed">
                                         <path class="circle" fill="@if (has_info_confirmed($sellerInfo , 'about_shop')) #15ca20 @else #333 @endif" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
                                         <path class="background" fill="@if (has_info_confirmed($sellerInfo, 'about_shop')) #15ca20 @else #fff @endif" d="M512 140c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm193.4 225.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.3 0 19.9 5 25.9 13.3l71.2 98.8 157.2-218c6-8.4 15.7-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.4 12.7z"></path>
                                         <path class="tick" fill="@if (has_info_confirmed($sellerInfo, 'about_shop')) #fff @else #333 @endif" d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"></path>
@@ -321,15 +321,17 @@ $sellerInfo = $seller->sellerInfo()->first();
 <div class="modal fade" id="areYouConfirmed" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-center p-5">
-            <h5> آیا اطمینان دارید؟</h5>
+            <h5 class="confirm-or-not-txt"> </h5>
             <div class="d-flex justify-content-center">
-                <button class="btn btn-danger px-4 mt-4">خیر</button>
+                <button class="btn btn-danger px-4 mt-4" data-bs-dismiss="modal" aria-label="Close">خیر</button>
                 <button class="btn btn-primary  ms-3 px-4 mt-4 yes-sure-btn" data-infoname="" data-sellerid="{{$seller->id}}">بله</button>
             </div>
         </div>
 
     </div>
 </div>
+
+
 @endsection
 
 @section('scripts')
@@ -340,6 +342,7 @@ $sellerInfo = $seller->sellerInfo()->first();
         $seller_id = $this.attr('data-sellerid')
         $infoname = $this.attr('data-infoname')
 
+        $selected_element = $('*[data-infoname="' + $infoname + '"]')
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
@@ -356,14 +359,16 @@ $sellerInfo = $seller->sellerInfo()->first();
             }),
             success: function(data) {
                 if (data.status == 'added') {
-                    $('*[data-infoname="' + $infoname + '"]').children('.circle').attr('fill', '#15ca20')
-                    $('*[data-infoname="' + $infoname + '"]').children('.background').attr('fill', '#15ca20')
-                    $('*[data-infoname="' + $infoname + '"]').children('.tick').attr('fill', '#fff')
+                    $selected_element.children('.circle').attr('fill', '#15ca20')
+                    $selected_element.children('.background').attr('fill', '#15ca20')
+                    $selected_element.children('.tick').attr('fill', '#fff')
+                    $selected_element.attr('data-approvedstatus', true)
                     $('#areYouConfirmed').modal('hide')
                 } else if (data.status == 'removed') {
-                    $('*[data-infoname="' + $infoname + '"]').children('.circle').attr('fill', '#333')
-                    $('*[data-infoname="' + $infoname + '"]').children('.background').attr('fill', '#fff')
-                    $('*[data-infoname="' + $infoname + '"]').children('.tick').attr('fill', '#333')
+                    $selected_element.children('.circle').attr('fill', '#333')
+                    $selected_element.children('.background').attr('fill', '#fff')
+                    $selected_element.children('.tick').attr('fill', '#333')
+                    $selected_element.attr('data-approvedstatus', false)
                     $('#areYouConfirmed').modal('hide')
                 }
             }
@@ -374,8 +379,16 @@ $sellerInfo = $seller->sellerInfo()->first();
 
         //get data-id attribute of the clicked element
         var data = $(e.relatedTarget).attr('data-infoname');
+        var approvedstatus = $(e.relatedTarget).attr('data-approvedstatus');
+
+        if(approvedstatus){
+            $text = 'آیا از لغو تایید اطمینان دارید؟';
+        }else{
+            $text = 'آیا از تایید اطمینان دارید؟';
+        }
 
         //populate the textbox
+        $('.confirm-or-not-txt').text($text);
         $('.yes-sure-btn').attr('data-infoname', data);
     });
 </script>

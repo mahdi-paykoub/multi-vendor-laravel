@@ -93,8 +93,6 @@ class SellerController extends Controller
             $confirmed_parts = $confirmed_parts->filter(function ($item) use ($validData) {
                 return $item != $validData['name'];
             });
-            // unset($confirmed_parts[array_search($validData['name'], $confirmed_parts)]);
-
 
             SellerInfo::where('seller_id', $validData['seller_id'])->update([
                 'confirmed_parts' => json_encode($confirmed_parts)
