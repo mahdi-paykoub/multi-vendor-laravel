@@ -33,6 +33,8 @@ Route::resource('product-category', admin\ProductCategoryController::class)->exc
 Route::resource('permission', admin\PermissionController::class)->except('show');
 Route::resource('role', admin\RoleController::class)->except('show');
 Route::resource('brand', admin\BrandController::class)->except('show');
+
+Route::post('/seller/change/sellerInfo/status', [admin\SellerController::class, 'change_sellerInfo_status'])->name('change.sellerInfo.status');
 Route::resource('seller', admin\SellerController::class);
 Route::resource('notification', admin\NotificationController::class);
 Route::post('/set-seller-status/{seller}', [admin\SellerController::class, 'setSellerStatus'])->name('setSellerStatus');

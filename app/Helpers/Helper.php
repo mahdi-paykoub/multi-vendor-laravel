@@ -2,6 +2,7 @@
 
 use App\Models\GlobalOptions;
 use App\Models\Seller;
+use Hamcrest\Arrays\IsArray;
 use Illuminate\Support\Facades\Route;
 
 if (!function_exists('image_url_assets')) {
@@ -69,5 +70,13 @@ if (!function_exists('get_seller_by_token')) {
     function get_seller_by_token()
     {
         return Seller::where('token', session('seller_token'))->first();
+    }
+}
+
+if (!function_exists('has_info_confirmed')) {
+    function has_info_confirmed($sellerInfo, $value)
+    {
+        $array = is_array(json_decode($sellerInfo->confirmed_parts)) ? json_decode($sellerInfo->confirmed_parts) : [];
+        return in_array($value, $array);
     }
 }

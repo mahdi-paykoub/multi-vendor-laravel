@@ -2166,78 +2166,78 @@ input::placeholder {
 }
 
 .CodeMirror {
-    direction: ltr;
-    text-align: right;
-    background: #fff;
-    border: 1px solid #e9ecef;
-    color: #000;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0
+	direction: ltr;
+	text-align: right;
+	background: #fff;
+	border: 1px solid #e9ecef;
+	color: #000;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0
 }
 
 .CodeMirror-wrap pre {
-    direction: rtl;
+	direction: rtl;
 }
 
 .editor-toolbar {
-    border: 1px solid #e9ecef;
-    border-bottom: 0;
-    border-radius: .25rem .25rem 0 0
+	border: 1px solid #e9ecef;
+	border-bottom: 0;
+	border-radius: .25rem .25rem 0 0
 }
 
 .editor-toolbar,
 .editor-toolbar:hover {
-    opacity: 1
+	opacity: 1
 }
 
 .editor-toolbar a {
-    color: rgba(0, 0, 0, .7) !important
+	color: rgba(0, 0, 0, .7) !important
 }
 
 .editor-toolbar a:hover {
-    background: #e9ecef;
-    border: none
+	background: #e9ecef;
+	border: none
 }
 
 .editor-toolbar i.separator {
-    border-right: 1px solid #e9ecef;
-    border-left: 1px solid #e9ecef
+	border-right: 1px solid #e9ecef;
+	border-left: 1px solid #e9ecef
 }
 
 .CodeMirror-fullscreen,
 .editor-preview-side,
 .editor-toolbar.fullscreen {
-    z-index: 999
+	z-index: 999
 }
 
 .editor-preview-side {
-    border-color: #e9ecef
+	border-color: #e9ecef
 }
 
 .editor-toolbar a.active,
 .editor-toolbar a:hover {
-    background: #e9ecef;
-    border-color: transparent
+	background: #e9ecef;
+	border-color: transparent
 }
 
 .editor-statusbar {
-    padding: 0 10px;
-    border: 1px solid #e9ecef;
-    border-top-color: transparent;
-    border-bottom-right-radius: .25rem;
-    border-bottom-left-radius: .25rem
+	padding: 0 10px;
+	border: 1px solid #e9ecef;
+	border-top-color: transparent;
+	border-bottom-right-radius: .25rem;
+	border-bottom-left-radius: .25rem
 }
 
 .ace_editor {
-    border-radius: .25rem;
-    margin: auto;
-    height: 350px;
-    width: 100%;
-    font: 14px/normal SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+	border-radius: .25rem;
+	margin: auto;
+	height: 350px;
+	width: 100%;
+	font: 14px/normal SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
 }
 
 .ace_editor .ace_content {
-    font-size: .875rem
+	font-size: .875rem
 }
 
 
@@ -2889,19 +2889,25 @@ input::placeholder {
 }
 
 .theme-close {
-    opacity: 1;
-    height: 40px;
-    width: 40px;
-    position: absolute;
-    font-weight: 400;
-    z-index: 1;
-    left: 0;
-    background-color: #fff !important;
-    border-radius: 5px
+	opacity: 1;
+	height: 40px;
+	width: 40px;
+	position: absolute;
+	font-weight: 400;
+	z-index: 1;
+	left: 0;
+	background-color: #fff !important;
+	border-radius: 5px
 }
-.-ver-3{
-    vertical-align: -3px;
+
+.-ver-3 {
+	vertical-align: -3px;
 }
-.object-cover{
-    object-fit: cover;
+
+.object-cover {
+	object-fit: cover;
+}
+
+.approveTick {
+	cursor: pointer;
 }

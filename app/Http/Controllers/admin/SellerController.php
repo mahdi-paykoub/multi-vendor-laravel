@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Seller;
+use App\Models\SellerInfo;
 use Illuminate\Http\Request;
 
 class SellerController extends Controller
@@ -73,5 +74,40 @@ class SellerController extends Controller
 
         $seller->update($validData);
         return back();
+    }
+    public function change_sellerInfo_status(Request $request)
+    {
+        $validData = $request->validate([
+            'name' => 'required',
+            'seller_id' => 'required',
+        ]);
+
+        $sellerInfo = SellerInfo::where('seller_id', $validData['seller_id']);
+
+        $confirmed_parts =  ($sellerInfo->first()->confirmed_parts) == null ? collect([]) : collect(json_decode($sellerInfo->first()->confirmed_parts));
+
+
+        if ($confirmed_parts->contains($validData['name'])) {
+
+
+            $confirmed_parts = $confirmed_parts->filter(function ($item) use ($validData) {
+                return $item != $validData['name'];
+            });
+            // unset($confirmed_parts[array_search($validData['name'], $confirmed_parts)]);
+
+
+            SellerInfo::where('seller_id', $validData['seller_id'])->update([
+                'confirmed_parts' => json_encode($confirmed_parts)
+            ]);
+
+            return response(['status' => 'removed']);
+        } else {
+            $confirmed_parts->push($validData['name']);
+            SellerInfo::where('seller_id', $validData['seller_id'])->update([
+                'confirmed_parts' => json_encode($confirmed_parts)
+            ]);
+
+            return response(['status' => 'added']);
+        }
     }
 }
