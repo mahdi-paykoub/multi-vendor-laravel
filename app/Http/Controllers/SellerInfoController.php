@@ -231,4 +231,12 @@ class SellerInfoController extends Controller
 
         return back();
     }
+
+    public function change_seller_status()
+    {
+        get_seller_by_token()->update([
+            'status' => 'approvedQueue'
+        ]);
+        return back();
+    }
 }

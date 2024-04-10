@@ -14,9 +14,7 @@
 <div class="d-lg-flex justify-content-between align-items-center mt-3 border-bottom-light-2 pb-3">
     <div class="fs14">
         اینجا می‌توانید آدرس‌‌هایتان را ببنید و مدیریت کنید
-        @if (has_info_confirmed($shop_info , 'address'))
-        <span class="fs12 badge-green me-2">تایید شده</span>
-        @else
+        @if (!has_info_confirmed($shop_info , 'address'))
         <span class="fs12 badge-red me-2">تایید نشده</span>
         @endif
     </div>
@@ -72,6 +70,7 @@
         </div>
         <div>
             <div class="text-start">
+                @if (!has_info_confirmed($shop_info , 'address'))
                 <div class="dropdown">
                     <svg stroke="currentColor" class="icon-dark-color" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="20" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" width="20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
@@ -89,9 +88,11 @@
                             </button>
                         </form>
                     </ul>
-
-
                 </div>
+                @else
+                <span class="fs12 badge-green me-2">تایید شده</span>
+                @endif
+
             </div>
             <img src="{{asset('assets/frontend/image/text/emptyAddress.webp')}}" class="mt-2" width="130" height="115" alt="">
         </div>

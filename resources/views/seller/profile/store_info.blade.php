@@ -45,10 +45,12 @@
                 @endif
             </div>
             <div>
+                @if (!has_info_confirmed($shop_info , 'shop_name') && get_seller_status() != 'approvedQueue')
                 <svg stroke="currentColor" class="text-info cursor-pointer" data-bs-toggle="modal" data-bs-target="#setNameModal" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
+                @endif
             </div>
         </div>
     </div>
@@ -69,11 +71,12 @@
                 @endif
             </div>
             <div>
+                @if (!has_info_confirmed($shop_info , 'about_shop'))
                 <svg stroke="currentColor" fill="none" data-bs-toggle="modal" data-bs-target="#setAboutStoreModal" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" class="text-info" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
-
+                @endif
             </div>
         </div>
     </div>
@@ -94,10 +97,12 @@
                 @endif
             </div>
             <div>
+                @if (!has_info_confirmed($shop_info , 'shop_number'))
                 <svg stroke="currentColor" class="text-info cursor-pointer" data-bs-toggle="modal" data-bs-target="#setFixNumberModal" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
+                @endif
             </div>
         </div>
     </div>
@@ -118,11 +123,12 @@
                 @endif
             </div>
             <div>
+                @if (!has_info_confirmed($shop_info , 'website'))
                 <svg stroke="currentColor" fill="none" data-bs-toggle="modal" data-bs-target="#setWebsiteModal" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" class="text-info" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
-
+                @endif
             </div>
         </div>
     </div>

@@ -222,7 +222,7 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
 
 
                         <div class="row mt-4">
-                            <div class="col-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <a href="{{route('seller.profile.view')}}" class="text-dark">
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
@@ -241,7 +241,7 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <a href="{{route('seller.profile.store.info')}}" class="text-dark">
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
@@ -260,7 +260,7 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <a href="{{route('seller.profile.address')}}" class="text-dark">
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
@@ -279,7 +279,7 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <a href="{{route('seller.profile.finance')}}" class="text-dark">
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
@@ -298,7 +298,7 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <a href="{{route('seller.profile.view')}}" class="text-dark">
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
@@ -317,7 +317,7 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <a href="{{route('seller.profile.view')}}" class="text-dark">
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
@@ -336,7 +336,7 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <a href="{{route('seller.profile.document.info')}}" class="text-dark">
                                     <div class="d-flex justify-content-between br7 border-custom-light mt-3 p-3">
                                         <div>
@@ -355,12 +355,15 @@ $seller_shop_logo = $sellerInfo->shop_logo == null ? url('assets/frontend/image/
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-4">
 
-                                <button class="btn btn-info px-5 mt-3 text-white fs14 btn-padding br7">بررسی اطلاعات من</button>
-
+                            @if ($sellerInfo->Seller()->first()->status != 'approvedQueue')
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <form action="{{route('change.seller.status')}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-info px-5 mt-3 text-white fs14 send-info-box-btn w-100 br7">بررسی اطلاعات من</button>
+                                </form>
                             </div>
-
+                            @endif
                         </div>
                     </div>
 

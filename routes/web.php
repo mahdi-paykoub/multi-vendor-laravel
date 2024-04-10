@@ -118,6 +118,7 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     Route::post('/profile/store-logo', [\App\Http\Controllers\SellerInfoController::class, 'register_store_logo'])->name('seller.profile.store.logo');
     Route::post('/profile/cart_number', [\App\Http\Controllers\SellerInfoController::class, 'register_cart_number'])->name('seller.profile.cart.number');
     Route::post('/profile/cart_name', [\App\Http\Controllers\SellerInfoController::class, 'register_cart_name'])->name('seller.profile.cart.name');
+    Route::post('/change/seller/status', [\App\Http\Controllers\SellerInfoController::class, 'change_seller_status'])->name('change.seller.status');
 
 
 

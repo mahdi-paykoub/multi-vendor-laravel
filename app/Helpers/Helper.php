@@ -80,3 +80,9 @@ if (!function_exists('has_info_confirmed')) {
         return in_array($value, $array);
     }
 }
+if (!function_exists('get_seller_status')) {
+    function get_seller_status()
+    {
+        return get_seller_by_token()->status;
+    }
+}
