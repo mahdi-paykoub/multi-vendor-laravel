@@ -28,7 +28,7 @@
                 @endif
             </div>
             <div>
-                @if (!has_info_confirmed($seller_info , 'cart_number'))
+                @if (!has_info_confirmed($seller_info , 'cart_number') && get_seller_status() != 'approvedQueue')
                 <svg stroke="currentColor" class="text-info cursor-pointer" data-bs-toggle="modal" data-bs-target="#setNameModal" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -55,7 +55,7 @@
                 @endif
             </div>
             <div>
-                @if (!has_info_confirmed($seller_info , 'cart_name'))
+                @if (!has_info_confirmed($seller_info , 'cart_name') && get_seller_status() != 'approvedQueue')
                 <svg stroke="currentColor" fill="none" data-bs-toggle="modal" data-bs-target="#setNationalCode" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" class="text-info" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>

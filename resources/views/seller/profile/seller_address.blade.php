@@ -70,7 +70,7 @@
         </div>
         <div>
             <div class="text-start">
-                @if (!has_info_confirmed($shop_info , 'address'))
+                @if (!has_info_confirmed($shop_info , 'address') && get_seller_status() != 'approvedQueue')
                 <div class="dropdown">
                     <svg stroke="currentColor" class="icon-dark-color" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="20" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" width="20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
