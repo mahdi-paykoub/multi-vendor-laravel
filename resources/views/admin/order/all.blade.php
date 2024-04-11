@@ -98,8 +98,8 @@
                             <span class="ps-1 fv">{{jdate($order->created_at)->format('%B')}} </span>
                             <span class="fv">{{jdate($order->created_at)->format('%Y')}} </span>
                         </td>
-                        <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">مشاهده
-                                جزئیات</button></td>
+                        <td><a href="/admin/order/detail/{{$order->id}}" type="button" class="btn btn-primary btn-sm radius-30 px-4">مشاهده
+                                جزئیات</a></td>
                         <td>
                             <div class="d-flex order-actions">
                                 <a href="javascript:;" class=""><i class="bx bxs-edit"></i></a>
