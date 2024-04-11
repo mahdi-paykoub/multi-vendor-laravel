@@ -55,7 +55,6 @@ $order_productInfos = $order->productInfos()->get();
                     <span>{{$sellerInfo->name}}</span>
                 </div>
             </div>
-
         </div>
     </div>
     @endforeach

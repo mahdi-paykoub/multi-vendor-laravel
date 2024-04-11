@@ -94,6 +94,7 @@ Route::middleware(['CheckSellerPanelAccess'])->prefix('seller-panel')->group(fun
     Route::get('/notofications', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_notofications'])->name('seller.notofications');
     Route::get('/notofication/detail/{notification}', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_notofication_detail'])->name('seller.notofication.detail');
     Route::get('/product-management', [\App\Http\Controllers\SellerPanelViewController::class, 'product_management'])->name('seller.panel.product.management');
+    Route::get('/orders', [\App\Http\Controllers\SellerPanelViewController::class, 'seller_orders'])->name('seller.panel.orders');
 
 
     

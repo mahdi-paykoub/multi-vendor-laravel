@@ -28,7 +28,7 @@ class SellerPanelViewController extends Controller
     {
         $user_addresses = get_seller_by_token()->addresses()->get();
         $shop_info = get_seller_by_token()->sellerInfo()->first();
-        return view('seller.profile.seller_address', compact('user_addresses' , 'shop_info'));
+        return view('seller.profile.seller_address', compact('user_addresses', 'shop_info'));
     }
     public function seller_profile_store_info()
     {
@@ -39,7 +39,7 @@ class SellerPanelViewController extends Controller
     public function seller_profile_finance()
     {
         $seller_info = get_seller_by_token()->sellerInfo()->first();
-        return view('seller.profile.seller_finance' , compact('seller_info'));
+        return view('seller.profile.seller_finance', compact('seller_info'));
     }
     public function seller_profile_document_info()
     {
@@ -81,6 +81,10 @@ class SellerPanelViewController extends Controller
         foreach ($product_infos as $product_info) {
             $seller_products[] = $product_info->product()->first();
         }
-        return view('seller.panel.product_management' ,compact('seller_products'));
+        return view('seller.panel.product_management', compact('seller_products'));
+    }
+    public function seller_orders()
+    {
+        return view('seller.panel.orders');
     }
 }
