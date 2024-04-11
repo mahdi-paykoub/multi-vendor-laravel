@@ -106,7 +106,7 @@
                         <li><a href="{{route('admin.product.create')}}"><i class="bx bx-left-arrow-alt"></i>افزودن محصول
                                 جدید</a>
                         </li>
-                        <li><a href="ecommerce-orders.html"><i class="bx bx-left-arrow-alt"></i>سفارشات</a>
+                        <li><a href="{{route('admin.orders.all')}}"><i class="bx bx-left-arrow-alt"></i>سفارشات</a>
                         </li>
                         <li><a href="{{route('admin.brand.index')}}"><i class="bx bx-left-arrow-alt"></i>برند ها</a>
                         </li>

@@ -86,3 +86,32 @@ if (!function_exists('get_seller_status')) {
         return get_seller_by_token()->status;
     }
 }
+
+if (!function_exists('order_status_fa')) {
+    function order_status_fa($order)
+    {
+        switch ($order->status) {
+            case 'paid':
+                return 'پرداخت شده';
+                break;
+            case 'unpaid':
+                return 'پرداخت نشده';
+                break;
+            case 'preparation':
+                return 'در حال اماده سازی';
+                break;
+            case 'posted':
+                return 'ارسال شده';
+                break;
+            case 'received':
+                return 'تحویل داده شد';
+                break;
+            case 'cancel':
+                return 'لغو شده';
+                break;
+            default:
+                return;
+                break;
+        }
+    }
+}
